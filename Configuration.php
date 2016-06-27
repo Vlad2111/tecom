@@ -24,7 +24,7 @@ class Configuration
 		static $instance = null;
 		if ($instance === null) {
 			$instance = new Configuration();
-			$instance->readConfigAndDBConnection();
+  			$instance->readConfigAndDBConnection();
 		}
 		return $instance;
 	}
@@ -33,15 +33,15 @@ class Configuration
 	private function readConfigAndDBConnection()
 	{
 		$dbConnect = null;
-
-		$dbConnect = pg_connect($host, $port, $user, $password, $dbName);
+		
+		$ConfigurationArray= parse_ini_file("config.ini");
+		$dbConnect = pg_connect($ConfigurationArray);
 		if (!$dbConnect) {
 			throw new Exception("Не удается подключится к базе данных");
 		}
 		return $dbConnect;
 	}
 }
-
 
 Configuration::instance()->config;
 ?>
