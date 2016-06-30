@@ -19,14 +19,14 @@ class Configuration
 	function __construct() {
 	}
 
-	/** Фиксирование подключения к базе данных PostgreSQL.*/
+	/** Фиксирование настроек из config.*/
 	public static function instance()
 	{
-		if ($instance == null) {
-			$instance = new Configuration();
-  			$instance->readConfig();
+		if (Configuration::$instance == null) {
+			Configuration::$instance = new Configuration();
+  			Configuration::$instance->readConfig();
 		}
-		return $instance;
+		return Configuration::$instance;
 	}
 	
 	/** Чтение переменных из файла config.*/
@@ -35,5 +35,4 @@ class Configuration
 		$this->config = parse_ini_file("config.ini");
 	}
 }
-
 ?>
