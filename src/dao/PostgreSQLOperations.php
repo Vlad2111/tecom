@@ -72,6 +72,31 @@ class PostgreSQLOperations
 		}
 		$departmentNameAndId = pg_fetch_all($result);
 		return $departmentNameAndId;
-	}       
+	}
+	
+	/** Возврат значений.*/
+	public function returnInformation($month)
+	{
+		$month = $month - 1;
+		/** Возврат отделов.*/
+		$result = pg_query_params($this->dbConnect, 'SELECT department_id, department_name '.
+				'FROM "Departments" WHERE date = $1', array($month));
+		$departmentRows = pg_fetch_all($result);
+		array_unshift($departmentsTable, "date" -> $month);
+		pg_copy_from($this->dbConnect, "Departments", $departmentRows);
+		
+	}
+	
+	/** Запрос списка отделов.*/
+	public function getDepartmentNames(DateTime $month)
+	{
+		$result = pg_query($this->dbConnect, 'SELECT date_part(\'epoch\', date), department_id, department_name '.
+				'FROM "Departments" WHERE date = $1', array($month));
+		if (!$result) {
+			throw new Exception("Не удается выполнить запрос на получение списка отделов. Ошибка: ". pg_last_error());
+		}
+		$departmentNameAndId = pg_fetch_all($result);
+		return $departmentNameAndId;
+	}
 }
 ?>
