@@ -1,0 +1,18 @@
+INFO - [05-Jul-2016 15:34:18] Achived connection of the database PostgreSQL with:
+INFO - host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+ERROR - [05-Jul-2016 15:34:18] Alien head department.
+INFO - [05-Jul-2016 16:29:19] Achived connection of the database PostgreSQL with:
+INFO - host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+ERROR - [05-Jul-2016 16:29:19] Alien head department.
+INFO - [05-Jul-2016 16:36:11] Achived connection of the database PostgreSQL with:
+INFO - host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+ERROR - [05-Jul-2016 16:36:11] Alien head department.
+INFO - [05-Jul-2016 16:36:22] Achived connection of the database PostgreSQL with:
+INFO - host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+ERROR - [05-Jul-2016 16:36:22] Alien head department.
+INFO - [05-Jul-2016 16:38:27] Achived connection of the database PostgreSQL with:
+INFO - host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+ERROR - [05-Jul-2016 16:38:27] Alien head department.
+INFO - [05-Jul-2016 16:50:38] Achived connection of the database PostgreSQL with:
+INFO - host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+ERROR - [05-Jul-2016 16:50:38] Alien head department.

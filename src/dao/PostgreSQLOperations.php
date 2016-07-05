@@ -6,10 +6,6 @@
 * Исключительное право (c) 2016 пренадлежит ООО Теком
 * Все права защищены
 */
-
-include_once 'Configuration.php';
-include_once 'Logger.php';
-
 /**
 Класс, операции с базами данных PostgreSQL
 
@@ -18,8 +14,13 @@ include_once 'Logger.php';
 class PostgreSQLOperations
 {
 	private $dbConnect;
+	private $log;
 	
-	/** Подключение к базе данных.*/
+	function __construct() {
+		$this->log = Logger::getLogger(__CLASS__);
+	}
+	
+		/** Подключение к базе данных.*/
 	public function connect()
 	{ 
 		$dbConnect = null;
@@ -31,8 +32,10 @@ class PostgreSQLOperations
 				"password={$DBConfiguration['password']}";
 		$this->dbConnect = pg_pconnect($DBConfigurationString);
 		if (!$this->dbConnect) {
-			throw new Exception("Не удается подключится к базе данных.");
+			$this->log->error("PostgreSQL database not available!");
+			throw new Exception("Не удается подключится к базе данных. ".$DBConfigurationString." ".pg_last_error());
 		}
+		$this->log->info("Obtained connection of the database PostgreSQL with: ". $DBConfigurationString);
 		return $this->dbConnect;
 	}
 	
@@ -46,6 +49,7 @@ class PostgreSQLOperations
 			throw new Exception("Не удается выполнить запрос роли.");
 		}
 		if (pg_num_rows($result)<1) {
+			$this->log->error("  ");
 			throw new Exception("Нет данных о данном пользователе.");
 		}
 		if (pg_num_rows($result)>1) {
@@ -65,6 +69,7 @@ class PostgreSQLOperations
 			throw new Exception("Не удается выполнить запрос отдела.");
 		}
 		if (pg_num_rows($result)<1) {
+			$this->log->error(date("[d-M-Y H:i:s]")." Alien head department.");
 			throw new Exception("Нет данных о данном пользователе.");
 		}
 		if (pg_num_rows($result)>1) {
