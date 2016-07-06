@@ -20,7 +20,7 @@ class PostgreSQLOperations
 		$this->log = Logger::getLogger(__CLASS__);
 	}
 	
-		/** Подключение к базе данных.*/
+	/** Подключение к базе данных.*/
 	public function connect()
 	{ 
 		$dbConnect = null;
@@ -32,10 +32,11 @@ class PostgreSQLOperations
 				"password={$DBConfiguration['password']}";
 		$this->dbConnect = pg_pconnect($DBConfigurationString);
 		if (!$this->dbConnect) {
-			$this->log->error("PostgreSQL database not available!");
-			throw new Exception("Не удается подключится к базе данных. ".$DBConfigurationString." ".pg_last_error());
+			echo pg_connection_status($connection);
+			$this->log->error("Не удается подключится к базе данных. ".$DBConfigurationString." ");
+			throw new Exception("Не удается подключится к базе данных. ".$DBConfigurationString." ");
 		}
-		$this->log->info("Obtained connection of the database PostgreSQL with: ". $DBConfigurationString);
+		$this->log->info("Успешное подключение к базе данных PostgreSQL: ". $DBConfigurationString);
 		return $this->dbConnect;
 	}
 	
@@ -46,14 +47,16 @@ class PostgreSQLOperations
 				'AS r inner join "Role_def" AS rd on r.role_id = rd.role_id WHERE r.user_id = $1', 
 				array($userId));
 		if (!$result) {
-			throw new Exception("Не удается выполнить запрос роли.");
+			$this->log->error("Не удается выполнить запрос роли для пользователя: ". $userId);
+			throw new Exception("Не удается выполнить запрос роли для пользователя: ". $userId);
 		}
 		if (pg_num_rows($result)<1) {
-			$this->log->error("  ");
-			throw new Exception("Нет данных о данном пользователе.");
+			$this->log->error("Нет данных о данном пользователе: ". $userId);
+			throw new Exception("Нет данных о данном пользователе: ". $userId);
 		}
 		if (pg_num_rows($result)>1) {
-			throw new Exception("Ошибка запроса.");
+			$this->log->error("Ошибка запроса. Получено несколько результатов");
+			throw new Exception("Ошибка запроса. Получено несколько результатов");
 		}
 		$roleIdName = pg_fetch_all($result);
 		return $roleIdName;
@@ -66,37 +69,47 @@ class PostgreSQLOperations
 				'FROM "Head_departments" AS r inner join "Departments" AS rd on '.
 				'r.department_id = rd.department_id WHERE r.user_id = $1', array($userId));
 		if (!$result) {
-			throw new Exception("Не удается выполнить запрос отдела.");
+			$this->log->error("Не удается выполнить запрос информации отдела для роли \"Директор подразделения\". Пользователь: ". $userId);
+			throw new Exception("Не удается выполнить запрос информации отдела для роли \"Директор подразделения\". Пользователь: ". $userId);
 		}
 		if (pg_num_rows($result)<1) {
-			$this->log->error(date("[d-M-Y H:i:s]")." Alien head department.");
-			throw new Exception("Нет данных о данном пользователе.");
+			$this->log->error("Нет данных о данном пользователе: ". $userId);
+			throw new Exception("Нет данных о данном пользователе: ". $userId);
 		}
 		if (pg_num_rows($result)>1) {
-			throw new Exception("Ошибка запроса.");
+			$this->log->error("Ошибка запроса. Получено несколько результатов");
+			throw new Exception("Ошибка запроса. Получено несколько результатов");
 		}
 		$departmentNameAndId = pg_fetch_all($result);
 		return $departmentNameAndId;
 	}
 	
 	/** Возврат значений.*/
-	public function returnInformation($month)
+	public function clonModelData(DateTime $datefrom, DateTime $dateto)
 	{
-		$month = $month - 1;
+		//разобрать собрать
+		$month = $dateTime->format('U');
 		/** Возврат отделов.*/
-		$result = pg_query_params($this->dbConnect, 'SELECT department_id, department_name '.
-				'FROM "Departments" WHERE date = $1', array($month));
+		$result = pg_query($this->dbConnect, 'SELECT department_id, department_name '.
+				'FROM "Departments"'/* WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($month)*/);
+		if (!$result) {
+			throw new Exception("Не удается выполнить запрос на получение списка отделов. Ошибка: ". pg_last_error());
+		}
 		$departmentRows = pg_fetch_all($result);
+		return $departmentRows;
 		array_unshift($departmentsTable, "date" -> $month);
 		pg_copy_from($this->dbConnect, "Departments", $departmentRows);
 		
 	}
-	
 	/** Запрос списка отделов.*/
-	public function getDepartmentNames(DateTime $month)
+	public function getDepartmentNames($month)
 	{
+		$dateTime = new DateTime($month);
+		
+		$month=$dateTime->format('m.Y');
+		echo $month;
 		$result = pg_query($this->dbConnect, 'SELECT date_part(\'epoch\', date), department_id, department_name '.
-				'FROM "Departments" WHERE date = $1', array($month));
+				'FROM "Departments" WHERE date_trunc(\'month\', date) = $1', array($month));
 		if (!$result) {
 			throw new Exception("Не удается выполнить запрос на получение списка отделов. Ошибка: ". pg_last_error());
 		}

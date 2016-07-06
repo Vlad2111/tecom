@@ -3,10 +3,10 @@
 <configuration xmlns="http://logging.apache.org/log4php/">
 	<appender name="default" class="LoggerAppenderFile">
 		<layout class="LoggerLayoutPattern">
-			<param name="conversionPattern" value="%date [%logger] %message%newline" />
+			<param name="conversionPattern" value="%date [%level] [%logger->%method] [%line] %message%newline" />
 		</layout>
 
-		<param name="file" value="my.log" />
+		<param name="file" value="LoggerStory.log" />
 	</appender>
 	<root>
 		<level value="DEBUG" />
