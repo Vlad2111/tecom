@@ -26,7 +26,7 @@ CREATE TABLE "Head_departments" (
 CREATE TABLE "Projects" (
     date date,
     project_id integer NOT NULL,
-    project_name character varying(100),
+    project_id character varying(100),
     department_id integer
 );
 

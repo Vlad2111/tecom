@@ -1,13 +1,13 @@
-<?php
+ï»¿<?php
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
 *
-* Èñêëþ÷èòåëüíîå ïðàâî (c) 2016 ïðåíàäëåæèò ÎÎÎ Òåêîì
-* Âñå ïðàâà çàùèùåíû
+* Ð˜ÑÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð¿Ñ€Ð°Ð²Ð¾ (c) 2016 Ð¿Ñ€ÐµÐ½Ð°Ð´Ð»ÐµÐ¶Ð¸Ñ‚ ÐžÐžÐž Ð¢ÐµÐºÐ¾Ð¼
+* Ð’ÑÐµ Ð¿Ñ€Ð°Ð²Ð° Ð·Ð°Ñ‰Ð¸Ñ‰ÐµÐ½Ñ‹
 */
 /**
-Êëàññ, îïåðàöèè ñ áàçàìè äàííûõ PostgreSQL
+ÐšÐ»Ð°ÑÑ, Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸ Ñ Ð±Ð°Ð·Ð°Ð¼Ð¸ Ð´Ð°Ð½Ð½Ñ‹Ñ… PostgreSQL
 
 @author ershov.v
 */
@@ -20,7 +20,7 @@ class PostgreSQLOperations
 		$this->log = Logger::getLogger(__CLASS__);
 	}
 	
-	/** Ïîäêëþ÷åíèå ê áàçå äàííûõ.*/
+	/** ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº Ð±Ð°Ð·Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ….*/
 	public function connect()
 	{ 
 		$dbConnect = null;
@@ -33,88 +33,198 @@ class PostgreSQLOperations
 		$this->dbConnect = pg_pconnect($DBConfigurationString);
 		if (!$this->dbConnect) {
 			echo pg_connection_status($connection);
-			$this->log->error("Íå óäàåòñÿ ïîäêëþ÷èòñÿ ê áàçå äàííûõ. ".$DBConfigurationString." ");
-			throw new Exception("Íå óäàåòñÿ ïîäêëþ÷èòñÿ ê áàçå äàííûõ. ".$DBConfigurationString." ");
+			$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑÑ Ðº Ð±Ð°Ð·Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ…. ".$DBConfigurationString." ");
+			throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑÑ Ðº Ð±Ð°Ð·Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ…. ".$DBConfigurationString." ");
 		}
-		$this->log->info("Óñïåøíîå ïîäêëþ÷åíèå ê áàçå äàííûõ PostgreSQL: ". $DBConfigurationString);
+		$this->log->info("Ð£ÑÐ¿ÐµÑˆÐ½Ð¾Ðµ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº Ð±Ð°Ð·Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ… PostgreSQL: ". $DBConfigurationString);
 		return $this->dbConnect;
 	}
 	
-	/** Çàïðîñ ðîëè ïîëüçîâàòåëÿ.*/
+	/** Ð—Ð°Ð¿Ñ€Ð¾Ñ Ñ€Ð¾Ð»Ð¸ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ.*/
 	public function getRoleNameAndId($userId)
 	{
 		$result = pg_query_params($this->dbConnect, 'SELECT r.role_id, rd.role_name FROM "Role" '.
 				'AS r inner join "Role_def" AS rd on r.role_id = rd.role_id WHERE r.user_id = $1', 
 				array($userId));
 		if (!$result) {
-			$this->log->error("Íå óäàåòñÿ âûïîëíèòü çàïðîñ ðîëè äëÿ ïîëüçîâàòåëÿ: ". $userId);
-			throw new Exception("Íå óäàåòñÿ âûïîëíèòü çàïðîñ ðîëè äëÿ ïîëüçîâàòåëÿ: ". $userId);
+			$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ñ€Ð¾Ð»Ð¸ Ð´Ð»Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ: ". $userId.
+					" ". pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ñ€Ð¾Ð»Ð¸ Ð´Ð»Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ: ". $userId.
+					" ". pg_last_error($this->dbConnect));
 		}
 		if (pg_num_rows($result)<1) {
-			$this->log->error("Íåò äàííûõ î äàííîì ïîëüçîâàòåëå: ". $userId);
-			throw new Exception("Íåò äàííûõ î äàííîì ïîëüçîâàòåëå: ". $userId);
+			$this->log->error("ÐÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¾ Ð´Ð°Ð½Ð½Ð¾Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ðµ: ". $userId ." ". pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¾ Ð´Ð°Ð½Ð½Ð¾Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ðµ: ". $userId ." ". pg_last_error($this->dbConnect));
 		}
 		if (pg_num_rows($result)>1) {
-			$this->log->error("Îøèáêà çàïðîñà. Ïîëó÷åíî íåñêîëüêî ðåçóëüòàòîâ");
-			throw new Exception("Îøèáêà çàïðîñà. Ïîëó÷åíî íåñêîëüêî ðåçóëüòàòîâ");
+			$this->log->error("ÐžÑˆÐ¸Ð±ÐºÐ° Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°. ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¾ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð²");
+			throw new Exception("ÐžÑˆÐ¸Ð±ÐºÐ° Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°. ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¾ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð²");
 		}
-		$roleIdName = pg_fetch_all($result);
-		return $roleIdName;
+		$roleNameAndId = pg_fetch_all($result);
+		return $roleNameAndId;
 	}
 	
-	/** Çàïðîñ ðîëè ãëàâû îòäåëà.*/
+	/** Ð—Ð°Ð¿Ñ€Ð¾Ñ Ñ€Ð¾Ð»Ð¸ Ð³Ð»Ð°Ð²Ñ‹ Ð¾Ñ‚Ð´ÐµÐ»Ð°.*/
 	public function getDepartmentHead($userId)
 	{
 		$result = pg_query_params($this->dbConnect, 'SELECT r.department_id, rd.department_name '.
 				'FROM "Head_departments" AS r inner join "Departments" AS rd on '.
 				'r.department_id = rd.department_id WHERE r.user_id = $1', array($userId));
 		if (!$result) {
-			$this->log->error("Íå óäàåòñÿ âûïîëíèòü çàïðîñ èíôîðìàöèè îòäåëà äëÿ ðîëè \"Äèðåêòîð ïîäðàçäåëåíèÿ\". Ïîëüçîâàòåëü: ". $userId);
-			throw new Exception("Íå óäàåòñÿ âûïîëíèòü çàïðîñ èíôîðìàöèè îòäåëà äëÿ ðîëè \"Äèðåêòîð ïîäðàçäåëåíèÿ\". Ïîëüçîâàòåëü: ". $userId);
+			$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ Ð¾Ñ‚Ð´ÐµÐ»Ð° Ð´Ð»Ñ Ñ€Ð¾Ð»Ð¸ \"Ð”Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ\". ".
+					"ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ: ". $userId ." ". pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ Ð¾Ñ‚Ð´ÐµÐ»Ð° Ð´Ð»Ñ Ñ€Ð¾Ð»Ð¸ \"Ð”Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ\". ".
+					"ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ: ". $userId ." ". pg_last_error($this->dbConnect));
 		}
 		if (pg_num_rows($result)<1) {
-			$this->log->error("Íåò äàííûõ î äàííîì ïîëüçîâàòåëå: ". $userId);
-			throw new Exception("Íåò äàííûõ î äàííîì ïîëüçîâàòåëå: ". $userId);
+			$this->log->error("ÐÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¾ Ð´Ð°Ð½Ð½Ð¾Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ðµ: ". $userId ." ". pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¾ Ð´Ð°Ð½Ð½Ð¾Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ðµ: ". $userId ." ". pg_last_error($this->dbConnect));
 		}
 		if (pg_num_rows($result)>1) {
-			$this->log->error("Îøèáêà çàïðîñà. Ïîëó÷åíî íåñêîëüêî ðåçóëüòàòîâ");
-			throw new Exception("Îøèáêà çàïðîñà. Ïîëó÷åíî íåñêîëüêî ðåçóëüòàòîâ");
+			$this->log->error("ÐžÑˆÐ¸Ð±ÐºÐ° Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°. ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¾ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð²");
+			throw new Exception("ÐžÑˆÐ¸Ð±ÐºÐ° Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°. ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¾ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð²");
 		}
 		$departmentNameAndId = pg_fetch_all($result);
 		return $departmentNameAndId;
 	}
 	
-	/** Âîçâðàò çíà÷åíèé.*/
-	public function clonModelData(DateTime $datefrom, DateTime $dateto)
+	/** Ð—Ð°Ð¿Ñ€Ð¾Ñ ÑÐ¿Ð¸ÑÐºÐ° Ð¾Ñ‚Ð´ÐµÐ»Ð¾Ð².*/
+	public function getDepartmentNames(DateTime $date)
 	{
-		//ðàçîáðàòü ñîáðàòü
-		$month = $dateTime->format('U');
-		/** Âîçâðàò îòäåëîâ.*/
-		$result = pg_query($this->dbConnect, 'SELECT department_id, department_name '.
-				'FROM "Departments"'/* WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($month)*/);
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT department_id, department_name FROM "Departments" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($date->format("U")));
 		if (!$result) {
-			throw new Exception("Íå óäàåòñÿ âûïîëíèòü çàïðîñ íà ïîëó÷åíèå ñïèñêà îòäåëîâ. Îøèáêà: ". pg_last_error());
+			$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° Ð¾Ñ‚Ð´ÐµÐ»Ð¾Ð². ". 
+					pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° Ð¾Ñ‚Ð´ÐµÐ»Ð¾Ð². ". 
+					pg_last_error($this->dbConnect));
 		}
-		$departmentRows = pg_fetch_all($result);
-		return $departmentRows;
-		array_unshift($departmentsTable, "date" -> $month);
-		pg_copy_from($this->dbConnect, "Departments", $departmentRows);
-		
+		$departmentNames = pg_fetch_all($result);
+		return $departmentNames;
 	}
-	/** Çàïðîñ ñïèñêà îòäåëîâ.*/
-	public function getDepartmentNames($month)
+	
+	/** Ð—Ð°Ð¿Ñ€Ð¾Ñ ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð².*/
+	public function getEmployeeNames(DateTime $date)
 	{
-		$dateTime = new DateTime($month);
-		
-		$month=$dateTime->format('m.Y');
-		echo $month;
-		$result = pg_query($this->dbConnect, 'SELECT date_part(\'epoch\', date), department_id, department_name '.
-				'FROM "Departments" WHERE date_trunc(\'month\', date) = $1', array($month));
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id FROM "Employee" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($date->format("U")));
 		if (!$result) {
-			throw new Exception("Íå óäàåòñÿ âûïîëíèòü çàïðîñ íà ïîëó÷åíèå ñïèñêà îòäåëîâ. Îøèáêà: ". pg_last_error());
+			$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð². ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð². ". 
+					pg_last_error($this->dbConnect));
 		}
-		$departmentNameAndId = pg_fetch_all($result);
-		return $departmentNameAndId;
+		$employeeNames = pg_fetch_all($result);
+		return $employeeNames;
+	}
+	
+	/** Ð—Ð°Ð¿Ñ€Ð¾Ñ ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð¾Ð² Ð¾Ñ‚Ð´ÐµÐ»Ð°.*/
+	public function getProjectNamesForDepartment($departmentId, DateTime $date)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT project_id, project_name FROM "Projects" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND department_id = $2',
+				array($date->format("U"), $departmentId));
+		if (!$result) {
+			$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð¾Ð² Ð¾Ñ‚Ð´ÐµÐ»Ð°. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð¾Ð² Ð¾Ñ‚Ð´ÐµÐ»Ð°. ".
+					pg_last_error($this->dbConnect));
+		}
+		$projectNamesForDepartment = pg_fetch_all($result);
+		return $projectNamesForDepartment;
+	}
+	
+	/** Ð—Ð°Ð¿Ñ€Ð¾Ñ ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð² Ð¾Ñ‚Ð´ÐµÐ»Ð°.*/
+	public function getEmployeeNamesForDepartment($departmentId, DateTime $date)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id FROM "Employee" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND department_id = $2',
+				array($date->format("U"), $departmentId));
+		if (!$result) {
+			$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð² Ð¾Ñ‚Ð´ÐµÐ»Ð°. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð² Ð¾Ñ‚Ð´ÐµÐ»Ð°. ".
+					pg_last_error($this->dbConnect));
+		}
+		$employeeNamesForDepartment = pg_fetch_all($result);
+		return $employeeNamesForDepartment;
+	}
+
+	/** Ð—Ð°Ð¿Ñ€Ð¾Ñ ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð² Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° Ð¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸.*/
+	public function getEployeeNamesAndPercentsForProject($projectId, DateTime $date)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT rd.user_id, r.time FROM "Time_distribution" AS r inner join '.
+				'"Employee" AS rd on r.employee_id = rd.employee_id WHERE date_part(\'epoch\', date_trunc(\'month\','.
+				'r.date)) = $1 AND project_id = $2', array($date->format("U"), $projectId));
+		if (!$result) {
+			$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð² Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° Ð¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ ".
+					"Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸. ". pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð² Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° Ð¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ ".
+					"Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸. ". pg_last_error($this->dbConnect));
+		}
+		$eployeeNamesPercentsForProject = pg_fetch_all($result);
+		return $eployeeNamesPercentsForProject;
+	}
+	
+	/** Ð—Ð°Ð¿Ñ€Ð¾Ñ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°.*/
+	public function getEmployeeInfo($employeeId, DateTime $date)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT rd.project_name, r.time FROM "Time_distribution" AS r inner'.
+				' join "Projects" AS rd on r.project_id = rd.project_id WHERE date_part(\'epoch\', date_trunc(\'month\','.
+				'r.date)) = $1 AND employee_id = $2', array($date->format("U"), $employeeId));
+		if (!$result) {
+			$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ Ð¾ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐµ. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ Ð¾ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐµ. ".
+					pg_last_error($this->dbConnect));
+		}
+		$employeeInfo = pg_fetch_all($result);
+		return $employeeInfo;
+	}
+	
+	/** Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‚ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ð¹.*/
+	public function cloneModelData(DateTime $datefrom, DateTime $dateto)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$datefrom->format("d.m.Y H:i:s"));
+		$datefrom = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$dateto->format("d.m.Y H:i:s"));
+		$dateto = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+	
+		/** Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‚ Ð¾Ñ‚Ð´ÐµÐ»Ð¾Ð².*/
+		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Departments" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
+		if (!$result) {
+			$result = pg_query_params($this->dbConnect, 'SELECT department_name FROM "Departments" WHERE '.
+					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($datefrom->format("U")));
+			if (!$result) {
+				$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° Ð¾Ñ‚Ð´ÐµÐ»Ð¾Ð². ".
+						pg_last_error($this->dbConnect));
+				throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° Ð¾Ñ‚Ð´ÐµÐ»Ð¾Ð². ".
+						pg_last_error($this->dbConnect));
+			}
+			$departmentRows = pg_fetch_all($result);
+			$rows = pg_num_rows($result);
+			for ($i = 0; $i < $rows; $i++) {
+				$result = pg_query_params($this->dbConnect, 'INSERT INTO "Depa_rtments" (date, department_name) '.
+						'VALUES ($1, $2)', array($dateto->format("Y-m-d"), $departmentRows[$i]['department_name']));
+				if (!$result) {
+					$this->log->error("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð² Ð±Ð°Ð·Ñƒ Ð´Ð°Ð½Ð½Ñ‹Ñ…. ". pg_last_error($this->dbConnect));
+					throw new Exception("ÐÐµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð² Ð±Ð°Ð·Ñƒ Ð´Ð°Ð½Ð½Ñ‹Ñ…. ".pg_last_error($this->dbConnect));
+				}
+			}
+		}
 	}
 }
 ?>

@@ -1,122 +1,282 @@
-2016-07-06T03:25:57+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:25:57+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:25:57+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:26:08+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:26:08+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:26:08+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:27:54+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:27:54+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:27:54+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:28:08+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:28:08+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:28:08+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:41:45+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:41:45+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:41:45+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:42:12+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:42:12+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:42:12+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:44:24+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:44:24+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:44:24+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:45:14+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:45:14+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:45:14+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:45:38+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:45:38+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:45:38+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:45:50+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:45:50+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:45:50+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:46:51+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:46:51+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:46:51+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:47:03+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:47:03+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:47:03+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:47:25+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:47:25+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:47:25+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:48:47+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:48:47+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:48:47+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:49:11+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:49:11+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:49:11+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:50:30+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:50:30+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:50:30+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:50:49+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:50:49+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:50:49+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:51:21+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:51:21+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:51:21+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:54:00+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:54:00+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:54:00+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:54:24+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:54:24+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:54:24+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T03:54:45+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T03:54:45+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T03:54:45+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T04:01:54+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T04:01:54+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T04:01:54+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T04:03:57+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T04:03:57+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T04:03:57+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T04:04:42+03:00 [PostgreSQLOperations] [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T04:04:42+03:00 [PostgreSQLOperations] [60] �������� ������ ���� ���: user
-2016-07-06T04:04:42+03:00 [PostgreSQLOperations] [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T04:19:18+03:00 [PostgreSQLOperations] PostgreSQLOperations connect INFO [38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T04:19:18+03:00 [PostgreSQLOperations] PostgreSQLOperations getRoleNameAndId INFO [60] �������� ������ ���� ���: user
-2016-07-06T04:19:18+03:00 [PostgreSQLOperations] PostgreSQLOperations getDepartmentHead INFO [83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T04:20:56+03:00 [PostgreSQLOperations] [INFO] connect:[38] �������� ����������� � ���� ������ PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
-2016-07-06T04:20:56+03:00 [PostgreSQLOperations] [INFO] getRoleNameAndId:[60] �������� ������ ���� ���: user
-2016-07-06T04:20:56+03:00 [PostgreSQLOperations] [INFO] getDepartmentHead:[83] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T12:23:58+03:00 [PostgreSQLOperations] [ERROR] connect:[35] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T12:25:19+03:00 [ERROR] [PostgreSQLOperations] connect:[35] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T12:25:55+03:00 [ERROR] [PostgreSQLOperations:connect:[35] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T12:26:36+03:00 [ERROR] [PostgreSQLOperations->connect] [35] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T12:27:48+03:00 [ERROR] [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T12:29:01+03:00 [ERROR] [PostgreSQLOperations->connect] [37] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T12:31:08+03:00 [ERROR] [PostgreSQLOperations->connect] [37] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T12:32:48+03:00 [ERROR] [PostgreSQLOperations->connect] [37] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T12:33:53+03:00 [ERROR] [PostgreSQLOperations->connect] [37] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T12:43:21+03:00 [ERROR] [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:04:17+03:00 [ERROR] [PostgreSQLOperations->connect] [35] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr__++tecom password=Tecom1 
-2016-07-06T13:06:54+03:00 [ERROR]  [PostgreSQLOperations->connect] [35] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:22:41+03:00 [ERROR] [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:23:17+03:00 [ERROR] [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:24:56+03:00 [ERROR] [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:24:58+03:00 [ERROR] [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:34:51+03:00 [ERROR]  [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:35:51+03:00 [ERROR]  [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:36:44+03:00 [ERROR]  [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:37:36+03:00 [ERROR] [PostgreSQLOperations->connect] [36] �� ������� ����������� � ���� ������. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
-2016-07-06T13:51:27+03:00 [INFO] [PostgreSQLOperations->connect] [39] �������� ����������� � ���� ������ PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
-2016-07-06T13:51:27+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] �������� ������ ���� ���: user
-2016-07-06T13:51:27+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T13:53:29+03:00 [INFO] [PostgreSQLOperations->connect] [39] �������� ����������� � ���� ������ PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
-2016-07-06T13:53:29+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] �������� ������ ���� ���: user
-2016-07-06T13:53:29+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T13:56:39+03:00 [INFO] [PostgreSQLOperations->connect] [39] �������� ����������� � ���� ������ PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
-2016-07-06T13:56:39+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] �������� ������ ���� ���: user
-2016-07-06T13:56:39+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T13:58:51+03:00 [INFO] [PostgreSQLOperations->connect] [39] �������� ����������� � ���� ������ PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
-2016-07-06T13:58:51+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] �������� ������ ���� ���: user
-2016-07-06T13:58:51+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T13:59:12+03:00 [INFO] [PostgreSQLOperations->connect] [39] �������� ����������� � ���� ������ PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
-2016-07-06T13:59:12+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] �������� ������ ���� ���: user
-2016-07-06T13:59:12+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T14:00:01+03:00 [INFO] [PostgreSQLOperations->connect] [39] �������� ����������� � ���� ������ PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
-2016-07-06T14:00:01+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] �������� ������ ���� ���: user
-2016-07-06T14:00:01+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T14:05:31+03:00 [INFO] [PostgreSQLOperations->connect] [39] �������� ����������� � ���� ������ PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
-2016-07-06T14:05:31+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] �������� ������ ���� ���: user
-2016-07-06T14:05:31+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] �������� ������ ���������� ������ ��� ��������� �������������: user
-2016-07-06T14:28:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] �������� ����������� � ���� ������ PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
-2016-07-06T14:28:54+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] �������� ������ ���� ���: user
-2016-07-06T14:28:54+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] �������� ������ ���������� ������ ��� ��������� �������������: user
+﻿2016-07-06T03:25:57+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:25:57+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:25:57+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:26:08+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:26:08+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:26:08+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:27:54+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:27:54+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:27:54+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:28:08+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:28:08+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:28:08+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:41:45+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:41:45+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:41:45+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:42:12+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:42:12+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:42:12+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:44:24+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:44:24+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:44:24+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:45:14+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:45:14+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:45:14+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:45:38+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:45:38+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:45:38+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:45:50+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:45:50+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:45:50+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:46:51+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:46:51+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:46:51+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:47:03+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:47:03+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:47:03+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:47:25+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:47:25+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:47:25+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:48:47+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:48:47+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:48:47+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:49:11+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:49:11+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:49:11+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:50:30+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:50:30+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:50:30+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:50:49+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:50:49+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:50:49+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:51:21+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:51:21+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:51:21+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:54:00+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:54:00+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:54:00+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:54:24+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:54:24+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:54:24+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T03:54:45+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T03:54:45+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T03:54:45+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T04:01:54+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T04:01:54+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T04:01:54+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T04:03:57+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T04:03:57+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T04:03:57+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T04:04:42+03:00 [PostgreSQLOperations] [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T04:04:42+03:00 [PostgreSQLOperations] [60] Успешный запрос роли для: user
+2016-07-06T04:04:42+03:00 [PostgreSQLOperations] [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T04:19:18+03:00 [PostgreSQLOperations] PostgreSQLOperations connect INFO [38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T04:19:18+03:00 [PostgreSQLOperations] PostgreSQLOperations getRoleNameAndId INFO [60] Успешный запрос роли для: user
+2016-07-06T04:19:18+03:00 [PostgreSQLOperations] PostgreSQLOperations getDepartmentHead INFO [83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T04:20:56+03:00 [PostgreSQLOperations] [INFO] connect:[38] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-06T04:20:56+03:00 [PostgreSQLOperations] [INFO] getRoleNameAndId:[60] Успешный запрос роли для: user
+2016-07-06T04:20:56+03:00 [PostgreSQLOperations] [INFO] getDepartmentHead:[83] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T12:23:58+03:00 [PostgreSQLOperations] [ERROR] connect:[35] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T12:25:19+03:00 [ERROR] [PostgreSQLOperations] connect:[35] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T12:25:55+03:00 [ERROR] [PostgreSQLOperations:connect:[35] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T12:26:36+03:00 [ERROR] [PostgreSQLOperations->connect] [35] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T12:27:48+03:00 [ERROR] [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T12:29:01+03:00 [ERROR] [PostgreSQLOperations->connect] [37] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T12:31:08+03:00 [ERROR] [PostgreSQLOperations->connect] [37] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T12:32:48+03:00 [ERROR] [PostgreSQLOperations->connect] [37] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T12:33:53+03:00 [ERROR] [PostgreSQLOperations->connect] [37] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T12:43:21+03:00 [ERROR] [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54_32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:04:17+03:00 [ERROR] [PostgreSQLOperations->connect] [35] Не удается подключится к базе данных. host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr__++tecom password=Tecom1 
+2016-07-06T13:06:54+03:00 [ERROR]  [PostgreSQLOperations->connect] [35] Не удается подключится к базе данных. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:22:41+03:00 [ERROR] [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:23:17+03:00 [ERROR] [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:24:56+03:00 [ERROR] [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:24:58+03:00 [ERROR] [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:34:51+03:00 [ERROR]  [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:35:51+03:00 [ERROR]  [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:36:44+03:00 [ERROR]  [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:37:36+03:00 [ERROR] [PostgreSQLOperations->connect] [36] Не удается подключится к базе данных. host=rnd-dev-polls port=54++32 dbname=hr_tecom user=hr_tecom password=Tecom1 
+2016-07-06T13:51:27+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-06T13:51:27+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] Успешный запрос роли для: user
+2016-07-06T13:51:27+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T13:53:29+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-06T13:53:29+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] Успешный запрос роли для: user
+2016-07-06T13:53:29+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T13:56:39+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-06T13:56:39+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] Успешный запрос роли для: user
+2016-07-06T13:56:39+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T13:58:51+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-06T13:58:51+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] Успешный запрос роли для: user
+2016-07-06T13:58:51+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T13:59:12+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-06T13:59:12+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] Успешный запрос роли для: user
+2016-07-06T13:59:12+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T14:00:01+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-06T14:00:01+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] Успешный запрос роли для: user
+2016-07-06T14:00:01+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T14:05:31+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-06T14:05:31+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] Успешный запрос роли для: user
+2016-07-06T14:05:31+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] Успешный запрос информации отдела для директора подразделения: user
+2016-07-06T14:28:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-06T14:28:54+03:00 [INFO] [PostgreSQLOperations->getRoleNameAndId] [61] Успешный запрос роли для: user
+2016-07-06T14:28:54+03:00 [INFO] [PostgreSQLOperations->getDepartmentHead] [84] Успешный запрос информации отдела для директора подразделения: user
+2016-07-07T08:29:25+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T08:49:45+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T08:54:45+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T08:58:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T08:59:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T08:59:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:00:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:02:13+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:02:47+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:03:41+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:04:52+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:06:30+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:07:26+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:11:42+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:12:31+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:13:17+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:13:42+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:14:13+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:16:47+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:19:42+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:20:06+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:22:38+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:23:50+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:25:12+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:25:59+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:26:51+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:28:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:28:41+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:31:03+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:31:57+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:33:52+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:50:48+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:51:20+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:52:10+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:56:20+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:56:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:57:20+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T09:58:29+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T10:08:55+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T10:11:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T10:11:25+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T10:12:38+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T10:16:41+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T10:17:14+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=localhost port=5432 dbname=postgres user=postgres password=1
+2016-07-07T12:18:31+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:19:28+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:19:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:20:41+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:21:10+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:21:36+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:21:49+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:22:26+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:23:42+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:24:22+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:24:36+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:25:10+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:25:31+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:26:56+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:27:33+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:27:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:31:22+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:33:17+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:34:35+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:35:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:38:48+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:39:18+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:39:34+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:42:25+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:44:04+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:44:15+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:44:39+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:45:24+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:46:16+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:46:31+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:46:56+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:47:05+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T12:47:27+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:26:07+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:30:04+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:30:04+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:31:18+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:31:18+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:31:22+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:31:22+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:31:50+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:31:50+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:31:59+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:31:59+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:33:04+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:33:04+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:33:34+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:33:34+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:33:48+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:33:48+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:34:31+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:34:31+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:34:43+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:34:43+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:35:14+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:35:14+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:35:18+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:35:18+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:41:10+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:42:01+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:42:34+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:51:37+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:51:37+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:51:58+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:51:58+03:00 [ERROR] [PostgreSQLOperations->clonModelData] [113] Не удается выполнить запись в базу данных.
+2016-07-07T13:52:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:54:47+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T13:56:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:13:33+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:16:39+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:17:47+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:18:51+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:19:07+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:20:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:27:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:27:54+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [111] Не удается выполнить запись в базу данных.
+2016-07-07T14:30:01+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:30:01+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [111] Не удается выполнить запись в базу данных.ERROR:  relation "Depa_rtments" does not exist
+LINE 1: INSERT INTO "Depa_rtments" (date, department_name) VALUES ($...
+                    ^
+2016-07-07T14:32:40+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:32:40+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [111] Не удается выполнить запись в базу данных. ERROR:  relation "Depa_rtments" does not exist
+LINE 1: INSERT INTO "Depa_rtments" (date, department_name) VALUES ($...
+                    ^
+2016-07-07T14:33:17+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T14:33:17+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [111] Не удается выполнить запись в базу данных. ERROR:  relation "Depa_rtments" does not exist
+LINE 1: INSERT INTO "Depa_rtments" (date, department_name) VALUES ($...
+                    ^
+2016-07-07T15:01:39+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:02:13+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:03:10+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:03:32+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:09:47+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:09:47+03:00 [ERROR] [PostgreSQLOperations->getDepartmentNames] [131] Не удается выполнить запрос на получение списка отделов. 
+2016-07-07T15:10:12+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:18:55+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:27:57+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:27:57+03:00 [ERROR] [PostgreSQLOperations->getEmployeeNames] [147] Не удается выполнить запрос на получение списка сотрудников. ERROR:  syntax error at or near "FROM"
+LINE 1: SELECT employee_id, user_id, FROM "Employee" WHERE date_part...
+                                     ^
+2016-07-07T15:28:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:33:29+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:33:29+03:00 [ERROR] [PostgreSQLOperations->getProjectNamesForDepartment] [162] Не удается выполнить запрос на получение списка проектов отдела. 
+2016-07-07T15:34:10+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:36:25+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:43:13+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:43:13+03:00 [ERROR] [PostgreSQLOperations->getEployeeNamesAndPercentsForProject] [204] Не удается выполнить запрос на получение списка проектов отдела. ERROR:  syntax error at or near "WHERE"
+LINE 1: ...me_distribution" AS r inner join "Employee" AS rd WHERE date...
+                                                             ^
+2016-07-07T15:45:18+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:45:18+03:00 [ERROR] [PostgreSQLOperations->getEployeeNamesAndPercentsForProject] [204] Не удается выполнить запрос на получение списка проектов отдела. ERROR:  column reference "date" is ambiguous
+LINE 1: ...e_id WHERE date_part('epoch', date_trunc('month', date)) = $...
+                                                             ^
+2016-07-07T15:46:38+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T15:54:12+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-07T16:01:36+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1

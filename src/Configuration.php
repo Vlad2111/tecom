@@ -1,13 +1,13 @@
-<?php
+ï»¿<?php
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
 *
-* Èñêëþ÷èòåëüíîå ïðàâî (c) 2016 ïðåíàäëåæèò ÎÎÎ Òåêîì
-* Âñå ïðàâà çàùèùåíû
+* Ð˜ÑÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð¿Ñ€Ð°Ð²Ð¾ (c) 2016 Ð¿Ñ€ÐµÐ½Ð°Ð´Ð»ÐµÐ¶Ð¸Ñ‚ ÐžÐžÐž Ð¢ÐµÐºÐ¾Ð¼
+* Ð’ÑÐµ Ð¿Ñ€Ð°Ð²Ð° Ð·Ð°Ñ‰Ð¸Ñ‰ÐµÐ½Ñ‹
 */
 /**
-Êëàññ Singleton
+ÐšÐ»Ð°ÑÑ Singleton
 
 @author ershov.v
 */
@@ -19,7 +19,7 @@ class Configuration
 	function __construct() {
 	}
 
-	/** Ôèêñèðîâàíèå íàñòðîåê èç config.*/
+	/** Ð¤Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐº Ð¸Ð· config.*/
 	public static function instance()
 	{
 		if (Configuration::$instance == null) {
@@ -29,7 +29,7 @@ class Configuration
 		return Configuration::$instance;
 	}
 	
-	/** ×òåíèå ïåðåìåííûõ èç ôàéëà config.*/
+	/** Ð§Ñ‚ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ñ… Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð° config.*/
 	private function readConfig()
 	{
 		$this->config = parse_ini_file("config.ini");
