@@ -6,7 +6,7 @@
 6)отчет списком xls
 7)график по таблице
 
-3) +-+-+-returnInformation(time, needsInfotmation)
+3) +-+-+-cloneModelData(time, needsInfotmation)
 
 работа с таблицами:
 0) ++getRoleName(userId)

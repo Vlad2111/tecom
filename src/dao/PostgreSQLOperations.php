@@ -43,9 +43,18 @@ class PostgreSQLOperations
 	/** Запрос роли пользователя.*/
 	public function getRoleNameAndId($userId)
 	{
+		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" '.
+				'WHERE user_id = $1', array($userId));
+		if (!$result) {
+			$this->log->error("Нет данных о данном пользователе: ". $userId.
+					" ". pg_last_error($this->dbConnect));
+			throw new Exception("Нет данных о данном пользователе: ". $userId.
+					" ". pg_last_error($this->dbConnect));
+		}
+		$employeeId = pg_fetch_result($result,0,0);
 		$result = pg_query_params($this->dbConnect, 'SELECT r.role_id, rd.role_name FROM "Role" '.
-				'AS r inner join "Role_def" AS rd on r.role_id = rd.role_id WHERE r.user_id = $1', 
-				array($userId));
+				'AS r inner join "Role_def" AS rd on r.role_id = rd.role_id WHERE r.employee_id = $1', 
+				array($employeeId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос роли для пользователя: ". $userId.
 					" ". pg_last_error($this->dbConnect));
@@ -65,20 +74,23 @@ class PostgreSQLOperations
 	}
 	
 	/** Запрос роли главы отдела.*/
-	public function getDepartmentHead($userId)
+	public function getDepartmentHead(DateTime $date ,$employeeId)
 	{
-		$result = pg_query_params($this->dbConnect, 'SELECT r.department_id, rd.department_name '.
-				'FROM "Head_departments" AS r inner join "Departments" AS rd on '.
-				'r.department_id = rd.department_id WHERE r.user_id = $1', array($userId));
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT r.department_id, rd.department_name FROM "Head_departments" '.
+				'AS r inner join "Departments" AS rd on r.date = rd.date AND r.department_id = rd.department_id WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', rd.date)) = $1 AND r.employee_id = $2', array($date->format("U"),
+				$employeeId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос информации отдела для роли \"Директор подразделения\". ".
-					"Пользователь: ". $userId ." ". pg_last_error($this->dbConnect));
+					"Id пользователя: ". $employeeId ." ". pg_last_error($this->dbConnect));
 			throw new Exception("Не удается выполнить запрос информации отдела для роли \"Директор подразделения\". ".
-					"Пользователь: ". $userId ." ". pg_last_error($this->dbConnect));
+					"Id пользователя: ". $employeeId ." ". pg_last_error($this->dbConnect));
 		}
 		if (pg_num_rows($result)<1) {
-			$this->log->error("Нет данных о данном пользователе: ". $userId ." ". pg_last_error($this->dbConnect));
-			throw new Exception("Нет данных о данном пользователе: ". $userId ." ". pg_last_error($this->dbConnect));
+			$this->log->error("Нет данных о данном пользователе. Id: ". $employeeId ." ". pg_last_error($this->dbConnect));
+			throw new Exception("Нет данных о данном пользователе. Id: ". $employeeId ." ". pg_last_error($this->dbConnect));
 		}
 		if (pg_num_rows($result)>1) {
 			$this->log->error("Ошибка запроса. Получено несколько результатов");
@@ -164,8 +176,8 @@ class PostgreSQLOperations
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 		$result = pg_query_params($this->dbConnect, 'SELECT rd.user_id, r.time FROM "Time_distribution" AS r inner join '.
-				'"Employee" AS rd on r.employee_id = rd.employee_id WHERE date_part(\'epoch\', date_trunc(\'month\','.
-				'r.date)) = $1 AND project_id = $2', array($date->format("U"), $projectId));
+				'"Employee" AS rd on r.employee_id = rd.employee_id AND r.date = rd.date WHERE date_part(\'epoch\', '.
+				'date_trunc(\'month\', r.date)) = $1 AND project_id = $2', array($date->format("U"), $projectId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение списка сотрудников проекта и распределения ".
 					"времени. ". pg_last_error($this->dbConnect));
@@ -182,8 +194,8 @@ class PostgreSQLOperations
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 		$result = pg_query_params($this->dbConnect, 'SELECT rd.project_name, r.time FROM "Time_distribution" AS r inner'.
-				' join "Projects" AS rd on r.project_id = rd.project_id WHERE date_part(\'epoch\', date_trunc(\'month\','.
-				'r.date)) = $1 AND employee_id = $2', array($date->format("U"), $employeeId));
+				' join "Projects" AS rd on r.project_id = rd.project_id AND r.date = rd.date WHERE date_part(\'epoch\', '.
+				'date_trunc(\'month\', r.date)) = $1 AND employee_id = $2', array($date->format("U"), $employeeId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение информации о сотруднике. ".
 					pg_last_error($this->dbConnect));
@@ -194,7 +206,7 @@ class PostgreSQLOperations
 		return $employeeInfo;
 	}
 	
-	/** Возврат значений.*/
+	/** Возврат значений таблиц.*/
 	public function cloneModelData(DateTime $datefrom, DateTime $dateto)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$datefrom->format("d.m.Y H:i:s"));
@@ -202,11 +214,12 @@ class PostgreSQLOperations
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$dateto->format("d.m.Y H:i:s"));
 		$dateto = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 	
-		/** Возврат отделов.*/
+		/** Возврат строк таблицы отделов.*/
 		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Departments" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
-		if (!$result) {
-			$result = pg_query_params($this->dbConnect, 'SELECT department_name FROM "Departments" WHERE '.
+		$inspectionData = pg_fetch_all($result);
+		if (!$inspectionData) {
+			$result = pg_query_params($this->dbConnect, 'SELECT department_id, department_name FROM "Departments" WHERE '.
 					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($datefrom->format("U")));
 			if (!$result) {
 				$this->log->error("Не удается выполнить запрос на получение списка отделов. ".
@@ -217,8 +230,113 @@ class PostgreSQLOperations
 			$departmentRows = pg_fetch_all($result);
 			$rows = pg_num_rows($result);
 			for ($i = 0; $i < $rows; $i++) {
-				$result = pg_query_params($this->dbConnect, 'INSERT INTO "Depa_rtments" (date, department_name) '.
-						'VALUES ($1, $2)', array($dateto->format("Y-m-d"), $departmentRows[$i]['department_name']));
+				$result = pg_query_params($this->dbConnect, 'INSERT INTO "Departments" (date, department_id, department_name) '.
+						'VALUES ($1, $2, $3)', array($dateto->format("Y-m-d"), $departmentRows[$i]['department_id'],
+						$departmentRows[$i]['department_name']));
+				if (!$result) {
+					$this->log->error("Не удается выполнить запись в базу данных. ". pg_last_error($this->dbConnect));
+					throw new Exception("Не удается выполнить запись в базу данных. ".pg_last_error($this->dbConnect));
+				}
+			}
+		}
+		
+		/** Возврат строк таблицы сотрудников.*/
+		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Employee" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
+		$inspectionData = pg_fetch_all($result);
+		if (!$inspectionData) {
+			$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id, department_id FROM "Employee" WHERE '.
+					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($datefrom->format("U")));
+			if (!$result) {
+				$this->log->error("Не удается выполнить запрос на получение списка сотрудников. ".
+						pg_last_error($this->dbConnect));
+				throw new Exception("Не удается выполнить запрос на получение списка сотрудников. ".
+						pg_last_error($this->dbConnect));
+			}
+			$employeeRows = pg_fetch_all($result);
+			$rows = pg_num_rows($result);
+			for ($i = 0; $i < $rows; $i++) {
+				$result = pg_query_params($this->dbConnect, 'INSERT INTO "Employee" (date, employee_id, user_id, department_id) '.
+						'VALUES ($1, $2, $3, $4)', array($dateto->format("Y-m-d"), $employeeRows[$i]['employee_id'],
+						$employeeRows[$i]['user_id'], $employeeRows[$i]['department_id']));
+				if (!$result) {
+					$this->log->error("Не удается выполнить запись в базу данных. ". pg_last_error($this->dbConnect));
+					throw new Exception("Не удается выполнить запись в базу данных. ".pg_last_error($this->dbConnect));
+				}
+			}
+		}
+		
+		/** Возврат строк таблицы проектов.*/
+		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Projects" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
+		$inspectionData = pg_fetch_all($result);
+		if (!$inspectionData) {
+			$result = pg_query_params($this->dbConnect, 'SELECT project_id, project_name, department_id FROM "Projects" WHERE '.
+					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($datefrom->format("U")));
+			if (!$result) {
+				$this->log->error("Не удается выполнить запрос на получение списка проектов. ".
+						pg_last_error($this->dbConnect));
+				throw new Exception("Не удается выполнить запрос на получение списка проектов. ".
+						pg_last_error($this->dbConnect));
+			}
+			$projectRows = pg_fetch_all($result);
+			$rows = pg_num_rows($result);
+			for ($i = 0; $i < $rows; $i++) {
+				$result = pg_query_params($this->dbConnect, 'INSERT INTO "Projects" (date, project_id, project_name, department_id) '.
+						'VALUES ($1, $2, $3, $4)', array($dateto->format("Y-m-d"), $projectRows[$i]['project_id'],
+								$projectRows[$i]['project_name'], $projectRows[$i]['department_id']));
+				if (!$result) {
+					$this->log->error("Не удается выполнить запись в базу данных. ". pg_last_error($this->dbConnect));
+					throw new Exception("Не удается выполнить запись в базу данных. ".pg_last_error($this->dbConnect));
+				}
+			}
+		}
+		
+		/** Возврат строк таблицы распределения времени.*/
+		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Time_distribution" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
+		$inspectionData = pg_fetch_all($result);
+		if (!$inspectionData) {
+			$result = pg_query_params($this->dbConnect, 'SELECT project_id, employee_id, time FROM "Time_distribution" WHERE '.
+					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($datefrom->format("U")));
+			if (!$result) {
+				$this->log->error("Не удается выполнить запрос на получение списка проектов. ".
+						pg_last_error($this->dbConnect));
+				throw new Exception("Не удается выполнить запрос на получение списка проектов. ".
+						pg_last_error($this->dbConnect));
+			}
+			$timeRows = pg_fetch_all($result);
+			$rows = pg_num_rows($result);
+			for ($i = 0; $i < $rows; $i++) {
+				$result = pg_query_params($this->dbConnect, 'INSERT INTO "Time_distribution" (date, project_id, employee_id, time) '.
+						'VALUES ($1, $2, $3, $4)', array($dateto->format("Y-m-d"), $timeRows[$i]['project_id'],
+								$timeRows[$i]['employee_id'], $timeRows[$i]['time']));
+				if (!$result) {
+					$this->log->error("Не удается выполнить запись в базу данных. ". pg_last_error($this->dbConnect));
+					throw new Exception("Не удается выполнить запись в базу данных. ".pg_last_error($this->dbConnect));
+				}
+			}
+		}
+		
+		/** Возврат строк таблицы глав департаментов.*/
+		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Head_departments" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
+		$inspectionData = pg_fetch_all($result);
+		if (!$inspectionData) {
+			$result = pg_query_params($this->dbConnect, 'SELECT employee_id, department_id FROM "Head_departments" WHERE '.
+					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($datefrom->format("U")));
+			if (!$result) {
+				$this->log->error("Не удается выполнить запрос на получение списка проектов. ".
+						pg_last_error($this->dbConnect));
+				throw new Exception("Не удается выполнить запрос на получение списка проектов. ".
+						pg_last_error($this->dbConnect));
+			}
+			$headDepartmentRows = pg_fetch_all($result);
+			$rows = pg_num_rows($result);
+			for ($i = 0; $i < $rows; $i++) {
+				$result = pg_query_params($this->dbConnect, 'INSERT INTO "Head_departments" (date, employee_id, department_id) '.
+						'VALUES ($1, $2, $3)', array($dateto->format("Y-m-d"), $headDepartmentRows[$i]['employee_id'],
+								$headDepartmentRows[$i]['department_id']));
 				if (!$result) {
 					$this->log->error("Не удается выполнить запись в базу данных. ". pg_last_error($this->dbConnect));
 					throw new Exception("Не удается выполнить запись в базу данных. ".pg_last_error($this->dbConnect));

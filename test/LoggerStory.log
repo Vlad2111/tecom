@@ -280,3 +280,138 @@ LINE 1: ...e_id WHERE date_part('epoch', date_trunc('month', date)) = $...
 2016-07-07T15:46:38+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
 2016-07-07T15:54:12+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
 2016-07-07T16:01:36+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:39:09+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:42:33+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:42:43+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:45:11+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:46:52+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:47:39+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:50:21+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:56:46+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:57:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:58:24+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:58:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T12:59:21+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T13:00:08+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T13:00:09+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T13:00:10+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T13:01:04+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T13:01:27+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T13:03:43+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T13:03:43+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [248] Не удается выполнить запись в базу данных. 
+2016-07-08T13:09:11+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T13:09:11+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [250] Не удается выполнить запись в базу данных. ERROR:  duplicate key value violates unique constraint "user_id_uniqie"
+DETAIL:  Key (user_id)=(user) already exists.
+2016-07-08T15:24:31+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:24:31+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [51] Не удается выполнить запрос роли для пользователя: user ERROR:  column r.user_id does not exist
+LINE 1: ... "Role_def" AS rd on r.role_id = rd.role_id WHERE r.user_id ...
+                                                             ^
+2016-07-08T15:31:47+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:31:47+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [65] Нет данных о данном пользователе: user 
+2016-07-08T15:32:07+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:32:07+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [84] Не удается выполнить запрос информации отдела для роли "Директор подразделения". Пользователь: user ERROR:  column r.user_id does not exist
+LINE 1: ...AS rd on r.department_id = rd.department_id WHERE r.user_id ...
+                                                             ^
+2016-07-08T15:36:53+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:36:53+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [84] Не удается выполнить запрос информации отдела для роли "Директор подразделения". Id пользователя: user ERROR:  invalid input syntax for integer: "user"
+2016-07-08T15:37:25+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:37:25+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [89] Нет данных о данном пользователе. Id: 0 
+2016-07-08T15:37:43+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:37:43+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [89] Нет данных о данном пользователе. Id: 0 
+2016-07-08T15:41:09+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:41:09+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [89] Нет данных о данном пользователе. Id: 0 
+2016-07-08T15:41:32+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:41:32+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [93] Ошибка запроса. Получено несколько результатов
+2016-07-08T15:49:57+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:49:57+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [87] Не удается выполнить запрос информации отдела для роли "Директор подразделения". Id пользователя: 1 ERROR:  syntax error at or near "="
+LINE 1: ... rd on r.department_id = rd.department_id, r.date = rd.date ...
+                                                             ^
+2016-07-08T15:50:36+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:50:36+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [87] Не удается выполнить запрос информации отдела для роли "Директор подразделения". Id пользователя: 1 ERROR:  syntax error at or near "="
+LINE 1: ... rd on r.department_id = rd.department_id, r.date = rd.date ...
+                                                             ^
+2016-07-08T15:54:25+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:54:25+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [87] Не удается выполнить запрос информации отдела для роли "Директор подразделения". Id пользователя: 1 ERROR:  syntax error at or near ","
+LINE 1: ...te_part('epoch', date_trunc('month', r.date)) = $1, r.employ...
+                                                             ^
+2016-07-08T15:54:37+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:54:37+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [92] Нет данных о данном пользователе. Id: 1 
+2016-07-08T15:55:22+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:55:22+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [96] Ошибка запроса. Получено несколько результатов
+2016-07-08T15:57:15+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:58:32+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T15:59:16+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:08:11+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:18:35+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:19:01+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:19:16+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:19:55+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:19:55+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [236] Не удается выполнить запись в базу данных. ERROR:  null value in column "department_id" violates not-null constraint
+DETAIL:  Failing row contains (2016-03-01, null, Отдел).
+2016-07-08T16:22:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:22:19+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [237] Не удается выполнить запись в базу данных. ERROR:  INSERT has more target columns than expressions
+LINE 1: INSERT INTO "Departments" (date, department_id, department_n...
+                                                        ^
+2016-07-08T16:23:25+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:23:25+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [237] Не удается выполнить запись в базу данных. ERROR:  INSERT has more target columns than expressions
+LINE 1: INSERT INTO "Departments" (date, department_id, department_n...
+                                                        ^
+2016-07-08T16:24:06+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:24:06+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [238] Не удается выполнить запись в базу данных. ERROR:  INSERT has more target columns than expressions
+LINE 1: INSERT INTO "Departments" (date, department_id, department_n...
+                                                        ^
+2016-07-08T16:25:31+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:25:31+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [238] Не удается выполнить запись в базу данных. ERROR:  INSERT has more target columns than expressions
+LINE 1: INSERT INTO "Departments" (date, department_id, department_n...
+                                                        ^
+2016-07-08T16:25:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:25:44+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [238] Не удается выполнить запись в базу данных. ERROR:  INSERT has more target columns than expressions
+LINE 1: INSERT INTO "Departments" (date, department_id, department_n...
+                                                        ^
+2016-07-08T16:26:22+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:26:22+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [237] Не удается выполнить запись в базу данных. ERROR:  INSERT has more target columns than expressions
+LINE 1: INSERT INTO "Departments" (date, department_id, department_n...
+                                                        ^
+2016-07-08T16:27:22+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:27:22+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [268] Не удается выполнить запись в базу данных. ERROR:  null value in column "employee_id" violates not-null constraint
+DETAIL:  Failing row contains (2016-03-01, null, user, 1).
+2016-07-08T16:27:45+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:27:45+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [243] Данные для выбранного месяца уже существуют. 
+2016-07-08T16:29:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:31:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:31:35+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:35:06+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:35:52+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:37:14+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:37:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:38:06+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:44:04+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:23+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:28+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:32+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:33+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:33+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:34+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:34+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:35+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:35+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:35+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:35+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:45:36+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:49:34+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:53:29+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:54:35+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:54:48+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:54:49+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:56:55+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:59:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T16:59:45+03:00 [ERROR] [PostgreSQLOperations->cloneModelData] [341] Не удается выполнить запись в базу данных. ERROR:  INSERT has more expressions than target columns
+LINE 1: ..." (date, employee_id, department_id) VALUES ($1, $2, $3, $4)
+                                                                    ^
+2016-07-08T16:59:54+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T17:04:40+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T17:05:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T17:05:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T17:06:05+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T17:06:23+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-08T17:06:39+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
