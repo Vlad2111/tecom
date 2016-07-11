@@ -415,3 +415,129 @@ LINE 1: ..." (date, employee_id, department_id) VALUES ($1, $2, $3, $4)
 2016-07-08T17:06:05+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
 2016-07-08T17:06:23+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
 2016-07-08T17:06:39+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T12:19:55+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T12:51:46+03:00 [ERROR] [PostgreSQLOperations->changeDepartmentName] [357] Не удается выполнить обновление названия отдела. ERROR:  syntax error at or near "WHEREdate_part"
+LINE 1: UPDATE "Departments" SET department_name = $3 WHEREdate_part...
+                                                      ^
+2016-07-11T12:52:54+03:00 [ERROR] [PostgreSQLOperations->changeDepartmentName] [357] Не удается выполнить обновление названия отдела. ERROR:  syntax error at or near "WHEREdate_part"
+LINE 1: UPDATE "Departments" SET department_name = $3 WHEREdate_part...
+                                                      ^
+2016-07-11T12:54:04+03:00 [ERROR] [PostgreSQLOperations->changeDepartmentName] [357] Не удается выполнить обновление названия отдела. ERROR:  syntax error at or near "WHEREdate_part"
+LINE 1: UPDATE "Departments" SET department_name = $3 WHEREdate_part...
+                                                      ^
+2016-07-11T12:54:40+03:00 [ERROR] [PostgreSQLOperations->changeDepartmentName] [357] Не удается выполнить обновление названия отдела. ERROR:  invalid input syntax for type double precision: "2016-03-01"
+2016-07-11T13:16:50+03:00 [ERROR] [PostgreSQLOperations->changeProjectNameAndDepartmentId] [372] Не удается выполнить обновление названия проекта и привязки его к отделу. ERROR:  syntax error at or near ")"
+LINE 1: ...rojects" SET project_name = $3, department_id = $4) WHERE da...
+                                                             ^
+2016-07-11T13:51:10+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [92] Нет данных о данном пользователе. Id: 1 
+2016-07-11T13:51:12+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [92] Нет данных о данном пользователе. Id: 1 
+2016-07-11T13:52:01+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [92] Нет данных о данном пользователе. Id: 1 
+2016-07-11T14:28:09+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:28:20+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:31:12+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:31:49+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:31:50+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:31:55+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:32:23+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:35:04+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:35:27+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:35:55+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:43:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T14:53:36+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:00:21+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:00:26+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:00:26+03:00 [ERROR] [PostgreSQLOperations->newProject] [532] Не удается выполнить запись нового проекта. ERROR:  duplicate key value violates unique constraint "project_id_date_pk"
+DETAIL:  Key (date, project_id)=(2016-01-01, 1) already exists.
+2016-07-11T15:03:14+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:03:14+03:00 [ERROR] [PostgreSQLOperations->newProject] [532] Не удается выполнить запись нового проекта. ERROR:  duplicate key value violates unique constraint "project_id_date_pk"
+DETAIL:  Key (date, project_id)=(2016-01-01, 1) already exists.
+2016-07-11T15:03:24+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:03:24+03:00 [ERROR] [PostgreSQLOperations->newProject] [532] Не удается выполнить запись нового проекта. ERROR:  duplicate key value violates unique constraint "project_id_date_pk"
+DETAIL:  Key (date, project_id)=(2016-01-01, 1) already exists.
+2016-07-11T15:04:16+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:04:16+03:00 [ERROR] [PostgreSQLOperations->newProject] [532] Не удается выполнить запись нового проекта. ERROR:  duplicate key value violates unique constraint "project_id_date_pk"
+DETAIL:  Key (date, project_id)=(2016-01-01, 1) already exists.
+2016-07-11T15:04:24+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:04:24+03:00 [ERROR] [PostgreSQLOperations->newProject] [532] Не удается выполнить запись нового проекта. ERROR:  duplicate key value violates unique constraint "project_id_date_pk"
+DETAIL:  Key (date, project_id)=(2016-01-01, 1) already exists.
+2016-07-11T15:05:08+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:05:08+03:00 [ERROR] [PostgreSQLOperations->newProject] [533] Не удается выполнить запись нового проекта. ERROR:  duplicate key value violates unique constraint "project_id_date_pk"
+DETAIL:  Key (date, project_id)=(2016-01-01, 1) already exists.
+2016-07-11T15:06:15+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:06:15+03:00 [ERROR] [PostgreSQLOperations->newProject] [533] Не удается выполнить запись нового проекта. ERROR:  duplicate key value violates unique constraint "project_id_date_pk"
+DETAIL:  Key (date, project_id)=(2016-03-01, 1) already exists.
+2016-07-11T15:07:20+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:07:20+03:00 [ERROR] [PostgreSQLOperations->newProject] [533] Не удается выполнить запись нового проекта. ERROR:  duplicate key value violates unique constraint "project_id_date_pk"
+DETAIL:  Key (date, project_id)=(2016-03-01, 1) already exists.
+2016-07-11T15:08:06+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:08:06+03:00 [ERROR] [PostgreSQLOperations->newProject] [533] Не удается выполнить запись нового проекта. ERROR:  duplicate key value violates unique constraint "project_id_date_pk"
+DETAIL:  Key (date, project_id)=(2016-01-01, 1) already exists.
+2016-07-11T15:17:34+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:34:34+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:34:47+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:34:47+03:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [594] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01, 0, 0) already exists.
+2016-07-11T15:35:25+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:35:36+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:35:36+03:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [594] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01, 0, 2) already exists.
+2016-07-11T15:41:00+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:41:00+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [66] Нет данных о данном пользователе: user2 
+2016-07-11T15:41:26+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:48:16+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:48:16+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [97] Нет данных о данном пользователе. Id: 2 
+2016-07-11T15:49:53+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:49:53+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [97] Нет данных о данном пользователе. Id: 2 
+2016-07-11T15:50:01+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:51:07+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:51:10+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:51:11+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:51:12+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:51:18+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:51:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T15:59:51+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:00:51+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:01:00+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:01:17+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:01:18+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:01:18+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:01:57+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:02:40+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:02:51+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:04:37+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:17:48+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:17:48+03:00 [ERROR] [PostgreSQLOperations->newEmployee] [525] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-02-01, 1) already exists.
+2016-07-11T16:18:25+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:18:25+03:00 [ERROR] [PostgreSQLOperations->newEmployee] [525] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-02-01, 1) already exists.
+2016-07-11T16:18:35+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:18:35+03:00 [ERROR] [PostgreSQLOperations->newEmployee] [525] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-02-01, 1) already exists.
+2016-07-11T16:18:58+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:21:32+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:24:48+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:24:55+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:25:07+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:25:19+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:25:29+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:25:38+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:25:44+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:30:22+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:30:22+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [60] Не удается выполнить запрос роли для пользователя: user2 ERROR:  invalid input syntax for integer: ""
+2016-07-11T16:30:39+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:30:39+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [60] Не удается выполнить запрос роли для пользователя: user2 ERROR:  invalid input syntax for integer: ""
+2016-07-11T16:30:47+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:31:01+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:31:01+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [66] Нет данных о данном пользователе: user1 
+2016-07-11T16:34:29+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:34:29+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [97] Нет данных о данном пользователе. Id: 0 
+2016-07-11T16:34:37+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:34:37+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [97] Нет данных о данном пользователе. Id: 1 
+2016-07-11T16:34:43+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:34:43+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [97] Нет данных о данном пользователе. Id: 2 
+2016-07-11T16:35:11+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:35:11+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [97] Нет данных о данном пользователе. Id: 0 
+2016-07-11T16:35:27+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:35:45+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-11T16:35:45+03:00 [ERROR] [PostgreSQLOperations->getDepartmentHead] [97] Нет данных о данном пользователе. Id: 1 

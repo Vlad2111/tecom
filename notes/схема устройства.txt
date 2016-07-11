@@ -6,23 +6,24 @@
 6)отчет списком xls
 7)график по таблице
 
-3) +-+-+-cloneModelData(time, needsInfotmation)
+3) ++cloneModelData(time1,time2)
 
 работа с таблицами:
 0) ++getRoleName(userId)
 1) ++getDepartmentNames(time)
 1) ++getEmployeeNames(time)
-2) ++getProjectNamesForDepartment(departmentName, time)
-3) ++getEmployeeNamesForDepartment(departmentName, time)
-4) ++getEployeeNamesAndPercentsForProject(projectName, departmentName, time)
-5) ++getEmployeeInfo(employeeName, time)
+2) ++getProjectNamesForDepartment(departmentId, time)
+3) ++getEmployeeNamesForDepartment(departmentId, time)
+4) ++getEployeeNamesAndPercentsForProject(projectId, time)
+5) ++getEmployeeInfo(employeeId, time)
 6) ++getDepartmentHead(userId)
 
-7) changeDepartmentName(departmentId, time, newDepartmentName)
-9) changeProjectName(projectId, time, newProjectName)
-0) changeEployeeTime(employeeId, projectId, time, newPercents)
-2) changeEmployeeInfo(employeeId, time, newDepartmentId)
-3) changeDepartmentHead(userId, departmentId)
+7) ++changeDepartmentName(departmentId, time, newDepartmentName)
+9) ++changeProjectName(projectId, time, newProjectName)
+0) ++changeEployeeTime(employeeId, projectId, time, newPercents)
+2) ++changeEmployeeInfo(employeeId, date, newDepartmentId)
+3) ++changeDepartmentHead(userId, departmentId)
+4) ++changeRole(userId, roleId)
 
 ))exportFiles(time)
 4) xlsDepartmentNames(time)
@@ -30,20 +31,15 @@
 6) xlsEmployeeNames(time)
 7) xlsEmployeeInfo(time)
 
-8) newDepartment(time, departmentName)
-9) newProject(time, projectName, departmentId)
-0) newEmployee(time, employeeName, departmentId)
-1) newPercent(time, projectId, employeeId, newPercent)
-2) newHeadDepartment(userId, departmentId)
+8) ++newDepartment(time, departmentName)
+9) ++newProject(time, projectName, departmentId)
+0) ++newEmployee(time, employeeName, departmentId)
+1) ++newPercent(time, projectId, employeeId, newPercent)
+2) ++newHeadDepartment(userId, departmentId)
 
-8) deleteDepartment(time, departmentId)
-9) deleteProject(time, projectId)
-0) deleteEmployee(time, employeeId)
-1) deletePercent(time, projectId, employeeId)
-
-в каждой функции прописать ошибки и возврат через ключи и фич. полное оформление возврата.
-pg_connect работает только надо содать php.ini и раскомитить нужное
-подключение 
-
+8) ++deleteDepartment(time, departmentId)
+9) ++deleteProject(time, projectId)
+0) ++deleteEmployee(time, employeeId)
+1) ++deletePercent(time, projectId, employeeId)
 
 настроить удобное логирование раскидать инфо и ошибки в разные файлы желательно
