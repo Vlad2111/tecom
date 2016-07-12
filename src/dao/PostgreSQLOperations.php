@@ -464,28 +464,40 @@ class PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'SELECT department_id FROM "Departments" WHERE '.
-				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($date->format("U")));
+		$result = pg_query_params($this->dbConnect, 'SELECT department_id FROM "Departments" WHERE department_name '.
+				'= $1', array($departmentName));
 		if (!$result) {
-			$this->log->error("Не удается выполнить запрос на получение списка отделов. ".
+			$this->log->error("Не удается выполнить запрос на получение id отдела. ".
 					pg_last_error($this->dbConnect));
-			throw new Exception("Не удается выполнить запрос на получение списка отделов. ".
+			throw new Exception("Не удается выполнить запрос на получение id отдела. ".
 					pg_last_error($this->dbConnect));
 		}
-		$departmentIdArray = pg_fetch_all($result);
-		$rows = pg_num_rows($result);
-		if ($rows = 0){
-			$newDapartmentId = 0;
+		if (pg_num_rows($result)>0){
+			$departmentId = pg_fetch_result($result,0,0);
 		}else{
-			$newDapartmentId = $departmentIdArray[0]['department_id'];
-			for ($i = 1; $i < $rows; $i++){
-				if ($newDapartmentId < $departmentIdArray[$i]['department_id']){
-					$newDapartmentId = $departmentIdArray[$i]['department_id'];
+			$result = pg_query($this->dbConnect, 'SELECT department_id FROM "Departments"');
+			if (!$result) {
+				$this->log->error("Не удается выполнить запрос на получение списка id отделов. ".
+						pg_last_error($this->dbConnect));
+				throw new Exception("Не удается выполнить запрос на получение списка id отделов. ".
+						pg_last_error($this->dbConnect));
+			}
+			$departmentIdArray = pg_fetch_all($result);
+			$rows = pg_num_rows($result);
+			if ($rows == 0){
+				$departmentId = 0;
+			}else{
+				$departmentId = $departmentIdArray[0]['department_id'];
+				for($i = 1; $i < $rows; $i++){
+					if ($departmentId < $departmentIdArray[$i]['department_id']){
+						$departmentId = $departmentIdArray[$i]['department_id'];
+					}
 				}
+				$departmentId = $departmentId + 1;  
 			}
 		}
 		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Departments" (date, department_id, '.
-				'department_name) VALUES ($1, $2, $3)', array($date->format("Y-m-d"), $newDapartmentId, 
+				'department_name) VALUES ($1, $2, $3)', array($date->format("Y-m-d"), $departmentId, 
 					$departmentName));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запись нового отдела. ". pg_last_error($this->dbConnect));
@@ -498,28 +510,40 @@ class PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" WHERE '.
-				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($date->format("U")));
+		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" WHERE user_id '.
+				'= $1', array($userId));
 		if (!$result) {
-			$this->log->error("Не удается выполнить запрос на получение списка сотрудников. ".
+			$this->log->error("Не удается выполнить запрос на получение id сотрудника. ".
 					pg_last_error($this->dbConnect));
-			throw new Exception("Не удается выполнить запрос на получение списка сотрудников. ".
+			throw new Exception("Не удается выполнить запрос на получение id сотрудника. ".
 					pg_last_error($this->dbConnect));
 		}
-		$employeeIdArray = pg_fetch_all($result);
-		$rows = pg_num_rows($result);
-		if ($rows = 0){
-			$newEmployeeId = 0;
+		if (pg_num_rows($result)>0){
+			$employeeId = pg_fetch_result($result,0,0);
 		}else{
-			$newEmployeeId = $employeeIdArray[0]['employee_id'];
-			for ($i = 1; $i < $rows; $i++){
-				if ($newEmployeeId < $employeeIdArray[$i]['employee_id']){
-					$newEmployeeId = $employeeIdArray[$i]['employee_id'];
+			$result = pg_query($this->dbConnect, 'SELECT employee_id FROM "Employee"');
+			if (!$result) {
+				$this->log->error("Не удается выполнить запрос на получение списка id сотрудников. ".
+						pg_last_error($this->dbConnect));
+				throw new Exception("Не удается выполнить запрос на получение списка id сотрудников. ".
+						pg_last_error($this->dbConnect));
+			}
+			$employeeIdArray = pg_fetch_all($result);
+			$rows = pg_num_rows($result);
+			if ($rows == 0){
+				$employeeId = 0;
+			}else{
+				$employeeId = $employeeIdArray[0]['employee_id'];
+				for($i = 1; $i < $rows; $i++){
+					if ($employeeId < $employeeIdArray[$i]['employee_id']){
+						$employeeId = $employeeIdArray[$i]['employee_id'];
+					}
 				}
+				$employeeId = $employeeId + 1;  
 			}
 		}
 		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Employee" (date, employee_id, '.
-				'user_id, department_id) VALUES ($1, $2, $3, $4)', array($date->format("Y-m-d"), $newEmployeeId +1, 
+				'user_id, department_id) VALUES ($1, $2, $3, $4)', array($date->format("Y-m-d"), $employeeId, 
 						$userId, $departmentId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запись нового сотрудника. ". pg_last_error($this->dbConnect));
@@ -533,29 +557,41 @@ class PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE '.
-				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($date->format("U")));
+		$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE project_name '.
+				'= $1 AND department_id = $2', array($projectName, $departmentId));
 		if (!$result) {
-			$this->log->error("Не удается выполнить запрос на получение списка проектов. ".
+			$this->log->error("Не удается выполнить запрос на получение id проекта. ".
 					pg_last_error($this->dbConnect));
-			throw new Exception("Не удается выполнить запрос на получение списка проектов. ".
+			throw new Exception("Не удается выполнить запрос на получение id проекта. ".
 					pg_last_error($this->dbConnect));
 		}
-		$projectIdArray = pg_fetch_all($result);
-		$rows = pg_num_rows($result);
-		if ($rows = 0){
-			$newProjectId = 0;
+		if (pg_num_rows($result)>0){
+			$projectId = pg_fetch_result($result,0,0);
 		}else{
-			$newProjectId = $projectIdArray[0]['project_id'];
-			for ($i = 1; $i < $rows; $i++){
-				if ($newProjectId < $projectIdArray[$i]['project_id']){
-					$newProjectId = $projectIdArray[$i]['project_id'];
+			$result = pg_query($this->dbConnect, 'SELECT project_id FROM "Projects"');
+			if (!$result) {
+				$this->log->error("Не удается выполнить запрос на получение списка id проектов. ".
+						pg_last_error($this->dbConnect));
+				throw new Exception("Не удается выполнить запрос на получение списка id проектов. ".
+						pg_last_error($this->dbConnect));
+			}
+			$projectIdArray = pg_fetch_all($result);
+			$rows = pg_num_rows($result);
+			if ($rows == 0){
+				$projectId = 0;
+			}else{
+				$projectId = $projectIdArray[0]['project_id'];
+				for($i = 1; $i < $rows; $i++){
+					if ($projectId < $projectIdArray[$i]['project_id']){
+						$projectId = $projectIdArray[$i]['project_id'];
+					}
 				}
+				$projectId = $projectId + 1;  
 			}
 		}
 		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Projects" (date, project_id, '.
 				'project_name, department_id) VALUES ($1, $2, $3, $4)', array($date->format("Y-m-d"), 
-						$newProjectId +1,	$projectName, $departmentId));
+						$projectId,	$projectName, $departmentId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запись нового проекта. ". pg_last_error($this->dbConnect));
 			throw new Exception("Не удается выполнить запись нового проекта. ".
@@ -717,5 +753,18 @@ class PostgreSQLOperations
 					pg_last_error($this->dbConnect));
 		}
 	}
+	
+	/** Проверка данных в базе.*/
+	/*public function controlData()
+	{
+		$result = pg_query($this->dbConnect, 'SELECT department_id, department_name FROM "Departments"');
+		if (!$result) {
+			$this->log->error("Не удается выполнить запрос на получение списка отделов. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос на получение списка отделов. ".
+					pg_last_error($this->dbConnect));
+		}
+		$rows = pg_num_rows($result);
+	}*/
 }
 ?>

@@ -17,12 +17,12 @@ echo "date = ".$date->format('d.m.Y H:i:s')."\n\n";
 echo "getDepartmentHead(date, 1)\n";
 print_r($db->getDepartmentHead($date, 1));
 */
-/*
+
 $datefrom = new DateTime('23.01.2016 20:10:43');
 $dateto = new DateTime('12.03.2016 21:11:53');
 echo "datefrom = ".$datefrom->format('d.m.Y H:i:s')."\n\n";
 echo "dateto = ".$dateto->format('d.m.Y H:i:s')."\n\n";
-*/
+
 /*
 echo "cloneModelData(datefrom ,datefrom)\n\n";
 $db->cloneModelData($datefrom ,$dateto);
@@ -87,8 +87,8 @@ echo "result:\n";
 print_r($db->getDepartmentNames($datefrom));
 
 print_r($db->getEmployeeNames($datefrom));
-echo "newEmployee(datefrom, 'user2', 2)\n";
-$db->newEmployee($datefrom, 'user2', 2);
+echo "newEmployee(datefrom, 'user2', 1)\n";
+$db->newEmployee($datefrom, 'user2', 1);
 echo "result:\n";
 print_r($db->getEmployeeNames($datefrom));
 
@@ -148,4 +148,5 @@ $db->deleteHeadDepartment($datefrom, 0, 1);
 echo "result:\n";
 print_r($db->getDepartmentHead($datefrom, 1));
 */
+//$db->controlData();
 ?>
