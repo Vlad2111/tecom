@@ -610,3 +610,44 @@ DETAIL:  Key (date, department_id)=(2016-03-01, 1) is not present in table "Depa
 2016-07-12T17:17:45+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
 2016-07-12T17:17:45+03:00 [ERROR] [PostgreSQLOperations->controlData] [763] Не удается выполнить запрос на получение списка отделов. 
 2016-07-12T17:18:01+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T11:59:57+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T11:59:57+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [60] Не удается выполнить запрос роли для пользователя: user ERROR:  syntax error at or near "WHERE"
+LINE 1: ... = rd.role_id AND r.employee_id = rdd.employee_id WHERE rdd....
+                                                             ^
+2016-07-13T12:00:43+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:00:43+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [60] Не удается выполнить запрос роли для пользователя: user ERROR:  syntax error at or near "AND"
+LINE 1: ...name FROM "Role" AS r inner join "Role_def" AS rd AND "Emplo...
+                                                             ^
+2016-07-13T12:01:26+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:01:26+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [60] Не удается выполнить запрос роли для пользователя: user ERROR:  syntax error at or near "join"
+LINE 1: ...loyee" AS rdd on r.role_id = rd.role_id AND inner join "Empl...
+                                                             ^
+2016-07-13T12:01:58+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:01:58+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [60] Не удается выполнить запрос роли для пользователя: user ERROR:  syntax error at or near "join"
+LINE 1: ...le_def" AS rd on r.role_id = rd.role_id AND inner join "Empl...
+                                                             ^
+2016-07-13T12:05:10+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:05:10+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [61] Не удается выполнить запрос роли для пользователя: user ERROR:  syntax error at or near "join"
+LINE 1: ..."Role_def" AS rd on r.role_id = rd.role_id, inner join "Empl...
+                                                             ^
+2016-07-13T12:05:32+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:05:32+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [61] Не удается выполнить запрос роли для пользователя: user ERROR:  syntax error at or near "join"
+LINE 1: ...le_def" AS rd on r.role_id = rd.role_id AND inner join "Empl...
+                                                             ^
+2016-07-13T12:09:20+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:09:20+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [72] Ошибка запроса. Получено несколько результатов
+2016-07-13T12:10:36+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:10:36+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [73] Ошибка запроса. Получено несколько результатов
+2016-07-13T12:14:49+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:39:05+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:40:03+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:42:42+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:44:38+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:46:24+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:46:56+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T12:50:42+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T13:26:57+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1
+2016-07-13T13:26:57+03:00 [ERROR] [PostgreSQLOperations->getRoleNameAndId] [52] Не удается выполнить запрос роли для пользователя: user ERROR:  syntax error at or near "on"
+LINE 1: ...role_id, rd.role_name FROM "Role" AS r inner join on r.role_...
+                                                             ^
+2016-07-13T13:28:20+03:00 [INFO] [PostgreSQLOperations->connect] [39] Успешное подключение к базе данных PostgreSQL: host=rnd-dev-polls port=5432 dbname=hr_tecom user=hr_tecom password=Tecom1

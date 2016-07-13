@@ -18,7 +18,9 @@ CREATE TABLE "Departments" (
     date date,
     department_id integer,
     department_name character varying(100),
-    CONSTRAINT department_id_date_pk PRIMARY KEY (date, department_id)
+    CONSTRAINT department_id_date_pk PRIMARY KEY (date, department_id),
+	CONSTRAINT department_name_date_unique UNIQUE (date, department_name)
+
 );
 
 CREATE TABLE "Employee" (
@@ -27,6 +29,7 @@ CREATE TABLE "Employee" (
     user_id character varying(100),
     department_id integer,
     CONSTRAINT employee_id_date_pk PRIMARY KEY (date, employee_id),
+	CONSTRAINT user_id_date_unique UNIQUE (date, user_id),
     CONSTRAINT department_id_date_vk FOREIGN KEY (date, department_id) REFERENCES "Departments"(date, department_id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -36,6 +39,7 @@ CREATE TABLE "Projects" (
     project_name character varying(100),
     department_id integer,
     CONSTRAINT project_id_date_pk PRIMARY KEY (date, project_id),
+	CONSTRAINT department_id_project_name_date_unique UNIQUE (date, project_name, department_id),
     CONSTRAINT department_id_date_vk FOREIGN KEY (date, department_id) REFERENCES "Departments"(date, department_id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -58,7 +62,7 @@ CREATE TABLE "Role_def" (
 CREATE TABLE "Role" (
     employee_id integer,
     role_id integer,
-    CONSTRAINT role_employee_id_pk PRIMARY KEY (employee_id, role_id),
+    CONSTRAINT employee_id_pk PRIMARY KEY (employee_id),
     CONSTRAINT role_id_vk FOREIGN KEY (role_id) REFERENCES "Role_def"(role_id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE
 );
 

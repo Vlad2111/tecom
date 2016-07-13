@@ -43,18 +43,10 @@ class PostgreSQLOperations
 	/** Запрос роли пользователя.*/
 	public function getRoleNameAndId($userId)
 	{
-		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" '.
-				'WHERE user_id = $1', array($userId));
-		if (!$result) {
-			$this->log->error("Нет данных о данном пользователе: ". $userId.
-					" ". pg_last_error($this->dbConnect));
-			throw new Exception("Нет данных о данном пользователе: ". $userId.
-					" ". pg_last_error($this->dbConnect));
-		}
-		$employeeId = pg_fetch_result($result,0,0);
 		$result = pg_query_params($this->dbConnect, 'SELECT r.role_id, rd.role_name FROM "Role" '.
-				'AS r inner join "Role_def" AS rd on r.role_id = rd.role_id WHERE r.employee_id = $1', 
-				array($employeeId));
+				'AS r inner join "Role_def" AS rd on r.role_id = rd.role_id WHERE r.employee_id = (SELECT '.
+					'employee_id FROM "Employee" WHERE user_id = $1 ORDER BY "date" desc limit 1)', 
+						array($userId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос роли для пользователя: ". $userId.
 					" ". pg_last_error($this->dbConnect));
@@ -440,17 +432,9 @@ class PostgreSQLOperations
 	/** Обновление роли пользователя.*/
 	public function changeRole($userId, $newRoleId)
 	{
-		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" WHERE user_id = $1', 
-				array($userId));
-		if (!$result) {
-			$this->log->error("Нет данных о данном пользователе: ". $userId.
-					" ". pg_last_error($this->dbConnect));
-			throw new Exception("Нет данных о данном пользователе: ". $userId.
-					" ". pg_last_error($this->dbConnect));
-		}
-		$employeeId = pg_fetch_result($result,0,0);
-		$result = pg_query_params($this->dbConnect, 'UPDATE "Role" SET role_id = $2 WHERE employee_id = $1',
-				array($employeeId, $newRoleId));
+		$result = pg_query_params($this->dbConnect, 'UPDATE "Role" SET role_id = $2 WHERE employee_id = (SELECT '.
+					'employee_id FROM "Employee" WHERE user_id = $1 ORDER BY "date" desc limit 1)',
+				array($userId, $newRoleId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить обновление роли пользователя. ".
 					pg_last_error($this->dbConnect));
@@ -618,17 +602,9 @@ class PostgreSQLOperations
 	/** Добавление новой роли пользователя.*/
 	public function newRole($userId, $roleId)
 	{
-		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" WHERE user_id = $1',
-				array($userId));
-		if (!$result) {
-			$this->log->error("Нет данных о данном пользователе: ". $userId.
-					" ". pg_last_error($this->dbConnect));
-			throw new Exception("Нет данных о данном пользователе: ". $userId.
-					" ". pg_last_error($this->dbConnect));
-		}
-		$employeeId = pg_fetch_result($result,0,0);
-		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Role" (employee_id, role_id) VALUES ($1, $2)', 
-				array($employeeId, $roleId));
+		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Role" (employee_id, role_id) VALUES ((SELECT '.
+					'employee_id FROM "Employee" WHERE user_id = $1 ORDER BY "date" desc limit 1), $2)', 
+				array($userId, $roleId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запись новой роли пользователя. ".
 					pg_last_error($this->dbConnect));
@@ -719,17 +695,9 @@ class PostgreSQLOperations
 	/** Удаление роли пользователя.*/
 	public function deleteRole($userId)
 	{
-		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" WHERE user_id = $1',
+		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Role" WHERE employee_id = (SELECT '.
+					'employee_id FROM "Employee" WHERE user_id = $1 ORDER BY "date" desc limit 1)',
 				array($userId));
-		if (!$result) {
-			$this->log->error("Нет данных о данном пользователе: ". $userId.
-					" ". pg_last_error($this->dbConnect));
-			throw new Exception("Нет данных о данном пользователе: ". $userId.
-					" ". pg_last_error($this->dbConnect));
-		}
-		$employeeId = pg_fetch_result($result,0,0);
-		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Role" WHERE employee_id = $1',
-				array($employeeId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить удаление роли пользователя. ".
 					pg_last_error($this->dbConnect));
@@ -753,18 +721,5 @@ class PostgreSQLOperations
 					pg_last_error($this->dbConnect));
 		}
 	}
-	
-	/** Проверка данных в базе.*/
-	/*public function controlData()
-	{
-		$result = pg_query($this->dbConnect, 'SELECT department_id, department_name FROM "Departments"');
-		if (!$result) {
-			$this->log->error("Не удается выполнить запрос на получение списка отделов. ".
-					pg_last_error($this->dbConnect));
-			throw new Exception("Не удается выполнить запрос на получение списка отделов. ".
-					pg_last_error($this->dbConnect));
-		}
-		$rows = pg_num_rows($result);
-	}*/
 }
 ?>
