@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
+	<buildpathentry kind="src" path="3pty/Smarty"/>
 	<buildpathentry kind="src" path="test"/>
 	<buildpathentry kind="src" path="3pty/apache-log4php-2.3.0"/>
 	<buildpathentry kind="src" path="config"/>
