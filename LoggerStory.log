@@ -1,0 +1,4 @@
+2016-08-02T17:01:46+03:00 [ERROR] [Router->start] [91] Не существует класс контроллера: Controller_index
+2016-08-03T13:26:55+03:00 [ERROR] [Model_PostgreSQLOperations->getRoleNameAndId] [56] Нет данных о данном пользователе: ershov 
+2016-08-03T13:27:36+03:00 [ERROR] [Model_PostgreSQLOperations->getRoleNameAndId] [56] Нет данных о данном пользователе: ershov 
+2016-08-03T13:27:59+03:00 [ERROR] [Model_PostgreSQLOperations->getRoleNameAndId] [56] Нет данных о данном пользователе: ershov 

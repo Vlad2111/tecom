@@ -35,4 +35,3 @@ class Configuration
 		$this->config = parse_ini_file("config.ini");
 	}
 }
-?>
