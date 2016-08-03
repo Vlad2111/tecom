@@ -11,27 +11,9 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="control-sidebar-home-tab">
-						<h3 class="control-sidebar-heading">Recent Activity</h3>
-						<ul class="control-sidebar-menu">
-							<li><a href="javascript::;"></a>
-							</li>
-						</ul>
-						<h3 class="control-sidebar-heading">Tasks Progress</h3>
-						<ul class="control-sidebar-menu">
-							<li>
-								<a href="javascript::;">
-									<h4 class="control-sidebar-subheading">
-										Custom Template Design
-										<span class="pull-right-container">
-											<span class="label label-danger pull-right">70%</span>
-										</span>
-									</h4>
-									<div class="progress progress-xxs">
-										<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-									</div>
-								</a>
-							</li>
-						</ul>
+						<h2 class="control-sidebar-heading">Info about employee:</h2>
+						<h4 class="control-sidebar-heading">{$name}</h4>
+						<p><h4 class="control-sidebar-heading">{$role}</h4></p>
 					</div>
 					<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
 					<div class="tab-pane" id="control-sidebar-settings-tab">
@@ -50,11 +32,11 @@
 			</aside>
 		</div>
 		
-<!-- REQUIRED JS SCRIPTS -->
+		<!-- REQUIRED JS SCRIPTS -->
+		
+		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<script src="../dist/js/app.min.js"></script>
 
-<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<script src="../dist/js/app.min.js"></script>
-
-</body>
+	</body>
 </html>

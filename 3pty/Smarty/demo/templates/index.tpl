@@ -1,17 +1,3 @@
-{config_load file="test.conf" section="setup"}
-{include file="header.tpl" title='Start Page'}
-
-			<div class="content-wrapper">
-				<section class="content-header">
-					<div align="center">
-						<h1>Start page</h1>
-						<ol class="breadcrumb">
-							<li class="active">Home</li>
-						</ol>
-					</div>
-				</section>
-				<section class="content">
-					
-				</section>
-			</div>
-{include file="footer.tpl"}
+{include file="3pty/Smarty/demo/templates/header.tpl" title={"$title"}}
+{include file=$contentPage}
+{include file="3pty/Smarty/demo/templates/footer.tpl"}

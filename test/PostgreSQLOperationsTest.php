@@ -2,15 +2,15 @@
 include_once 'ApplicationInit.php';
 ApplicationInit::init();
 
-include_once 'dao/PostgreSQLOperations.php';
+include_once 'dao/Model_PostgreSQLOperations.php';
 
-$db = new PostgreSQLOperations();
+$db = new Model_PostgreSQLOperations();
 $db->connect();
 
-echo "getRoleNameAndId('user')\n";
-print_r($db->getRoleNameAndId('user'));
-echo "getRoleNameAndId('user1')\n";
-print_r($db->getRoleNameAndId('user'));
+echo "getRoleName('user')\n";
+print_r($db->getRoleName('user'));
+echo "getRoleName('user1')\n";
+print_r($db->getRoleName('user'));
 /*
 $date = new DateTime('23.01.2016 20:10:43');
 echo "date = ".$date->format('d.m.Y H:i:s')."\n\n";

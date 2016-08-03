@@ -11,7 +11,7 @@
 
 @author ershov.v
 */
-class PostgreSQLOperations
+class Model_PostgreSQLOperations
 {
 	private $dbConnect;
 	private $log;
@@ -32,18 +32,16 @@ class PostgreSQLOperations
 				"password={$DBConfiguration['password']}";
 		$this->dbConnect = pg_pconnect($DBConfigurationString);
 		if (!$this->dbConnect) {
-			echo pg_connection_status($connection);
 			$this->log->error("Не удается подключится к базе данных. ".$DBConfigurationString." ");
 			throw new Exception("Не удается подключится к базе данных. ".$DBConfigurationString." ");
 		}
-		$this->log->info("Успешное подключение к базе данных PostgreSQL: ". $DBConfigurationString);
 		return $this->dbConnect;
 	}
 	
 	/** Запрос роли пользователя.*/
-	public function getRoleNameAndId($userId)
+	public function getRoleName($userId)
 	{
-		$result = pg_query_params($this->dbConnect, 'SELECT r.role_id, rd.role_name FROM "Role" '.
+		$result = pg_query_params($this->dbConnect, 'SELECT rd.role_name FROM "Role" '.
 				'AS r inner join "Role_def" AS rd on r.role_id = rd.role_id WHERE r.employee_id = (SELECT '.
 					'employee_id FROM "Employee" WHERE user_id = $1 ORDER BY "date" desc limit 1)', 
 						array($userId));
@@ -63,7 +61,7 @@ class PostgreSQLOperations
 			$this->log->error("Ошибка запроса. Получено несколько результатов");
 			throw new Exception("Ошибка запроса. Получено несколько результатов");
 		}
-		$roleNameAndId = pg_fetch_all($result);
+		$roleNameAndId = pg_fetch_result($result, 0, 0);
 		return $roleNameAndId;
 	}
 	
@@ -103,9 +101,9 @@ class PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'SELECT department_id, department_name FROM '.
-				'"Departments" WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1', 
-					array($date->format("U")));
+		$result = pg_query_params($this->dbConnect, 'SELECT department_id, department_name'.
+				' FROM "Departments" WHERE date_part(\'epoch\', date_trunc(\'month\', date))'.
+					' = $1', array($date->format("U")));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение списка отделов. ". 
 					pg_last_error($this->dbConnect));
@@ -121,8 +119,9 @@ class PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id FROM "Employee" WHERE '.
-				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($date->format("U")));
+		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id FROM "'.
+				'Employee" WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1',
+					array($date->format("U")));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение списка сотрудников. ".
 					pg_last_error($this->dbConnect));
@@ -131,6 +130,25 @@ class PostgreSQLOperations
 		}
 		$employeeNames = pg_fetch_all($result);
 		return $employeeNames;
+	}
+	
+	/** Запрос списка проектов.*/
+	public function getProjectNames(DateTime $date)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT r.project_id, r.project_name, '.
+				'r.department_id rd.department_name FROM "Projects" AS r inner join "Departments" '.
+					'AS rd on r.department_id = rd.department_id AND r.date = rd.date WHERE '.
+						'date_part(\'epoch\', date_trunc(\'month\', r.date)) = $1',	array($date->format("U")));
+		if (!$result) {
+			$this->log->error("Не удается выполнить запрос на получение списка проектов. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос на получение списка проектов. ".
+					pg_last_error($this->dbConnect));
+		}
+		$projectNames = pg_fetch_all($result);
+		return $projectNames;
 	}
 	
 	/** Запрос списка проектов отдела.*/
@@ -193,10 +211,12 @@ class PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'SELECT rd.project_name, r.time FROM "Time_distribution"'.
-				' AS r inner join "Projects" AS rd on r.project_id = rd.project_id AND r.date = rd.date '.
-					'WHERE date_part(\'epoch\', date_trunc(\'month\', r.date)) = $1 AND employee_id = $2', 
-						array($date->format("U"), $employeeId));
+		$result = pg_query_params($this->dbConnect, 'SELECT rd.project_id, rd.project_name, rdd.department_id,'.
+				' rdd.department_name, r.time FROM "Time_distribution" AS r inner join ("Projects" AS rd inner '.
+					'join "Departments" AS rdd on rd.department_id = rdd.department_id AND rd.date = rdd.date) on'.
+						' r.project_id = rd.project_id AND r.date = rd.date WHERE date_part(\'epoch\', '.
+							'date_trunc(\'month\', r.date)) = $1 AND r.employee_id = $2', array($date->format("U"), 
+								$employeeId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение информации о сотруднике. ".
 					pg_last_error($this->dbConnect));
@@ -722,4 +742,3 @@ class PostgreSQLOperations
 		}
 	}
 }
-?>

@@ -26,22 +26,20 @@
 								<i class="fa fa-bars"></i>
 							</button>
 						</div>
-						{if #role#==admin}
-							<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-								<ul class="nav navbar-nav">
-									<li class="dropdown">
-										<a class="dropdown-toggle" data-toggle="dropdown">Admin<span class="caret"></span></a>
-										<ul class="dropdown-menu" role="menu">
-											<li><b>Role:</b></li>
-											<li><a href="#">New Role</a></li>
-											<li><a href="#">Change Role</a></li>
-											<li><a href="#">Delete Role</a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						{/if}
-						<div class="navbar-custom-menu">
+						{if $role == "Администратор"}<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+							<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown">Admin<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><b>Role:</b></li>
+										<li><a href="#">New Role</a></li>
+										<li><a href="#">Change Role</a></li>
+										<li><a href="#">Delete Role</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						{/if}<div class="navbar-custom-menu">
 							<ul class="nav navbar-nav">
 								<li>
 									<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
