@@ -1,3 +1,26 @@
+<?php
+/* Smarty version 3.1.28, created on 2016-08-04 13:36:16
+  from "C:\Users\ershov.v\workspace\tecom\3pty\Smarty\demo\templates\mainPage.tpl" */
+
+if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
+  'has_nocache_code' => false,
+  'version' => '3.1.28',
+  'unifunc' => 'content_57a31aa0cfa9e3_40685068',
+  'file_dependency' => 
+  array (
+    'd9dc4d209f2ff55be4aee135c0071ce056cf2a7a' => 
+    array (
+      0 => 'C:\\Users\\ershov.v\\workspace\\tecom\\3pty\\Smarty\\demo\\templates\\mainPage.tpl',
+      1 => 1470225185,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_57a31aa0cfa9e3_40685068 ($_smarty_tpl) {
+?>
 
 			<link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
 			
@@ -64,12 +87,18 @@
 				</section>
 			</div>
 			
-			<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
-			<script>
+			<?php echo '<script'; ?>
+ src="../plugins/datepicker/bootstrap-datepicker.js"><?php echo '</script'; ?>
+>
+			<?php echo '<script'; ?>
+>
 				$(function () {
+					//Date picker
 					$('#datepicker').datepicker({
 						autoclose: true
 					});
 				});
-			</script>
-			
+			<?php echo '</script'; ?>
+>
+			<?php }
+}

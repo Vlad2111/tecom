@@ -1,0 +1,107 @@
+ 
+			<link rel="stylesheet" href="../plugins/select2/select2.min.css">
+			<link rel="stylesheet" href="../plugins/bootstrap-slider/slider.css">
+
+			<div class="content-wrapper">
+				<section class="content-header">
+					<div align="right">
+						<b style="font-size:23px">Selected date: {"$selectedDate"}</b>
+					</div>
+					<div align="center">
+						<div class="col-lg-100 col-xs-100">
+							<div class="small-box bg-green">
+								<div class="inner">
+									<h2>{$action}</h2>
+								</div>
+							</div>
+						</div>
+						<ol class="breadcrumb">
+							<li><a href="/index/?action='return'"><i class="fa fa-dashboard"></i>Home</a></li>
+							{"$lastPage"}
+							<li class="active">***</li>
+						</ol>
+					</div>
+				</section>
+
+				<section class="content">
+					<div class="box box-default">
+						<div class="box-header with-border">
+							<h3 class="box-title">***</h3>
+						</div>
+						<div class="box-body">
+							{if $setName = true}
+							<div class="form-group">
+								<label>Name of {$modName}</label>
+								<input type="text" class="form-control" placeholder="***">
+							</div>
+							{/if}
+							<div class="row">
+								<div class="col-md-12">
+									{if $setDepartment = true}
+									<div class="form-group">
+										<label>{$modName}'s Department</label>
+										<select class="form-control select2" style="width: 100%;">
+											{foreach from=$array item=foo}
+											
+											<option>{$foo.department_name}</option>
+											{/foreach}
+										</select>
+									</div>
+									{/if}
+									{if $setEmployee = true}
+									<div class="form-group">
+										<label>Employee</label>
+										<select class="form-control select2" style="width: 100%;">
+											{foreach from=$array item=foo}
+											
+											<option>{$foo.user_id}</option>
+											{/foreach}
+										</select>
+									</div>
+									{/if}
+									{if $setProject = true}
+									<div class="form-group">
+										<label>Project</label>
+										<select class="form-control select2" style="width: 100%;">
+											{foreach from=$array item=foo}
+											
+											<option>{$foo.project_name}</option>
+											{/foreach}
+										</select>
+									</div>
+									{/if}
+									{if $setPercent = true}
+									<label>Percent</label>
+									<div class="form-group">
+										<input id="range_1" type="text" name="range_1" value="">
+									</div>
+ 									{/if}
+								</div>
+							</div>
+						</div>
+						<div align="center">
+							<a class="btn btn-app bg-green" href="{"$savePage"}">
+								<i class="fa fa-save"></i> Save
+							</a>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<script src="../plugins/select2/select2.full.min.js"></script>
+			<script src="../plugins/ionslider/ion.rangeSlider.min.js"></script>
+			<script>
+				$(function () {
+					$(".select2").select2();
+					$("#range_1").ionRangeSlider({
+						min: 0,
+						max: 100,
+						from: 50,
+						type: 'single',
+						postfix: "%",
+						grid: true,
+						grid_num: 20
+	    			});
+				});
+			</script>
+			

@@ -12,11 +12,14 @@
 								<div class="inner">
 									<h2>{$departmentName}</h2>
 								</div>
-								<a class="btn btn-app" href="/EditAndCreate/?content='editDepartment'">
+								<a class="btn btn-app" href="/EditAndCreate/?content='editDepartment'&departmentId={$departmentId}&departmentName={$departmentName}">
 									<i class="fa fa-edit"></i> Edit
 								</a>
 								<a class="btn btn-app" href="/list/?content='Department'&action='remove'&departmentId={$departmentId}">
 									<i class="fa fa-remove"></i> Remove
+								</a>
+								<a class="btn btn-app" href="/EditAndCreate/?content='cloneInfo'">
+										<i class="fa fa-clone"></i> Clone Information
 								</a>
 							</div>
 						</div>

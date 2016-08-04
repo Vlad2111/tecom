@@ -25,8 +25,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="../plugins/select2/select2.min.css">
-  <!-- bootstrap slider -->
-  <link rel="stylesheet" href="../plugins/bootstrap-slider/slider.css">
+  <!-- Ion Slider -->
+  <link rel="stylesheet" href="../plugins/ionslider/ion.rangeSlider.css">
+  <!-- ion slider Nice -->
+  <link rel="stylesheet" href="../plugins/ionslider/ion.rangeSlider.skinNice.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -146,9 +148,9 @@ desired effect
               <label>Percent</label>
               <!-- /.form-group -->
               <div class="form-group">
-                  <input type="text" class="form-control" placeholder="50" style="width:60px;">
-                  <input type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="[0,50]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="red">
-             </div>
+               	   <input id="range_0" name="range_0" value="">
+					<input id="range_1" name="range_1" value="">
+              </div>
             </div>
             <!-- /.col -->
           </div>
@@ -266,19 +268,36 @@ desired effect
 <script src="../dist/js/app.min.js"></script>
 <!-- Select2 -->
 <script src="../plugins/select2/select2.full.min.js"></script>
-<!-- Bootstrap slider -->
-<script src="../plugins/bootstrap-slider/bootstrap-slider.js"></script>
+<!-- Ion Slider -->
+<script src="../plugins/ionslider/ion.rangeSlider.min.js"></script>
 <!-- Page script -->
 <script>
-  $(function () {
-	  
-	  /* BOOTSTRAP SLIDER */
-	    $('.slider').slider();
-	  
-    //Initialize Select2 Elements
-    $(".select2").select2();
-  });
-</script>
+				$(function () {
+					$(".select2").select2();
+					
+					$(document).ready(function () {
+						var $range1 = $("#range_1"),
+						$range0 = $("#range_0");
+						
+						var track = function (data) {
+                        $range0.html(data.from);
+                      };
+                     
+                      $range.ionRangeSlider({
+                        min: 0,
+						max: 100,
+						from: 50,
+						type: 'single',
+						postfix: "%",
+						grid: true,
+						grid_num: 20
+                         onChange: track,
+                         onUpdate: track
+                            });
+                         });
+	    			});
+				});
+			</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

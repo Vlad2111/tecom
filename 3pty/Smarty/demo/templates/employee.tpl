@@ -21,6 +21,9 @@
 								<a class="btn btn-app" href="/list/?content='Employee'&action='remove'&employeeId={$employeeId}">
 									<i class="fa fa-remove"></i> Remove Employee
 								</a>
+								<a class="btn btn-app" href="/EditAndCreate/?content='cloneInfo'">
+										<i class="fa fa-clone"></i> Clone Information
+								</a>
 								<div><b>Employee's Time:</b></div>
 								<div class="progress" >
 									<div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="{$employeePercent}" aria-valuemin="0" aria-valuemax="100" style="width: {$employeePercent}%">

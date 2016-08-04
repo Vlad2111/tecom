@@ -14,6 +14,9 @@
 									<a class="btn btn-app" href="/EditAndCreate/?content='createProject'">
 										<i class="fa fa-pencil"></i> New Project
 									</a>
+									<a class="btn btn-app" href="/EditAndCreate/?content='cloneInfo'">
+										<i class="fa fa-clone"></i> Clone Information
+									</a>
 								</div>
 							</div>
 						</div>

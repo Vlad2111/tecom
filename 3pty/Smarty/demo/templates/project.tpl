@@ -21,6 +21,9 @@
 								<a class="btn btn-app" href="/list/?content='Project'&action='remove'&projectId={$projectId}>
 									<i class="fa fa-remove"></i>Remove Project
 								</a>
+								<a class="btn btn-app" href="/EditAndCreate/?content='cloneInfo'">
+										<i class="fa fa-clone"></i> Clone Information
+								</a>
 							</div>
 						</div>
 						<ol class="breadcrumb">
