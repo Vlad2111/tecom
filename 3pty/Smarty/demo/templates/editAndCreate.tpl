@@ -1,7 +1,7 @@
  
-			<link rel="stylesheet" href="../plugins/select2/select2.min.css">
-			<link rel="stylesheet" href="../plugins/bootstrap-slider/slider.css">
-			<link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/select2/select2.min.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/bootstrap-slider/slider.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datepicker/datepicker3.css">
 
 			<div class="content-wrapper">
 				<section class="content-header">
@@ -25,7 +25,7 @@
 				</section>
 
 				<section class="content">
-					<form action="/save/?content='{"$action"}{"$modName"}{if $action='Edit'}?editId={"$editId"}{/if}'" method="post">
+					<form action="/save/?content='{"$action"}{"$modName"}'{if $action='Edit'}&editId='{"$editId"}'{/if}" method="post">
 						<div class="box box-default">
 							<div class="box-header with-border">
 								<h3 class="box-title">{"$header"}</h3>
@@ -51,16 +51,16 @@
 								{/if}
 								{if $setName = true}
 								<div class="form-group">
-									<label>Name of {"$modName"}</label>
-									<p>{"$message"}</p>
-									<input type="text" name="newName"class="form-control" placeholder="{"$lastName"}">
+									<label>Name of {$modName}</label>
+									<p>{$message}</p>
+									<input type="text" name="newName"class="form-control" placeholder="{$lastName}">
 								</div>
 								{/if}
 								<div class="row">
 									<div class="col-md-12">
 										{if $setDepartment = true}
 										<div class="form-group">
-											<label>{"$modName"}'s Department</label>
+											<label>{$modName}'s Department</label>
 											<select name="newDepartmwent" class="form-control select2" style="width: 100%;">
 												{foreach from=$array item=foo}
 												
@@ -72,7 +72,7 @@
 										{if $setEmployee = true}
 										<div class="form-group">
 											<label>Employee</label>
-											<select name="newEmployee" placeholder="{"$lastNameEmployee"}" class="form-control select2" style="width: 100%;">
+											<select name="newEmployee" placeholder="{$lastNameEmployee}" class="form-control select2" style="width: 100%;">
 												{foreach from=$array item=foo}
 												
 												<option>{$foo.user_id}</option>
@@ -83,7 +83,7 @@
 										{if $setProject = true}
 										<div class="form-group">
 											<label>Project</label>
-											<select name="newProject" placeholder="{"$lastNameProject"}" class="form-control select2" style="width: 100%;">
+											<select name="newProject" placeholder="{$lastNameProject}" class="form-control select2" style="width: 100%;">
 												{foreach from=$array item=foo}
 												
 												<option>{$foo.project_name}</option>
@@ -94,7 +94,7 @@
 										{if $setPercent = true}
 										<label>Percent</label>
 										<div class="form-group">
-											<input id="range_1" type="text" name="range_1" value="">
+											<input id="range_1" type="text" name="range_1" value="{$lastPercent}">
 										</div>
  										{/if}
 									</div>
@@ -110,16 +110,16 @@
 				</section>
 			</div>
 
-			<script src="../plugins/select2/select2.full.min.js"></script>
-			<script src="../plugins/ionslider/ion.rangeSlider.min.js"></script>
-			<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/select2/select2.full.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/ionslider/ion.rangeSlider.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datepicker/bootstrap-datepicker.js"></script>
 			<script>
 				$(function () {
 					$(".select2").select2();
 					$("#range_1").ionRangeSlider({
 						min: 0,
 						max: 100,
-						from: 50,
+						from: {$lastPercent},
 						type: 'single',
 						postfix: "%",
 						grid: true,

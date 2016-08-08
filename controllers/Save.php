@@ -12,8 +12,14 @@
 @author ershov.v
 */
 Class Controller_save Extends Controller_Base {
-
-	function index() {
+	
+	private $log;
+	
+	function __construct() {
+		$this->log = Logger::getLogger(__CLASS__);
+	}
+	
+	function index($registry) {
 		if ($registry['date']){
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
@@ -63,7 +69,8 @@ Class Controller_save Extends Controller_Base {
 					$this->template->view('listDepartments');
 					break;
 				case 'EditEmployee':
-					$model->changeEmployeeInfo($_POST['editId'], $registry['date'], $_POST['newName'], $_POST['newDepartmwent']);
+					$model->changeEmployeeInfo($_POST['editId'], $registry['date'], $_POST['newName'],
+						$_POST['newDepartmwent']);
 				
 					$registry['list'] = 'Employee';
 					$rows = $model->getEmployeeNames($registry['date']);
@@ -71,7 +78,8 @@ Class Controller_save Extends Controller_Base {
 					$this->template->view('listEmployees');
 					break;
 				case 'EditProject':
-					$model->changeProjectNameAndDepartmentId($_POST['newProject'], $registry['date'], $_POST['newName'], $_POST['newDepartmwent']);
+					$model->changeProjectNameAndDepartmentId($_POST['newProject'], $registry['date'], 
+						$_POST['newName'], $_POST['newDepartmwent']);
 				
 					$registry['list'] = 'Project';
 					$rows = $model->getProjectNames($registry['date']);
@@ -79,7 +87,8 @@ Class Controller_save Extends Controller_Base {
 					$this->template->view('listProjects');
 					break;
 				case 'EditProject':
-					$model->changeEployeeTime($_POST['newEmployee'], $_POST['editId'], $registry['date'], $_POST['range_1']);
+					$model->changeEployeeTime($_POST['newEmployee'], $_POST['editId'], $registry['date'], 
+						$_POST['range_1']);
 				
 					$registry['list'] = 'Project';
 					$rows = $model->getProjectNames($registry['date']);
@@ -92,7 +101,7 @@ Class Controller_save Extends Controller_Base {
 					break;
 			}
 		}else{
-			$rows = false;
+			$this->log->error("Не выбрана дата.");
 			throw new Exception("Не выбрана дата.");
 		}		
 	}

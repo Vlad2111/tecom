@@ -1,5 +1,5 @@
 
-			<link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datepicker/datepicker3.css">
 			
 			<div class="content-wrapper">
 				<section class="content-header">
@@ -64,7 +64,7 @@
 				</section>
 			</div>
 			
-			<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datepicker/bootstrap-datepicker.js"></script>
 			<script>
 				$(function () {
 					$('#datepicker').datepicker({

@@ -18,10 +18,6 @@ spl_autoload_register(array('SiteAutoloader', 'autoload'));
 class SiteAutoloader 
 {
 	
-	function __construct() {
-		
-	}
-	
 	/** Автозагрузка классов.*/
 	public static function autoload($className){
 		$filename = strtolower($className) . '.php';

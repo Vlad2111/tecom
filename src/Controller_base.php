@@ -1,4 +1,5 @@
 <?php
+echo "Controller_Base";
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved

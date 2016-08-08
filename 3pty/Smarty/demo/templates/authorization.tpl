@@ -5,11 +5,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Tecomgroup | Authorization</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-		<link rel="stylesheet" href="../dist/css/AdminLTE.min.css"
-		<link rel="stylesheet" href="../plugins/iCheck/square/blue.css">
+		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/AdminLTE.min.css"
+		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/iCheck/square/blue.css">
 	
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,7 +25,7 @@
 			</div>
 			<div class="login-box-body">
 				<p class="login-box-msg">Sign in to start your session</p>
-				<form action="/index/" method="post">
+				<form action="/index.php?route=mainpage" method="post">
 					<div class="form-group has-feedback">
 						<input type="login" class="form-control" placeholder="Login">
 						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -46,19 +46,19 @@
 					</div>
 				</form>
 				<a href="#">I forgot my password</a><br>
-				<a href="/register/" class="text-center">Register a new membership</a>
+				<a href="#" class="text-center">Register a new membership</a>
 			</div>
 		</div>
 
-		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-		<script src="../bootstrap/js/bootstrap.min.js"></script>
-		<script src="../plugins/iCheck/icheck.min.js"></script>
+		<script src="3pty/AdminLTE-2.3.5/plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="3pty/AdminLTE-2.3.5/bootstrap/js/bootstrap.min.js"></script>
+		<script src="3pty/AdminLTE-2.3.5/plugins/iCheck/icheck.min.js"></script>
 		<script>
 			$(function () {
 				$('input').iCheck({
 					checkboxClass: 'icheckbox_square-blue',
 					radioClass: 'iradio_square-blue',
-					increaseArea: '20%' // optional
+					increaseArea: '20%'
 				});
 			});
 		</script>

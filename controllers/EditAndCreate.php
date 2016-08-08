@@ -14,8 +14,13 @@
 Class Controller_EditAndCreate Extends Controller_Base {
 
 	public $layouts = "index";
+	private $log;
 	
-	function index() {
+	function __construct() {
+		$this->log = Logger::getLogger(__CLASS__);
+	}
+	
+	function index($registry) {
 		$registry['content'] = $_GET['content'];
 		if($registry['date']){
 			$model = new Model_PostgreSQLOperations();
@@ -50,12 +55,21 @@ Class Controller_EditAndCreate Extends Controller_Base {
 					$registry['employeeId']=$_GET['employeeId'];
 				}
 			}
+			if($registry['content']=='editPercent'){
+				if (($_GET['projectId'])AND($_GET['projectName'])){
+					$registry['projectName']=$_GET['projectName'];
+					$registry['projectId']=$_GET['projectId'];
+				}
+				if (($_GET['employeeId'])AND($_GET['employeeName'])){
+					$registry['employeeName']=$_GET['employeeName'];
+					$registry['employeeId']=$_GET['employeeId'];
+				}
+				$registry['lastPercent']=$_GET['lastPercent'];
+			}
 			$this->template->view('EditAndCreate');
 		}else{
-			$rows = false;
+			$this->log->error("Не выбрана дата.");
+			throw new Exception("Не выбрана дата.");
 		}
-		
-	
 	}
-	
 }

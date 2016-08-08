@@ -14,11 +14,16 @@
 Class Controller_Department Extends Controller_Base {
 
 	public $layouts = "index";
+	private $log;
+	
+	function __construct() {
+		$this->log = Logger::getLogger(__CLASS__);
+	}
 
-	function index() {
-		$registry['departmentName']=$_GET['departmentName'];
-		$registry['departmentId']=$_GET['departmentId'];
+	function index($registry) {
 		if($registry['date']){
+			$registry['departmentName']=$_GET['departmentName'];
+			$registry['departmentId']=$_GET['departmentId'];
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
 			$rows1 = $model->getEmployeeNamesForDepartment($registry['departmentId'], $registry['date']);
@@ -51,7 +56,8 @@ Class Controller_Department Extends Controller_Base {
 			$this->template->vars('rows', $rows);
 			$this->template->view('Department');
 		}else{
-			$rows = false;
+			$this->log->error("Не выбрана дата.");
+			throw new Exception("Не выбрана дата.");
 		}
 	}
 }

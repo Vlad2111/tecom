@@ -14,17 +14,27 @@
 Class Controller_Department Extends Controller_Base {
 
 	public $layouts = "index";
+	private $log;
 	
-	function index() {
+	function __construct() {
+		$this->log = Logger::getLogger(__CLASS__);
+	}
+	
+	function index($registry) {
 		$registry['projectName']=$_GET['projectName'];
+		$registry['projectId']=$_GET['projectId'];
 		if($registry['date']){
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
-			$rows = $model->getEployeeNamesAndPercentsForProject($_GET['projectId'], $registry['date']);
-		}
+			if($_GET['action']=='remove'){
+				$model->deleteTimeDistribution($registry['date'], $_GET['projectId'], $_GET['employeeId']);
+			}
+			$rows = $model->getEployeeNamesAndPercentsForProject($registry['projectId'], $registry['date']);
 		$this->template->vars('rows', $rows);
 		$this->template->view('Project');
-	
+		}else{
+			$this->log->error("Не выбрана дата.");
+			throw new Exception("Не выбрана дата.");
+		}
 	}
-	
-	}
+}

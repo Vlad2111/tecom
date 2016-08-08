@@ -1,5 +1,5 @@
 
-			<link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.css">
 
 			<div class="content-wrapper">
 				<section class="content-header">
@@ -44,7 +44,7 @@
 										
 											<tr>
 												<th>{$foo.employee_id}</th>
-												<th><a href="/employee/?employeeId={$foo.employee_id}&employeeName={$foo.user_id}>{$foo.user_id}</a></th>
+												<th><a href="/employee/?employeeId='{$foo.employee_id'}&employeeName='{$foo.user_id}'">{$foo.user_id}</a></th>
 											</tr>
 										{/foreach}
 				 			 			</tbody>
@@ -62,8 +62,8 @@
 				</section>
 			</div>		
 
-			<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-			<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/jquery.dataTables.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.min.js"></script>
 			<script>
  				$(function () {
  					$('#employee').DataTable({

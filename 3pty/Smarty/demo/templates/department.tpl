@@ -1,5 +1,5 @@
 
-			<link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.css">
 
 			<div class="content-wrapper">
 				<section class="content-header">
@@ -12,10 +12,10 @@
 								<div class="inner">
 									<h2>{$departmentName}</h2>
 								</div>
-								<a class="btn btn-app" href="/EditAndCreate/?content='editDepartment'&departmentId={$departmentId}&departmentName={$departmentName}">
+								<a class="btn btn-app" href="/EditAndCreate/?content='editDepartment'&departmentId='{$departmentId}'&departmentName='{$departmentName}'">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a class="btn btn-app" href="/list/?content='Department'&action='remove'&departmentId={$departmentId}">
+								<a class="btn btn-app" href="/list/?content='Department'&action='remove'&departmentId='{$departmentId}'">
 									<i class="fa fa-remove"></i> Remove
 								</a>
 								<a class="btn btn-app" href="/EditAndCreate/?content='cloneInfo'">
@@ -45,9 +45,10 @@
 										<tbody>
 										{foreach from=$array item=foo}
 										{if $foo.employee_id != null AND $foo.user_id != null}
+										
 											<tr>
 												<td>{$foo.employee_id}</td>
-												<td><a href="/employee/?employeeId={$foo.employee_id}&employeeName={$foo.user_id}">{$foo.user_id}</a></td>
+												<td><a href="/employee/?employeeId='{$foo.employee_id}'&employeeName='{$foo.user_id}'">{$foo.user_id}</a></td>
 											</tr>
 										{/if}
 										{/foreach}
@@ -75,9 +76,10 @@
 										<tbody>
 										{foreach from=$array item=foo}
 										{if $foo.project_id != null AND $foo.project_name != null}
+										
 											<tr>
 												<th>{$foo.project_id}</th>
-												<th><a href="/project/?projectId={$foo.project_id}&projectName={$foo.project_name}">{$foo.project_name}</a></th>
+												<th><a href="/project/?projectId='{$foo.project_id}'&projectName='{$foo.project_name}'">{$foo.project_name}</a></th>
 											</tr>
 										{/if}
 										{/foreach}
@@ -96,8 +98,8 @@
 				</section>
 			</div>
 
-			<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-			<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/jquery.dataTables.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.min.js"></script>
 			<script>
 				$(function () {
 					$('#employee').DataTable({

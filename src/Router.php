@@ -1,4 +1,5 @@
 <?php
+echo "Router";
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -37,7 +38,6 @@ Class Router {
 	/** Подключение контроллера.*/
 	private function getController(&$file, &$controller, &$action, &$args) {
         $route = (empty($_GET['route'])) ? '' : $_GET['route'];
-		unset($_GET['route']);
         if (empty($route)) {
 			$route = 'index'; 
 		}
@@ -50,7 +50,7 @@ Class Router {
 			$fullpath = $cmd_path . $part;
 
 			if (is_dir($fullpath)) {
-				$cmd_path .= $part . DS;
+				$cmd_path .= $part . '/';
 				array_shift($parts);
 				continue;
 			}

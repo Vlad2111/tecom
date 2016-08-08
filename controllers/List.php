@@ -14,43 +14,43 @@
 Class Controller_list Extends Controller_Base {
 
 	public $layouts = "index";
+	private $log;
+	
+	function __construct() {
+		$this->log = Logger::getLogger(__CLASS__);
+	}
 
-	function index() {
-		if ($_GET['date']){
-			$registry['date'] = $_GET['date'];
-		}
-		if ($registry['date']){
+	function index($registry) {
+		if ($registry['GET']['date']){
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
-			switch($_GET['content']){
+			switch($registry['content']){
 				case 'Department':
-					$registry['list'] = 'Department';
 					if($_GET['action']=='remove'){
 						$model->deleteDepartment($registry['date'], $_GET['departmentId']);
-						unset($registry['departmentId']);
 					}
 					$rows = $model->getDepartmentNames($registry['date']);
 					$this->template->vars('rows', $rows);
 					$this->template->view('listDepartments');
 					break;
 				case 'Employee':
-					$registry['list'] = 'Employee';
 					if($_GET['action']=='remove'){
 						$model->deleteEmployee($registry['date'], $_GET['employeeId']);
-						unset($registry['employeeId']);
 					}
 					$rows = $model->getEmployeeNames($registry['date']);
 					$ldap = new LdapOperations();
 					$ldap->connect();
-					foreach ($rows as $a){
-						$names = $ldap->getLDAPAccountNamesByPrefix($rows[$a]['user_id']);
-						$rows[$a]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+					foreach ($rows as $key=>$arr){
+						$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
+						$rows[$key]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
 					}
 					$this->template->vars('rows', $rows);
 					$this->template->view('listEmployees');
 					break;
 				case 'Project':
-					$registry['list'] = 'Project';
+					if($_GET['action']=='remove'){
+						$model->deleteProject($registry['date'], $_GET['projectId']);
+					}
 					$rows = $model->getProjectNames($registry['date']);
 					$this->template->vars('rows', $rows);
 					$this->template->view('listProjects');
@@ -60,9 +60,8 @@ Class Controller_list Extends Controller_Base {
 					break;
 			}
 		}else{
-			$rows = false;
+			$this->log->error("Не выбрана дата.");
 			throw new Exception("Не выбрана дата.");
 		}		
 	}
-	
 }

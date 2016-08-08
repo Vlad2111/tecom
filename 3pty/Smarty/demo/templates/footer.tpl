@@ -34,9 +34,9 @@
 		
 		<!-- REQUIRED JS SCRIPTS -->
 		
-		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-		<script src="../bootstrap/js/bootstrap.min.js"></script>
-		<script src="../dist/js/app.min.js"></script>
+		<script src="3pty/AdminLTE-2.3.5/plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="3pty/AdminLTE-2.3.5/bootstrap/js/bootstrap.min.js"></script>
+		<script src="3pty/AdminLTE-2.3.5/dist/js/app.min.js"></script>
 
 	</body>
 </html>

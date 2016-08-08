@@ -1,5 +1,5 @@
 
-			<link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.css">
 
 			<div class="content-wrapper">
 				<section class="content-header">
@@ -45,8 +45,8 @@
 										
 											<tr>
 												<th>{$foo.project_id}</th>
-												<th><a href="/project/?projectId={$foo.project_id}&projectName={$foo.project_name}>{$foo.project_name}</a></th>
-												<th><a href="/department/?departmentId={$foo.department_id}&departmentName={$foo.department_name}>{$foo.department_name}</a></th>
+												<th><a href="/project/?projectId='{$foo.project_id}'&projectName='{$foo.project_name}'">{$foo.project_name}</a></th>
+												<th><a href="/department/?departmentId='{$foo.department_id}'&departmentName='{$foo.department_name}'">{$foo.department_name}</a></th>
 											</tr>
 										{/foreach}
 										</tbody>
@@ -65,8 +65,8 @@
 				</section>
 			</div>
 
-			<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-			<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/jquery.dataTables.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.min.js"></script>
 			<script>
  				$(function () {
  					$('#project').DataTable({

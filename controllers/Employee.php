@@ -14,11 +14,16 @@
 Class Controller_Employee Extends Controller_Base {
 
 	public $layouts = "index";
+	private $log;
+	
+	function __construct() {
+		$this->log = Logger::getLogger(__CLASS__);
+	}
 
-	function index() {
-		$registry['employeeName']=$_GET['employeeName'];
-		$registry['employeeId']=$_GET['employeeId'];
+	function index($registry) {
 		if($registry['date']){
+			$registry['employeeName']=$_GET['employeeName'];
+			$registry['employeeId']=$_GET['employeeId'];
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
 			if($_GET['action']=='remove'){
@@ -32,6 +37,9 @@ Class Controller_Employee Extends Controller_Base {
 			$registry['employeePercent'] = $employeePercentSum;
 			$this->template->vars('rows', $rows);
 			$this->template->view('Employee');
+		}else{
+			$this->log->error("Не выбрана дата.");
+			throw new Exception("Не выбрана дата.");
 		}
 	}
 }

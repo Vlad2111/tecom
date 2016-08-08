@@ -1,4 +1,5 @@
 <?php
+echo "Registry";
 /*
  * Copyright (c) 2016 Tecom LLC
  * All rights reserved
@@ -14,11 +15,17 @@
 Class Registry Implements ArrayAccess {
 	
 	private $vars = array();
+	private $log;
+	
+	function __construct() {
+		$this->log = Logger::getLogger(__CLASS__);
+	}
 	 
 	/* Запись данных. */
 	function set($key, $var) {
 		if (isset($this->vars[$key]) == true) {
-			throw new Exception('Ключ '.$key.' массива var уже занят.');
+			$this->log->error("Ключ ".$key." массива registry уже занят.");
+			throw new Exception("Ключ ".$key." массива registry уже занят.");
 		}
 		$this->vars[$key] = $var;
 		return true;
@@ -27,6 +34,7 @@ Class Registry Implements ArrayAccess {
 	/* Получение данных. */
 	function get($key) {
 		if (isset($this->vars[$key]) == false) {
+			$this->log->error("Элемент массива registry с ключем ".$key." пуст.");
 			return null;
 		}
 		return $this->vars[$key];

@@ -1,4 +1,5 @@
 ﻿<?php
+echo "Configuration";
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -32,6 +33,6 @@ class Configuration
 	/** Чтение переменных из файла config.*/
 	private function readConfig()
 	{
-		$this->config = parse_ini_file("config.ini");
+		$this->config = parse_ini_file($_SERVER['DOCUMENT_ROOT']."/../config/config.ini");
 	}
 }

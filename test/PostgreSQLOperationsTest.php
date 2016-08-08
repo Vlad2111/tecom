@@ -1,7 +1,4 @@
 ﻿<?php
-include_once 'ApplicationInit.php';
-ApplicationInit::init();
-
 include_once 'dao/Model_PostgreSQLOperations.php';
 
 $db = new Model_PostgreSQLOperations();

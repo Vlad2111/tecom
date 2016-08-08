@@ -16,6 +16,9 @@ INSERT INTO "Employee" (date, employee_id, user_id, department_id)
 values ('02.01.2016', 0, 'user',1);
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
 values ('02.01.2016', 1, 'user1',0);
+INSERT INTO "Employee" (date, employee_id, user_id, department_id)
+values ('01.01.2016', 2, 'ershov.v', 0);
+
 
 
 INSERT INTO "Role_def" (role_id, role_name)
@@ -28,6 +31,8 @@ INSERT INTO "Role" (employee_id, role_id)
 values (0, 0);
 INSERT INTO "Role" (employee_id, role_id)
 values (1, 1);
+INSERT INTO "Role" (employee_id, role_id)
+values (2, 0);
 
 
 INSERT INTO "Projects" (date, project_id, project_name, department_id)

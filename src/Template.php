@@ -1,4 +1,5 @@
 <?php
+echo "Template";
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -31,7 +32,7 @@ Class Template {
 	/** Подключение отображаемого контента.*/
 	function vars($varname, $value) {
 		if (isset($this->vars[$varname]) == true) {
-			$this->log->error("Контент не выбран.");
+			$this->log->info("Контент не выбран.");
 			return false;
 		}
 		$this->vars[$varname] = $value;
@@ -40,20 +41,19 @@ Class Template {
 	
 	/** Подключение основы отображаемого контента.*/
 	function view($name) {
-		$pathLayout = '3pty' . '/' . 'Smarty' . '/' . 'demo' . '/' . $this->layouts . '.php';
-		$contentPage = '3pty' . '/' . 'Smarty' . '/' . 'demo' . '/' . 'templates' . '/' . $name . '.tpl';
+		$pathLayout = '3pty/Smarty/demo/' . $this->layouts . '.php';
+		$contentPage = '3pty/Smarty/demo/templates/' . $name . '.tpl';
 		if (file_exists($pathLayout) == false) {
-			$this->log->error('Шаблон основы '.$this->layouts.' не найден.');
-			trigger_error ('Шаблон основы '.$this->layouts.' не найден.', E_USER_NOTICE);
+			$this->log->error("Шаблон основы ".$this->layouts." не найден.");
+			throw new Exception("Шаблон основы ".$this->layouts." не найден.");
 			return false;
 		}
 		if (file_exists($contentPage) == false) {
-			$this->log->error('Шаблон контента '.$name.' не найден.');
-			trigger_error ('Шаблон контента '.$name.' не найден.', E_USER_NOTICE);
+			$this->log->error("Шаблон контента ".$name." не найден.");
+			throw new Exception("Шаблон контента ".$name." не найден.");
 			return false;
 		}
-		
-		$key = null;
+	
 		foreach ($this->vars as $key => $value) {
 			$$key = $value;
 		}

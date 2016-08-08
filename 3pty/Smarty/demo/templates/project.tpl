@@ -1,5 +1,5 @@
 
-			<link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.css">
 
 			<div class="content-wrapper">
 				<section class="content-header">
@@ -12,13 +12,13 @@
 								<div class="inner">
 									<h2>Project</h2>
 								</div>
-								<a class="btn btn-app" href="/EditAndCreate/?content='createPercent'&projectId={$projectId}&projectName={$projectName}">
+								<a class="btn btn-app" href="/EditAndCreate/?content='createPercent'&projectId='{$projectId}'&projectName='{$projectName}'">
 									<i class="fa fa-pencil"></i>New Percent
 								</a>
-								<a class="btn btn-app" href="/EditAndCreate/?content='editProject'&projectId={$projectId}&projectName={$projectName}">
+								<a class="btn btn-app" href="/EditAndCreate/?content='editProject'&projectId='{$projectId}'&projectName='{$projectName}'">
 									<i class="fa fa-edit"></i>Edit Project
 								</a>
-								<a class="btn btn-app" href="/list/?content='Project'&action='remove'&projectId={$projectId}>
+								<a class="btn btn-app" href="/list/?content='Project'&action='remove'&projectId='{$projectId}'">
 									<i class="fa fa-remove"></i>Remove Project
 								</a>
 								<a class="btn btn-app" href="/EditAndCreate/?content='cloneInfo'">
@@ -51,13 +51,13 @@
 										{foreach from=$array item=foo}
 				
 											<tr>
-												<th><a href="/employee/?employeeId={$foo.employee_id}&employeeName={$foo.user_id}>{$foo.user_id}</a></th>
+												<th><a href="/employee/?employeeId='{$foo.employee_id}'&employeeName='{$foo.user_id}'>{$foo.user_id}</a></th>
 												<td>{$foo.time}%</td>
 												<td>
-													<a href="/EditAndCreate/?content='editPercent'&projectId={$projectId}&projectName={$projectName}&employeeId={$foo.employee_id}&employeeName={$foo.user_id}" target="_blank">
+													<a href="/EditAndCreate/?content='editPercent'&projectId='{$projectId}'&projectName='{$projectName}'&employeeId='{$foo.employee_id}'&employeeName='{$foo.user_id}'&lastPercent='{$foo.time}'" target="_blank">
 														<button type="button" style="width:150px" class="btn bg-orange margin btn-xs"><i class="fa fa-edit"></i> Edit Percent</button>
 													</a>
-													<a href="/project/?action='remove'&projectId={$projectId}&projectName={$projectName}&employeeId={$foo.employee_id}" target="_blank">
+													<a href="/project/?action='remove'&projectId='{$projectId}'&projectName='{$projectName}'&employeeId='{$foo.employee_id}'" target="_blank">
 														<button type="button" style="width:150px" class="btn bg-red margin btn-xs"><i class="fa fa-remove"></i> Remove Percent</button>
 													</a>
 												</td>
@@ -79,8 +79,8 @@
 				</section>
 			</div>
 
-			<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-			<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/jquery.dataTables.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.min.js"></script>
 			<script>
 				$(function () {
 					$('#employee').DataTable({

@@ -138,7 +138,7 @@ class Model_PostgreSQLOperations
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 		$result = pg_query_params($this->dbConnect, 'SELECT r.project_id, r.project_name, '.
-				'r.department_id rd.department_name FROM "Projects" AS r inner join "Departments" '.
+				'r.department_id, rd.department_name FROM "Projects" AS r inner join "Departments" '.
 					'AS rd on r.department_id = rd.department_id AND r.date = rd.date WHERE '.
 						'date_part(\'epoch\', date_trunc(\'month\', r.date)) = $1',	array($date->format("U")));
 		if (!$result) {
@@ -192,10 +192,10 @@ class Model_PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'SELECT rd.user_id, r.time FROM "Time_distribution"'.
-				' AS r inner join "Employee" AS rd on r.employee_id = rd.employee_id AND r.date = rd.date '.
-					'WHERE date_part(\'epoch\', date_trunc(\'month\', r.date)) = $1 AND project_id = $2', 
-						array($date->format("U"), $projectId));
+		$result = pg_query_params($this->dbConnect, 'SELECT rd.employee_id, rd.user_id, r.time FROM '.
+				'"Time_distribution" AS r inner join "Employee" AS rd on r.employee_id = rd.employee_id '.
+					'AND r.date = rd.date WHERE date_part(\'epoch\', date_trunc(\'month\', r.date)) = $1 '.
+						'AND project_id = $2', 	array($date->format("U"), $projectId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение списка сотрудников проекта и ".
 					"распределения времени. ". pg_last_error($this->dbConnect));
