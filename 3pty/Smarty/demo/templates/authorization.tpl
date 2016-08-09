@@ -27,11 +27,11 @@
 				<p class="login-box-msg">Sign in to start your session</p>
 				<form action="/index.php?route=mainpage" method="post">
 					<div class="form-group has-feedback">
-						<input type="login" class="form-control" placeholder="Login">
+						<input name="login" type="login" class="form-control" placeholder="Login">
 						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 					</div>
 					<div class="form-group has-feedback">
-						<input type="password" class="form-control" placeholder="Password">
+						<input name="password" type="password" class="form-control" placeholder="Password">
 						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 					</div>
 					<div class="row">

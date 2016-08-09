@@ -13,29 +13,25 @@
 */
 Class Controller_save Extends Controller_Base {
 	
-	private $log;
-	
-	function __construct() {
-		$this->log = Logger::getLogger(__CLASS__);
-	}
+	public $layouts = "index";
+	public  $log;
 	
 	function index($registry) {
+		$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year']);
 		if ($registry['date']){
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
-			switch($_POST['content']){
+			switch($registry['content']){
 				case 'NewDepartment':
-					$model->newDepartment($registry['date'], $_POST['newName']);
-					
-					$registry['list'] = 'Department';
+					$model->newDepartment($registry['date'], $registry['POST']['newName']);
+
 					$rows = $model->getDepartmentNames($registry['date']);
 					$this->template->vars('rows', $rows);
 					$this->template->view('listDepartments');
 					break;
 				case 'NewEmployee':
-					$model->newEmployee($registry['date'], $_POST['newName'], $_POST['newDepartmwent']);
+					$model->newEmployee($registry['date'], $registry['POST']['newName'], $registry['POST']['newDepartmwent']);
 						
-					$registry['list'] = 'Employee';
 					$rows = $model->getEmployeeNames($registry['date']);
 					$ldap = new LdapOperations();
 					$ldap->connect();
@@ -47,55 +43,41 @@ Class Controller_save Extends Controller_Base {
 					$this->template->view('listEmployees');
 					break;
 				case 'NewProject':
-					$model->newProject($registry['date'], $_POST['newName'], $_POST['newDepartmwent']);
+					$model->newProject($registry['date'], $registry['POST']['newName'], $registry['POST']['newDepartmwent']);
 					
-					$registry['list'] = 'Project';
 					$rows = $model->getProjectNames($registry['date']);
 					$this->template->vars('rows', $rows);
 					$this->template->view('listProjects');
 					break;
 				case 'CloneInformation':
-					$model->cloneModelData($_POST['datepicker1'], $_POST['datepicker2']);
+					$model->cloneModelData($registry['POST']['datepicker1'], $registry['POST']['datepicker2']);
 						
 					unset($registry['date']);
 					$this->template->view('mainPage');
 					break;
 				case 'EditDepartment':
-					$model->changeDepartmentName($_POST['editId'], $registry['date'], $_POST['newName']);
+					$model->changeDepartmentName($registry['POST']['editId'], $registry['date'], $registry['POST']['newName']);
 						
-					$registry['list'] = 'Department';
 					$rows = $model->getDepartmentNames($registry['date']);
 					$this->template->vars('rows', $rows);
 					$this->template->view('listDepartments');
 					break;
 				case 'EditEmployee':
-					$model->changeEmployeeInfo($_POST['editId'], $registry['date'], $_POST['newName'],
-						$_POST['newDepartmwent']);
+					$model->changeEmployeeInfo($registry['POST']['editId'], $registry['date'], $registry['POST']['newName'],
+						$registry['POST']['newDepartmwent']);
 				
-					$registry['list'] = 'Employee';
 					$rows = $model->getEmployeeNames($registry['date']);
 					$this->template->vars('rows', $rows);
 					$this->template->view('listEmployees');
 					break;
 				case 'EditProject':
-					$model->changeProjectNameAndDepartmentId($_POST['newProject'], $registry['date'], 
-						$_POST['newName'], $_POST['newDepartmwent']);
+					$model->changeProjectNameAndDepartmentId($registry['POST']['newProject'], $registry['date'], 
+						$registry['POST']['newName'], $registry['POST']['newDepartmwent']);
 				
-					$registry['list'] = 'Project';
 					$rows = $model->getProjectNames($registry['date']);
 					$this->template->vars('rows', $rows);
 					$this->template->view('listProjects');
-					break;
-				case 'EditProject':
-					$model->changeEployeeTime($_POST['newEmployee'], $_POST['editId'], $registry['date'], 
-						$_POST['range_1']);
-				
-					$registry['list'] = 'Project';
-					$rows = $model->getProjectNames($registry['date']);
-					$this->template->vars('rows', $rows);
-					$this->template->view('listProjects');
-					break;
-					
+					break;		
 				default:
 					$header = 'Unknown page';
 					break;

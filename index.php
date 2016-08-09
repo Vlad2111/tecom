@@ -1,5 +1,4 @@
 <?php
-echo "Index";
 error_reporting (E_ALL);
 
 require_once('autoload/autoload.php');
@@ -16,6 +15,8 @@ if ($osType = 'WINNT') {
 $router = new Router($registry);
 $router->setPath ('controllers');
 $registry['sitePath'] = $_SERVER['DOCUMENT_ROOT'];
-$router->start();
 $registry['POST']=$_POST;
 $registry['GET']=$_GET;
+print_r($registry['POST']);
+print_r($registry['GET']);
+$router->start();

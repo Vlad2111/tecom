@@ -1,5 +1,4 @@
 <?php
-echo "index Smarty";
 require '3pty/Smarty/libs/Smarty.class.php';
 
 $smarty = new Smarty;
@@ -8,7 +7,6 @@ $smarty->debugging = false;
 $smarty->caching = false;
 $smarty->cache_lifetime = 120;
 if ($name != 'authorization'){
-	$smarty->assign('contentPage', $contentPage);
 	$smarty->assign('name', $registry['userName']);
 	$smarty->assign('role', $registry['roleName']);
 	switch($name){
@@ -16,53 +14,58 @@ if ($name != 'authorization'){
 			$header = 'Main Page';
 			break;
 		case 'listDepartments':
+			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
 			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
 			$smarty->assign('array', $$key);
 			$header = 'List of Department`s.';
 			break;
-		case 'listEmployee':
+		case 'listEmployees':
+			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
 			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
 			$smarty->assign('array', $$key);
 			$header = 'List of Employee`s.';
 			break;
-		case 'listProject':
+		case 'listProjects':
+			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
 			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
 			$smarty->assign('array', $$key);
 			$header = 'List of Project`s.';
 			break;	
 		case 'Department':
-			print_r($registry['departmentName']);
-			print_r($registry['departmentId']);
-			echo "123123";
-			$smarty->assign('departmentName', $registry['departmentName']);
-			$smarty->assign('departmentId', $registry['departmentId']);
+			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
 			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
+			$smarty->assign('departmentName', $registry['GET']['departmentName']);
+			$smarty->assign('departmentId', $registry['GET']['departmentId']);
 			$smarty->assign('array', $$key);
-			$header = 'Department: '. $registry['departmentName'];
-			unset($registry['departmentId']);
-			unset($registry['departmentName']);
+			$header = 'Department: '. $registry['GET']['departmentName'];
 			break;
 		case 'Employee':
-			$smarty->assign('employeeName', $registry['employeeName']);
-			$smarty->assign('employeeId', $registry['employeeId']);
-			$smarty->assign('employeePercent', $registry['employeePercent']);
+			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
 			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
+			$smarty->assign('employeeName', $registry['GET']['employeeName']);
+			$smarty->assign('employeeId', $registry['GET']['employeeId']);
+			$smarty->assign('employeePercent', $registry['employeePercent']);
 			$smarty->assign('array', $$key);
-			$header = 'Employee: '. $registry['employeeName'];
-			unset($registry['employeetId']);
-			unset($registry['employeetName']);
+			$header = 'Employee: '. $registry['GET']['employeeName'];
 			unset($registry['employeePercent']);
 			break;
 		case 'Project':
-			$smarty->assign('projectName', $registry['projectName']);
-			$smarty->assign('projectId', $registry['projectId']);
+			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
 			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
+			$smarty->assign('projectName', $registry['GET']['projectName']);
+			$smarty->assign('projectId', $registry['GET']['projectId']);
 			$smarty->assign('array', $$key);
-			$header = 'Project: '. $registry['projectName'];
-			unset($registry['projectName']);
-			unset($registry['projectId']);
+			$header = 'Project: '. $registry['GET']['projectName'];
 			break;
 		case 'EditAndCreate':
+			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
 			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
 			$smarty->assign('cloneInfo', false);
 			$smarty->assign('setName', false);
@@ -72,17 +75,18 @@ if ($name != 'authorization'){
 			$smarty->assign('setPercent', false);
 			$smarty->assign('message', null);
 			$smarty->assign('lastName', null);
-			switch($registry['content']){
+			$registry['content'] = $registry['GET']['content'];
+			switch($registry['GET']['content']){
 				case 'createDepartment':
 					$header = 'New Department';
-					$lastPage = "<li><a href=\"/list/?content='Department'\">List of Department`s</a></li>\"";
+					$lastPage = "<li><a href=\"/index.php?route=list&content=Department\">List of Department`s</a></li>";
 					$smarty->assign('setName', true);
 					$smarty->assign('action', 'New');
 					$smarty->assign('modName', 'Department');
 					break;
 				case 'createEmployee':
 					$header = 'New Employee';
-					$lastPage = "<li><a href=\"/list/?content='Empoyee'\">List of Employee`s</a></li>\"";
+					$lastPage = "<li><a href=\"/index.php?route=list&content=Empoyee\">List of Employee`s</a></li>";
 					$smarty->assign('setName', true);
 					$smarty->assign('setDepartment', true);
 					$smarty->assign('message', 'In this box need`s insert login of new employee');
@@ -91,7 +95,7 @@ if ($name != 'authorization'){
 					break;
 				case 'createProject':
 					$header = 'New Project';
-					$lastPage = "<li><a href=\"/list/?content='Project'\">List of Project`s</a></li>\"";
+					$lastPage = "<li><a href=\"/index.php?route=list&content=Project\">List of Project`s</a></li>";
 					$smarty->assign('setName', true);
 					$smarty->assign('setDepartment', true);
 					$smarty->assign('action', 'New');
@@ -106,99 +110,85 @@ if ($name != 'authorization'){
 					break;
 				case 'editDepartment':
 					$header = 'Edit Department';
-					$smarty->assign('departmentName', $registry['departmentName']);
-					$smarty->assign('departmentId', $registry['departmentId']);
-					$smarty->assign('editId', $registry['departmentId']);
+					$smarty->assign('departmentName', $registry['GET']['departmentName']);
+					$smarty->assign('departmentId', $registry['GET']['departmentId']);
+					$smarty->assign('editId', $registry['GET']['departmentId']);
 					$smarty->assign('modName', 'Department');
 					$smarty->assign('action', 'Edit');
 					$smarty->assign('setName', true);
-					$smarty->assign('lastName', $registry['departmentName']);
-					$lastPage = "<a href=\"/department/?departmentId='\{\"\$departmentId\"}'&departmentName='\{\"\$departmentName\"}'\"></a>";
-					unset($registry['departmentId']);
-					unset($registry['departmentName']);
+					$smarty->assign('lastName', $registry['GET']['departmentName']);
+					$lastPage = "<a href=\"/index.php?route=department&departmentId={\$departmentId}&departmentName={\$departmentName}\"></a>";
 					break;
 				case 'editEmployee':
 					$header = 'Edit Employee';
-					$smarty->assign('employeeName', $registry['employeeName']);
-					$smarty->assign('employeeId', $registry['employeeId']);
-					$smarty->assign('editId', $registry['employeeId']);
+					$smarty->assign('employeeName', $registry['GET']['employeeName']);
+					$smarty->assign('employeeId', $registry['GET']['employeeId']);
+					$smarty->assign('editId', $registry['GET']['employeeId']);
 					$smarty->assign('modName', 'Employee');
 					$smarty->assign('action', 'Edit');
 					$smarty->assign('setName', true);
 					$smarty->assign('setDepartment', true);
-					$smarty->assign('lastName', $registry['employeeName']);
-					$lastPage = "<a href=\"/employee/?employeeId='\{\"\$employeeId\"}'&employeeName='\{\"\$employeeName\"}'\"></a>";
-					unset($registry['employeeId']);
-					unset($registry['employeeName']);
+					$smarty->assign('lastName', $registry['GET']['employeeName']);
+					$lastPage = "<a href=\"/index.php?route=employee&employeeId={\$employeeId}&employeeName={\$employeeName}\"></a>";
 					break;
 				case 'editProject':
 					$header = 'Edit Project';
-					$smarty->assign('projectName', $registry['projectName']);
-					$smarty->assign('projectId', $registry['projectId']);
-					$smarty->assign('editId', $registry['projectId']);
+					$smarty->assign('projectName', $registry['GET']['projectName']);
+					$smarty->assign('projectId', $registry['GET']['projectId']);
+					$smarty->assign('editId', $registry['GET']['projectId']);
 					$smarty->assign('modName', 'Project');
 					$smarty->assign('action', 'Edit');
 					$smarty->assign('setName', true);
 					$smarty->assign('setDepartment', true);
-					$smarty->assign('lastName', $registry['projectName']);
-					$lastPage = "<a href=\"/project/?projectId='\{\"\$projectId\"}'&projectName='\{\"\$projectName\"}'\"></a>";
-					unset($registry['projectId']);
-					unset($registry['projectName']);
+					$smarty->assign('lastName', $registry['GET']['projectName']);
+					$lastPage = "<a href=\"/index.php?route=project&projectId={\$projectId}&projectName={\$projectName}\"></a>";
 					break;
 				case 'createPercent':
 					$header = 'New Employee`s Percent For Project';
 					$smarty->assign('modName', 'Percent');
 					$smarty->assign('action', 'New');
 					$smarty->assign('lastPercent', 0);
-					if (($registry['projectId'])AND($registry['projectName'])){
-						$smarty->assign('projectName', $registry['projectName']);
-						$smarty->assign('projectId', $registry['projectId']);
+					if (($registry['GET']['projectId'])AND($registry['GET']['projectName'])){
+						$smarty->assign('projectName', $registry['GET']['projectName']);
+						$smarty->assign('projectId', $registry['GET']['projectId']);
 						$smarty->assign('setEmployee', true);
 						$smarty->assign('setProject', true);
 						$smarty->assign('setPercent', true);
-						$smarty->assign('lastNameProject', $registry['projectName']);
-						$lastPage = "<a href=\"/project/?projectId='\{\"\$projectId\"}'&projectName='\{\"\$projectName\"}'\"></a>";
-						unset($registry['projectId']);
-						unset($registry['projectName']);
+						$smarty->assign('lastNameProject', $registry['GET']['projectName']);
+						$lastPage = "<a href=\"/index.php?route=project&projectId={\$projectId}&projectName={\$projectName}\"></a>";
 					}
-					if (($registry['employeeId'])AND($registry['employeeName'])){
-						$smarty->assign('employeeName', $registry['employeeName']);
-						$smarty->assign('employeeId', $registry['employeeId']);
+					if (($registry['GET']['employeeId'])AND($registry['GET']['employeeName'])){
+						$smarty->assign('employeeName', $registry['GET']['employeeName']);
+						$smarty->assign('employeeId', $registry['GET']['employeeId']);
 						$smarty->assign('setEmployee', true);
 						$smarty->assign('setProject', true);
 						$smarty->assign('setPercent', true);
-						$smarty->assign('lastNameEmployee', $registry['employeeName']);
-						$lastPage = "<a href=\"/employee/?employeeId='\{\"\$employeeId\"}'&employeeName='\{\"\$employeeName\"}'\"></a>";
-						unset($registry['employeeId']);
-						unset($registry['employeeName']);
+						$smarty->assign('lastNameEmployee', $registry['GET']['employeeName']);
+						$lastPage = "<a href=\"/index.php?route=employee&employeeId={\$employeeId}&employeeName={\$employeeName}\"></a>";
 					}
 					break;
 				case 'editPercent':
 					$header = 'Change Employee`s Percent For Project';
 					$smarty->assign('modName', 'Percent');
 					$smarty->assign('action', 'Edit');
-					$smarty->assign('lastPercent', $registry['lastPercent']);
-					if (($registry['projectId'])AND($registry['projectName'])){
-						$smarty->assign('projectName', $registry['projectName']);
-						$smarty->assign('projectId', $registry['projectId']);
+					$smarty->assign('lastPercent', $registry['GET']['lastPercent']);
+					if (($registry['GET']['projectId'])AND($registry['GET']['projectName'])){
+						$smarty->assign('projectName', $registry['GET']['projectName']);
+						$smarty->assign('projectId', $registry['GET']['projectId']);
 						$smarty->assign('setEmployee', true);
 						$smarty->assign('setProject', true);
 						$smarty->assign('setPercent', true);
-						$smarty->assign('lastNameProject', $registry['projectName']);
-						$lastPage = "<a href=\"/project/?projectId='\{\"\$projectId\"}'&projectName='\{\"\$projectName\"}'\"></a>";
-						unset($registry['projectId']);
-						unset($registry['projectName']);
+						$smarty->assign('lastNameProject', $registry['GET']['projectName']);
+						$lastPage = "<a href=\"/index.php?route=project&projectId={\$projectId}&projectName={\$projectName}\"></a>";
 					}
-					if (($registry['employeeId'])AND($registry['employeeName'])){
-						$smarty->assign('employeeName', $registry['employeeName']);
-						$smarty->assign('employeeId', $registry['employeeId']);
+					if (($registry['GET']['employeeId'])AND($registry['GET']['employeeName'])){
+						$smarty->assign('employeeName', $registry['GET']['employeeName']);
+						$smarty->assign('employeeId', $registry['GET']['employeeId']);
 						$smarty->assign('setEmployee', true);
 						$smarty->assign('setProject', true);
 						$smarty->assign('setPercent', true);
-						$smarty->assign('lastNameEmployee', $registry['employeeName']);
-						$lastPage = "<a href=\"/employee/?employeeId='\{\"\$employeeId\"}'&employeeName='\{\"\$employeeName\"}'\"></a>";
-						unset($registry['employeeId']);
-						unset($registry['employeeName']);
+						$smarty->assign('lastNameEmployee', $registry['GET']['employeeName']);
+						$lastPage = "<a href=\"/index.php?route=employee&employeeId={\$employeeId}&employeeName={\$employeeName}\"></a>";
 					}
 					break;
 				default:
@@ -212,8 +202,7 @@ if ($name != 'authorization'){
 			break;
 	}
 	$smarty->assign('title', $header);
-	
-	$smarty->display('3pty/Smarty/demo/templates/index.tpl');
+	$smarty->display($contentPage);
 }else{
 	$smarty->display('3pty/Smarty/demo/templates/authorization.tpl');
 }

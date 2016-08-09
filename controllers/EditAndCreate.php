@@ -14,57 +14,88 @@
 Class Controller_EditAndCreate Extends Controller_Base {
 
 	public $layouts = "index";
-	private $log;
-	
-	function __construct() {
-		$this->log = Logger::getLogger(__CLASS__);
-	}
+	public $log;
 	
 	function index($registry) {
-		$registry['content'] = $_GET['content'];
+		$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year']);
 		if($registry['date']){
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
-			if($registry['content']=='createEmployee'){
+			if($registry['GET']['content']=='createEmployee'){
 				$rows = $model->getDepartmentNames($registry['date']);
 				$this->template->vars('rows', $rows);
 			}
-			if($registry['content']=='createProject'){
+			if($registry['GET']['content']=='createProject'){
 				$rows = $model->getDepartmentNames($registry['date']);
 				$this->template->vars('rows', $rows);
 			}
-			if($registry['content']=='editDepartment'){
-				$registry['departmentName']=$_GET['departmentName'];
-				$registry['departmentId']=$_GET['departmentId'];
+			if($registry['GET']['content']=='editEmployee'){
+				$rows = $model->getDepartmentNames($registry['date']);
+				$this->template->vars('rows', $rows);
 			}
-			if($registry['content']=='editEmployee'){
-				$registry['employeeName']=$_GET['employeeName'];
-				$registry['employeeId']=$_GET['employeeId'];
+			if($registry['GET']['content']=='editProject'){
+				$rows = $model->getDepartmentNames($registry['date']);
+				$this->template->vars('rows', $rows);
 			}
-			if($registry['content']=='editProject'){
-				$registry['projectName']=$_GET['projectName'];
-				$registry['projectId']=$_GET['projectId'];
+			if($registry['GET']['content']=='createPercent'){
+				$rows1 = $model->getEmployeeNames($registry['date']);
+				$rows2 = $model->getProjectNames($registry['date']);
+				$ldap = new LdapOperations();
+				$ldap->connect();
+				if (count($rows1) < count($rows2)){
+					for ($i=0; $i<count($rows2);$i++){
+						if ($rows1[$i]==null){
+							$rows1[$i]['employee_id']=null;
+							$rows1[$i]['user_id']=null;
+						}else{
+							$names = $ldap->getLDAPAccountNamesByPrefix($rows1[$i]['user_id']);
+							$rows1[$i]['login'] = $rows1[$i]['user_id'];
+							$rows1[$i]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+						}
+						$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
+					}
+				}else{
+					for ($i=0; $i<count($rows1);$i++){			
+						if ($rows2[$i]==null){
+							$rows2[$i]['project_id']=null;
+							$rows2[$i]['project_name']=null;
+						}
+						$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
+						$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
+						$rows[$i]['login'] = $rows[$i]['user_id'];
+						$rows[$i]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+					}
+				}
 			}
-			if($registry['content']=='createPercent'){
-				if (($_GET['projectId'])AND($_GET['projectName'])){
-					$registry['projectName']=$_GET['projectName'];
-					$registry['projectId']=$_GET['projectId'];
+			if($registry['GET']['content']=='editPercent'){
+				$rows1 = $model->getEmployeeNames($registry['date']);
+				$rows2 = $model->getProjectNames($registry['date']);
+				$ldap = new LdapOperations();
+				$ldap->connect();
+				if (count($rows1) < count($rows2)){
+					for ($i=0; $i<count($rows2);$i++){
+						if ($rows1[$i]==null){
+							$rows1[$i]['employee_id']=null;
+							$rows1[$i]['user_id']=null;
+						}else{
+							$names = $ldap->getLDAPAccountNamesByPrefix($rows1[$i]['user_id']);
+							$rows1[$i]['login'] = $rows1[$i]['user_id'];
+							$rows1[$i]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+						}
+						$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
+					}
+				}else{
+					for ($i=0; $i<count($rows1);$i++){			
+						if ($rows2[$i]==null){
+							$rows2[$i]['project_id']=null;
+							$rows2[$i]['project_name']=null;
+						}
+						$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
+						$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
+						$rows[$i]['login'] = $rows[$i]['user_id'];
+						$rows[$i]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+					}
 				}
-				if (($_GET['employeeId'])AND($_GET['employeeName'])){
-					$registry['employeeName']=$_GET['employeeName'];
-					$registry['employeeId']=$_GET['employeeId'];
-				}
-			}
-			if($registry['content']=='editPercent'){
-				if (($_GET['projectId'])AND($_GET['projectName'])){
-					$registry['projectName']=$_GET['projectName'];
-					$registry['projectId']=$_GET['projectId'];
-				}
-				if (($_GET['employeeId'])AND($_GET['employeeName'])){
-					$registry['employeeName']=$_GET['employeeName'];
-					$registry['employeeId']=$_GET['employeeId'];
-				}
-				$registry['lastPercent']=$_GET['lastPercent'];
 			}
 			$this->template->view('EditAndCreate');
 		}else{

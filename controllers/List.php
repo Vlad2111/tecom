@@ -11,31 +11,29 @@
 
 @author ershov.v
 */
-Class Controller_list Extends Controller_Base {
+Class Controller_List Extends Controller_Base {
 
 	public $layouts = "index";
-	private $log;
-	
-	function __construct() {
-		$this->log = Logger::getLogger(__CLASS__);
-	}
+	public $log;
 
 	function index($registry) {
-		if ($registry['GET']['date']){
+		//$registry['date'] = $registry['GET']['date'];
+		$registry['date'] = new DateTime('01.01.2016', new DateTimeZone('UTC'));
+		if ($registry['date']){
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
-			switch($registry['content']){
+			switch($registry['GET']['content']){
 				case 'Department':
-					if($_GET['action']=='remove'){
-						$model->deleteDepartment($registry['date'], $_GET['departmentId']);
+					if($registry['GET']['action']=='remove'){
+						$model->deleteDepartment($registry['date'], $registry['GET']['departmentId']);
 					}
 					$rows = $model->getDepartmentNames($registry['date']);
 					$this->template->vars('rows', $rows);
 					$this->template->view('listDepartments');
 					break;
 				case 'Employee':
-					if($_GET['action']=='remove'){
-						$model->deleteEmployee($registry['date'], $_GET['employeeId']);
+					if($registry['GET']['action']=='remove'){
+						$model->deleteEmployee($registry['date'], $registry['GET']['employeeId']);
 					}
 					$rows = $model->getEmployeeNames($registry['date']);
 					$ldap = new LdapOperations();
@@ -48,8 +46,8 @@ Class Controller_list Extends Controller_Base {
 					$this->template->view('listEmployees');
 					break;
 				case 'Project':
-					if($_GET['action']=='remove'){
-						$model->deleteProject($registry['date'], $_GET['projectId']);
+					if($registry['GET']['action']=='remove'){
+						$model->deleteProject($registry['date'], $registry['GET']['projectId']);
 					}
 					$rows = $model->getProjectNames($registry['date']);
 					$this->template->vars('rows', $rows);

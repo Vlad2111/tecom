@@ -1,5 +1,4 @@
 <?php
-echo "LdapOperations";
 /*
 * Copyright (c) 2015 Tecom LLC
 * All rights reserved

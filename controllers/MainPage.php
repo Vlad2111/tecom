@@ -31,8 +31,8 @@ Class Controller_MainPage Extends Controller_Base {
 				unset($registry['date']);
 				$this->template->view('mainPage');
 			}else{
-				if($_GET){
-					if($registry['action']=='return'){	
+				if($registry['GET']!=null){
+					if($registry['GET']['action']=='return'){	
 						unset($registry['date']);
 						$this->template->view('mainPage');
 					}

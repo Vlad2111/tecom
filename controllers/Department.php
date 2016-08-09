@@ -14,20 +14,17 @@
 Class Controller_Department Extends Controller_Base {
 
 	public $layouts = "index";
-	private $log;
-	
-	function __construct() {
-		$this->log = Logger::getLogger(__CLASS__);
-	}
+	public  $log;
 
 	function index($registry) {
+		$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year']);
 		if($registry['date']){
-			$registry['departmentName']=$_GET['departmentName'];
-			$registry['departmentId']=$_GET['departmentId'];
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
-			$rows1 = $model->getEmployeeNamesForDepartment($registry['departmentId'], $registry['date']);
-			$rows2 = $model->getProjectNamesForDepartment($registry['departmentId'], $registry['date']);
+			$rows1 = $model->getEmployeeNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
+			$rows2 = $model->getProjectNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
+			print_r($rows1);
+			print_r($rows2);
 			$ldap = new LdapOperations();
 			$ldap->connect();
 			if (count($rows1) < count($rows2)){

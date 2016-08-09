@@ -15,7 +15,7 @@ CREATE SEQUENCE "Role_def_role_id_seq"
     CACHE 1;
     
 CREATE TABLE "Departments" (
-    date date,
+    date timestamp without time zone,
     department_id integer,
     department_name character varying(100),
     CONSTRAINT department_id_date_pk PRIMARY KEY (date, department_id),
@@ -24,7 +24,7 @@ CREATE TABLE "Departments" (
 );
 
 CREATE TABLE "Employee" (
-    date date,
+    date timestamp without time zone,
     employee_id integer ,
     user_id character varying(100),
     department_id integer,
@@ -34,7 +34,7 @@ CREATE TABLE "Employee" (
 );
 
 CREATE TABLE "Projects" (
-    date date,
+    date timestamp without time zone,
     project_id integer ,
     project_name character varying(100),
     department_id integer,
@@ -44,7 +44,7 @@ CREATE TABLE "Projects" (
 );
 
 CREATE TABLE "Time_distribution" (
-    date date,
+    date timestamp without time zone,
     project_id integer,
     employee_id integer,
     "time" smallint,
@@ -67,7 +67,7 @@ CREATE TABLE "Role" (
 );
 
 CREATE TABLE "Head_departments" (
-    date date,
+    date timestamp without time zone,
     employee_id integer,
     department_id integer,
     CONSTRAINT date_employee_department_id_pk PRIMARY KEY (date, employee_id, department_id),

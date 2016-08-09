@@ -11,25 +11,20 @@
 
 @author ershov.v
 */
-Class Controller_Department Extends Controller_Base {
+Class Controller_Project Extends Controller_Base {
 
 	public $layouts = "index";
-	private $log;
-	
-	function __construct() {
-		$this->log = Logger::getLogger(__CLASS__);
-	}
+	public  $log;
 	
 	function index($registry) {
-		$registry['projectName']=$_GET['projectName'];
-		$registry['projectId']=$_GET['projectId'];
+		$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year']);
 		if($registry['date']){
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
-			if($_GET['action']=='remove'){
-				$model->deleteTimeDistribution($registry['date'], $_GET['projectId'], $_GET['employeeId']);
+			if($registry['GET']['action']=='remove'){
+				$model->deleteTimeDistribution($registry['date'], $registry['GET']['projectId'], $registry['GET']['employeeId']);
 			}
-			$rows = $model->getEployeeNamesAndPercentsForProject($registry['projectId'], $registry['date']);
+			$rows = $model->getEployeeNamesAndPercentsForProject($registry['GET']['projectId'], $registry['date']);
 		$this->template->vars('rows', $rows);
 		$this->template->view('Project');
 		}else{

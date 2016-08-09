@@ -14,22 +14,17 @@
 Class Controller_Employee Extends Controller_Base {
 
 	public $layouts = "index";
-	private $log;
-	
-	function __construct() {
-		$this->log = Logger::getLogger(__CLASS__);
-	}
+	public $log;
 
 	function index($registry) {
+		$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year']);
 		if($registry['date']){
-			$registry['employeeName']=$_GET['employeeName'];
-			$registry['employeeId']=$_GET['employeeId'];
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
-			if($_GET['action']=='remove'){
-				$model->deleteTimeDistribution($registry['date'], $_GET['projectId'], $_GET['employeeId']);
+			if($registry['GET']['action']=='remove'){
+				$model->deleteTimeDistribution($registry['date'], $registry['GET']['projectId'], $registry['GET']['employeeId']);
 			}
-			$rows = $model->getEmployeeInfo($registry['employeeId'], $registry['date']);
+			$rows = $model->getEmployeeInfo($registry['GET']['employeeId'], $registry['date']);
 			$employeePercentSum = 0;
 			for ($i=0; $i<count($rows); $i++){
 				$employeePercentSum = $employeePercentSum + $rows[$i]['time'];

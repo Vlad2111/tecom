@@ -11,11 +11,11 @@ values ('02.01.2016', 1, 'Отдел1');
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
 values ('01.01.2016', 0, 'user',1);
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
-values ('01.01.2016', 1, 'user1',0);
+values ('01.01.2016', 1, 'us',0);
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
 values ('02.01.2016', 0, 'user',1);
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
-values ('02.01.2016', 1, 'user1',0);
+values ('02.01.2016', 1, 'us',0);
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
 values ('01.01.2016', 2, 'ershov.v', 0);
 

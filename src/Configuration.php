@@ -1,5 +1,4 @@
 ﻿<?php
-echo "Configuration";
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
