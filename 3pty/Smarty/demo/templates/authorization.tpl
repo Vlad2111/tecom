@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Tecomgroup | Authorization</title>
+		<title>Tecomgroup | Авторизация</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -21,46 +21,30 @@
 	<body class="hold-transition login-page">
 		<div class="login-box">
 			<div class="login-logo">
-				<a href="http://www.tecomgroup.com/"><b>Tecom</b>group</a>
+				<p>База данных </p><b>Текомыч</b>
 			</div>
 			<div class="login-box-body">
-				<p class="login-box-msg">Sign in to start your session</p>
-				<form action="/index.php?route=mainpage" method="post">
+				<form action="/index.php?route=list&content=Department" method="post">
 					<div class="form-group has-feedback">
-						<input name="login" type="login" class="form-control" placeholder="Login">
-						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+						<input name="login" type="login" class="form-control" placeholder="Логин">
+						<span class="glyphicon glyphicon-user form-control-feedback"></span>
 					</div>
 					<div class="form-group has-feedback">
-						<input name="password" type="password" class="form-control" placeholder="Password">
+						<input name="password" type="password" class="form-control" placeholder="Пароль">
 						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 					</div>
 					<div class="row">
-						<div class="col-xs-8">
-							<div class="checkbox icheck">
-								<label><input type="checkbox">Remember Me</label>
-							</div>
+						<div class="col-xs-7">
 						</div>
-						<div class="col-xs-4">
-							<button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+						<div class="col-xs-5">
+							<button type="submit" class="btn btn-primary btn-block btn-flat">Отправить</button>
 						</div>
 					</div>
 				</form>
-				<a href="#">I forgot my password</a><br>
-				<a href="#" class="text-center">Register a new membership</a>
 			</div>
 		</div>
-
 		<script src="3pty/AdminLTE-2.3.5/plugins/jQuery/jquery-2.2.3.min.js"></script>
 		<script src="3pty/AdminLTE-2.3.5/bootstrap/js/bootstrap.min.js"></script>
 		<script src="3pty/AdminLTE-2.3.5/plugins/iCheck/icheck.min.js"></script>
-		<script>
-			$(function () {
-				$('input').iCheck({
-					checkboxClass: 'icheckbox_square-blue',
-					radioClass: 'iradio_square-blue',
-					increaseArea: '20%'
-				});
-			});
-		</script>
 	</body>
 </html>

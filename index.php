@@ -1,5 +1,5 @@
 <?php
-error_reporting (E_ALL);
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 require_once('autoload/autoload.php');
 
@@ -14,7 +14,6 @@ if ($osType = 'WINNT') {
 }
 $router = new Router($registry);
 $router->setPath ('controllers');
-$registry['sitePath'] = $_SERVER['DOCUMENT_ROOT'];
 $registry['POST']=$_POST;
 $registry['GET']=$_GET;
 print_r($registry['POST']);

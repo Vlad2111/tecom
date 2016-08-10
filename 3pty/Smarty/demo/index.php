@@ -9,28 +9,40 @@ $smarty->cache_lifetime = 120;
 if ($name != 'authorization'){
 	$smarty->assign('name', $registry['userName']);
 	$smarty->assign('role', $registry['roleName']);
+	$smarty->assign('selectedMonthForGet', null);
+	$smarty->assign('selectedYearForGet', null);
+	$smarty->assign('selectedDate', null);
 	switch($name){
-		case 'mainPage':
-			$header = 'Main Page';
-			break;
 		case 'listDepartments':
-			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
-			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
-			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
+			if($registry['date']==null){
+				
+			}else{
+				$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+				$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
+				$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
+			}
 			$smarty->assign('array', $$key);
 			$header = 'List of Department`s.';
 			break;
 		case 'listEmployees':
-			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
-			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
-			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
+			if($registry['date']==null){
+			
+			}else{
+				$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+				$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
+				$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
+			}
 			$smarty->assign('array', $$key);
 			$header = 'List of Employee`s.';
 			break;
 		case 'listProjects':
-			$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
-			$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
-			$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
+			if($registry['date']==null){
+			
+			}else{
+				$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
+				$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
+				$smarty->assign('selectedDate', $registry['date']->format('m-Y'));
+			}
 			$smarty->assign('array', $$key);
 			$header = 'List of Project`s.';
 			break;	

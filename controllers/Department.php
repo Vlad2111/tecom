@@ -17,7 +17,7 @@ Class Controller_Department Extends Controller_Base {
 	public  $log;
 
 	function index($registry) {
-		$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year']);
+		//$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year']);
 		if($registry['date']){
 			$model = new Model_PostgreSQLOperations();
 			$model->connect();
@@ -54,7 +54,7 @@ Class Controller_Department Extends Controller_Base {
 			$this->template->view('Department');
 		}else{
 			$this->log->error("Не выбрана дата.");
-			throw new Exception("Не выбрана дата.");
+			$this->template->view('Department');
 		}
 	}
 }
