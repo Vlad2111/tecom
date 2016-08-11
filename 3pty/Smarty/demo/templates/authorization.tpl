@@ -5,11 +5,16 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Tecomgroup | Авторизация</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- REQUIRED CSS SCRIPTS -->
 		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/AdminLTE.min.css"
 		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/iCheck/square/blue.css">
+		<!-- REQUIRED JS SCRIPTS -->
+		<script src="3pty/AdminLTE-2.3.5/plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="3pty/AdminLTE-2.3.5/bootstrap/js/bootstrap.min.js"></script>
+		<script src="3pty/AdminLTE-2.3.5/plugins/iCheck/icheck.min.js"></script>
 	
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,7 +26,7 @@
 	<body class="hold-transition login-page">
 		<div class="login-box">
 			<div class="login-logo">
-				<p>База данных </p><b>Текомыч</b>
+				<b>Текомыч</b>
 			</div>
 			<div class="login-box-body">
 				<form action="/index.php?route=list&content=Department" method="post">
@@ -43,8 +48,5 @@
 				</form>
 			</div>
 		</div>
-		<script src="3pty/AdminLTE-2.3.5/plugins/jQuery/jquery-2.2.3.min.js"></script>
-		<script src="3pty/AdminLTE-2.3.5/bootstrap/js/bootstrap.min.js"></script>
-		<script src="3pty/AdminLTE-2.3.5/plugins/iCheck/icheck.min.js"></script>
 	</body>
 </html>

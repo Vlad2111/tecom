@@ -17,74 +17,66 @@ Class Controller_save Extends Controller_Base {
 	public  $log;
 	
 	function index($registry) {
-		$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year']);
-		if ($registry['date']){
-			$model = new Model_PostgreSQLOperations();
-			$model->connect();
-			switch($registry['content']){
-				case 'NewDepartment':
-					$model->newDepartment($registry['date'], $registry['POST']['newName']);
-
-					$rows = $model->getDepartmentNames($registry['date']);
-					$this->template->vars('rows', $rows);
-					$this->template->view('listDepartments');
-					break;
-				case 'NewEmployee':
-					$model->newEmployee($registry['date'], $registry['POST']['newName'], $registry['POST']['newDepartmwent']);
-						
-					$rows = $model->getEmployeeNames($registry['date']);
-					$ldap = new LdapOperations();
-					$ldap->connect();
-					foreach ($rows as $a){
-						$names = $ldap->getLDAPAccountNamesByPrefix($rows[$a]['user_id']);
-						$rows[$a]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
-					}
-					$this->template->vars('rows', $rows);
-					$this->template->view('listEmployees');
-					break;
-				case 'NewProject':
-					$model->newProject($registry['date'], $registry['POST']['newName'], $registry['POST']['newDepartmwent']);
-					
-					$rows = $model->getProjectNames($registry['date']);
-					$this->template->vars('rows', $rows);
-					$this->template->view('listProjects');
-					break;
-				case 'CloneInformation':
-					$model->cloneModelData($registry['POST']['datepicker1'], $registry['POST']['datepicker2']);
-						
-					unset($registry['date']);
-					$this->template->view('mainPage');
-					break;
-				case 'EditDepartment':
-					$model->changeDepartmentName($registry['POST']['editId'], $registry['date'], $registry['POST']['newName']);
-						
-					$rows = $model->getDepartmentNames($registry['date']);
-					$this->template->vars('rows', $rows);
-					$this->template->view('listDepartments');
-					break;
-				case 'EditEmployee':
-					$model->changeEmployeeInfo($registry['POST']['editId'], $registry['date'], $registry['POST']['newName'],
-						$registry['POST']['newDepartmwent']);
-				
-					$rows = $model->getEmployeeNames($registry['date']);
-					$this->template->vars('rows', $rows);
-					$this->template->view('listEmployees');
-					break;
-				case 'EditProject':
-					$model->changeProjectNameAndDepartmentId($registry['POST']['newProject'], $registry['date'], 
-						$registry['POST']['newName'], $registry['POST']['newDepartmwent']);
-				
-					$rows = $model->getProjectNames($registry['date']);
-					$this->template->vars('rows', $rows);
-					$this->template->view('listProjects');
-					break;		
-				default:
-					$header = 'Unknown page';
-					break;
+		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
+			$registry['roleName']=$registry['GET']['roleUser'];
+			$registry['userName']=$registry['GET']['nameUser'];
+			if (($registry['GET']['Month']!=null)AND($registry['GET']['Year']!=null)){
+				$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year'], new DateTimeZone('UTC'));
 			}
-		}else{
-			$this->log->error("Не выбрана дата.");
-			throw new Exception("Не выбрана дата.");
+			if ($registry['date']){
+				$model = new Model_PostgreSQLOperations();
+				$model->connect();
+				switch($registry['GET']['content']){
+					case 'Department':
+						if($registry['GET']['action']=='New'){
+							$model->newDepartment($registry['date'], $registry['GET']['newName']);
+						}
+						if($registry['GET']['action']=='Edit'){
+							$model->changeDepartmentName($registry['GET']['editId'], $registry['date'], $registry['GET']['newName']);
+						}
+						$rows = $model->getDepartmentNames($registry['date']);
+						$this->template->vars('rows', $rows);
+						$this->template->view('listDepartments');
+						break;
+					case 'Employee':
+						if($registry['GET']['action']=='New'){
+							$model->newEmployee($registry['date'], $registry['GET']['newName'], $registry['GET']['newDepartmwent']);
+						}
+						if($registry['GET']['action']=='Edit'){
+							$model->changeEmployeeInfo($registry['GET']['editId'], $registry['date'], $registry['GET']['newName'],
+								$registry['GET']['newDepartmwent']);
+						
+						}
+						$rows = $model->getEmployeeNames($registry['date']);
+						if($rows!=null){
+							$ldap = new LdapOperations();
+							$ldap->connect();
+							foreach ($rows as $a){
+								$names = $ldap->getLDAPAccountNamesByPrefix($rows[$a]['user_id']);
+								$rows[$a]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+							}
+						}
+						$this->template->vars('rows', $rows);
+						$this->template->view('listEmployees');
+						break;
+					case 'Project':
+						if($registry['GET']['action']=='New'){
+							$model->newProject($registry['date'], $registry['GET']['newName'], $registry['GET']['newDepartmwent']);
+						}
+						if($registry['GET']['action']=='Edit'){
+							$model->changeProjectNameAndDepartmentId($registry['GET']['newProject'], $registry['date'], 
+								$registry['GET']['newName'], $registry['GET']['newDepartmwent']);
+						
+						}
+						$rows = $model->getProjectNames($registry['date']);
+						$this->template->vars('rows', $rows);
+						$this->template->view('listProjects');
+						break;
+					default:
+						$header = 'Unknown page';
+						break;
+				}
+			}
 		}		
 	}
 	

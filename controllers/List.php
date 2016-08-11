@@ -26,18 +26,34 @@ Class Controller_List Extends Controller_Base {
 			$model->connect();
 			$role = $model->getRoleName($registry['POST']['login']);
 			$registry['roleName']=$role;
-			$this->template->view('listDepartments');
 		}
+		$model = new Model_PostgreSQLOperations();
+		$model->connect();
 		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
 			$registry['roleName']=$registry['GET']['roleUser'];
 			$registry['userName']=$registry['GET']['nameUser'];
 		}
 		if(($registry['roleName']!=null)AND($registry['userName']!=null)){
-			//$registry['date'] = $registry['GET']['date'];
-			$registry['date'] = new DateTime('01.01.2016', new DateTimeZone('UTC'));
+			if (($registry['GET']['dateFrom']!=null)AND($registry['GET']['dateTo']!=null)){
+				$dayMonthYear = explode('/', $registry['GET']['dateFrom']);
+				$dateFrom = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
+				$dayMonthYear = explode('/', $registry['GET']['dateTo']);
+				$dateTo = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
+				$model->cloneModelData($dateFrom, $dateTo);
+				$registry['date'] = $dateTo;
+			}else{
+				if (($registry['GET']['Month']!=null)AND($registry['GET']['Year']!=null)){
+					$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year'], new DateTimeZone('UTC'));
+				}else{
+					if ($registry['GET']['date']!=null){
+						$dayMonthYear = explode('/', $registry['GET']['date']);
+						$registry['date'] = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
+					}else{
+						$registry['date'] = new DateTime();
+					}
+				}
+			}
 			if ($registry['date']!=null){
-				$model = new Model_PostgreSQLOperations();
-				$model->connect();
 				switch($registry['GET']['content']){
 					case 'Department':
 						if($registry['GET']['action']=='remove'){
@@ -54,11 +70,13 @@ Class Controller_List Extends Controller_Base {
 						$rows = $model->getEmployeeNames($registry['date']);
 						$ldap = new LdapOperations();
 						$ldap->connect();
-						foreach ($rows as $key=>$arr){
-							$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
-							$rows[$key]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+						if($rows!=null){
+							foreach ($rows as $key=>$arr){
+								$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
+								$rows[$key]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+							}
 						}
-							$this->template->vars('rows', $rows);
+						$this->template->vars('rows', $rows);
 						$this->template->view('listEmployees');
 						break;
 					case 'Project':

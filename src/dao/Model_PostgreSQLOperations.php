@@ -119,9 +119,10 @@ class Model_PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id FROM "'.
-				'Employee" WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1',
-					array($date->format("U")));
+		$result = pg_query_params($this->dbConnect, 'SELECT r.employee_id, r.user_id, '.
+				'r.department_id, rd.department_name FROM "Employee" AS r inner join "Departments" '.
+				'AS rd on r.department_id = rd.department_id AND r.date = rd.date WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', r.date)) = $1',	array($date->format("U")));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение списка сотрудников. ".
 					pg_last_error($this->dbConnect));
@@ -192,10 +193,12 @@ class Model_PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'SELECT rd.employee_id, rd.user_id, r.time FROM '.
-				'"Time_distribution" AS r inner join "Employee" AS rd on r.employee_id = rd.employee_id '.
-					'AND r.date = rd.date WHERE date_part(\'epoch\', date_trunc(\'month\', r.date)) = $1 '.
-						'AND project_id = $2', 	array($date->format("U"), $projectId));
+		$result = pg_query_params($this->dbConnect, 'SELECT rd.employee_id, rd.user_id, rdd.department_id,'.
+				' rdd.department_name, r.time FROM "Time_distribution" AS r inner join ("Employee" AS rd inner '.
+				'join "Departments" AS rdd on rd.department_id = rdd.department_id AND rd.date = rdd.date) on'.
+				' r.employee_id = rd.employee_id AND r.date = rd.date WHERE date_part(\'epoch\', '.
+				'date_trunc(\'month\', r.date)) = $1 AND r.project_id = $2', array($date->format("U"),
+						$projectId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение списка сотрудников проекта и ".
 					"распределения времени. ". pg_last_error($this->dbConnect));

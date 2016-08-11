@@ -17,19 +17,39 @@ Class Controller_Project Extends Controller_Base {
 	public  $log;
 	
 	function index($registry) {
-		$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year']);
-		if($registry['date']){
-			$model = new Model_PostgreSQLOperations();
-			$model->connect();
-			if($registry['GET']['action']=='remove'){
-				$model->deleteTimeDistribution($registry['date'], $registry['GET']['projectId'], $registry['GET']['employeeId']);
+	if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
+			$registry['roleName']=$registry['GET']['roleUser'];
+			$registry['userName']=$registry['GET']['nameUser'];
+		}
+		if(($registry['roleName']!=null)AND($registry['userName']!=null)){
+			if (($registry['GET']['Month']!=null)AND($registry['GET']['Year']!=null)){
+				$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year'], new DateTimeZone('UTC'));
+			}else{
+				if ($registry['GET']['date']!=null){
+					$dayMonthYear = explode('/', $registry['GET']['date']);
+					$registry['date'] = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
+				}else{
+					$registry['date'] = new DateTime();
+				}
 			}
-			$rows = $model->getEployeeNamesAndPercentsForProject($registry['GET']['projectId'], $registry['date']);
-		$this->template->vars('rows', $rows);
-		$this->template->view('Project');
-		}else{
-			$this->log->error("Не выбрана дата.");
-			throw new Exception("Не выбрана дата.");
+			if($registry['date']){
+				$model = new Model_PostgreSQLOperations();
+				$model->connect();
+				if($registry['GET']['action']=='remove'){
+					$model->deleteTimeDistribution($registry['date'], $registry['GET']['projectId'], $registry['GET']['employeeId']);
+				}
+				$rows = $model->getEployeeNamesAndPercentsForProject($registry['GET']['projectId'], $registry['date']);
+				$ldap = new LdapOperations();
+				$ldap->connect();
+				if($rows!=null){
+					foreach ($rows as $key=>$arr){
+						$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
+						$rows[$key]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+					}
+				}
+				$this->template->vars('rows', $rows);
+				$this->template->view('Project');
+			}
 		}
 	}
 }
