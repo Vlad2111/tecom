@@ -17,7 +17,7 @@ Class Controller_Project Extends Controller_Base {
 	public  $log;
 	
 	function index($registry) {
-	if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
+		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
 			$registry['roleName']=$registry['GET']['roleUser'];
 			$registry['userName']=$registry['GET']['nameUser'];
 		}
@@ -44,7 +44,7 @@ Class Controller_Project Extends Controller_Base {
 				if($rows!=null){
 					foreach ($rows as $key=>$arr){
 						$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
-						$rows[$key]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+						$rows[$key]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
 					}
 				}
 				$this->template->vars('rows', $rows);

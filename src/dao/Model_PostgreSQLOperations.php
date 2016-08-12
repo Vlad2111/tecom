@@ -436,18 +436,19 @@ class Model_PostgreSQLOperations
 		}
 	}
 	
-	/** Обновление привязки сотрудника к отделу.*/
-	public function changeEmployeeInfo($employeeId, DateTime $date, $newDepartmentId)
+	/** Обновление информации о сотруднике.*/
+	public function changeEmployeeInfo($employeeId, DateTime $date, $userId, $newDepartmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
-		$result = pg_query_params($this->dbConnect, 'UPDATE "Employee" SET department_id = $3 WHERE'.
-				' date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND employee_id = $2 ',
-					array($date->format("U"), $employeeId, $newDepartmentId));
+		$result = pg_query_params($this->dbConnect, 'UPDATE "Employee" SET user_id = $4, '.
+				'department_id = $3 WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = '.
+					'$1 AND employee_id = $2 ',	array($date->format("U"), $employeeId,
+						$newDepartmentId, $userId));
 		if (!$result) {
-			$this->log->error("Не удается выполнить обновление привязки сотрудника к отделу. ".
+			$this->log->error("Не удается выполнить обновление информации о сотруднике. ".
 					pg_last_error($this->dbConnect));
-			throw new Exception("Не удается выполнить обновление привязки сотрудника к отделу. ".
+			throw new Exception("Не удается выполнить обновление информации о сотруднике. ".
 					pg_last_error($this->dbConnect));
 		}
 	}

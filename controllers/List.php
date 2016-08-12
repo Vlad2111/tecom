@@ -64,16 +64,32 @@ Class Controller_List Extends Controller_Base {
 						$this->template->view('listDepartments');
 						break;
 					case 'Employee':
-						if($registry['GET']['action']=='remove'){
-							$model->deleteEmployee($registry['date'], $registry['GET']['employeeId']);
-							}
-						$rows = $model->getEmployeeNames($registry['date']);
 						$ldap = new LdapOperations();
 						$ldap->connect();
+						$rowsEmployee = $model->getEmployeeNames($registry['date']);
+						if($rowsEmployee!=null){
+							foreach ($rowsEmployee as $key=>$arr){
+								$rows = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
+								if (count($rows)>1){
+									$registry['departmwent']=$arr['department_id'];
+									$registry['editId']=$arr['employee_id'];
+									$registry['actionEmployeeFalse']=true;
+									$this->template->vars('rows', $rows);
+									$this->template->view('selectLoginInLDAP');
+									break;
+								}
+							}
+						}
+						if($registry['GET']['action']=='remove'){
+							$model->deleteEmployee($registry['date'], $registry['GET']['employeeId']);
+						}
+						$rows = $model->getDepartmentNames($registry['date']);
+						$registry['selectDepartment'] = $rows;
+						$rows = $model->getEmployeeNames($registry['date']);
 						if($rows!=null){
 							foreach ($rows as $key=>$arr){
 								$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
-								$rows[$key]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+								$rows[$key]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
 							}
 						}
 						$this->template->vars('rows', $rows);
@@ -83,6 +99,8 @@ Class Controller_List Extends Controller_Base {
 						if($registry['GET']['action']=='remove'){
 							$model->deleteProject($registry['date'], $registry['GET']['projectId']);
 						}
+						$rows = $model->getDepartmentNames($registry['date']);
+						$registry['selectDepartment'] = $rows;
 						$rows = $model->getProjectNames($registry['date']);
 						$this->template->vars('rows', $rows);
 						$this->template->view('listProjects');

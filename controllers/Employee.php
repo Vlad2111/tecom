@@ -17,7 +17,7 @@ Class Controller_Employee Extends Controller_Base {
 	public $log;
 
 	function index($registry) {
-	if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
+		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
 			$registry['roleName']=$registry['GET']['roleUser'];
 			$registry['userName']=$registry['GET']['nameUser'];
 		}

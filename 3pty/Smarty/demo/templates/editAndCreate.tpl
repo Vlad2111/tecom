@@ -124,7 +124,7 @@
 											<select name="newEmployee" placeholder="{$lastNameEmployee}" class="form-control select2" style="width: 100%;">
 												{foreach from=$array item=foo}
 												
-												<option>{$foo.user_id}</option>
+												<option>{$foo.user_name}</option>
 												{/foreach}
 											</select>
 										</div>

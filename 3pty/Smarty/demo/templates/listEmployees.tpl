@@ -52,83 +52,65 @@
 										{foreach from=$array item=foo}
 										
 											<tr>
-												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_id}</a></td>
+												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
 												<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
-												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a></td>
-												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
+												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.user_name}" data-lastlogin="{$foo.user_id}" data-countselect="{$countselect}" data-departmentid="{$foo.department_id}" data-editid="{$foo.employee_id}" data-target="#employeeModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a></td>
+												<td><a type="button" class="btn btn-md" href="/index.php?route=list&content=Employee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&employeeId={$foo.employee_id}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
 											</tr>
 										{/foreach}
 										{/if}
 										</tbody>
 									</table>
-								<a id="refreshBtn" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-md" title="Добавить Информацию о Сотруднике"><i class="glyphicon glyphicon-plus"></i></a>
-							</div>
+								<a type="button" data-toggle="modal" data-action="New" data-target="#employeeModal" class="btn btn-md" title="Добавить Сотрудника"><i class="glyphicon glyphicon-plus"></i></a>
+								</div>
 						</div>
 					</div>
 				</div>
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal fade" id="employeeModal" role="dialog" aria-labelledby="employeeModalLabel">
 					<div class="modal-dialog" role="document">
-						<div class="modal-content" style="z-index:1000;">
+						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+								<h4 class="modal-title" id="employeeModalLabel"></h4>
 							</div>
-							<form action="/index.php?route=list&content=Department&nameUser={$name}&roleUser={$role}" method="get">			
+							<form action="/index.php" method="get">
 								<div class="modal-body">
+									<div class="modal-form-group">
+										<label for="nameEmployee"></label>
+										<input type="text" class="form-control" id="nameEmployee" value="" disabled>
+									</div>
 									<div class="form-group">
-										<label>Date:</label>
-										<div class="input-group date" style="z-index:2000;">
-											<div class="input-group-addon">
-												<i class="fa fa-calendar"></i>
-											</div>
-											<input name="date" type="text" class="form-control pull-right" id="datepicker">
-											<input name="route" type="hidden" value="list">
-											<input name="content" type="hidden" value="Department">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
-										</div>
+										<label>Логин:</label>
+										<input name="newLogin" type="text" class="form-control" id="loginEmployee" value="" >
+									</div>
+									<div class="form-group">
+										<label>Отдел:</label>
+										<select name="newDepartmwent" class="form-control select2" id="selectId" style="width: 100%;">
+											{foreach from=$select item=foo}
+											
+											<option value="{$foo.department_id}">{$foo.department_name}</option>
+											{/foreach}
+										</select>
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary" >Save changes</button>
+									<div class="input-group hidden">
+										<input name="route" type="hidden" value="save">
+										<input name="content" type="hidden" value="Employee">
+										<input id="action" name="action" type="hidden">
+										<input name="nameUser" type="hidden" value="{$name}">
+										<input name="roleUser" type="hidden" value="{$role}">
+										<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+										<input name="Year" type="hidden" value="{$selectedYearForGet}">
+										<input id="editId" name="editId" type="hidden">
+									</div>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+									<button type="submit" class="btn btn-primary">Сохранить</button>
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
-				<div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title" id="employeeModalLabel"></h4>
-								</div>
-								<form action="/index.php" method="get">
-									<div class="modal-body">
-										<div class="form-group">
-											<label class="control-label">Название:</label>
-											<input name="newName" type="text" class="form-control" id="nameEmployee" value="">
-										</div>
-									</div>
-									<div class="modal-footer">
-										<div class="input-group hidden">
-											<input name="route" type="hidden" value="save">
-											<input name="content" type="hidden" value="Department">
-											<input id="action" name="action" type="hidden">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
-											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
-											<input name="Year" type="hidden" value="{$selectedYearForGet}">
-											<input id="editId" name="editId" type="hidden">
-										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
 			</section>
 		</div>
 		<footer class="main-footer">
@@ -143,24 +125,43 @@
 				var action = button.data('action');
 				var modal = $(this);
 				var lastName = button.data('lastname');
+				var lastLogin = button.data('lastlogin');
 				var editId = button.data('editid');
+				var departmentId = button.data('departmentid');
+				var countSelect = button.data('countselect');
 				if (action == 'Edit'){
 					modal.find('.modal-title').text('Редактировать Данные Сотрудника');
+					modal.find('.modal-form-group label').text('Фамилия и Имя:');
+					document.getElementById('nameEmployee').type = "text";
 					document.getElementById('nameEmployee').value = lastName;
+					document.getElementById('loginEmployee').value = lastLogin;
 					document.getElementById('editId').value = editId;
 					document.getElementById('action').value = action;
+					for (var i = 0; i < countSelect; i++) {
+					var val = document.getElementById('selectId').options[i].value;
+						if (val == departmentId){
+							document.getElementById('selectId').options[i].selected=true;
+						}else{
+							document.getElementById('selectId').options[i].selected=false;
+						}
+					}
 				}
 				if (action == 'New'){
 					modal.find('.modal-title').text('Новый Сотрудник');
+					modal.find('.modal-form-group label').text('');
+					document.getElementById('nameEmployee').type = "hidden";
 					document.getElementById('nameEmployee').value = null;
+					document.getElementById('loginEmployee').value = null;
 					document.getElementById('editId').value = null;
 					document.getElementById('action').value = action;
+					var n = document.getElementById('selectId').options.selectedIndex;
+					document.getElementById('selectId').options[n].selected=false;
 				}
-			});
-		</script>
-		<script>
-			$(function () {
-				$(".select2").select2();
+				$(function () {
+					$(".select2").select2({
+					modal: true
+					});
+				});
 			});
 		</script>
 		<script>

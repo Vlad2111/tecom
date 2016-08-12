@@ -39,35 +39,58 @@ Class Controller_save Extends Controller_Base {
 						$this->template->view('listDepartments');
 						break;
 					case 'Employee':
-						if($registry['GET']['action']=='New'){
-							$model->newEmployee($registry['date'], $registry['GET']['newName'], $registry['GET']['newDepartmwent']);
-						}
-						if($registry['GET']['action']=='Edit'){
-							$model->changeEmployeeInfo($registry['GET']['editId'], $registry['date'], $registry['GET']['newName'],
-								$registry['GET']['newDepartmwent']);
-						
-						}
-						$rows = $model->getEmployeeNames($registry['date']);
-						if($rows!=null){
-							$ldap = new LdapOperations();
-							$ldap->connect();
-							foreach ($rows as $a){
-								$names = $ldap->getLDAPAccountNamesByPrefix($rows[$a]['user_id']);
-								$rows[$a]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+						$ldap = new LdapOperations();
+						$ldap->connect();
+						$rows = $ldap->getLDAPAccountNamesByPrefix($registry['GET']['newLogin']);
+						if (count($rows)>1){
+							$this->template->vars('rows', $rows);
+							$this->template->view('selectLoginInLDAP');
+						}else{
+							if($registry['GET']['action']=='New'){
+								$model->newEmployee($registry['date'], $registry['GET']['newLogin'], $registry['GET']['newDepartmwent']);
 							}
+							if($registry['GET']['action']=='Edit'){
+								$model->changeEmployeeInfo($registry['GET']['editId'], $registry['date'], $registry['GET']['newLogin'],
+									$registry['GET']['newDepartmwent']);
+							}
+							$rowsEmployee = $model->getEmployeeNames($registry['date']);
+							if($rowsEmployee!=null){
+								foreach ($rowsEmployee as $key=>$arr){
+									$rows = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
+									if (count($rows)>1){
+										$registry['departmwent']=$arr['department_id'];
+										$registry['editId']=$arr['employee_id'];
+										$registry['actionEmployeeFalse']=true;
+										$this->template->vars('rows', $rows);
+										$this->template->view('selectLoginInLDAP');
+										break;
+									}
+								}
+							}
+							$registry['correctDataInBD']=true;
+							$rows = $model->getDepartmentNames($registry['date']);
+							$registry['selectDepartment'] = $rows;
+							$rows = $model->getEmployeeNames($registry['date']);
+							if($rows!=null){
+								foreach ($rows as $key=>$arr){
+									$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
+									$rows[$key]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
+								}
+							}
+							$this->template->vars('rows', $rows);
+							$this->template->view('listEmployees');
 						}
-						$this->template->vars('rows', $rows);
-						$this->template->view('listEmployees');
 						break;
 					case 'Project':
 						if($registry['GET']['action']=='New'){
 							$model->newProject($registry['date'], $registry['GET']['newName'], $registry['GET']['newDepartmwent']);
 						}
 						if($registry['GET']['action']=='Edit'){
-							$model->changeProjectNameAndDepartmentId($registry['GET']['newProject'], $registry['date'], 
+							$model->changeProjectNameAndDepartmentId($registry['GET']['editId'], $registry['date'], 
 								$registry['GET']['newName'], $registry['GET']['newDepartmwent']);
-						
 						}
+						$rows = $model->getDepartmentNames($registry['date']);
+						$registry['selectDepartment'] = $rows;
 						$rows = $model->getProjectNames($registry['date']);
 						$this->template->vars('rows', $rows);
 						$this->template->view('listProjects');

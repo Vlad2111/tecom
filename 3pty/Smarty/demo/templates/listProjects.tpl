@@ -54,44 +54,54 @@
 											<tr>
 												<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
 												<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
-												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a></td>
-												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Удалить Данные Проекта"><i class="glyphicon glyphicon-trash"></i></a></td>
+												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.project_name}" data-countselect="{$countselect}" data-departmentid="{$foo.department_id}" data-editid="{$foo.project_id}" data-target="#projectModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a></td>
+												<td><a type="button" class="btn btn-md" href="/index.php?route=list&content=Project&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&projectId={$foo.project_id}" title="Удалить Данные Проекта"><i class="glyphicon glyphicon-trash"></i></a></td>
 											</tr>
 										{/foreach}
 										{/if}
 										</tbody>
 									</table>
-								<a id="refreshBtn" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-md" title="Добавить Проект"><i class="glyphicon glyphicon-plus"></i></a>
+								<a type="button" data-toggle="modal" data-action="New" data-target="#projectModal" class="btn btn-md" title="Добавить Проект"><i class="glyphicon glyphicon-plus"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal fade" id="projectModal" role="dialog" aria-labelledby="projectModalLabel">
 					<div class="modal-dialog" role="document">
-						<div class="modal-content" style="z-index:1000;">
+						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+								<h4 class="modal-title" id="projectModalLabel"></h4>
 							</div>
-							<form action="/index.php?route=list&content=Department&nameUser={$name}&roleUser={$role}" method="get">			
+							<form action="/index.php" method="get">
 								<div class="modal-body">
 									<div class="form-group">
-										<label>Date:</label>
-										<div class="input-group date" style="z-index:2000;">
-											<div class="input-group-addon">
-												<i class="fa fa-calendar"></i>
-											</div>
-											<input name="date" type="text" class="form-control pull-right" id="datepicker">
-											<input name="route" type="hidden" value="list">
-											<input name="content" type="hidden" value="Department">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
-										</div>
+										<label class="control-label">Название:</label>
+										<input name="newName" type="text" class="form-control" id="nameProject" value="">
+									</div>
+									<div class="form-group">
+										<label>Отдел:</label>
+										<select name="newDepartmwent" class="form-control select2" id="selectId" style="width: 100%;">
+											{foreach from=$select item=foo}
+											
+											<option value="{$foo.department_id}">{$foo.department_name}</option>
+											{/foreach}
+										</select>
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary" >Save changes</button>
+									<div class="input-group hidden">
+										<input name="route" type="hidden" value="save">
+										<input name="content" type="hidden" value="Project">
+										<input id="action" name="action" type="hidden">
+										<input name="nameUser" type="hidden" value="{$name}">
+										<input name="roleUser" type="hidden" value="{$role}">
+										<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+										<input name="Year" type="hidden" value="{$selectedYearForGet}">
+										<input id="editId" name="editId" type="hidden">
+									</div>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+									<button type="submit" class="btn btn-primary">Сохранить</button>
 								</div>
 							</form>
 						</div>
@@ -106,15 +116,41 @@
 			<strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
 		</footer>
 		<script>
-			$(function () {
-				$('#datepicker').datepicker({
-					autoclose: true
+			$('#projectModal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget);
+				var action = button.data('action');
+				var modal = $(this);
+				var lastName = button.data('lastname');
+				var editId = button.data('editid');
+				var departmentId = button.data('departmentid');
+				var countSelect = button.data('countselect');
+				if (action == 'Edit'){
+					modal.find('.modal-title').text('Редактировать Данные Проекта');
+					document.getElementById('nameProject').value = lastName;
+					document.getElementById('editId').value = editId;
+					document.getElementById('action').value = action;
+					for (var i = 0; i < countSelect; i++) {
+					var val = document.getElementById('selectId').options[i].value;
+						if (val == departmentId){
+							document.getElementById('selectId').options[i].selected=true;
+						}else{
+							document.getElementById('selectId').options[i].selected=false;
+						}
+					}
+				}
+				if (action == 'New'){
+					modal.find('.modal-title').text('Новый Проект');
+					document.getElementById('nameProject').value = null;
+					document.getElementById('editId').value = null;
+					document.getElementById('action').value = action;
+					var n = document.getElementById('selectId').options.selectedIndex;
+					document.getElementById('selectId').options[n].selected=false;
+				}
+				$(function () {
+					$(".select2").select2({
+					modal: true
+					});
 				});
-			});
-		</script>
-		<script>
-			$(function () {
-				$(".select2").select2();
 			});
 		</script>
 		<script>

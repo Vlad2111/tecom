@@ -59,11 +59,15 @@ if ($name != 'authorization'){
 			break;
 		case 'listEmployees':
 			$smarty->assign('array', $$key);
+			$smarty->assign('select', $registry['selectDepartment']);
+			$smarty->assign('countselect', count($registry['selectDepartment']));
 			$header = 'Список Сотрудников';
 			$smarty->assign('status2', 'active');
 			break;
 		case 'listProjects':
 			$smarty->assign('array', $$key);
+			$smarty->assign('select', $registry['selectDepartment']);
+			$smarty->assign('countselect', count($registry['selectDepartment']));
 			$header = 'Список Проетов';
 			$smarty->assign('status3', 'active');
 			break;	
@@ -86,6 +90,18 @@ if ($name != 'authorization'){
 			$smarty->assign('projectId', $registry['GET']['projectId']);
 			$smarty->assign('array', $$key);
 			$header = 'Проект: '. $registry['GET']['projectName'];
+			break;
+		case 'selectLoginInLDAP':
+			$smarty->assign('array', $$key);
+			$smarty->assign('action', $registry['GET']['action']);
+			$smarty->assign('editId', $registry['GET']['editId']);
+			$smarty->assign('newDepartmwent', $registry['GET']['newDepartmwent']);
+			if ($registry['actionEmployeeFalse']==true){
+				$smarty->assign('action', 'Edit');
+				$smarty->assign('editId', $registry['editId']);
+				$smarty->assign('newDepartmwent', $registry['departmwent']);
+			}
+			$header = 'Список Логинов из LDAP';
 			break;
 		default:
 			$header = 'Unknown Page';

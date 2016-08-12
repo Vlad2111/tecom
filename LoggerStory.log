@@ -1157,3 +1157,35 @@ LINE 1: ...T r.project_id, r.project_name, r.department_id rd.departmen...
 DETAIL:  Key (date, department_id)=(2016-08-01 00:00:00, 2) already exists.
 2016-08-11T14:42:40+00:00 [ERROR] [Model_PostgreSQLOperations->newDepartment] [510] Не удается выполнить запись нового отдела. ERROR:  duplicate key value violates unique constraint "department_id_date_pk"
 DETAIL:  Key (date, department_id)=(2016-08-01 00:00:00, 2) already exists.
+2016-08-12T10:43:00+00:00 [ERROR] [Model_PostgreSQLOperations->newEmployee] [557] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-08-01 00:00:00, 4) already exists.
+2016-08-12T10:43:01+00:00 [ERROR] [Model_PostgreSQLOperations->newEmployee] [557] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-08-01 00:00:00, 4) already exists.
+2016-08-12T10:43:06+00:00 [ERROR] [Model_PostgreSQLOperations->newEmployee] [557] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-08-01 00:00:00, 4) already exists.
+2016-08-12T10:46:01+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем selectDepartment пуст.
+2016-08-12T10:46:44+00:00 [ERROR] [Model_PostgreSQLOperations->changeEmployeeInfo] [450] Не удается выполнить обновление информации о сотруднике. ERROR:  invalid input syntax for type boolean: "ershov"
+2016-08-12T10:50:30+00:00 [ERROR] [Model_PostgreSQLOperations->changeEmployeeInfo] [450] Не удается выполнить обновление информации о сотруднике. ERROR:  invalid input syntax for type boolean: "ershov"
+2016-08-12T10:50:31+00:00 [ERROR] [Model_PostgreSQLOperations->changeEmployeeInfo] [450] Не удается выполнить обновление информации о сотруднике. ERROR:  invalid input syntax for type boolean: "ershov"
+2016-08-12T10:50:32+00:00 [ERROR] [Model_PostgreSQLOperations->changeEmployeeInfo] [450] Не удается выполнить обновление информации о сотруднике. ERROR:  invalid input syntax for type boolean: "ershov"
+2016-08-12T10:51:57+00:00 [ERROR] [Model_PostgreSQLOperations->changeEmployeeInfo] [450] Не удается выполнить обновление информации о сотруднике. ERROR:  invalid input syntax for type boolean: "ershov"
+2016-08-12T10:56:12+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем selectDepartment пуст.
+2016-08-12T10:56:26+00:00 [ERROR] [Model_PostgreSQLOperations->changeEmployeeInfo] [450] Не удается выполнить обновление информации о сотруднике. ERROR:  insert or update on table "Employee" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-12T10:56:59+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем selectDepartment пуст.
+2016-08-12T12:31:00+00:00 [ERROR] [Model_PostgreSQLOperations->newEmployee] [557] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-08-01 00:00:00, 3) already exists.
+2016-08-12T13:20:09+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-12T13:49:51+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-12T14:07:12+00:00 [ERROR] [Registry->set] [26] Ключ departmwent массива registry уже занят.
+2016-08-12T14:07:16+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-12T14:07:20+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-12T14:33:11+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-12T14:33:13+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-12T14:33:58+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-12T14:34:44+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-12T14:34:58+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-12T14:48:39+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-12T14:54:38+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-12T14:54:59+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-12T14:55:35+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.

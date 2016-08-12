@@ -33,73 +33,74 @@
 			<section class="content">
 				<div class="row">
 					<div class="col-xs-12">
-						<div class="box box-primary">
-							<div class="box-header">
-									<h3 class="box-title">Отдел: {$departmentName}</h3>	
-							</div>
-							<div class="box-body">
-								<div class="col-xs-6">
-									<div class="box">
-										<div class="box-header">
-											<h3 class="box-title">Сотрудники</h3>	
-										</div>
-										<div class="box-body">
-											<table id="employee" class="table table-bordered table-striped">
-												<thead>
-													<tr>
-														<th>Фамилия и Имя</th>
-														<th style="width: 18px"></th>
-														<th style="width: 18px"></th>
-													</tr>
-												</thead>
-												<tbody>
-												{if $array!=null}
-												{foreach from=$array item=foo}
-												{if $foo.employee_id != null AND $foo.user_id != null}
-													<tr>
-														<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_id}</a></td>
-														<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a></td>
-														<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
-													</tr>
-												{/if}
-												{/foreach}
-												{/if}
-												</tbody>
-											</table>
-											<a id="refreshBtn" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-md" title="Добавить Информацию о Сотруднике"><i class="glyphicon glyphicon-plus"></i></a>
-										</div>
-									</div>
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+										<h3 class="box-title">Отдел: {$departmentName}</h3>	
 								</div>
-								<div class="col-xs-6">
-									<div class="box">
-										<div class="box-header">
-											<h3 class="box-title">Проекты</h3>	
-										</div>
-										<div class="box-body">
-											<table id="project" class="table table-bordered table-striped">
-												<thead>
-													<tr>
-														<th>Название</th>
-														<th style="width: 18px"></th>
-														<th style="width: 18px"></th>
-													</tr>
-												</thead>
-												<tbody>
-												{if $array!=null}
-												{foreach from=$array item=foo}
-												{if $foo.project_id != null AND $foo.project_name != null}
-													<tr>
-														<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
-														<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a></td>
-														<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Удалить Данные Проекта"><i class="glyphicon glyphicon-trash"></i></a></td>
-													</tr>
-												{/if}
-												{/foreach}
-												{/if}
-												</tbody>
-											</table>
-											<a id="refreshBtn" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-md" title="Добавить Проект"><i class="glyphicon glyphicon-plus"></i></a>
-										</div>
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">Сотрудники</h3>	
+								</div>
+								<div class="box-body">
+									<table id="employee" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Фамилия и Имя</th>
+												<th style="width: 18px"></th>
+												<th style="width: 18px"></th>
+											</tr>
+										</thead>
+										<tbody>
+										{if $array!=null}
+										{foreach from=$array item=foo}
+										{if $foo.employee_id != null AND $foo.user_name != null}
+											<tr>
+												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
+												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a></td>
+												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
+											</tr>
+										{/if}
+										{/foreach}
+										{/if}
+										</tbody>
+									</table>
+								<a id="refreshBtn" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-md" title="Добавить Информацию о Сотруднике"><i class="glyphicon glyphicon-plus"></i></a>
+									</div>
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">Проекты</h3>	
+								</div>
+								<div class="box-body">
+									<table id="project" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Название</th>
+												<th style="width: 18px"></th>
+												<th style="width: 18px"></th>
+											</tr>
+										</thead>
+										<tbody>
+										{if $array!=null}
+										{foreach from=$array item=foo}
+										{if $foo.project_id != null AND $foo.project_name != null}
+											<tr>
+												<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
+												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a></td>
+												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Удалить Данные Проекта"><i class="glyphicon glyphicon-trash"></i></a></td>
+											</tr>
+										{/if}
+										{/foreach}
+										{/if}
+										</tbody>
+									</table>
+									<a id="refreshBtn" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-md" title="Добавить Проект"><i class="glyphicon glyphicon-plus"></i></a>
 									</div>
 								</div>
 							</div>

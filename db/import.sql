@@ -1,23 +1,25 @@
 INSERT INTO "Departments" (date, department_id, department_name)
-values ('01.01.2016', 0, 'Отдел');
+values ('08.01.2016', 0, 'Отдел33');
 INSERT INTO "Departments" (date, department_id, department_name)
-values ('01.01.2016', 1, 'Отдел1');
+values ('07.01.2016', 1, 'Отдел1');
 INSERT INTO "Departments" (date, department_id, department_name)
-values ('02.01.2016', 0, 'Отдел');
+values ('07.01.2016', 0, 'Отдел33');
 INSERT INTO "Departments" (date, department_id, department_name)
-values ('02.01.2016', 1, 'Отдел1');
+values ('08.01.2016', 1, 'Отдел1');
 
 
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
-values ('01.01.2016', 0, 'user',1);
+values ('07.01.2016', 0, 'er',1);
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
-values ('01.01.2016', 1, 'us',0);
+values ('08.01.2016', 1, 'smi',0);
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
-values ('02.01.2016', 0, 'user',1);
+values ('08.01.2016', 0, 'er',1);
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
-values ('02.01.2016', 1, 'us',0);
+values ('07.01.2016', 1, 'smi',0);
 INSERT INTO "Employee" (date, employee_id, user_id, department_id)
-values ('01.01.2016', 2, 'ershov.v', 0);
+values ('08.01.2016', 2, 'ershov.v', 0);
+INSERT INTO "Employee" (date, employee_id, user_id, department_id)
+values ('07.01.2016', 2, 'ershov.v', 0);
 
 
 
@@ -36,34 +38,34 @@ values (2, 0);
 
 
 INSERT INTO "Projects" (date, project_id, project_name, department_id)
-values ('01.01.2016', 0, 'Проект', 0);
+values ('07.01.2016', 0, 'Проект33', 0);
 INSERT INTO "Projects" (date, project_id, project_name, department_id)
-values ('01.01.2016', 1, 'Проект1', 1);
+values ('07.01.2016', 1, 'Проект1', 1);
 INSERT INTO "Projects" (date, project_id, project_name, department_id)
-values ('02.01.2016', 0, 'Проект', 0);
+values ('08.01.2016', 0, 'Проект33', 0);
 INSERT INTO "Projects" (date, project_id, project_name, department_id)
-values ('02.01.2016', 1, 'Проект1', 1);
+values ('08.01.2016', 1, 'Проект1', 1);
 
 
 INSERT INTO "Head_departments" (date, employee_id, department_id)
-values ('01.01.2016', 1, 0);
+values ('07.01.2016', 1, 0);
 INSERT INTO "Head_departments" (date, employee_id, department_id)
-values ('02.01.2016', 1, 0);
+values ('08.01.2016', 1, 0);
 
 
 INSERT INTO "Time_distribution" (date, project_id, employee_id, time)
-values ('01.01.2016', 0, 0, 100);
+values ('07.01.2016', 0, 0, 40);
 INSERT INTO "Time_distribution" (date, project_id, employee_id, time)
-values ('01.01.2016', 1, 0, 100);
+values ('08.01.2016', 1, 0, 50);
 INSERT INTO "Time_distribution" (date, project_id, employee_id, time)
-values ('01.01.2016', 0, 1, 0);
+values ('07.01.2016', 0, 1, 30);
 INSERT INTO "Time_distribution" (date, project_id, employee_id, time)
-values ('01.01.2016', 1, 1, 0);
+values ('07.01.2016', 1, 1, 20);
 INSERT INTO "Time_distribution" (date, project_id, employee_id, time)
-values ('02.01.2016', 0, 0, 10);
+values ('08.01.2016', 0, 0, 10);
 INSERT INTO "Time_distribution" (date, project_id, employee_id, time)
-values ('02.01.2016', 1, 0, 10);
+values ('07.01.2016', 1, 0, 15);
 INSERT INTO "Time_distribution" (date, project_id, employee_id, time)
-values ('02.01.2016', 0, 1, 90);
+values ('08.01.2016', 0, 1, 95);
 INSERT INTO "Time_distribution" (date, project_id, employee_id, time)
-values ('02.01.2016', 1, 1, 90);
+values ('08.01.2016', 1, 1, 90);

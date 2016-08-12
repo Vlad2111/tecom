@@ -17,7 +17,7 @@ Class Controller_Department Extends Controller_Base {
 	public  $log;
 
 	function index($registry) {
-	if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
+		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
 			$registry['roleName']=$registry['GET']['roleUser'];
 			$registry['userName']=$registry['GET']['nameUser'];
 		}
@@ -45,9 +45,10 @@ Class Controller_Department Extends Controller_Base {
 							if ($rows1[$i]==null){
 								$rows1[$i]['employee_id']=null;
 								$rows1[$i]['user_id']=null;
+								$rows1[$i]['user_name']=null;
 							}else{
 								$names = $ldap->getLDAPAccountNamesByPrefix($rows1[$i]['user_id']);
-								$rows1[$i]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+								$rows1[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
 							}
 							$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
 						}
@@ -59,7 +60,7 @@ Class Controller_Department Extends Controller_Base {
 							}
 							$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
 							$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
-							$rows[$i]['user_id'] = $names['0']['sn'].' '.$names['0']['givenName'];
+							$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
 						}
 					}
 				}

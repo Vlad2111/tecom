@@ -53,7 +53,7 @@
 									{foreach from=$array item=foo}
 				
 										<tr>
-											<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_id}</a></td>
+											<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
 											<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
 											<td>{$foo.time}%</td>
 											<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Редактировать Данные Занятости Сотрудника По Проекту"><i class="glyphicon glyphicon-pencil"></i></a></td>

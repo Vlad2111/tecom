@@ -14,11 +14,11 @@
 */
 class LdapOperations
 {
-	private $ldaphost="192.168.12.1";
-	private $ldapport="389";
-	private $login="TECOM\\ldapquery";
-	private $password="Tecom1";
-	private $base = "DC=tecom,DC=nnov,DC=ru";
+	private $ldaphost;
+	private $ldapport;
+	private $login;
+	private $password;
+	private $base;
 
 	private $ldap = null;
 
@@ -26,6 +26,12 @@ class LdapOperations
 	const LDAP_OPT_DIAGNOSTIC_MESSAGE = 0x0032;
 	public function connect()
 	{
+		$LDAPConfiguration = Configuration::instance()->config;
+		$this->ldaphost=$LDAPConfiguration['ldaphost'];
+		$this->ldapport=$LDAPConfiguration['ldapport'];
+		$this->login=$LDAPConfiguration['login'];
+		$this->password=$LDAPConfiguration['password'];
+		$this->base=$LDAPConfiguration['base'];
 		$this->ldap=ldap_connect($this->ldaphost, $this->ldapport);
 		if (!$this->ldap) {
 			throw new Exception("Cant connect to ldap Server");
