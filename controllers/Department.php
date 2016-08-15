@@ -35,11 +35,19 @@ Class Controller_Department Extends Controller_Base {
 			if($registry['date']){
 				$model = new Model_PostgreSQLOperations();
 				$model->connect();
+				if($registry['GET']['action']=='removeEmpl'){
+					$model->deleteEmployee($registry['date'], $registry['GET']['employeeId']);
+				}
+				if($registry['GET']['action']=='removeProj'){
+					$model->deleteProject($registry['date'], $registry['GET']['projectId']);
+				}
+				$rows = $model->getDepartmentNames($registry['date']);
+				$registry['selectDepartment'] = $rows;
 				$rows1 = $model->getEmployeeNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
 				$rows2 = $model->getProjectNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
 				$ldap = new LdapOperations();
 				$ldap->connect();
-				if(($rows1!=null)OR($rows2!=null)){
+				if(($rows1!=null)AND($rows2!=null)){
 					if (count($rows1) < count($rows2)){
 						for ($i=0; $i<count($rows2);$i++){
 							if ($rows1[$i]==null){
@@ -52,8 +60,9 @@ Class Controller_Department Extends Controller_Base {
 							}
 							$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
 						}
+						$this->template->vars('rows', $rows);
 					}else{
-						for ($i=0; $i<count($rows1);$i++){			
+						for ($i=0; $i<count($rows1);$i++){
 							if ($rows2[$i]==null){
 								$rows2[$i]['project_id']=null;
 								$rows2[$i]['project_name']=null;
@@ -62,9 +71,23 @@ Class Controller_Department Extends Controller_Base {
 							$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
 							$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
 						}
+						$this->template->vars('rows', $rows);
+					}
+				}else{
+					if($rows1!=null){
+						$rows=$rows1;
+						for ($i=0; $i<count($rows);$i++){
+							$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
+							$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
+							$this->template->vars('rows', $rows);
+						}
+					}else{
+						if($rows2!=null){
+							$rows=$rows1;
+							$this->template->vars('rows', $rows);
+						}
 					}
 				}
-				$this->template->vars('rows', $rows);
 				$this->template->view('Department');
 			}
 		}

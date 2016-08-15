@@ -35,7 +35,7 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Список Сотрудников</h3>	
+								<h3 class="box-title" style="font-size:23px">Список Сотрудников</h3>	
 							</div>
 							<div class="box-body">
 								<table id="employee" class="table table-bordered table-striped">
@@ -52,7 +52,7 @@
 										{foreach from=$array item=foo}
 										
 											<tr>
-												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
+												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&employeeLogin={$foo.user_id}&departmentId={$foo.department_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
 												<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
 												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.user_name}" data-lastlogin="{$foo.user_id}" data-countselect="{$countselect}" data-departmentid="{$foo.department_id}" data-editid="{$foo.employee_id}" data-target="#employeeModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a></td>
 												<td><a type="button" class="btn btn-md" href="/index.php?route=list&content=Employee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&employeeId={$foo.employee_id}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
@@ -97,6 +97,7 @@
 									<div class="input-group hidden">
 										<input name="route" type="hidden" value="save">
 										<input name="content" type="hidden" value="Employee">
+										<input name="lastPage" type="hidden" value="list">
 										<input id="action" name="action" type="hidden">
 										<input name="nameUser" type="hidden" value="{$name}">
 										<input name="roleUser" type="hidden" value="{$role}">
@@ -154,12 +155,15 @@
 					document.getElementById('loginEmployee').value = null;
 					document.getElementById('editId').value = null;
 					document.getElementById('action').value = action;
-					var n = document.getElementById('selectId').options.selectedIndex;
-					document.getElementById('selectId').options[n].selected=false;
+					for (var i = 0; i < countSelect; i++) {
+						document.getElementById('selectId').options[i].selected=false;
+					}
 				}
 				$(function () {
 					$(".select2").select2({
-					modal: true
+					modal: true,
+					placeholder: "Выберите Отдел",
+					allowClear: true
 					});
 				});
 			});

@@ -35,12 +35,22 @@ Class Controller_Project Extends Controller_Base {
 			if($registry['date']){
 				$model = new Model_PostgreSQLOperations();
 				$model->connect();
+				$ldap = new LdapOperations();
+				$ldap->connect();
 				if($registry['GET']['action']=='remove'){
 					$model->deleteTimeDistribution($registry['date'], $registry['GET']['projectId'], $registry['GET']['employeeId']);
 				}
+				$rows = $model->getEmployeeNames($registry['date']);
+				if($rows!=null){
+					for ($i=0; $i<count($rows);$i++){
+						$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
+						$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
+					}
+				}
+				$registry['selectEmployee'] = $rows;
+				$rows = $model->getDepartmentNames($registry['date']);
+				$registry['selectDepartment'] = $rows;
 				$rows = $model->getEployeeNamesAndPercentsForProject($registry['GET']['projectId'], $registry['date']);
-				$ldap = new LdapOperations();
-				$ldap->connect();
 				if($rows!=null){
 					foreach ($rows as $key=>$arr){
 						$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);

@@ -35,7 +35,7 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Список Проектов</h3>	
+								<h3 class="box-title" style="font-size:23px">Список Проектов</h3>	
 							</div>
 							<div class="box-body">
 								<table id="project" class="table table-bordered table-striped">
@@ -52,9 +52,9 @@
 										{foreach from=$array item=foo}
 										
 											<tr>
-												<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
+												<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&departmentId={$foo.department_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
 												<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
-												<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.project_name}" data-countselect="{$countselect}" data-departmentid="{$foo.department_id}" data-editid="{$foo.project_id}" data-target="#projectModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a></td>
+												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.project_name}" data-countselect="{$countselect}" data-departmentid="{$foo.department_id}" data-editid="{$foo.project_id}" data-target="#projectModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a></td>
 												<td><a type="button" class="btn btn-md" href="/index.php?route=list&content=Project&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&projectId={$foo.project_id}" title="Удалить Данные Проекта"><i class="glyphicon glyphicon-trash"></i></a></td>
 											</tr>
 										{/foreach}
@@ -93,6 +93,7 @@
 									<div class="input-group hidden">
 										<input name="route" type="hidden" value="save">
 										<input name="content" type="hidden" value="Project">
+										<input name="lastPage" type="hidden" value="list">
 										<input id="action" name="action" type="hidden">
 										<input name="nameUser" type="hidden" value="{$name}">
 										<input name="roleUser" type="hidden" value="{$role}">
@@ -148,7 +149,9 @@
 				}
 				$(function () {
 					$(".select2").select2({
-					modal: true
+					modal: true,
+					placeholder: "Выберите Отдел",
+					allowClear: true
 					});
 				});
 			});

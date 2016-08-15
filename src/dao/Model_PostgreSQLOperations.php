@@ -185,6 +185,21 @@ class Model_PostgreSQLOperations
 					pg_last_error($this->dbConnect));
 		}
 		$employeeNamesForDepartment = pg_fetch_all($result);
+		if($employeeNamesForDepartment!=null){
+			foreach ($employeeNamesForDepartment as $key=>$arr){
+				$result = pg_query_params($this->dbConnect, 'SELECT time FROM "Time_distribution" WHERE '.
+					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND employee_id = $2',
+						array($date->format("U"), $arr['employee_id']));
+				$percentForEmployee = pg_fetch_all($result);
+				$summPercents=0;
+				if($percentForEmployee!=null){
+					foreach ($percentForEmployee as $keySumm=>$arrSumm){
+						$summPercents=$summPercents+$arrSumm['time'];
+					}
+				}
+				$employeeNamesForDepartment[$key]['summ']=$summPercents;
+			}
+		}
 		return $employeeNamesForDepartment;
 	}
 
@@ -421,7 +436,7 @@ class Model_PostgreSQLOperations
 	}
 	
 	/** Обновление распределения времени сотрудника.*/
-	public function changeEployeeTime($employeeId, $projectId, DateTime $date, $newTime)
+	public function changeEployeeTimeForProject($employeeId, $projectId, DateTime $date, $newTime)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");

@@ -38,6 +38,10 @@ Class Controller_Employee Extends Controller_Base {
 				if($registry['GET']['action']=='remove'){
 					$model->deleteTimeDistribution($registry['date'], $registry['GET']['projectId'], $registry['GET']['employeeId']);
 				}
+				$rows = $model->getDepartmentNames($registry['date']);
+				$registry['selectDepartment'] = $rows;
+				$rows = $model->getProjectNames($registry['date']);
+				$registry['selectProject'] = $rows;
 				$rows = $model->getEmployeeInfo($registry['GET']['employeeId'], $registry['date']);
 				$employeePercentSum = 0;
 				for ($i=0; $i<count($rows); $i++){

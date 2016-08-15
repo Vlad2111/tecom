@@ -35,7 +35,10 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-						<b><h3 class="box-title">Проект: {$projectName}</h3></b>	
+							<h3 class="box-title" style="font-size:23px">Проект: {$projectName}
+								<a type="button" class="btn btn-md" data-toggle="modal" data-countselect="{$countselect}" data-departmentid="{$departmentId}" data-target="#projectModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a>
+								<a type="button" class="btn btn-md" href="/index.php?route=list&content=Project&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&projectId={$projectId}" title="Удалить Данные Проекта"><i class="glyphicon glyphicon-trash"></i></a>
+							</h3>	
 						</div>
 							<div class="box-body">
 								<table id="project" class="table table-bordered table-striped">
@@ -56,44 +59,105 @@
 											<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
 											<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
 											<td>{$foo.time}%</td>
-											<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Редактировать Данные Занятости Сотрудника По Проекту"><i class="glyphicon glyphicon-pencil"></i></a></td>
-											<td><a id="refreshBtn" type="button" class="btn btn-md" data-toggle="modal" data-target="#myModal" title="Удалить Данные Занятости Сотрудника По Проекту"><i class="glyphicon glyphicon-trash"></i></a></td>
+											<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lasttime="{$foo.time}" data-countselect="{$countselectEmp}" data-employeeid="{$foo.employee_id}" data-target="#timeDistModal" title="Редактировать Данные Распределения Времени"><i class="glyphicon glyphicon-pencil"></i></a></td>
+											<td><a type="button" class="btn btn-md" href="/index.php?route=employee&employeeId={$employeeId}&employeeName={$employeeName}&employeeLogin={$employeeLogin}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&projectId={$foo.project_id}" title="Удалить Данные Распределения Времени"><i class="glyphicon glyphicon-trash"></i></a></td>
 										</tr>
 									{/foreach}
 									{/if}
 									</tbody>
 								</table>
-								<a id="refreshBtn" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-md" title="Добавить Информацию Занятости Сотрудника По Проектам"><i class="glyphicon glyphicon-plus"></i></a>
+								<a type="button" data-toggle="modal" data-action="New" data-target="#timeDistModal" class="btn btn-md" title="Добавить Распределение Времени"><i class="glyphicon glyphicon-plus"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal fade" id="projectModal" role="dialog" aria-labelledby="projectModalLabel">
 					<div class="modal-dialog" role="document">
-						<div class="modal-content" style="z-index:1000;">
+						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+								<h4 class="modal-title" id="projectModalLabel">Редактировать Данные Проекта</h4>
 							</div>
-							<form action="/index.php?route=list&content=Department&nameUser={$name}&roleUser={$role}" method="get">			
+							<form action="/index.php" method="get">
 								<div class="modal-body">
 									<div class="form-group">
-										<label>Date:</label>
-										<div class="input-group date" style="z-index:2000;">
-											<div class="input-group-addon">
-												<i class="fa fa-calendar"></i>
-											</div>
-											<input name="date" type="text" class="form-control pull-right" id="datepicker">
-											<input name="route" type="hidden" value="list">
-											<input name="content" type="hidden" value="Department">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
+										<label class="control-label">Название:</label>
+										<input name="newName" type="text" class="form-control" id="nameProject" value="{$projectName}">
+									</div>
+									<div class="form-group">
+										<label>Отдел:</label>
+										<select name="newDepartmwent" class="form-control select2" id="selectId" style="width: 100%;">
+											{foreach from=$select item=foo}
+											
+											<option value="{$foo.department_id}">{$foo.department_name}</option>
+											{/foreach}
+										</select>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<div class="input-group hidden">
+										<input name="route" type="hidden" value="save">
+										<input name="content" type="hidden" value="Project">
+										<input name="lastPage" type="hidden" value="Project">
+										<input name="action" type="hidden" value="Edit">
+										<input name="nameUser" type="hidden" value="{$name}">
+										<input name="roleUser" type="hidden" value="{$role}">
+										<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+										<input name="Year" type="hidden" value="{$selectedYearForGet}">
+										<input name="editId" type="hidden" value="{$projectId}">
+									</div>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+									<button type="submit" class="btn btn-primary">Сохранить</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="timeDistModal" role="dialog" aria-labelledby="timeDistModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="timeDistModalLabel"></h4>
+							</div>
+							<form action="/index.php" method="get">
+								<div class="modal-body">
+									<div class="form-group">
+										<label>Сотрудник:</label>
+										<select name="employeeId" class="form-control select2" id="selectIdEmp" style="width: 100%;">
+											{foreach from=$selectEmp item=foo}
+											
+											<option value="{$foo.employee_id}">{$foo.user_name}</option>
+											{/foreach}
+										</select>
+									</div>
+									<div class="modal-form-group">
+										<label for="nameProject">Проект</label>
+										<input name="projectName" type="text" class="form-control" id="nameProject" value="{$projectName}" readonly>
+									</div>
+									<div class="form-group">
+										<label for="TimeDistr">Время</label>
+										<div class="input-group">
+											<input name="newTime" type="text" class="form-control" id="TimeDistr" value="">
+											<span class="input-group-addon">%</span>
 										</div>
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary" >Save changes</button>
+									<div class="input-group hidden">
+										<input name="route" type="hidden" value="save">
+										<input name="content" type="hidden" value="Percent">
+										<input name="lastPage" type="hidden" value="Project">
+										<input id="actionPro" name="action" type="hidden">
+										<input name="nameUser" type="hidden" value="{$name}">
+										<input name="roleUser" type="hidden" value="{$role}">
+										<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+										<input name="Year" type="hidden" value="{$selectedYearForGet}">
+										<input name="projectId" type="hidden" value="{$projectId}">
+										<input name="departmentId" type="hidden" value="{$departmentId}">
+									</div>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+									<button type="submit" class="btn btn-primary">Сохранить</button>
 								</div>
 							</form>
 						</div>
@@ -108,15 +172,63 @@
 			<strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
 		</footer>
 		<script>
-			$(function () {
-				$('#datepicker').datepicker({
-					autoclose: true
+			$('#projectModal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget);
+				var modal = $(this);
+				var departmentId = button.data('departmentid');
+				var countSelect = button.data('countselect');
+				for (var i = 0; i < countSelect; i++) {
+				var val = document.getElementById('selectId').options[i].value;
+					if (val == departmentId){
+						document.getElementById('selectId').options[i].selected=true;
+					}else{
+						document.getElementById('selectId').options[i].selected=false;
+					}
+				}
+				$(function () {
+					$(".select2").select2({
+					modal: true,
+					placeholder: "Выберите Отдел",
+					allowClear: true
+					});
 				});
 			});
 		</script>
 		<script>
-			$(function () {
-				$(".select2").select2();
+			$('#timeDistModal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget);
+				var action = button.data('action');
+				var modal = $(this);
+				var lasttime = button.data('lasttime');
+				var employeeId = button.data('employeeid');
+				var countSelectPro = button.data('countselect');
+				if (action == 'Edit'){
+					modal.find('.modal-title').text('Редактировать Данные Распределения Времени');
+					document.getElementById('TimeDistr').value = lasttime;
+					document.getElementById('actionPro').value = action;
+					for (var i = 0; i < countSelectPro; i++) {
+					var val = document.getElementById('selectIdEmp').options[i].value;
+						if (val == employeeId){
+							document.getElementById('selectIdEmp').options[i].selected=true;
+						}else{
+							document.getElementById('selectIdEmp').options[i].selected=false;
+						}
+					}
+				}
+				if (action == 'New'){
+					modal.find('.modal-title').text('Новое Распределение Времени');
+					document.getElementById('TimeDistr').value = null;
+					document.getElementById('actionPro').value = action;
+					var n = document.getElementById('selectIdEmp').options.selectedIndex;
+					document.getElementById('selectIdEmp').options[n].selected=false;
+				}
+				$(function () {
+					$(".select2").select2({
+					modal: true,
+					placeholder: "Выберите Сотрудника",
+					allowClear: true
+					});
+				});
 			});
 		</script>
 		<script>

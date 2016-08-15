@@ -33,7 +33,7 @@
 						<div class="col-xs-12">
 							<div class="box">
 								<div class="box-header">
-									<h3 class="box-title">Список Отделов</h3>	
+									<h3 class="box-title" style="font-size:23px">Список Отделов</h3>	
 								</div>
 								<div class="box-body">
 									<table id="department" class="table table-bordered table-striped">
@@ -61,36 +61,37 @@
 								</div>
 							</div>
 						</div>
-						<div class="modal fade" id="departmentModal" tabindex="-1" role="dialog" aria-labelledby="departmentModalLabel">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h4 class="modal-title" id="departmentModalLabel"></h4>
-									</div>
-									<form action="/index.php" method="get">
-										<div class="modal-body">
-											<div class="form-group">
-												<label class="control-label">Название:</label>
-												<input name="newName" type="text" class="form-control" id="nameDepartment" value="">
-											</div>
-										</div>
-										<div class="modal-footer">
-											<div class="input-group hidden">
-												<input name="route" type="hidden" value="save">
-												<input name="content" type="hidden" value="Department">
-												<input id="action" name="action" type="hidden">
-												<input name="nameUser" type="hidden" value="{$name}">
-												<input name="roleUser" type="hidden" value="{$role}">
-												<input name="Month" type="hidden" value="{$selectedMonthForGet}">
-												<input name="Year" type="hidden" value="{$selectedYearForGet}">
-												<input id="editId" name="editId" type="hidden">
-											</div>
-											<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-											<button type="submit" class="btn btn-primary">Сохранить</button>
-										</div>
-									</form>
+					</div>
+					<div class="modal fade" id="departmentModal" tabindex="-1" role="dialog" aria-labelledby="departmentModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="departmentModalLabel"></h4>
 								</div>
+								<form action="/index.php" method="get">
+									<div class="modal-body">
+										<div class="form-group">
+											<label class="control-label">Название:</label>
+											<input name="newName" type="text" class="form-control" id="nameDepartment" value="">
+										</div>
+									</div>
+									<div class="modal-footer">
+										<div class="input-group hidden">
+											<input name="route" type="hidden" value="save">
+											<input name="content" type="hidden" value="Department">
+											<input name="lastPage" type="hidden" value="list">
+											<input id="action" name="action" type="hidden">
+											<input name="nameUser" type="hidden" value="{$name}">
+											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+											<input name="Year" type="hidden" value="{$selectedYearForGet}">
+											<input id="editId" name="editId" type="hidden">
+										</div>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+										<button type="submit" class="btn btn-primary">Сохранить</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
