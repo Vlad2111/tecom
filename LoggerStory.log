@@ -1492,3 +1492,4 @@ DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
 2016-08-16T12:14:20+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
 2016-08-16T12:14:37+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
 2016-08-16T12:19:32+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T12:56:52+00:00 [ERROR] [Template->view] [51] Шаблон контента Role не найден.

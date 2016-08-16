@@ -35,15 +35,20 @@ Class Controller_Role Extends Controller_Base {
 			if($registry['date']!=null){
 				$model = new Model_PostgreSQLOperations();
 				$model->connect();
-				if($registry['GET']['action']=='create'){
-				
+				if($registry['GET']['action']=='New'){
+					$model->newRole($registry['GET']['employeeId'], $registry['GET']['roleId']);
 				}
-				if($registry['GET']['action']=='edit'){
-				
+				if($registry['GET']['action']=='Edit'){
+					$model->changeRole($registry['GET']['employeeId'], $registry['GET']['roleId']);
 				}
-				if($registry['GET']['action']=='remove'){
-				
+				if($registry['GET']['action']=='Delete'){
+					$model->deleteRole($registry['GET']['employeeId']);
 				}
+				$rows = $model->getEmployeeNames($registry['date']);
+				$registry['selectEmployee'] = $rows;
+				$rows = $model->getRoleDef();
+				$registry['selectRole'] = $rows;
+				$rows = $model->getEmployeeRoleNamesAndId($registry['date']);
 				$this->template->vars('rows', $rows);
 				$this->template->view('Role');
 			}

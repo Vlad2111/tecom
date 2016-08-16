@@ -154,6 +154,11 @@ if ($name != 'authorization'){
 			break;
 		case 'Role':
 			$header = 'Пользователи и Роли';
+			$smarty->assign('array', $$key);
+			$smarty->assign('selectEmp', $registry['selectEmployee']);
+			$smarty->assign('selectRole', $registry['selectRole']);
+			$smarty->assign('countselectEmp', count($registry['selectEmployee']));
+			$smarty->assign('countselectRole', count($registry['selectRole']));
 			break;
 		default:
 			$header = 'Unknown Page';

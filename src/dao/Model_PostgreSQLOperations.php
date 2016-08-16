@@ -96,6 +96,42 @@ class Model_PostgreSQLOperations
 		return $departmentNameAndId;
 	}
 	
+	/** Запрос списка ролей пользователей.*/
+	public function getEmployeeRoleNamesAndId(DateTime $date)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT r.employee_id, r.user_id, r.user_name, '.
+				'r.department_id, rd.department_name, rddd.role_name, rdd.role_id FROM "Departments" '.
+					'AS rd inner join ("Employee" AS r inner join ("Role" AS rdd inner join "Role_def" '.
+						'AS rddd on rdd.role_id = rddd.role_id) on r.employee_id = rdd.employee_id) on '.
+							'r.department_id = rd.department_id AND r.date = rd.date WHERE date_part'.
+								'(\'epoch\', date_trunc(\'month\', r.date)) = $1',
+									array($date->format("U")));
+		if (!$result) {
+			$this->log->error("Не удается выполнить запрос на получение списка сотрудников. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос на получение списка сотрудников. ".
+					pg_last_error($this->dbConnect));
+		}
+		$employeeNamesAndRoles = pg_fetch_all($result);
+		return $employeeNamesAndRoles;
+	}
+	
+	/** Запрос списка ролей.*/
+	public function getRoleDef()
+	{
+		$result = pg_query($this->dbConnect, 'SELECT role_id, role_name FROM "Role_def"');
+			if (!$result) {
+			$this->log->error("Не удается выполнить запрос на получение списка ролей. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос на получение списка ролей. ".
+					pg_last_error($this->dbConnect));
+		}
+		$roleDef = pg_fetch_all($result);
+		return $roleDef;
+	}
+	
 	/** Запрос списка отделов.*/
 	public function getDepartmentNames(DateTime $date)
 	{
@@ -507,11 +543,10 @@ class Model_PostgreSQLOperations
 	}
 	
 	/** Обновление роли пользователя.*/
-	public function changeRole($userId, $newRoleId)
+	public function changeRole($employeeId, $newRoleId)
 	{
-		$result = pg_query_params($this->dbConnect, 'UPDATE "Role" SET role_id = $2 WHERE employee_id = (SELECT '.
-					'employee_id FROM "Employee" WHERE user_id = $1 ORDER BY "date" desc limit 1)',
-				array($userId, $newRoleId));
+		$result = pg_query_params($this->dbConnect, 'UPDATE "Role" SET role_id = $2 WHERE employee_id = $1 ',
+				array($employeeId, $newRoleId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить обновление роли пользователя. ".
 					pg_last_error($this->dbConnect));
@@ -677,11 +712,10 @@ class Model_PostgreSQLOperations
 	}
 	
 	/** Добавление новой роли пользователя.*/
-	public function newRole($userId, $roleId)
+	public function newRole($employeeId, $roleId)
 	{
-		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Role" (employee_id, role_id) VALUES ((SELECT '.
-					'employee_id FROM "Employee" WHERE user_id = $1 ORDER BY "date" desc limit 1), $2)', 
-				array($userId, $roleId));
+		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Role" (employee_id, role_id) VALUES ($1, $2)', 
+				array($employeeId, $roleId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запись новой роли пользователя. ".
 					pg_last_error($this->dbConnect));
@@ -770,11 +804,10 @@ class Model_PostgreSQLOperations
 	}
 	
 	/** Удаление роли пользователя.*/
-	public function deleteRole($userId)
+	public function deleteRole($employeeId)
 	{
-		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Role" WHERE employee_id = (SELECT '.
-					'employee_id FROM "Employee" WHERE user_id = $1 ORDER BY "date" desc limit 1)',
-				array($userId));
+		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Role" WHERE employee_id = $1',
+				array($employeeId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить удаление роли пользователя. ".
 					pg_last_error($this->dbConnect));
