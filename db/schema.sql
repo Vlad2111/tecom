@@ -27,6 +27,7 @@ CREATE TABLE "Employee" (
     date timestamp without time zone,
     employee_id integer ,
     user_id character varying(100),
+	user_name character varying(150),
     department_id integer,
     CONSTRAINT employee_id_date_pk PRIMARY KEY (date, employee_id),
 	CONSTRAINT user_id_date_unique UNIQUE (date, user_id),

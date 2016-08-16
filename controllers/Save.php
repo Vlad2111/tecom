@@ -26,8 +26,6 @@ Class Controller_save Extends Controller_Base {
 			if ($registry['date']){
 				$model = new Model_PostgreSQLOperations();
 				$model->connect();
-				$ldap = new LdapOperations();
-				$ldap->connect();
 				switch($registry['GET']['content']){
 					case 'Department':
 						if($registry['GET']['action']=='New'){
@@ -39,20 +37,34 @@ Class Controller_save Extends Controller_Base {
 						}
 						break;
 					case 'Employee':
+						$ldap = new LdapOperations();
+						$ldap->connect();
 						$rows = $ldap->getLDAPAccountNamesByPrefix($registry['GET']['newLogin']);
 						if (count($rows)>1){
 							$this->template->vars('rows', $rows);
 							$this->template->view('selectLoginInLDAP');
 						}else{
 							if($registry['GET']['action']=='New'){
-								$model->newEmployee($registry['date'], $registry['GET']['newLogin'], $registry['GET']['newDepartmwent']);
+								$userName = $rows['0']['sn'].' '.$rows['0']['givenName'];
+								$userLogin = $rows['0']['sAMAccountName'];
+								$model->newEmployee($registry['date'], $userLogin, $userName, $registry['GET']['newDepartmwent']);
 							}
 							if($registry['GET']['action']=='Edit'){
-								$model->changeEmployeeInfo($registry['GET']['editId'], $registry['date'], $registry['GET']['newLogin'],
-									$registry['GET']['newDepartmwent']);
-								$registry['newLoginEmpForEmp']=$registry['GET']['newLogin'];
-								$names = $ldap->getLDAPAccountNamesByPrefix($registry['newLoginEmpForEmp']);
-								$registry['newNameEmpForEmp'] = $names['0']['sn'].' '.$names['0']['givenName'];
+								$userName = $rows['0']['sn'].' '.$rows['0']['givenName'];
+								$userLogin = $rows['0']['sAMAccountName'];
+								$idNameDepartment = explode('*-*', $registry['GET']['newDepartmwent']);
+								if($idNameDepartment['1']!=null){
+									$departmentId=$idNameDepartment['0'];
+									$departmentName=$idNameDepartment['1'];
+								}else{
+									$departmentId=$registry['GET']['newDepartmwent'];
+								}
+								$model->changeEmployeeInfo($registry['GET']['editId'], $registry['date'], $userLogin, 
+										$userName, $departmentId);
+								$registry['newLoginEmpForEmp']=$userLogin;
+								$registry['newNameEmpForEmp']=$userName;
+								$registry['newIdDepForEmp']=$departmentId;
+								$registry['newNameDepForEmp']=$departmentName;
 							}
 							$rowsEmployee = $model->getEmployeeNames($registry['date']);
 							if($rowsEmployee!=null){
@@ -75,8 +87,17 @@ Class Controller_save Extends Controller_Base {
 							$model->newProject($registry['date'], $registry['GET']['newName'], $registry['GET']['newDepartmwent']);
 						}
 						if($registry['GET']['action']=='Edit'){
+							$idNameDepartment = explode('*-*', $registry['GET']['newDepartmwent']);
+							if($idNameDepartment['1']!=null){
+								$departmentId=$idNameDepartment['0'];
+								$departmentName=$idNameDepartment['1'];
+							}else{
+								$departmentId=$registry['GET']['newDepartmwent'];
+							}
 							$model->changeProjectNameAndDepartmentId($registry['GET']['editId'], $registry['date'], 
-								$registry['GET']['newName'], $registry['GET']['newDepartmwent']);
+								$registry['GET']['newName'], $departmentId);
+							$registry['newIdDepForPro']=$departmentId;
+							$registry['newNameDepForPro']=$departmentName;
 						}
 						break;
 					case 'Percent':
@@ -105,13 +126,9 @@ Class Controller_save Extends Controller_Base {
 									$rows1[$i]['employee_id']=null;
 									$rows1[$i]['user_id']=null;
 									$rows1[$i]['user_name']=null;
-								}else{
-									$names = $ldap->getLDAPAccountNamesByPrefix($rows1[$i]['user_id']);
-									$rows1[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
-								}
+							}
 								$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
 							}
-							$this->template->vars('rows', $rows);
 						}else{
 							for ($i=0; $i<count($rows1);$i++){
 								if ($rows2[$i]==null){
@@ -119,34 +136,35 @@ Class Controller_save Extends Controller_Base {
 									$rows2[$i]['project_name']=null;
 								}
 								$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
-								$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
-								$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
 							}
-							$this->template->vars('rows', $rows);
 						}
 					}else{
 						if($rows1!=null){
 							$rows=$rows1;
-							for ($i=0; $i<count($rows);$i++){
-								$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
-								$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
-								$this->template->vars('rows', $rows);
-							}
-						}else{
-							if($rows2!=null){
-								$rows=$rows1;
-								$this->template->vars('rows', $rows);
-							}
+						}
+						if($rows2!=null){
+							$rows=$rows1;
 						}
 					}
+					$this->template->vars('rows', $rows);
 					$this->template->view('Department');
 				}
 				if($registry['GET']['lastPage']=='Employee'){
 					$rows = $model->getDepartmentNames($registry['date']);
 					$registry['selectDepartment'] = $rows;
-					$rows = $model->getProjectNames($registry['date']);
-					$registry['selectProject'] = $rows;
-					$rows = $model->getEmployeeInfo($registry['GET']['employeeId'], $registry['date']);
+					if($registry['newIdDepForEmp']!=null){
+						$rows = $model->getProjectNamesForDepartment($registry['newIdDepForEmp'], $registry['date']);
+						$registry['selectProject'] = $rows;
+						$rows = $model->getProjectNamesNotForDepartment($registry['newIdDepForEmp'], $registry['date']);
+						$registry['selectProjectNot'] = $rows;
+						$rows = $model->getEmployeeInfo($registry['newIdDepForEmp'], $registry['date']);
+					}else{
+						$rows = $model->getProjectNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
+						$registry['selectProject'] = $rows;
+						$rows = $model->getProjectNamesNotForDepartment($registry['GET']['departmentId'], $registry['date']);
+						$registry['selectProjectNot'] = $rows;
+						$rows = $model->getEmployeeInfo($registry['GET']['employeeId'], $registry['date']);
+					}
 					$employeePercentSum = 0;
 					for ($i=0; $i<count($rows); $i++){
 						$employeePercentSum = $employeePercentSum + $rows[$i]['time'];
@@ -156,22 +174,20 @@ Class Controller_save Extends Controller_Base {
 					$this->template->view('Employee');
 				}
 				if($registry['GET']['lastPage']=='Project'){
-					$rows = $model->getEmployeeNames($registry['date']);
-					if($rows!=null){
-						for ($i=0; $i<count($rows);$i++){
-							$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
-							$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
-						}
-					}
-					$registry['selectEmployee'] = $rows;
 					$rows = $model->getDepartmentNames($registry['date']);
 					$registry['selectDepartment'] = $rows;
-					$rows = $model->getEployeeNamesAndPercentsForProject($registry['GET']['projectId'], $registry['date']);
-					if($rows!=null){
-						foreach ($rows as $key=>$arr){
-							$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
-							$rows[$key]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
-						}
+					if($registry['newIdDepForPro']!=null){
+						$rows = $model->getEmployeeNamesForDepartment($registry['newIdDepForPro'], $registry['date']);
+						$registry['selectEmployee'] = $rows;
+						$rows = $model->getEmployeeNamesNotForDepartment($registry['newIdDepForPro'], $registry['date']);
+						$registry['selectEmployeeNot'] = $rows;
+						$rows = $model->getEployeeNamesAndPercentsForProject($registry['newIdDepForPro'], $registry['date']);
+					}else{
+						$rows = $model->getEmployeeNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
+						$registry['selectEmployee'] = $rows;
+						$rows = $model->getEmployeeNamesNotForDepartment($registry['GET']['departmentId'], $registry['date']);
+						$registry['selectEmployeeNot'] = $rows;
+						$rows = $model->getEployeeNamesAndPercentsForProject($registry['GET']['projectId'], $registry['date']);
 					}
 					$this->template->vars('rows', $rows);
 					$this->template->view('Project');
@@ -187,12 +203,6 @@ Class Controller_save Extends Controller_Base {
 							$rows = $model->getDepartmentNames($registry['date']);
 							$registry['selectDepartment'] = $rows;
 							$rows = $model->getEmployeeNames($registry['date']);
-							if($rows!=null){
-								foreach ($rows as $key=>$arr){
-									$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
-									$rows[$key]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
-								}
-							}
 							$this->template->vars('rows', $rows);
 							$this->template->view('listEmployees');
 							break;

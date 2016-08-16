@@ -52,7 +52,7 @@
 										{foreach from=$array item=foo}
 										
 											<tr>
-												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&employeeLogin={$foo.user_id}&departmentId={$foo.department_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
+												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&employeeLogin={$foo.user_id}&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
 												<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
 												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.user_name}" data-lastlogin="{$foo.user_id}" data-countselect="{$countselect}" data-departmentid="{$foo.department_id}" data-editid="{$foo.employee_id}" data-target="#employeeModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a></td>
 												<td><a type="button" class="btn btn-md" href="/index.php?route=list&content=Employee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&employeeId={$foo.employee_id}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
@@ -139,7 +139,7 @@
 					document.getElementById('editId').value = editId;
 					document.getElementById('action').value = action;
 					for (var i = 0; i < countSelect; i++) {
-					var val = document.getElementById('selectId').options[i].value;
+						var val = document.getElementById('selectId').options[i].value;
 						if (val == departmentId){
 							document.getElementById('selectId').options[i].selected=true;
 						}else{
@@ -155,9 +155,8 @@
 					document.getElementById('loginEmployee').value = null;
 					document.getElementById('editId').value = null;
 					document.getElementById('action').value = action;
-					for (var i = 0; i < countSelect; i++) {
-						document.getElementById('selectId').options[i].selected=false;
-					}
+					var n = document.getElementById('selectId').options.selectedIndex;
+					document.getElementById('selectId').options[n].selected=false;
 				}
 				$(function () {
 					$(".select2").select2({

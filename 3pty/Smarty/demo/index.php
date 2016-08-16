@@ -87,41 +87,61 @@ if ($name != 'authorization'){
 			if (($registry['newLoginEmpForEmp']!=null)AND($registry['newNameEmpForEmp']!=null)){
 				$smarty->assign('employeeLogin', $registry['newLoginEmpForEmp']);
 				$smarty->assign('employeeName', $registry['newNameEmpForEmp']);
+				$smarty->assign('departmentId', $registry['newIdDepForEmp']);
+				$smarty->assign('departmentName', $registry['newNameDepForEmp']);
 			}else{
 				$smarty->assign('employeeLogin', $registry['GET']['employeeLogin']);
 				$smarty->assign('employeeName', $registry['GET']['employeeName']);
+				$smarty->assign('departmentId', $registry['GET']['departmentId']);
+				$smarty->assign('departmentName', $registry['GET']['departmentName']);
 			}
 			$smarty->assign('employeeId', $registry['GET']['employeeId']);
 			$smarty->assign('employeePercent', $registry['employeePercent']);
-			$smarty->assign('departmentId', $registry['GET']['departmentId']);
 			$smarty->assign('array', $$key);
 			$smarty->assign('select', $registry['selectDepartment']);
 			$smarty->assign('countselect', count($registry['selectDepartment']));
 			$smarty->assign('selectPro', $registry['selectProject']);
-			$smarty->assign('countselectPro', count($registry['selectProject']));
+			$smarty->assign('selectProNot', $registry['selectProjectNot']);
+			$smarty->assign('countselectPro', count($registry['selectProject'])+count($registry['selectProjectNot']));
 			$header = 'Сотрудник: '. $registry['GET']['employeeName'];
 			break;
 		case 'Project':
-			$smarty->assign('projectName', $registry['GET']['projectName']);
+			if (($registry['newIdDepForPro']!=null)AND($registry['newNameDepForPro']!=null)){
+				$smarty->assign('departmentId', $registry['newIdDepForPro']);
+				$smarty->assign('departmentName', $registry['newNameDepForPro']);
+			}else{
+				$smarty->assign('departmentId', $registry['GET']['departmentId']);
+				$smarty->assign('departmentName', $registry['GET']['departmentName']);
+			}
+			if($registry['GET']['newName']!=null){
+				$smarty->assign('projectName', $registry['GET']['newName']);
+			}else{
+				$smarty->assign('projectName', $registry['GET']['projectName']);
+			}
 			$smarty->assign('projectId', $registry['GET']['projectId']);
-			$smarty->assign('departmentId', $registry['GET']['departmentId']);
 			$smarty->assign('array', $$key);
 			$smarty->assign('select', $registry['selectDepartment']);
 			$smarty->assign('countselect', count($registry['selectDepartment']));
 			$smarty->assign('selectEmp', $registry['selectEmployee']);
-			$smarty->assign('countselectEmp', count($registry['selectEmployee']));
+			$smarty->assign('selectEmpNot', $registry['selectEmployeeNot']);
+			$smarty->assign('countselectEmp', count($registry['selectEmployee'])+count($registry['selectEmployeeNot']));
 			$header = 'Проект: '. $registry['GET']['projectName'];
 			break;
 		case 'selectLoginInLDAP':
 			$smarty->assign('array', $$key);
 			$smarty->assign('action', $registry['GET']['action']);
-			$smarty->assign('lastPage', $registry['GET']['lastPage']);
-			if($registry['GET']['lastPage']=='Department'){
-				$smarty->assign('departmentName', $registry['GET']['departmentName']);
-				$smarty->assign('departmentId', $registry['GET']['departmentId']);
-			}
-			if($registry['GET']['lastPage']=='Employee'){
-				$smarty->assign('employeeId', $registry['GET']['employeeId']);
+			if ($registry['GET']['lastPage']!=null){
+				$smarty->assign('lastPage', $registry['GET']['lastPage']);
+				if($registry['GET']['lastPage']=='Department'){
+					$smarty->assign('departmentName', $registry['GET']['departmentName']);
+					$smarty->assign('departmentId', $registry['GET']['departmentId']);
+				}
+				if($registry['GET']['lastPage']=='Employee'){
+					$smarty->assign('employeeId', $registry['GET']['employeeId']);
+				}
+			}else{
+				$smarty->assign('lastPage', 'list');
+				$smarty->assign('content', 'Department');
 			}
 			$smarty->assign('editId', $registry['GET']['editId']);
 			$smarty->assign('newDepartmwent', $registry['GET']['newDepartmwent']);
@@ -131,6 +151,9 @@ if ($name != 'authorization'){
 				$smarty->assign('newDepartmwent', $registry['departmwent']);
 			}
 			$header = 'Список Логинов из LDAP';
+			break;
+		case 'Role':
+			$header = 'Пользователи и Роли';
 			break;
 		default:
 			$header = 'Unknown Page';

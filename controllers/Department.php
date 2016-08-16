@@ -45,8 +45,6 @@ Class Controller_Department Extends Controller_Base {
 				$registry['selectDepartment'] = $rows;
 				$rows1 = $model->getEmployeeNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
 				$rows2 = $model->getProjectNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
-				$ldap = new LdapOperations();
-				$ldap->connect();
 				if(($rows1!=null)AND($rows2!=null)){
 					if (count($rows1) < count($rows2)){
 						for ($i=0; $i<count($rows2);$i++){
@@ -54,13 +52,9 @@ Class Controller_Department Extends Controller_Base {
 								$rows1[$i]['employee_id']=null;
 								$rows1[$i]['user_id']=null;
 								$rows1[$i]['user_name']=null;
-							}else{
-								$names = $ldap->getLDAPAccountNamesByPrefix($rows1[$i]['user_id']);
-								$rows1[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
 							}
 							$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
 						}
-						$this->template->vars('rows', $rows);
 					}else{
 						for ($i=0; $i<count($rows1);$i++){
 							if ($rows2[$i]==null){
@@ -68,26 +62,17 @@ Class Controller_Department Extends Controller_Base {
 								$rows2[$i]['project_name']=null;
 							}
 							$rows[$i] = array_merge($rows1[$i], $rows2[$i]);
-							$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
-							$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
 						}
-						$this->template->vars('rows', $rows);
 					}
 				}else{
 					if($rows1!=null){
 						$rows=$rows1;
-						for ($i=0; $i<count($rows);$i++){
-							$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
-							$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
-							$this->template->vars('rows', $rows);
-						}
-					}else{
-						if($rows2!=null){
-							$rows=$rows1;
-							$this->template->vars('rows', $rows);
-						}
+					}
+					if($rows2!=null){
+						$rows=$rows1;
 					}
 				}
+				$this->template->vars('rows', $rows);
 				$this->template->view('Department');
 			}
 		}

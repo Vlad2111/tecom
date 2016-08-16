@@ -38,7 +38,8 @@
 								<h3 class="box-title" style="font-size:23px">Сотрудник: {$employeeName}
 									<a type="button" class="btn btn-md" data-toggle="modal" data-departmentid="{$departmentId}" data-countselect="{$countselect}" data-target="#employeeModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a>
 									<a type="button" class="btn btn-md" href="/index.php?route=list&content=Employee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&employeeId={$employeeId}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a>
-								</h3>		
+								</h3>
+								<p>(Отдел: {$departmentName})</p>
 							</div>
 							<div class="box-body">
 								<table id="employee" class="table table-bordered table-striped">
@@ -56,7 +57,7 @@
 									{foreach from=$array item=foo}
 										
 										<tr>
-											<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&departmentId={$foo.department_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
+											<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
 											<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
 											<td>{$foo.time}%</td>
 											<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lasttime="{$foo.time}" data-countselect="{$countselectPro}" data-projectid="{$foo.project_id}" data-target="#timeDistModal" title="Редактировать Данные Распределения Времени"><i class="glyphicon glyphicon-pencil"></i></a></td>
@@ -93,7 +94,7 @@
 										<select name="newDepartmwent" class="form-control select2" id="selectId" style="width: 100%;">
 											{foreach from=$select item=foo}
 											
-											<option value="{$foo.department_id}">{$foo.department_name}</option>
+											<option value="{$foo.department_id}*-*{$foo.department_name}">{$foo.department_name}</option>
 											{/foreach}
 										</select>
 									</div>
@@ -110,7 +111,6 @@
 										<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 										<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										<input name="employeeId" type="hidden" value="{$employeeId}">
-										<input name="departmentId" type="hidden" value="{$departmentId}">
 									</div>
 									<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
 									<button type="submit" class="btn btn-primary">Сохранить</button>
@@ -139,6 +139,10 @@
 											
 											<option value="{$foo.project_id}">{$foo.project_name}</option>
 											{/foreach}
+											{foreach from=$selectProNot item=foo}
+											
+											<option value="{$foo.project_id}">{$foo.project_name}</option>
+											{/foreach}
 										</select>
 									</div>
 									<div class="form-group">
@@ -161,6 +165,8 @@
 										<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										<input name="employeeId" type="hidden" value="{$employeeId}">
 										<input name="employeeLogin" type="hidden" value="{$employeeLogin}">
+										<input name="departmentId" type="hidden" value="{$departmentId}">
+										<input name="departmentName" type="hidden" value="{$departmentName}">
 									</div>
 									<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
 									<button type="submit" class="btn btn-primary">Сохранить</button>
@@ -185,7 +191,8 @@
 				var countSelect = button.data('countselect');
 				for (var i = 0; i < countSelect; i++) {
 					var val = document.getElementById('selectId').options[i].value;
-					if (val == departmentId){
+					valArr = val.split('*-*')
+					if (valArr[0] == departmentId){
 						document.getElementById('selectId').options[i].selected=true;
 					}else{
 						document.getElementById('selectId').options[i].selected=false;

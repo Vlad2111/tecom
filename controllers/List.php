@@ -27,12 +27,12 @@ Class Controller_List Extends Controller_Base {
 			$role = $model->getRoleName($registry['POST']['login']);
 			$registry['roleName']=$role;
 		}
-		$model = new Model_PostgreSQLOperations();
-		$model->connect();
 		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
 			$registry['roleName']=$registry['GET']['roleUser'];
 			$registry['userName']=$registry['GET']['nameUser'];
 		}
+		$model = new Model_PostgreSQLOperations();
+		$model->connect();
 		if(($registry['roleName']!=null)AND($registry['userName']!=null)){
 			if (($registry['GET']['dateFrom']!=null)AND($registry['GET']['dateTo']!=null)){
 				$dayMonthYear = explode('/', $registry['GET']['dateFrom']);
@@ -54,22 +54,28 @@ Class Controller_List Extends Controller_Base {
 				}
 			}
 			if ($registry['date']!=null){
-				switch($registry['GET']['content']){
-					case 'Department':
-						if($registry['GET']['action']=='remove'){
-							$model->deleteDepartment($registry['date'], $registry['GET']['departmentId']);
-						}
-						$rows = $model->getDepartmentNames($registry['date']);
-						$this->template->vars('rows', $rows);
-						$this->template->view('listDepartments');
-						break;
-					case 'Employee':
-						$ldap = new LdapOperations();
-						$ldap->connect();
-						$rowsEmployee = $model->getEmployeeNames($registry['date']);
-						if($rowsEmployee!=null){
-							foreach ($rowsEmployee as $key=>$arr){
-								$rows = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
+				$rowsEmployee = $model->getEmployeeNames($registry['date']);
+				if($rowsEmployee['user_name']==null){
+					$ldap = new LdapOperations();
+					$ldap->connect();
+					if($rowsEmployee!=null){
+						foreach ($rowsEmployee as $key=>$arr){
+							$rows = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
+							if($arr['user_name']==null){
+								if (count($rows)>1){
+									$registry['departmwent']=$arr['department_id'];
+									$registry['editId']=$arr['employee_id'];
+									$registry['actionEmployeeFalse']=true;
+									$this->template->vars('rows', $rows);
+									$this->template->view('selectLoginInLDAP');
+									break;
+								}else{
+									$rowsEmployee[$key]['user_name'] = $rows['0']['sn'].' '.$rows['0']['givenName'];
+									$model->changeEmployeeInfo($rowsEmployee[$key]['employee_id'], $registry['date'], 
+											$rowsEmployee[$key]['user_id'], $rowsEmployee[$key]['user_name'], 
+												$rowsEmployee[$key]['department_id']);
+								}
+							}else{
 								if (count($rows)>1){
 									$registry['departmwent']=$arr['department_id'];
 									$registry['editId']=$arr['employee_id'];
@@ -80,18 +86,24 @@ Class Controller_List Extends Controller_Base {
 								}
 							}
 						}
+					}
+				}
+				switch($registry['GET']['content']){
+					case 'Department':
+						if($registry['GET']['action']=='remove'){
+							$model->deleteDepartment($registry['date'], $registry['GET']['departmentId']);
+						}
+						$rows = $model->getDepartmentNames($registry['date']);
+						$this->template->vars('rows', $rows);
+						$this->template->view('listDepartments');
+						break;
+					case 'Employee':
 						if($registry['GET']['action']=='remove'){
 							$model->deleteEmployee($registry['date'], $registry['GET']['employeeId']);
 						}
 						$rows = $model->getDepartmentNames($registry['date']);
 						$registry['selectDepartment'] = $rows;
 						$rows = $model->getEmployeeNames($registry['date']);
-						if($rows!=null){
-							foreach ($rows as $key=>$arr){
-								$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
-								$rows[$key]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
-							}
-						}
 						$this->template->vars('rows', $rows);
 						$this->template->view('listEmployees');
 						break;

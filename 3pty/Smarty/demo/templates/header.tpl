@@ -33,19 +33,11 @@
 					<li class="{$status2}"><a href="/index.php?route=list&content=Employee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список сотрудников</span></a></li>
 					<li class="{$status3}"><a href="/index.php?route=list&content=Project&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список проектов</span></a></li>
 					<li><a data-toggle="modal" data-target="#cloneInfo" title="Копирование Информации Базы Данных из Одного Месяца в Другой"><i class="fa fa-clone text-blue"></i><span>Новый месяц</span></a></li>
-					{if $role="Администратор"}
-					<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-secret text-blue"></i><span>Пользователи и Роли</span></a>
-						<ul class="treeview-menu">
-							<li><a><b>Роли:</b></a></li>
-							<li><a href="#">Назначить роль</a></li>
-							<li><a href="#">Изменить роль</a></li>
-							<li><a href="#">Удалить роль</a></li>
-						</ul>
-					</li>
+					{if $role=="Администратор"}
+						<li class="{$status4}"><a href="/index.php?route=role&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-user-secret text-blue"></i><span>Пользователи и Роли</span></a></li>
 					{/if}
 					<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-file text-blue"></i><span>Отчеты</span></a>
+						<a class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-file text-blue"></i><span>Отчеты</span></a>
 						<ul class="treeview-menu">
 							<li><a href="#">Список отделов</a></li>
 							<li><a href="#">Список сотрудников</a></li>

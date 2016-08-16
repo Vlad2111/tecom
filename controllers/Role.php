@@ -7,11 +7,11 @@
 * Все права защищены
 */
 /**
-Класс контроллер, информация о сотруднике.
+Класс контроллер, список.
 
 @author ershov.v
 */
-Class Controller_Employee Extends Controller_Base {
+Class Controller_Role Extends Controller_Base {
 
 	public $layouts = "index";
 	public $log;
@@ -35,23 +35,17 @@ Class Controller_Employee Extends Controller_Base {
 			if($registry['date']!=null){
 				$model = new Model_PostgreSQLOperations();
 				$model->connect();
+				if($registry['GET']['action']=='create'){
+				
+				}
+				if($registry['GET']['action']=='edit'){
+				
+				}
 				if($registry['GET']['action']=='remove'){
-					$model->deleteTimeDistribution($registry['date'], $registry['GET']['projectId'], $registry['GET']['employeeId']);
+				
 				}
-				$rows = $model->getDepartmentNames($registry['date']);
-				$registry['selectDepartment'] = $rows;
-				$rows = $model->getProjectNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
-				$registry['selectProject'] = $rows;
-				$rows = $model->getProjectNamesNotForDepartment($registry['GET']['departmentId'], $registry['date']);
-				$registry['selectProjectNot'] = $rows;
-				$rows = $model->getEmployeeInfo($registry['GET']['employeeId'], $registry['date']);
-				$employeePercentSum = 0;
-				for ($i=0; $i<count($rows); $i++){
-					$employeePercentSum = $employeePercentSum + $rows[$i]['time'];
-				}
-				$registry['employeePercent'] = $employeePercentSum;
 				$this->template->vars('rows', $rows);
-				$this->template->view('Employee');
+				$this->template->view('Role');
 			}
 		}
 	}

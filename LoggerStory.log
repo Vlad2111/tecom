@@ -1407,3 +1407,88 @@ DETAIL:  Key (date, project_id, employee_id)=(2016-08-01 00:00:00, 1, 2) already
 2016-08-15T14:34:24+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
 2016-08-15T14:38:19+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
 2016-08-15T14:38:58+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T09:24:16+00:00 [ERROR] [Router->start] [92] Не существует класс контроллера: Controller_index
+2016-08-16T09:24:24+00:00 [ERROR] [Router->start] [92] Не существует класс контроллера: Controller_index
+2016-08-16T09:25:53+00:00 [ERROR] [Router->start] [92] Не существует класс контроллера: Controller_index
+2016-08-16T09:26:53+00:00 [ERROR] [Router->start] [92] Не существует класс контроллера: Controller_index
+2016-08-16T09:58:55+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:05:28+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:05:35+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:14:44+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T10:14:51+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T10:18:53+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T10:24:28+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T10:24:32+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T10:28:12+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T10:28:12+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:28:34+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T10:28:34+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:34:29+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T10:34:29+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:34:46+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T10:34:46+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:35:08+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T10:35:08+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:35:27+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T10:35:27+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:37:37+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T10:37:37+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:40:18+00:00 [ERROR] [Model_PostgreSQLOperations->newEmployee] [572] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-08-01 00:00:00, 4) already exists.
+2016-08-16T10:40:41+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T10:40:41+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:40:43+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T10:40:43+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T10:41:06+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T11:13:36+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:14:02+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:14:19+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:14:54+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T11:15:00+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:15:04+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:15:11+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:15:58+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:21:00+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:21:12+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T11:21:14+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:21:24+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:22:37+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:24:02+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:24:34+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:24:44+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:30:29+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:32:02+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T11:32:04+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:32:26+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T11:32:53+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T11:34:37+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T11:34:40+00:00 [ERROR] [Model_PostgreSQLOperations->getEmployeeNamesForDepartment] [183] Не удается выполнить запрос на получение списка сотрудников отдела. ERROR:  invalid input syntax for integer: ""
+2016-08-16T11:36:20+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:36:25+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T11:36:28+00:00 [ERROR] [Model_PostgreSQLOperations->getEmployeeNamesForDepartment] [183] Не удается выполнить запрос на получение списка сотрудников отдела. ERROR:  invalid input syntax for integer: ""
+2016-08-16T11:37:29+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-16T11:53:53+00:00 [ERROR] [Model_PostgreSQLOperations->changeEmployeeInfo] [503] Не удается выполнить обновление информации о сотруднике. ERROR:  insert or update on table "Employee" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-16T11:54:26+00:00 [ERROR] [Model_PostgreSQLOperations->changeEmployeeInfo] [503] Не удается выполнить обновление информации о сотруднике. ERROR:  insert or update on table "Employee" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-16T11:55:07+00:00 [ERROR] [Model_PostgreSQLOperations->changeEmployeeInfo] [503] Не удается выполнить обновление информации о сотруднике. ERROR:  insert or update on table "Employee" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-16T11:56:46+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T11:57:28+00:00 [ERROR] [Model_PostgreSQLOperations->changeProjectNameAndDepartmentId] [470] Не удается выполнить обновление названия проекта и привязки его к отделу. ERROR:  invalid input syntax for integer: "0*-*Отдел33"
+2016-08-16T12:05:36+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-16T12:08:01+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-16T12:08:05+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T12:08:16+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T12:08:22+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T12:08:24+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-16T12:08:25+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T12:09:17+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-16T12:09:19+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T12:09:39+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем actionEmployeeFalse пуст.
+2016-08-16T12:09:39+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForEmp пуст.
+2016-08-16T12:09:39+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-16T12:10:42+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-16T12:14:04+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T12:14:20+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T12:14:37+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-16T12:19:32+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.

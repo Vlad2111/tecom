@@ -40,23 +40,13 @@ Class Controller_Project Extends Controller_Base {
 				if($registry['GET']['action']=='remove'){
 					$model->deleteTimeDistribution($registry['date'], $registry['GET']['projectId'], $registry['GET']['employeeId']);
 				}
-				$rows = $model->getEmployeeNames($registry['date']);
-				if($rows!=null){
-					for ($i=0; $i<count($rows);$i++){
-						$names = $ldap->getLDAPAccountNamesByPrefix($rows[$i]['user_id']);
-						$rows[$i]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
-					}
-				}
-				$registry['selectEmployee'] = $rows;
 				$rows = $model->getDepartmentNames($registry['date']);
 				$registry['selectDepartment'] = $rows;
+				$rows = $model->getEmployeeNamesForDepartment($registry['GET']['departmentId'], $registry['date']);
+				$registry['selectEmployee'] = $rows;
+				$rows = $model->getEmployeeNamesNotForDepartment($registry['GET']['departmentId'], $registry['date']);
+				$registry['selectEmployeeNot'] = $rows;
 				$rows = $model->getEployeeNamesAndPercentsForProject($registry['GET']['projectId'], $registry['date']);
-				if($rows!=null){
-					foreach ($rows as $key=>$arr){
-						$names = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
-						$rows[$key]['user_name'] = $names['0']['sn'].' '.$names['0']['givenName'];
-					}
-				}
 				$this->template->vars('rows', $rows);
 				$this->template->view('Project');
 			}
