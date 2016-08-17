@@ -21,19 +21,32 @@ Class Router {
 	function __construct($registry) {
 		$this->log = Logger::getLogger(__CLASS__);
 		$this->registry = $registry;
+		$this->setPath();
+		$this->setConfigLogger();
 	}
 	
 	/** Получение пути к контроллерам.*/
-	function setPath($path) {
+	function setPath() {
+		$configForController = Configuration::instance()->config;
+		$path = $configForController['pathController'];
 		$path = rtrim($path, '/\\');
         $path .= '/';
-        if (is_dir($path) == false) {
-			$this->log->error('Не правильный путь к контроллерам: '.$path.'');
-			throw new Exception ('Не правильный путь к контроллерам: '.$path.'');
-        }
         $this->path = $path;
-	}	
+	}
 	
+	/** Получение пути к контроллерам.*/
+	function setConfigLogger() {
+		$configForLogger = Configuration::instance()->config;
+		$osType = PHP_OS;
+		if ($osType = 'WINNT') {
+			Logger::configure ( $_SERVER['DOCUMENT_ROOT']."/../".$configForLogger['loggerConfigWindows'] );
+		} else {
+			if ($osType = 'LINUX') {
+				Logger::configure ( $_SERVER['DOCUMENT_ROOT']."/../".$configForLogger['loggerConfigLinux'] );
+			}
+		}
+	}
+
 	/** Подключение контроллера.*/
 	private function getController(&$file, &$controller, &$action, &$args) {
         $route = (empty($_GET['route'])) ? '' : $_GET['route'];
@@ -84,9 +97,11 @@ Class Router {
         }
 		
         include ($file);
-
+        $this->registry['GET']=$_GET;
+        $this->registry['POST']=$_POST;
         $class = 'Controller_'.$controller;
         $controller = new $class($this->registry);
+       
 		
         if (is_callable(array($controller, $action)) == false) {
 			$this->log->error('Не существует класс контроллера: '.$class.'');

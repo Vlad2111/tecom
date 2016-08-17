@@ -61,7 +61,7 @@
 										{/if}
 										</tbody>
 									</table>
-								<a type="button" data-toggle="modal" data-action="New" data-target="#employeeModal" class="btn btn-md" title="Добавить Сотрудника"><i class="glyphicon glyphicon-plus"></i></a>
+								<a type="button" data-toggle="modal" data-countselect="{$countselect}" data-action="New" data-target="#employeeModal" class="btn btn-md" title="Добавить Сотрудника"><i class="glyphicon glyphicon-plus"></i></a>
 								</div>
 						</div>
 					</div>
@@ -155,8 +155,9 @@
 					document.getElementById('loginEmployee').value = null;
 					document.getElementById('editId').value = null;
 					document.getElementById('action').value = action;
-					var n = document.getElementById('selectId').options.selectedIndex;
-					document.getElementById('selectId').options[n].selected=false;
+					for (var i = 0; i < countSelect; i++) {
+						document.getElementById('selectId').options[i].selected=false;
+					}	
 				}
 				$(function () {
 					$(".select2").select2({

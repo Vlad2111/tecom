@@ -1,7 +1,7 @@
 ﻿<?php
-include_once 'dao/Model_PostgreSQLOperations.php';
+include_once 'dao/PostgreSQLOperations.php';
 
-$db = new Model_PostgreSQLOperations();
+$db = new PostgreSQLOperations();
 $db->connect();
 
 echo "getRoleName('user')\n";

@@ -25,19 +25,10 @@ class SiteAutoloader
 		if((empty($expArr[1])) AND ($expArr[0] == 'Logger')){
 			$folder = '3pty/apache-log4php-2.3.0';
 		}else{
-			if(empty($expArr[1]) OR $expArr[1] == 'Base'){
+			if((empty($expArr[1])) AND ($expArr[0] == 'PostgreSQLOperations')){
+				$folder = 'src/dao';
+			}else{
 				$folder = 'src';			
-			}else{			
-				switch(strtolower($expArr[0])){
-						
-					case 'model':					
-						$folder = 'src/dao';	
-						break;
-						
-					default:
-						$folder = 'src';
-						break;
-				}
 			}
 		}
 		$file = $folder . '/' . $filename;

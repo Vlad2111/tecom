@@ -33,7 +33,7 @@ Class Controller_Employee Extends Controller_Base {
 				}
 			}
 			if($registry['date']!=null){
-				$model = new Model_PostgreSQLOperations();
+				$model = new PostgreSQLOperations();
 				$model->connect();
 				if($registry['GET']['action']=='remove'){
 					$model->deleteTimeDistribution($registry['date'], $registry['GET']['projectId'], $registry['GET']['employeeId']);

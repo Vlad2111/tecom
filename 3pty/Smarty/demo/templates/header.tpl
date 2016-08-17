@@ -46,7 +46,7 @@
 					</li>
 				</ul>
 				<ul class="sidebar-menu" style="position: fixed; bottom:0;">
-					<li><a class="user"><i class="glyphicon glyphicon-user text-blue" aria-hidden="true"></i><span>Пользователь: <p><b>{$name}</b></p></span></a></li>
+					<li style="width:230px;"><a class="user"><i class="glyphicon glyphicon-user text-blue" aria-hidden="true"></i><span>Пользователь: <p><b>{$name}</b></p></span></a></li>
 					<li><a class="user"><i class="glyphicon glyphicon-briefcase text-blue" aria-hidden="true"></i><span>Роль: <p><b>{$role}</b></p></span></a></li>
 					<li><a class="user" href="/index.php"><i class="glyphicon glyphicon-log-out text-blue" aria-hidden="true"></i> <span>Выход</span></a></li>
 				</ul>

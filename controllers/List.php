@@ -20,18 +20,21 @@ Class Controller_List Extends Controller_Base {
 		if (($registry['POST']['login']!=null)AND($registry['POST']['password']!=null)){
 			$ldap = new LdapOperations();
 			$ldap->connect();
-			$names = $ldap->getLDAPAccountNamesByPrefix($registry['POST']['login']);
-			$registry['userName'] = $names['0']['sn'].' '.$names['0']['givenName'];
-			$model = new Model_PostgreSQLOperations();
-			$model->connect();
-			$role = $model->getRoleName($registry['POST']['login']);
-			$registry['roleName']=$role;
+			$check = $ldap->checkUser($registry['POST']['login'], $registry['POST']['password']);
+			if($check==true){
+				$names = $ldap->getLDAPAccountNamesByPrefix($registry['POST']['login']);
+				$registry['userName'] = $names['0']['sn'].' '.$names['0']['givenName'];
+				$model = new PostgreSQLOperations();
+				$model->connect();
+				$role = $model->getRoleName($registry['POST']['login']);
+				$registry['roleName']=$role;
+			}
 		}
 		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
 			$registry['roleName']=$registry['GET']['roleUser'];
 			$registry['userName']=$registry['GET']['nameUser'];
 		}
-		$model = new Model_PostgreSQLOperations();
+		$model = new PostgreSQLOperations();
 		$model->connect();
 		if(($registry['roleName']!=null)AND($registry['userName']!=null)){
 			if (($registry['GET']['dateFrom']!=null)AND($registry['GET']['dateTo']!=null)){
@@ -121,22 +124,7 @@ Class Controller_List Extends Controller_Base {
 						$header = 'Unknown page';
 						break;
 				}
-			}else{
-				switch($registry['GET']['content']){
-					case 'Department':
-						$this->template->view('listDepartments');
-						break;
-					case 'Employee':
-						$this->template->view('listEmployees');
-						break;
-					case 'Project':
-						$this->template->view('listProjects');
-						break;
-					default:
-						$header = 'Unknown page';
-						break;
-				}
-			}	
+			}
 		}
 	}
 }

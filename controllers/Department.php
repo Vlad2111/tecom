@@ -33,7 +33,7 @@ Class Controller_Department Extends Controller_Base {
 				}
 			}
 			if($registry['date']){
-				$model = new Model_PostgreSQLOperations();
+				$model = new PostgreSQLOperations();
 				$model->connect();
 				if($registry['GET']['action']=='removeEmpl'){
 					$model->deleteEmployee($registry['date'], $registry['GET']['employeeId']);
@@ -69,7 +69,7 @@ Class Controller_Department Extends Controller_Base {
 						$rows=$rows1;
 					}
 					if($rows2!=null){
-						$rows=$rows1;
+						$rows=$rows2;
 					}
 				}
 				$this->template->vars('rows', $rows);

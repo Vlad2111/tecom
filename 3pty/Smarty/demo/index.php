@@ -154,6 +154,7 @@ if ($name != 'authorization'){
 			break;
 		case 'Role':
 			$header = 'Пользователи и Роли';
+			$smarty->assign('status4', 'active');
 			$smarty->assign('array', $$key);
 			$smarty->assign('selectEmp', $registry['selectEmployee']);
 			$smarty->assign('selectRole', $registry['selectRole']);

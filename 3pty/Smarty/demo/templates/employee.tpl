@@ -60,14 +60,14 @@
 											<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
 											<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
 											<td>{$foo.time}%</td>
-											<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lasttime="{$foo.time}" data-countselect="{$countselectPro}" data-projectid="{$foo.project_id}" data-target="#timeDistModal" title="Редактировать Данные Распределения Времени"><i class="glyphicon glyphicon-pencil"></i></a></td>
+											<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lasttime="{$foo.time}" data-countselect="{$countselectPro}" data-projectid="{$foo.project_id}" data-projectname="{$foo.project_name}" data-target="#timeDistModal" title="Редактировать Данные Распределения Времени"><i class="glyphicon glyphicon-pencil"></i></a></td>
 											<td><a type="button" class="btn btn-md" href="/index.php?route=employee&employeeId={$employeeId}&employeeName={$employeeName}&employeeLogin={$employeeLogin}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&projectId={$foo.project_id}" title="Удалить Данные Распределения Времени"><i class="glyphicon glyphicon-trash"></i></a></td>
 										</tr>
 									{/foreach}
 									{/if}
 									</tbody>
 								</table>
-								<a type="button" data-toggle="modal" data-action="New" data-target="#timeDistModal" class="btn btn-md" title="Добавить Распределение Времени"><i class="glyphicon glyphicon-plus"></i></a>
+								<a type="button" data-toggle="modal" data-action="New" ata-countselect="{$countselectPro}" data-target="#timeDistModal" class="btn btn-md" title="Добавить Распределение Времени"><i class="glyphicon glyphicon-plus"></i></a>
 							</div>
 						</div>
 					</div>
@@ -132,19 +132,7 @@
 										<label for="nameEmployee">Сотрудник</label>
 										<input name="employeeName" type="text" class="form-control" id="nameEmployee" value="{$employeeName}" readonly>
 									</div>
-									<div class="form-group">
-										<label>Проект:</label>
-										<select name="projectId" class="form-control select2" id="selectIdPro" style="width: 100%;">
-											{foreach from=$selectPro item=foo}
-											
-											<option value="{$foo.project_id}">{$foo.project_name}</option>
-											{/foreach}
-											{foreach from=$selectProNot item=foo}
-											
-											<option value="{$foo.project_id}">{$foo.project_name}</option>
-											{/foreach}
-										</select>
-									</div>
+									<div class="form-group" id="project"></div>
 									<div class="form-group">
 										<label for="TimeDistr">Время</label>
 										<div class="input-group">
@@ -214,26 +202,24 @@
 				var modal = $(this);
 				var lasttime = button.data('lasttime');
 				var projectId = button.data('projectid');
+				var projectName = button.data('projectname');
 				var countSelectPro = button.data('countselect');
 				if (action == 'Edit'){
 					modal.find('.modal-title').text('Редактировать Данные Распределения Времени');
+					$('#project').html('<label>Проект:</label><input type="text" class="form-control" id="projectName" value="" readonly><input name="projectId" type="hidden" id="projectId" value="" >'); 
+					document.getElementById('projectName').value = projectName;
+					document.getElementById('projectId').value = projectId;
 					document.getElementById('TimeDistr').value = lasttime;
 					document.getElementById('actionPro').value = action;
-					for (var i = 0; i < countSelectPro; i++) {
-					var val = document.getElementById('selectIdPro').options[i].value;
-						if (val == projectId){
-							document.getElementById('selectIdPro').options[i].selected=true;
-						}else{
-							document.getElementById('selectIdPro').options[i].selected=false;
-						}
-					}
 				}
 				if (action == 'New'){
 					modal.find('.modal-title').text('Новое Распределение Времени');
+					$('#project').html('<label>Проект:</label><select name="projectId" class="form-control select2" id="selectIdPro" style="width: 100%;">{foreach from=$selectPro item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}{foreach from=$selectProNot item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}</select>'); 
 					document.getElementById('TimeDistr').value = null;
 					document.getElementById('actionPro').value = action;
-					var n = document.getElementById('selectIdPro').options.selectedIndex;
-					document.getElementById('selectIdPro').options[n].selected=false;
+					for (var i = 0; i < countSelectPro; i++) {
+						document.getElementById('selectIdPro').options[i].selected=false;
+					}
 				}
 				$(function () {
 					$(".select2").select2({

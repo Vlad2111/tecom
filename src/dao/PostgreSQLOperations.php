@@ -11,7 +11,7 @@
 
 @author ershov.v
 */
-class Model_PostgreSQLOperations
+class PostgreSQLOperations
 {
 	private $dbConnect;
 	private $log;
@@ -148,6 +148,32 @@ class Model_PostgreSQLOperations
 		}
 		$departmentNames = pg_fetch_all($result);
 		return $departmentNames;
+	}
+	
+	/** Запрос списка пользователей без роли.*/
+	public function getUserNames(DateTime $date)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT r.employee_id, r.user_id, r.user_name, '.
+				'r.department_id, rd.department_name FROM "Employee" AS r inner join "Departments" '.
+				'AS rd on r.department_id = rd.department_id AND r.date = rd.date WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', r.date)) = $1',	array($date->format("U")));
+	if (!$result) {
+			$this->log->error("Не удается выполнить запрос на получение списка пользователей. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос на получение списка пользователей. ". 
+					pg_last_error($this->dbConnect));
+		}
+		$userNames = pg_fetch_all($result);
+		if($userNames!=null){
+			foreach ($userNames as $key=>$arr){
+				$result = pg_query_params($this->dbConnect, 'SELECT role_id FROM "Role" WHERE employee_id '.
+						'=  $1 ',  array($arr['employee_id']));
+				$userrole = pg_fetch_result($result, 1, 0);($result);
+			}
+		}
+		return $userNames;
 	}
 	
 	/** Запрос списка сотрудников.*/

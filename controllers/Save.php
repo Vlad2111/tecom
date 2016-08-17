@@ -24,7 +24,7 @@ Class Controller_save Extends Controller_Base {
 				$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year'], new DateTimeZone('UTC'));
 			}
 			if ($registry['date']){
-				$model = new Model_PostgreSQLOperations();
+				$model = new PostgreSQLOperations();
 				$model->connect();
 				switch($registry['GET']['content']){
 					case 'Department':
@@ -143,7 +143,7 @@ Class Controller_save Extends Controller_Base {
 							$rows=$rows1;
 						}
 						if($rows2!=null){
-							$rows=$rows1;
+							$rows=$rows2;
 						}
 					}
 					$this->template->vars('rows', $rows);

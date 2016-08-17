@@ -33,7 +33,7 @@ Class Controller_Project Extends Controller_Base {
 				}
 			}
 			if($registry['date']){
-				$model = new Model_PostgreSQLOperations();
+				$model = new PostgreSQLOperations();
 				$model->connect();
 				$ldap = new LdapOperations();
 				$ldap->connect();

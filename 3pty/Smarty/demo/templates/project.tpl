@@ -60,14 +60,14 @@
 											<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&departmentId={$foo.department_id}&departmentName={$foo.department_name}&employeeName={$foo.user_name}&employeeLogin={$foo.user_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
 											<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
 											<td>{$foo.time}%</td>
-											<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lasttime="{$foo.time}" data-countselect="{$countselectEmp}" data-employeeid="{$foo.employee_id}" data-target="#timeDistModal" title="Редактировать Данные Распределения Времени"><i class="glyphicon glyphicon-pencil"></i></a></td>
+											<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lasttime="{$foo.time}" data-countselect="{$countselectEmp}" data-employeeid="{$foo.employee_id}" data-employeename="{$foo.user_name}" data-target="#timeDistModal" title="Редактировать Данные Распределения Времени"><i class="glyphicon glyphicon-pencil"></i></a></td>
 											<td><a type="button" class="btn btn-md" href="/index.php?route=employee&employeeId={$employeeId}&employeeName={$employeeName}&employeeLogin={$employeeLogin}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&projectId={$foo.project_id}" title="Удалить Данные Распределения Времени"><i class="glyphicon glyphicon-trash"></i></a></td>
 										</tr>
 									{/foreach}
 									{/if}
 									</tbody>
 								</table>
-								<a type="button" data-toggle="modal" data-action="New" data-target="#timeDistModal" class="btn btn-md" title="Добавить Распределение Времени"><i class="glyphicon glyphicon-plus"></i></a>
+								<a type="button" data-toggle="modal" data-action="New" data-countselect="{$countselectEmp}" data-target="#timeDistModal" class="btn btn-md" title="Добавить Распределение Времени"><i class="glyphicon glyphicon-plus"></i></a>
 							</div>
 						</div>
 					</div>
@@ -123,19 +123,7 @@
 							</div>
 							<form action="/index.php" method="get">
 								<div class="modal-body">
-									<div class="form-group">
-										<label>Сотрудник:</label>
-										<select name="employeeId" class="form-control select2" id="selectIdEmp" style="width: 100%;">
-											{foreach from=$selectEmp item=foo}
-											
-											<option value="{$foo.employee_id}">{$foo.user_name}</option>
-											{/foreach}
-											{foreach from=$selectEmpNot item=foo}
-											
-											<option value="{$foo.employee_id}">{$foo.user_name}</option>
-											{/foreach}
-										</select>
-									</div>
+									<div class="form-group" id="employee" ></div>
 									<div class="modal-form-group">
 										<label for="nameProject">Проект</label>
 										<input name="projectName" type="text" class="form-control" id="nameProject" value="{$projectName}" readonly>
@@ -208,26 +196,24 @@
 				var modal = $(this);
 				var lasttime = button.data('lasttime');
 				var employeeId = button.data('employeeid');
+				var employeeName = button.data('employeename');
 				var countSelectPro = button.data('countselect');
 				if (action == 'Edit'){
 					modal.find('.modal-title').text('Редактировать Данные Распределения Времени');
+					$('#employee').html('<label>Сотрудник:</label><input type="text" class="form-control" id="employeeName" value="" readonly><input name="employeeId" type="hidden" id="employeeId" value="" >'); 
+					document.getElementById('employeeId').value = employeeId;
+					document.getElementById('employeeName').value = employeeName;
 					document.getElementById('TimeDistr').value = lasttime;
 					document.getElementById('actionPro').value = action;
-					for (var i = 0; i < countSelectPro; i++) {
-					var val = document.getElementById('selectIdEmp').options[i].value;
-						if (val == employeeId){
-							document.getElementById('selectIdEmp').options[i].selected=true;
-						}else{
-							document.getElementById('selectIdEmp').options[i].selected=false;
-						}
-					}
 				}
 				if (action == 'New'){
 					modal.find('.modal-title').text('Новое Распределение Времени');
+					$('#employee').html('<label>Сотрудник:</label><select name="employeeId" class="form-control select2" id="selectIdEmp" style="width: 100%;">{foreach from=$selectEmp item=foo}<option value="{$foo.employee_id}">{$foo.user_name}</option>{/foreach}{foreach from=$selectEmpNot item=foo}<option value="{$foo.employee_id}">{$foo.user_name}</option>{/foreach}</select>'); 
 					document.getElementById('TimeDistr').value = null;
 					document.getElementById('actionPro').value = action;
-					var n = document.getElementById('selectIdEmp').options.selectedIndex;
-					document.getElementById('selectIdEmp').options[n].selected=false;
+					for (var i = 0; i < countSelectPro; i++) {
+						document.getElementById('selectIdEmp').options[i].selected=false;
+					}
 				}
 				$(function () {
 					$(".select2").select2({

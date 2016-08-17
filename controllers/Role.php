@@ -33,7 +33,7 @@ Class Controller_Role Extends Controller_Base {
 				}
 			}
 			if($registry['date']!=null){
-				$model = new Model_PostgreSQLOperations();
+				$model = new PostgreSQLOperations();
 				$model->connect();
 				if($registry['GET']['action']=='New'){
 					$model->newRole($registry['GET']['employeeId'], $registry['GET']['roleId']);

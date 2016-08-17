@@ -63,7 +63,7 @@
 									{/if}
 									</tbody>
 								</table>
-								<a type="button" data-toggle="modal" data-action="New" data-target="#RoleModal" class="btn btn-md" title="Добавить Роль Пользователя"><i class="glyphicon glyphicon-plus"></i></a>
+								<a type="button" data-toggle="modal" data-action="New" data-countselectrole="{$countselectRole}" data-target="#RoleModal" class="btn btn-md" title="Добавить Роль Пользователя"><i class="glyphicon glyphicon-plus"></i></a>
 							</div>
 						</div>
 					</div>
@@ -126,9 +126,12 @@
 					$('#employee').html('<label>Пользователь:<\/label><select name="employeeId" class="form-control select2" id="selectIdEmp" style="width: 100%;">{foreach from=$selectEmp item=foo}<option value="{$foo.employee_id}">{$foo.user_name}</option>{/foreach}</select>'); 
 					document.getElementById('action').value = action;
 					var n = document.getElementById('selectIdEmp').options.selectedIndex;
-					document.getElementById('selectIdEmp').options[n].selected=false;
-					var n = document.getElementById('selectIdRole').options.selectedIndex;
-					document.getElementById('selectIdRole').options[n].selected=false;
+					if (n!=null){
+						document.getElementById('selectIdEmp').options[n].selected=false;
+					}
+					for (var i = 0; i < countSelectRole; i++) {
+						document.getElementById('selectIdRole').options[i].selected=false;
+					}
 				}
 				if (action == 'Edit'){
 					modal.find('.modal-title').text('Редактировать Роль Пользоателя');

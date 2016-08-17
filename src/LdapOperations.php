@@ -54,14 +54,14 @@ class LdapOperations
 	/** Проверка данных пользователя входящего в систему
 	@return Boolean
 	*/
-	public function checkUser(MAuthorization $auth)
+	public function checkUser($getLogin, $getPasswordLDAP)
 	{
 	    $ldap = ldap_connect($this->ldaphost, $this->ldapport);
 		if (!$ldap) {
 			throw new Exception("Cant connect to ldap Server");
 		}
 		
-        @$bind = ldap_bind($ldap, "TECOM\\".$auth->getLogin(), $auth->getPasswordLDAP());
+        @$bind = ldap_bind($ldap, "TECOM\\".$getLogin, $getPasswordLDAP);
         
         ldap_unbind($ldap); 
         return $bind;   
@@ -84,50 +84,15 @@ class LdapOperations
 		return $result_ent;
 	}
 	 
-	/** Проверка принадлежности пользователя группе 
-	@return Boolean
-	*/
-	public function checkLDAPGroupMembership($samaccountname, $groupName)
-	{
-		if (!$this->ldap) {
-			throw new Exception("Not connected to LDAP server");
-		}
-
-		$result_ent = $this->searchLDAP("(sAMAccountName={$samaccountname})", array('memberof'));
-
-		return count(preg_grep("/^CN=$groupName/", array_values($result_ent[0]['memberof']))) !=0;
-	}
-	
-	//возвращает список групп пользователя
-    public function getGroupLDAPUser($samaccountname)
-    {
-        if (!$this->ldap) {
-			throw new Exception("Not connected to LDAP server");
-		}
-
-		$result_ent = $this->searchLDAP("(sAMAccountName={$samaccountname})", array('memberof'));
-		if(isset($result_ent[0])){
-		    if(isset($result_ent[0]['memberof'])){
-		        $count=$result_ent[0]['memberof']['count'];
-                for($i=0; $i<$count; $i++){
-                    $arr_temp[$i]=$result_ent[0]['memberof'][$i];
-                }
-                    
-                return $arr_temp;
-            }
-        }
-    }
-
 
 	/** Возвращает список аккаунтов, начинающихся с заданного префикса как список массивов следующего вида:
 	(
 		[ 
 			'name' => 'Luke Skywalker', <- человеко-читаемое имя для отображения в интерфейсе
-			'sAMAccountName' => 'skyluke'  <- название аккаунта
-		],
-		[
-			'name' => 'Mara Jade Skywalker',
-			'sAMAccountName' => 'skymara'
+			'sAMAccountName' => 'skyluke',  <- название аккаунта
+			'sn' => 'Скайвокер', <- фамилия
+			'givenName' => 'Люк', <- имя
+			'mail' => 'skyluke@tecomgroup.ru' <- аккаутн почты
 		]
 	)
 	*/
@@ -141,10 +106,9 @@ class LdapOperations
 		}
 
 		$result_ent = $this->searchLDAP("(&(objectClass=person)(sAMAccountName=*{$prefix}*))", 
-			array('name', 'useraccountcontrol', 'sAMAccountName', 'sn', 'givenName', 'mail', 'distinguishedName'));
+			array('name', 'useraccountcontrol', 'sAMAccountName', 'sn', 'givenName', 'mail'));
         
 		$names = array();
-        //var_dump($result_ent);
 		$iter = function($value, $key) use (&$names) 
 		{
 			if (is_array($value) && 
@@ -153,79 +117,6 @@ class LdapOperations
 				($value['useraccountcontrol'][0] & self::UF_WORKSTATION_TRUST_ACCOUNT) != self::UF_WORKSTATION_TRUST_ACCOUNT &&
 				!stristr($value['dn'], self::TECH_ACCOUNT)) 
 			{
-				array_push($names, array('name'=>$value['name'][0], 'sAMAccountName'=>$value['samaccountname'][0], 'sn'=>$value['sn'][0],       'givenName'=>$value['givenname'][0], 'mail'=>$value['mail'][0]));
-			}
-		};
-
-		array_walk($result_ent, $iter);
-		return $names;
-	}
-
-	/** Возвращает список групп, начинающихся с заданного префикса как список массивов следующего вида:
-	(
-		[ 
-			'name' => 'Jedi Knights',   <- человеко-читаемое имя для отображения в интерфейсе
-			'sAMAccountName' => 'jedi'  <- название аккаунта
-		],
-		[
-			'name' => 'Sith',
-			'sAMAccountName' => 'sith'
-		]
-	)
-	*/
-	public function getLDAPGroupNamesByPrefix($prefix)
-	{
-		if (!$this->ldap) {
-			throw new Exception("Not connected to LDAP server");
-		}
-
-		$result_ent = $this->searchLDAP("(&(objectClass=group)(sAMAccountName=*{$prefix}*))", array('name', 'sAMAccountName'));
-		$names = array();
-		$iter = function($value, $key) use (&$names)
-		{
-			if (is_array($value)) {
-				array_push($names, array('name'=>$value['name'][0], 'sAMAccountName'=>$value['samaccountname'][0]));
-			}
-		};
-
-		array_walk($result_ent, $iter);
-		return $names;
-	}
-
-	/** Возвращает список членов группы, как список массивов следующего вида:
-	(
-		[ 
-			'name' => 'Luke Skywalker',   <- человеко-читаемое имя для отображения в интерфейсе
-			'sAMAccountName' => 'luke'    <- название аккаунта
-		],
-		[
-			'name' => 'Obi-Wan Kenobi',
-			'sAMAccountName' => 'kenobi'
-		]
-	)
-	*/
-	public function getGroupMembers($group)
-	{
-		if (!$this->ldap) {
-			throw new Exception("Not connected to LDAP server");
-		}
-
-		$result_ent=$this->searchLDAP("(&(objectClass=group)(sAMAccountName=$group))", array('dn', 'distinguishedName'));
-		$groupDN = $result_ent[0]['dn'];
-
-		$result_ent=$this->searchLDAP("(&(objectClass=person)(memberOf=$groupDN))", 
-			array('name', 'sAMAccountName', 'useraccountcontrol', 'sn', 'givenName', 'mail', 'distinguishedName'));
-		$names = array();
-		$iter = function($value, $key) use (&$names)
-		{
-			if (is_array($value) &&
-				$value['useraccountcontrol'][0] != null &&
-				($value['useraccountcontrol'][0] & self::UF_ACCOUNT_DISABLED) != self::UF_ACCOUNT_DISABLED &&
-				($value['useraccountcontrol'][0] & self::UF_WORKSTATION_TRUST_ACCOUNT) != self::UF_WORKSTATION_TRUST_ACCOUNT &&
-				!stristr($value['dn'], self::TECH_ACCOUNT))
-				
-			{
-				// array_push($names, array('cn' => $value['cn'][0], 'useraccountcontrol' => $value['useraccountcontrol'][0]));
 				array_push($names, array('name'=>$value['name'][0], 'sAMAccountName'=>$value['samaccountname'][0], 'sn'=>$value['sn'][0], 'givenName'=>$value['givenname'][0], 'mail'=>$value['mail'][0]));
 			}
 		};
@@ -234,59 +125,35 @@ class LdapOperations
 		return $names;
 	}
 	
-	public function getSubGroups($group)
+	/**Возвращает список логинов, по ФИО */
+	public function getLDAPAccountNamesByFullName($fullName)
 	{
 		if (!$this->ldap) {
 			throw new Exception("Not connected to LDAP server");
 		}
-
-		$result_ent=$this->searchLDAP("(&(objectClass=group)(sAMAccountName=$group))", array('dn'));
-		$groupDN = $result_ent[0]['dn'];
-		$result_ent=$this->searchLDAP("(&(objectClass=group)(memberOf=$groupDN))", 
-			array('name', 'sAMAccountName'));
+		$nameFST = explode(' ', $fullName);
+		$firstName = $nameFST['1'];
+		$secondName = $nameFST['0'];
+		$thirdName = $nameFST['2'];
+		$result_ent = $this->searchLDAP("(&(objectClass=person)(givenName=*{$firstName}*)(sn=*{$secondName}*))",
+		array('name', 'useraccountcontrol', 'sAMAccountName', 'sn', 'givenName', 'mail'));
+	
 		$names = array();
-
 		$iter = function($value, $key) use (&$names)
 		{
-			if (is_array($value)) {
-				array_push($names, array('name'=>$value['name'][0], 'sAMAccountName'=>$value['samaccountname'][0]));
+			if (is_array($value) &&
+					isset($value['useraccountcontrol']) &&
+					($value['useraccountcontrol'][0] & self::UF_ACCOUNT_DISABLED) != self::UF_ACCOUNT_DISABLED &&
+					($value['useraccountcontrol'][0] & self::UF_WORKSTATION_TRUST_ACCOUNT) != self::UF_WORKSTATION_TRUST_ACCOUNT &&
+					!stristr($value['dn'], self::TECH_ACCOUNT))
+			{
+				array_push($names, array('name'=>$value['name'][0], 'sAMAccountName'=>$value['samaccountname'][0], 'sn'=>$value['sn'][0], 'givenName'=>$value['givenname'][0], 'mail'=>$value['mail'][0]));
 			}
 		};
-
+	
 		array_walk($result_ent, $iter);
 		return $names;
 	}
-
-	public function usageExamples()
-	{
-		header('Content-Type: text/plain; charset=utf-8');
-		$samaccountname = "smirnov.a";
-
-		$ldap = new LdapOperations();
-		$ldap->connect();
-
-		/*echo "Подтверждение принадлежности пользователя к группе unixusers: ";
-		var_dump($ldap->checkLDAPGroupMembership($samaccountname, 'unixusers'));
-
-		echo "Подтверждение принадлежности пользователя к группе Managers: ";
-		var_dump($ldap->checkLDAPGroupMembership($samaccountname, 'Managers'));
-
-		echo "Подтверждение принадлежности пользователя к группе Aliens: ";
-		var_dump($ldap->checkLDAPGroupMembership($samaccountname, 'Aliens'));
-
-		echo "Users with names starting with smi: ";
-		var_dump($ldap->getLDAPAccountNamesByPrefix('smi'));
-
-		echo "Groups with names starting with rnd: ";
-		var_dump($ldap->getLDAPGroupNamesByPrefix('Interns.nn'));
-		*/
-		echo "Members of group Employees: ";
-		var_dump($ldap->getGroupLDAPUser('kolchanov_adm'));
-		
-		//var_dump($ldap->getSubGroups('Employees'));
-			}
 }
-
-//LdapOperations::usageExamples();
 ?>
 
