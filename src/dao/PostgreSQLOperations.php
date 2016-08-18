@@ -20,7 +20,7 @@ class PostgreSQLOperations
 		$this->log = Logger::getLogger(__CLASS__);
 	}
 	
-	/** Подключение к базе данных.*/
+	/** Подключение к базе данных. */
 	public function connect()
 	{ 
 		$dbConnect = null;
@@ -38,7 +38,7 @@ class PostgreSQLOperations
 		return $this->dbConnect;
 	}
 	
-	/** Запрос роли пользователя.*/
+	/** Запрос роли пользователя. */
 	public function getRoleName($userId)
 	{
 		$result = pg_query_params($this->dbConnect, 'SELECT rd.role_name FROM "Role" '.
@@ -65,7 +65,7 @@ class PostgreSQLOperations
 		return $roleNameAndId;
 	}
 	
-	/** Запрос роли главы отдела.*/
+	/** Запрос роли главы отдела. */
 	public function getDepartmentHead(DateTime $date ,$employeeId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -96,7 +96,7 @@ class PostgreSQLOperations
 		return $departmentNameAndId;
 	}
 	
-	/** Запрос списка ролей пользователей.*/
+	/** Запрос списка ролей пользователей. */
 	public function getEmployeeRoleNamesAndId(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -118,7 +118,7 @@ class PostgreSQLOperations
 		return $employeeNamesAndRoles;
 	}
 	
-	/** Запрос списка ролей.*/
+	/** Запрос списка ролей. */
 	public function getRoleDef()
 	{
 		$result = pg_query($this->dbConnect, 'SELECT role_id, role_name FROM "Role_def"');
@@ -132,7 +132,7 @@ class PostgreSQLOperations
 		return $roleDef;
 	}
 	
-	/** Запрос списка отделов.*/
+	/** Запрос списка отделов. */
 	public function getDepartmentNames(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -150,7 +150,7 @@ class PostgreSQLOperations
 		return $departmentNames;
 	}
 	
-	/** Запрос списка пользователей без роли.*/
+	/** Запрос списка пользователей без роли. */
 	public function getUserNames(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -176,7 +176,7 @@ class PostgreSQLOperations
 		return $userNames;
 	}
 	
-	/** Запрос списка сотрудников.*/
+	/** Запрос списка сотрудников. */
 	public function getEmployeeNames(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -195,7 +195,7 @@ class PostgreSQLOperations
 		return $employeeNames;
 	}
 	
-	/** Запрос списка проектов.*/
+	/** Запрос списка проектов. */
 	public function getProjectNames(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -214,7 +214,7 @@ class PostgreSQLOperations
 		return $projectNames;
 	}
 	
-	/** Запрос списка проектов отдела.*/
+	/** Запрос списка проектов отдела. */
 	public function getProjectNamesForDepartment($departmentId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -232,7 +232,7 @@ class PostgreSQLOperations
 		return $projectNamesForDepartment;
 	}
 	
-	/** Запрос списка сотрудников отдела.*/
+	/** Запрос списка сотрудников отдела. */
 	public function getEmployeeNamesForDepartment($departmentId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -265,7 +265,7 @@ class PostgreSQLOperations
 		return $employeeNamesForDepartment;
 	}
 
-	/** Запрос списка сотрудников проекта и распределения времени.*/
+	/** Запрос списка сотрудников проекта и распределения времени. */
 	public function getEployeeNamesAndPercentsForProject($projectId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -286,7 +286,7 @@ class PostgreSQLOperations
 		return $eployeeNamesPercentsForProject;
 	}
 	
-	/** Запрос информации сотрудника.*/
+	/** Запрос информации сотрудника. */
 	public function getEmployeeInfo($employeeId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -307,9 +307,9 @@ class PostgreSQLOperations
 		return $employeeInfo;
 	}
 	
-	/** Списки для редактирования.*/
+	/** Списки для редактирования. */
 	
-	/** Запрос списка проектов для поля редактирования.*/
+	/** Запрос списка проектов для поля редактирования. */
 	public function getProjectNamesNotForDepartment($departmentId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -327,7 +327,7 @@ class PostgreSQLOperations
 		return $projectNamesForDepartment;
 	}
 	
-	/** Запрос списка сотрудников для поля редактирования.*/
+	/** Запрос списка сотрудников для поля редактирования. */
 	public function getEmployeeNamesNotForDepartment($departmentId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -345,7 +345,7 @@ class PostgreSQLOperations
 		return $employeeNamesForDepartment;
 	}
 	
-	/** Возврат значений таблиц.*/
+	/** Возврат значений таблиц. */
 	public function cloneModelData(DateTime $datefrom, DateTime $dateto)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$datefrom->format("d.m.Y H:i:s"));
@@ -353,7 +353,7 @@ class PostgreSQLOperations
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$dateto->format("d.m.Y H:i:s"));
 		$dateto = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 	
-		/** Возврат строк таблицы отделов.*/
+		/** Возврат строк таблицы отделов. */
 		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Departments" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
 		$inspectionData = pg_fetch_all($result);
@@ -382,7 +382,7 @@ class PostgreSQLOperations
 			}
 		}
 		
-		/** Возврат строк таблицы сотрудников.*/
+		/** Возврат строк таблицы сотрудников. */
 		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Employee" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
 		$inspectionData = pg_fetch_all($result);
@@ -412,7 +412,7 @@ class PostgreSQLOperations
 			}
 		}
 		
-		/** Возврат строк таблицы проектов.*/
+		/** Возврат строк таблицы проектов. */
 		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Projects" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
 		$inspectionData = pg_fetch_all($result);
@@ -442,7 +442,7 @@ class PostgreSQLOperations
 			}
 		}
 		
-		/** Возврат строк таблицы распределения времени.*/
+		/** Возврат строк таблицы распределения времени. */
 		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Time_distribution" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
 		$inspectionData = pg_fetch_all($result);
@@ -472,7 +472,7 @@ class PostgreSQLOperations
 			}
 		}
 		
-		/** Возврат строк таблицы глав департаментов.*/
+		/** Возврат строк таблицы глав департаментов. */
 		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Head_departments" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
 		$inspectionData = pg_fetch_all($result);
@@ -502,7 +502,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Обновление названия отдела.*/
+	/** Обновление названия отдела. */
 	public function changeDepartmentName($departmentId, DateTime $date, $newDepartmentName)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -518,7 +518,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Обновление названия проекта и привязки его к отделу.*/
+	/** Обновление названия проекта и привязки его к отделу. */
 	public function changeProjectNameAndDepartmentId($projectId, DateTime $date, $newProjectName,
 			$newDepartmentId)
 	{
@@ -535,7 +535,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Обновление распределения времени сотрудника.*/
+	/** Обновление распределения времени сотрудника. */
 	public function changeEployeeTimeForProject($employeeId, $projectId, DateTime $date, $newTime)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -551,7 +551,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Обновление информации о сотруднике.*/
+	/** Обновление информации о сотруднике. */
 	public function changeEmployeeInfo($employeeId, DateTime $date, $userId, $userName, $newDepartmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -568,7 +568,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Обновление роли пользователя.*/
+	/** Обновление роли пользователя. */
 	public function changeRole($employeeId, $newRoleId)
 	{
 		$result = pg_query_params($this->dbConnect, 'UPDATE "Role" SET role_id = $2 WHERE employee_id = $1 ',
@@ -581,7 +581,7 @@ class PostgreSQLOperations
 		}
 	}
 
-	/** Добавление нового отдела.*/
+	/** Добавление нового отдела. */
 	public function newDepartment(DateTime $date, $departmentName)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -627,7 +627,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Добавление нового сотрудника.*/
+	/** Добавление нового сотрудника. */
 	public function newEmployee(DateTime $date, $userId, $userName, $departmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -674,7 +674,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Добавление нового проекта.*/
+	/** Добавление нового проекта. */
 	public function newProject(DateTime $date, $projectName, $departmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -721,7 +721,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Добавление нового распределения времени.*/
+	/** Добавление нового распределения времени. */
 	public function newTimeDistribution(DateTime $date, $projectId, $employeeId, $time)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -737,7 +737,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Добавление новой роли пользователя.*/
+	/** Добавление новой роли пользователя. */
 	public function newRole($employeeId, $roleId)
 	{
 		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Role" (employee_id, role_id) VALUES ($1, $2)', 
@@ -750,7 +750,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Добавление нового главу отдела.*/
+	/** Добавление нового главу отдела. */
 	public function newHeadDepartment(DateTime $date, $employeeId, $departmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -765,7 +765,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Удаление информации об отделе.*/
+	/** Удаление информации об отделе. */
 	public function deleteDepartment(DateTime $date, $departmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -781,7 +781,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Удаление информации о сотруднике.*/
+	/** Удаление информации о сотруднике. */
 	public function deleteEmployee(DateTime $date, $employeeId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -797,7 +797,7 @@ class PostgreSQLOperations
 		}
 	}
 
-	/** Удаление информации о проекте.*/
+	/** Удаление информации о проекте. */
 	public function deleteProject(DateTime $date, $projectId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -813,7 +813,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Удаление распределения времени.*/
+	/** Удаление распределения времени. */
 	public function deleteTimeDistribution(DateTime $date, $projectId, $employeeId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
@@ -829,7 +829,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Удаление роли пользователя.*/
+	/** Удаление роли пользователя. */
 	public function deleteRole($employeeId)
 	{
 		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Role" WHERE employee_id = $1',
@@ -842,7 +842,7 @@ class PostgreSQLOperations
 		}
 	}
 	
-	/** Удаление информации о главе отдела.*/
+	/** Удаление информации о главе отдела. */
 	public function deleteHeadDepartment(DateTime $date, $departmentId, $employeeId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));

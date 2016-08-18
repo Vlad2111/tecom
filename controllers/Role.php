@@ -13,15 +13,10 @@
 */
 Class Controller_Role Extends Controller_Base {
 
-	public $layouts = "index";
 	public $log;
 
 	function index($registry) {
-		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
-			$registry['roleName']=$registry['GET']['roleUser'];
-			$registry['userName']=$registry['GET']['nameUser'];
-		}
-		if(($registry['roleName']!=null)AND($registry['userName']!=null)){
+		if(($_GET['roleUser']!=null)AND($_GET['nameUser']!=null)){
 			if (($registry['GET']['Month']!=null)AND($registry['GET']['Year']!=null)){
 				$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year'], new DateTimeZone('UTC'));
 			}else{
@@ -50,7 +45,7 @@ Class Controller_Role Extends Controller_Base {
 				$registry['selectRole'] = $rows;
 				$rows = $model->getEmployeeRoleNamesAndId($registry['date']);
 				$this->template->vars('rows', $rows);
-				$this->template->view('Role');
+				$this->template->view('Role', 'RoleLayout');
 			}
 		}
 	}

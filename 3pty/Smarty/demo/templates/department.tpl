@@ -38,7 +38,7 @@
 								<div class="box-header">
 									<h3 class="box-title" style="font-size:23px">Отдел: {$departmentName}	
 										<a type="button" class="btn btn-md" data-toggle="modal" data-target="#departmentModal" title="Редактировать Данные Отдела"><i class="glyphicon glyphicon-pencil"></i></a>
-										<a type="button" class="btn btn-md" href="/index.php?route=list&content=Department&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&departmentId={$departmentId}" title="Удалить Данные Отдела"><i class="glyphicon glyphicon-trash"></i></a>	
+										<a type="button" class="btn btn-md" href="/index.php?route=list/removeDepartment&departmentId={$departmentId}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Отдела"><i class="glyphicon glyphicon-trash"></i></a>	
 									</h3>
 								</div>
 							</div>
@@ -68,7 +68,7 @@
 												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&employeeLogin={$foo.user_id}&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
 												<td>{$foo.summ}%</td>
 												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.user_name}" data-lastlogin="{$foo.user_id}" data-countselect="{$countselect}" data-departmentid="{$departmentId}" data-editid="{$foo.employee_id}" data-target="#employeeModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a></td>
-												<td><a type="button" class="btn btn-md" href="/index.php?route=department&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=removeEmpl&employeeId={$foo.employee_id}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
+												<td><a type="button" class="btn btn-md" href="/index.php?route=department/removeEmployee&employeeId={$foo.employee_id}&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
 											</tr>
 										{/if}
 										{/foreach}
@@ -100,7 +100,7 @@
 											<tr>
 												<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
 												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.project_name}" data-countselect="{$countselect}" data-departmentid="{$departmentId}" data-editid="{$foo.project_id}" data-target="#projectModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a></td>
-												<td><a type="button" class="btn btn-md" href="/index.php?route=department&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=removeProj&projectId={$foo.project_id}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
+												<td><a type="button" class="btn btn-md" href="/index.php?route=department/removeProject&projectId={$foo.project_id}&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
 											</tr>
 										{/if}
 										{/foreach}
@@ -143,9 +143,7 @@
 								</div>
 								<div class="modal-footer">
 									<div class="input-group hidden">
-										<input name="route" type="hidden" value="save">
-										<input name="content" type="hidden" value="Employee">
-										<input name="lastPage" type="hidden" value="Department">
+										<input id="routeEmp" name="route" type="hidden">
 										<input id="actionEmp" name="action" type="hidden">
 										<input id="editIdEmp" name="editId" type="hidden">
 										<input name="nameUser" type="hidden" value="{$name}">
@@ -187,9 +185,7 @@
 								</div>
 								<div class="modal-footer">
 									<div class="input-group hidden">
-										<input name="route" type="hidden" value="save">
-										<input name="content" type="hidden" value="Project">
-										<input name="lastPage" type="hidden" value="Department">
+										<input id="routePro" name="route" type="hidden" >
 										<input name="departmentId" type="hidden" value="{$departmentId}">
 										<input name="departmentName" type="hidden" value="{$departmentName}">
 										<input id="actionPro" name="action" type="hidden">
@@ -222,10 +218,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="save">
-											<input name="content" type="hidden" value="Department">
-											<input name="lastPage" type="hidden" value="Department">
-											<input name="action" type="hidden" value="Edit">
+											<input name="route" type="hidden" value="department/editDepartment">
 											<input name="editId" type="hidden" value="{$departmentId}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
@@ -268,12 +261,14 @@
 				document.getElementById('actionPro').value = action;
 				if (action == 'Edit'){
 					modal.find('.modal-title').text('Редактировать Данные Проекта');
+					document.getElementById('routePro').value = 'department/editProject';
 					document.getElementById('nameProject').value = lastName;
 					document.getElementById('editIdPro').value = editId;
 					
 				}
 				if (action == 'New'){
 					modal.find('.modal-title').text('Новый Проект');
+					document.getElementById('routePro').value = 'department/newProject';
 					document.getElementById('nameProject').value = null;
 					document.getElementById('editIdPro').value = null;
 				}
@@ -307,6 +302,7 @@
 				document.getElementById('actionEmp').value = action;
 				if (action == 'Edit'){
 					modal.find('.modal-title').text('Редактировать Данные Сотрудника');
+					document.getElementById('routeEmp').value = 'department/editEmployee';
 					modal.find('.modal-form-group label').text('Фамилия и Имя:');
 					document.getElementById('nameEmployee').type = "text";
 					document.getElementById('nameEmployee').value = lastName;
@@ -315,6 +311,7 @@
 				}
 				if (action == 'New'){
 					modal.find('.modal-title').text('Новый Сотрудник');
+					document.getElementById('route').value = 'department/newEmployee';
 					modal.find('.modal-form-group label').text('');
 					document.getElementById('nameEmployee').type = "hidden";
 					document.getElementById('nameEmployee').value = null;

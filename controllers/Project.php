@@ -13,15 +13,10 @@
 */
 Class Controller_Project Extends Controller_Base {
 
-	public $layouts = "index";
 	public  $log;
 	
 	function index($registry) {
-		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
-			$registry['roleName']=$registry['GET']['roleUser'];
-			$registry['userName']=$registry['GET']['nameUser'];
-		}
-		if(($registry['roleName']!=null)AND($registry['userName']!=null)){
+		if(($_GET['roleUser']!=null)AND($_GET['nameUser']!=null)){
 			if (($registry['GET']['Month']!=null)AND($registry['GET']['Year']!=null)){
 				$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year'], new DateTimeZone('UTC'));
 			}else{
@@ -48,7 +43,7 @@ Class Controller_Project Extends Controller_Base {
 				$registry['selectEmployeeNot'] = $rows;
 				$rows = $model->getEployeeNamesAndPercentsForProject($registry['GET']['projectId'], $registry['date']);
 				$this->template->vars('rows', $rows);
-				$this->template->view('Project');
+				$this->template->view('Project', 'ProjectLayout');
 			}
 		}
 	}

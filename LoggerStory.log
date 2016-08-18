@@ -1635,3 +1635,187 @@ DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
 2016-08-17T14:20:52+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
 2016-08-17T14:24:42+00:00 [ERROR] [PostgreSQLOperations->newDepartment] [625] Не удается выполнить запись нового отдела. ERROR:  duplicate key value violates unique constraint "department_id_date_pk"
 DETAIL:  Key (date, department_id)=(2016-08-01 00:00:00, 2) already exists.
+2016-08-18T08:50:34+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем POST пуст.
+2016-08-18T08:50:34+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем GET пуст.
+2016-08-18T08:50:34+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T09:11:01+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T09:11:04+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T09:19:47+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:21:35+00:00 [ERROR] [Registry->set] [26] Ключ date массива registry уже занят.
+2016-08-18T09:22:41+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:42+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:43+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:44+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:44+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:46+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:47+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-18T09:22:48+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:48+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:49+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:22:54+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:23:04+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:26:05+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-18T09:26:09+00:00 [INFO] [Template->vars] [34] Контент не выбран.
+2016-08-18T09:26:21+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:26:22+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:26:31+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:26:44+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:26:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:26:49+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:26:49+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:46:43+00:00 [ERROR] [Registry->set] [26] Ключ GET массива registry уже занят.
+2016-08-18T09:56:44+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:56:47+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:56:48+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:56:48+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T09:56:49+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:19:45+00:00 [ERROR] [Router->start] [110] Не существует класс контроллера: Controller_list
+2016-08-18T10:19:45+00:00 [ERROR] [Router->start] [110] Не существует класс контроллера: Controller_list
+2016-08-18T10:19:47+00:00 [ERROR] [Router->start] [110] Не существует класс контроллера: Controller_list
+2016-08-18T10:19:49+00:00 [ERROR] [Router->start] [110] Не существует класс контроллера: Controller_list
+2016-08-18T10:19:59+00:00 [ERROR] [Router->start] [110] Не существует класс контроллера: Controller_list
+2016-08-18T10:22:31+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:23:28+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:23:28+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T10:23:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:23:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T10:23:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:23:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T10:23:46+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:23:46+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T10:23:47+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:23:47+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T10:23:47+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:23:47+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T10:23:48+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:23:48+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T10:24:10+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:24:10+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T10:24:11+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:24:11+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T10:24:12+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:13+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:14+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:14+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:15+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:16+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:16+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:17+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:18+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:19+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:20+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:24:30+00:00 [ERROR] [Registry->set] [26] Ключ date массива registry уже занят.
+2016-08-18T10:24:38+00:00 [ERROR] [Registry->set] [26] Ключ date массива registry уже занят.
+2016-08-18T10:25:02+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:03+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:04+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:04+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:05+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:06+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:06+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:06+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:07+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-18T10:25:09+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:10+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:10+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:25:19+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:26:26+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:26:40+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:26:42+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:26:46+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:26:54+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:28:05+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:34:19+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:35:01+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:37:06+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:47:01+00:00 [ERROR] [Template->view] [46] Шаблон основы  не найден.
+2016-08-18T10:48:26+00:00 [ERROR] [Template->view] [46] Шаблон основы  не найден.
+2016-08-18T10:48:29+00:00 [ERROR] [Template->view] [46] Шаблон основы  не найден.
+2016-08-18T10:48:36+00:00 [ERROR] [Template->view] [46] Шаблон основы  не найден.
+2016-08-18T10:50:07+00:00 [ERROR] [Template->view] [46] Шаблон основы  не найден.
+2016-08-18T10:50:15+00:00 [ERROR] [Template->view] [46] Шаблон основы  не найден.
+2016-08-18T10:50:59+00:00 [ERROR] [Template->view] [46] Шаблон основы  не найден.
+2016-08-18T10:55:20+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:55:21+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:55:22+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:55:23+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:55:25+00:00 [ERROR] [Template->view] [44] Шаблон основы  не найден.
+2016-08-18T10:58:34+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:58:35+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:58:36+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:58:37+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:58:38+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-18T10:58:40+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-18T10:58:42+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-18T10:58:43+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:58:43+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:58:44+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T10:58:58+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем userName пуст.
+2016-08-18T10:58:58+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем roleName пуст.
+2016-08-18T11:13:43+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:13:44+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:13:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:13:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:13:45+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:13:46+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:13:46+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:14:07+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:14:08+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:14:09+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:14:09+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:14:10+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:14:10+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:14:11+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:14:11+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:19:08+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:19:09+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:19:59+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:20:00+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T11:20:01+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-18T11:20:06+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-18T11:21:42+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-18T11:21:44+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-18T11:33:42+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-18T12:57:31+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:57:32+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:57:33+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:57:33+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:57:34+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:57:39+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:57:58+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:57:59+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:58:00+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:58:01+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T12:58:01+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:01:18+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:01:21+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:01:22+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:01:26+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:02:55+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:03:47+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:03:50+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:03:52+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:04:11+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:04:11+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:04:12+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:10:05+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:10:22+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:10:24+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:10:25+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:10:26+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newIdDepForPro пуст.
+2016-08-18T13:10:27+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newLoginEmpForEmp пуст.
+2016-08-18T13:10:28+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:10:28+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:10:29+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:10:29+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:18:29+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:18:31+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-18T13:43:28+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем newNameDepForDep пуст.
+2016-08-18T13:43:37+00:00 [ERROR] [Registry->set] [26] Ключ date массива registry уже занят.
+2016-08-18T13:45:39+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:45:41+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:45:52+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:45:53+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.
+2016-08-18T13:45:54+00:00 [ERROR] [Registry->get] [36] Элемент массива registry с ключем date пуст.

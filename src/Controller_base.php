@@ -13,19 +13,18 @@
 */
 Abstract Class Controller_Base {
 
+	protected $postgreSQL;
 	protected $registry;
 	protected $template;
-	protected $layouts;
 	protected $log;
 	
 	public $vars = array();
 
 	function __construct($registry) {
+		$this->postgreSQL = new PostgreSQLOperations();
+		$this->postgreSQL->connect();
         $this->registry = $registry;
-		$this->template = new Template($this->layouts, get_class($this), $registry);
+		$this->template = new Template(get_class($this), $registry);
 		$this->log = Logger::getLogger(__CLASS__);
 	}
-
-	abstract function index($registry);
-	
 }

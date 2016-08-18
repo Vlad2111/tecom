@@ -29,9 +29,9 @@
 		<aside class="main-sidebar">
 			<section class="sidebar">
 				<ul class="sidebar-menu">		
-					<li class="{$status1}"><a href="/index.php?route=list&content=Department&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список отделов</span></a></li>
-					<li class="{$status2}"><a href="/index.php?route=list&content=Employee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список сотрудников</span></a></li>
-					<li class="{$status3}"><a href="/index.php?route=list&content=Project&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список проектов</span></a></li>
+					<li class="{$status1}"><a href="/index.php?route=list/listDepartment&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список отделов</span></a></li>
+					<li class="{$status2}"><a href="/index.php?route=list/listEmployee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список сотрудников</span></a></li>
+					<li class="{$status3}"><a href="/index.php?route=list/listProject&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список проектов</span></a></li>
 					<li><a data-toggle="modal" data-target="#cloneInfo" title="Копирование Информации Базы Данных из Одного Месяца в Другой"><i class="fa fa-clone text-blue"></i><span>Новый месяц</span></a></li>
 					{if $role=="Администратор"}
 						<li class="{$status4}"><a href="/index.php?route=role&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-user-secret text-blue"></i><span>Пользователи и Роли</span></a></li>
@@ -70,8 +70,7 @@
 									<input name="date" type="text" class="form-control pull-right" id="datepicker">
 								</div>
 								<div class="input-group hidden">
-									<input name="route" type="hidden" value="list">
-									<input name="content" type="hidden" value="Department">
+									<input name="route" type="hidden" value="list/listDepartment">
 									<input name="nameUser" type="hidden" value="{$name}">
 									<input name="roleUser" type="hidden" value="{$role}">
 								</div>
@@ -110,8 +109,7 @@
 									<input name="dateTo" type="text" class="form-control pull-right" id="datepicker2">
 								</div>
 								<div class="input-group hidden">
-									<input name="route" type="hidden" value="list">
-									<input name="content" type="hidden" value="Department">
+									<input name="route" type="hidden" value="list/cloneData">
 									<input name="nameUser" type="hidden" value="{$name}">
 									<input name="roleUser" type="hidden" value="{$role}">
 								</div>

@@ -55,7 +55,7 @@
 												<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&departmentName={$foo.department_name}&departmentId={$foo.department_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
 												<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
 												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.project_name}" data-countselect="{$countselect}" data-departmentid="{$foo.department_id}" data-editid="{$foo.project_id}" data-target="#projectModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a></td>
-												<td><a type="button" class="btn btn-md" href="/index.php?route=list&content=Project&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&projectId={$foo.project_id}" title="Удалить Данные Проекта"><i class="glyphicon glyphicon-trash"></i></a></td>
+												<td><a type="button" class="btn btn-md" href="/index.php?route=list/removeProject&projectId={$foo.project_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Проекта"><i class="glyphicon glyphicon-trash"></i></a></td>
 											</tr>
 										{/foreach}
 										{/if}
@@ -91,9 +91,7 @@
 								</div>
 								<div class="modal-footer">
 									<div class="input-group hidden">
-										<input name="route" type="hidden" value="save">
-										<input name="content" type="hidden" value="Project">
-										<input name="lastPage" type="hidden" value="list">
+										<input id="route" name="route" type="hidden">
 										<input id="action" name="action" type="hidden">
 										<input name="nameUser" type="hidden" value="{$name}">
 										<input name="roleUser" type="hidden" value="{$role}">
@@ -127,6 +125,7 @@
 				var countSelect = button.data('countselect');
 				if (action == 'Edit'){
 					modal.find('.modal-title').text('Редактировать Данные Проекта');
+					document.getElementById('route').value = 'list/editProject';
 					document.getElementById('nameProject').value = lastName;
 					document.getElementById('editId').value = editId;
 					document.getElementById('action').value = action;
@@ -141,6 +140,7 @@
 				}
 				if (action == 'New'){
 					modal.find('.modal-title').text('Новый Проект');
+					document.getElementById('route').value = 'list/newProject';
 					document.getElementById('nameProject').value = null;
 					document.getElementById('editId').value = null;
 					document.getElementById('action').value = action;

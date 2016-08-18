@@ -7,124 +7,194 @@
 * Все права защищены
 */
 /**
-Класс контроллер, список.
+Класс контроллер, списки отделов, сотрудников и проетов.
 
 @author ershov.v
 */
 Class Controller_List Extends Controller_Base {
 
-	public $layouts = "index";
 	public $log;
-
-	function index($registry) {
-		if (($registry['POST']['login']!=null)AND($registry['POST']['password']!=null)){
-			$ldap = new LdapOperations();
-			$ldap->connect();
-			$check = $ldap->checkUser($registry['POST']['login'], $registry['POST']['password']);
-			if($check==true){
-				$names = $ldap->getLDAPAccountNamesByPrefix($registry['POST']['login']);
-				$registry['userName'] = $names['0']['sn'].' '.$names['0']['givenName'];
-				$model = new PostgreSQLOperations();
-				$model->connect();
-				$role = $model->getRoleName($registry['POST']['login']);
-				$registry['roleName']=$role;
-			}
+	public $postgreSQL;
+	
+	/** Первая страничка после авторизации */
+	function index($registry){
+		$rows = $this->postgreSQL->getDepartmentNames($registry['date']);
+		$this->template->vars('rows', $rows);
+		$this->template->view('listDepartments', 'listDepartmentLayout');
+	}
+	
+	/* Отображение списков. */
+	/** -->Список отделов. */
+	function listDepartment($registry) {
+		if($registry['date']==null){
+			$this->getDate($registry);
 		}
-		if(($registry['GET']['nameUser']!=null)AND($registry['GET']['roleUser']!=null)){
-			$registry['roleName']=$registry['GET']['roleUser'];
-			$registry['userName']=$registry['GET']['nameUser'];
+		$rows = $this->postgreSQL->getDepartmentNames($registry['date']);
+		$this->template->vars('rows', $rows);
+		$this->template->view('listDepartments', 'listDepartmentLayout');
+	}
+	
+	/** -->Список сотрудников. */
+	function listEmployee($registry) {
+		if($registry['date']==null){
+			$this->getDate($registry);
 		}
-		$model = new PostgreSQLOperations();
-		$model->connect();
-		if(($registry['roleName']!=null)AND($registry['userName']!=null)){
-			if (($registry['GET']['dateFrom']!=null)AND($registry['GET']['dateTo']!=null)){
-				$dayMonthYear = explode('/', $registry['GET']['dateFrom']);
-				$dateFrom = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
-				$dayMonthYear = explode('/', $registry['GET']['dateTo']);
-				$dateTo = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
-				$model->cloneModelData($dateFrom, $dateTo);
-				$registry['date'] = $dateTo;
+		$rows = $this->postgreSQL->getDepartmentNames($registry['date']);
+		$registry['selectDepartment'] = $rows;
+		$rows = $this->postgreSQL->getEmployeeNames($registry['date']);
+		$this->template->vars('rows', $rows);
+		$this->template->view('listEmployees', 'listEmployeeLayout');
+	}
+	
+	/** -->Список проектов. */
+	function listProject($registry) {
+		if($registry['date']==null){
+			$this->getDate($registry);
+		}
+		$rows = $this->postgreSQL->getDepartmentNames($registry['date']);
+		$registry['selectDepartment'] = $rows;
+		$rows = $this->postgreSQL->getProjectNames($registry['date']);
+		$this->template->vars('rows', $rows);
+		$this->template->view('listProjects', 'listProjectLayout');
+	}
+		
+	/** Получение даты. */
+	private function getDate($registry) {
+		if (($registry['GET']['Month']!=null)AND($registry['GET']['Year']!=null)){
+			$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year'], 
+					new DateTimeZone('UTC'));
+		}else{
+			if ($registry['GET']['date']!=null){
+				$dayMonthYear = explode('/', $registry['GET']['date']);
+				$registry['date'] = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'],
+						new DateTimeZone('UTC'));
 			}else{
-				if (($registry['GET']['Month']!=null)AND($registry['GET']['Year']!=null)){
-					$registry['date'] = new DateTime('01.'.$registry['GET']['Month'].'.'.$registry['GET']['Year'], new DateTimeZone('UTC'));
-				}else{
-					if ($registry['GET']['date']!=null){
-						$dayMonthYear = explode('/', $registry['GET']['date']);
-						$registry['date'] = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
-					}else{
-						$registry['date'] = new DateTime();
-					}
-				}
-			}
-			if ($registry['date']!=null){
-				$rowsEmployee = $model->getEmployeeNames($registry['date']);
-				if($rowsEmployee['user_name']==null){
-					$ldap = new LdapOperations();
-					$ldap->connect();
-					if($rowsEmployee!=null){
-						foreach ($rowsEmployee as $key=>$arr){
-							$rows = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
-							if($arr['user_name']==null){
-								if (count($rows)>1){
-									$registry['departmwent']=$arr['department_id'];
-									$registry['editId']=$arr['employee_id'];
-									$registry['actionEmployeeFalse']=true;
-									$this->template->vars('rows', $rows);
-									$this->template->view('selectLoginInLDAP');
-									break;
-								}else{
-									$rowsEmployee[$key]['user_name'] = $rows['0']['sn'].' '.$rows['0']['givenName'];
-									$model->changeEmployeeInfo($rowsEmployee[$key]['employee_id'], $registry['date'], 
-											$rowsEmployee[$key]['user_id'], $rowsEmployee[$key]['user_name'], 
-												$rowsEmployee[$key]['department_id']);
-								}
-							}else{
-								if (count($rows)>1){
-									$registry['departmwent']=$arr['department_id'];
-									$registry['editId']=$arr['employee_id'];
-									$registry['actionEmployeeFalse']=true;
-									$this->template->vars('rows', $rows);
-									$this->template->view('selectLoginInLDAP');
-									break;
-								}
-							}
-						}
-					}
-				}
-				switch($registry['GET']['content']){
-					case 'Department':
-						if($registry['GET']['action']=='remove'){
-							$model->deleteDepartment($registry['date'], $registry['GET']['departmentId']);
-						}
-						$rows = $model->getDepartmentNames($registry['date']);
-						$this->template->vars('rows', $rows);
-						$this->template->view('listDepartments');
-						break;
-					case 'Employee':
-						if($registry['GET']['action']=='remove'){
-							$model->deleteEmployee($registry['date'], $registry['GET']['employeeId']);
-						}
-						$rows = $model->getDepartmentNames($registry['date']);
-						$registry['selectDepartment'] = $rows;
-						$rows = $model->getEmployeeNames($registry['date']);
-						$this->template->vars('rows', $rows);
-						$this->template->view('listEmployees');
-						break;
-					case 'Project':
-						if($registry['GET']['action']=='remove'){
-							$model->deleteProject($registry['date'], $registry['GET']['projectId']);
-						}
-						$rows = $model->getDepartmentNames($registry['date']);
-						$registry['selectDepartment'] = $rows;
-						$rows = $model->getProjectNames($registry['date']);
-						$this->template->vars('rows', $rows);
-						$this->template->view('listProjects');
-						break;
-					default:
-						$header = 'Unknown page';
-						break;
-				}
+				$registry['date'] = new DateTime();
 			}
 		}
 	}
+	/**Клонирование информации в новый месяц*/
+	function cloneData($registry) {
+		if (($registry['GET']['dateFrom']!=null)AND($registry['GET']['dateTo']!=null)){
+			$dayMonthYear = explode('/', $registry['GET']['dateFrom']);
+			$dateFrom = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'],
+					new DateTimeZone('UTC'));
+			$dayMonthYear = explode('/', $registry['GET']['dateTo']);
+			$dateTo = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'],
+					new DateTimeZone('UTC'));
+			$this->postgreSQL->cloneModelData($dateFrom, $dateTo);
+			$registry['date'] = $dateTo;
+			$this->listDepartment($registry);
+		}
+	}
+	
+	/* Действия с отделами */
+	/** -->Добавление отдела. */
+	function newDepartment($registry){
+		$this->getDate($registry);
+		$this->postgreSQL->newDepartment($registry['date'], $registry['GET']['newName']);
+		$this->listDepartment($registry);
+	}
+	
+	/** -->Редактирование отдела. */
+	function editDepartment($registry){
+		$this->getDate($registry);
+		$this->postgreSQL->changeDepartmentName($registry['GET']['editId'], $registry['date'],
+				$registry['GET']['newName']);
+		$registry['newNameDepForDep']=$registry['GET']['newName'];
+		$this->listDepartment($registry);
+	}
+	
+	/** -->Удаление отдела. */
+	function removeDepartment($registry) {
+		$this->getDate($registry);
+		$this->postgreSQL->deleteDepartment($registry['date'], $registry['GET']['departmentId']);
+		$this->listDepartment($registry);
+	}
+	
+	/* Действия с сотрудниками */
+	/** -->Добавление сотрудника. */
+	function newEmployee($registry){
+		$this->getDate($registry);
+		$user=$this->checkLoginLdapForEmployee($registry);
+		$this->postgreSQL->newEmployee($registry['date'], $user['Login'], $user['Name'],
+				$registry['GET']['newDepartmwent']);
+		$this->listEmployee($registry);
+	}
+	
+	/** -->Редактирование информации сотрудника. */
+	function editEmployee($registry){
+		$this->getDate($registry);
+		$user=$this->checkLoginLdapForEmployee($registry);
+		$idNameDepartment = explode('*-*', $registry['GET']['newDepartmwent']);
+		if($idNameDepartment['1']!=null){
+			$departmentId=$idNameDepartment['0'];
+			$departmentName=$idNameDepartment['1'];
+		}else{
+			$departmentId=$registry['GET']['newDepartmwent'];
+		}
+		$this->postgreSQL->changeEmployeeInfo($registry['GET']['editId'], $registry['date'],
+				$user['Login'], $userName, $departmentId);
+		$registry['newLoginEmpForEmp']=$user['Login'];
+		$registry['newNameEmpForEmp']=$user['Name'];
+		$registry['newIdDepForEmp']=$departmentId;
+		$registry['newNameDepForEmp']=$departmentName;
+		$this->listEmployee($registry);
+	}
+	
+	/** -->Удаление информации сотрудника. */
+	function removeEmployee($registry) {
+		$this->getDate($registry);
+		$this->postgreSQL->deleteEmployee($registry['date'], $registry['GET']['employeeId']);
+		$this->listEmployee($registry);
+	}
+	
+	/** Проверка логина сотрудника в LDAP при создании и редактировании. */
+	private function checkLoginLdapForEmployee($registry) {
+		$ldap = new LdapOperations();
+		$ldap->connect();
+		$rows = $ldap->getLDAPAccountNamesByPrefix($registry['GET']['newLogin']);
+		if (count($rows)>1){
+			$this->template->vars('rows', $rows);
+			$this->template->view('selectLoginInLDAP', 'index');
+		}else{
+			$user['Name'] = $rows['0']['sn'].' '.$rows['0']['givenName'];
+			$user['Login'] = $rows['0']['sAMAccountName'];
+			return $user;
+		}
+	}
+	
+	/* Действия с проектами */
+	/** -->Добавление проекта. */
+	function newProject($registry){
+		$this->getDate($registry);
+		$this->postgreSQL->newProject($registry['date'], $registry['GET']['newName'],
+				$registry['GET']['newDepartmwent']);
+		$this->listProject($registry);
+	}
+	
+	/** -->Редактирование проекта. */
+	function editProject($registry){
+		$this->getDate($registry);
+		$idNameDepartment = explode('*-*', $registry['GET']['newDepartmwent']);
+		if($idNameDepartment['1']!=null){
+			$departmentId=$idNameDepartment['0'];
+			$departmentName=$idNameDepartment['1'];
+		}else{
+			$departmentId=$registry['GET']['newDepartmwent'];
+		}
+		$this->postgreSQL->changeProjectNameAndDepartmentId($registry['GET']['editId'],
+				$registry['date'], $registry['GET']['newName'], $departmentId);
+		$registry['newIdDepForPro']=$departmentId;
+		$registry['newNameDepForPro']=$departmentName;
+		$this->listProject($registry);
+	}
+	
+	/** -->Удаление проекта. */
+	function removeProject($registry) {
+		$this->getDate($registry);
+		$this->postgreSQL->deleteProject($registry['date'], $registry['GET']['projectId']);
+		$this->listProject($registry);
+	}
+	
 }

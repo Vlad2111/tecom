@@ -19,10 +19,13 @@ Class Router {
 	private $log;
 	
 	function __construct($registry) {
+		/**Настройки*/
+		{
+			$this->setPath();
+			$this->setConfigLogger();
+		}
 		$this->log = Logger::getLogger(__CLASS__);
 		$this->registry = $registry;
-		$this->setPath();
-		$this->setConfigLogger();
 	}
 	
 	/** Получение пути к контроллерам.*/
@@ -34,7 +37,7 @@ Class Router {
         $this->path = $path;
 	}
 	
-	/** Получение пути к контроллерам.*/
+	/** Подключение настроек для логов.*/
 	function setConfigLogger() {
 		$configForLogger = Configuration::instance()->config;
 		$osType = PHP_OS;
@@ -87,15 +90,13 @@ Class Router {
         $args = $parts;
 	}
 	
-	/** Начало работы сайта.*/
+	/** Начало работы сайта.**/
 	function start() {
         $this->getController($file, $controller, $action, $args);
-		
         if (is_readable($file) == false) {
 			$this->log->error('Не существует файл: '.$file.'');
 			die ('404 Not Found');
         }
-		
         include ($file);
         $this->registry['GET']=$_GET;
         $this->registry['POST']=$_POST;
@@ -107,7 +108,7 @@ Class Router {
 			$this->log->error('Не существует класс контроллера: '.$class.'');
 			die ('404 Not Found');
         }
-
+		
         $controller->$action($this->registry);
 	}
 }

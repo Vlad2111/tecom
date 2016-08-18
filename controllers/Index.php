@@ -7,15 +7,19 @@
 * Все права защищены
 */
 /**
-Класс контроллер, главная станица.
+Класс контроллер, Авторизация.
 
 @author ershov.v
 */
 Class Controller_Index Extends Controller_Base {
-
-	public $layouts = "index";
 	
 	function index($registry) {
-		$this->template->view('authorization');
+		require '3pty/Smarty/libs/Smarty.class.php';
+		$smarty = new Smarty;
+		$smarty->force_compile = true;
+		$smarty->debugging = false;
+		$smarty->caching = false;
+		$smarty->cache_lifetime = 120;
+		$smarty->display('3pty/Smarty/demo/templates/authorization.tpl');
 	}
 }

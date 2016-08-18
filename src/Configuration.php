@@ -19,7 +19,7 @@ class Configuration
 	function __construct() {
 	}
 
-	/** Фиксирование настроек из config.*/
+	/** Фиксирование настроек из config. */
 	public static function instance()
 	{
 		if (Configuration::$instance == null) {
@@ -29,7 +29,7 @@ class Configuration
 		return Configuration::$instance;
 	}
 	
-	/** Чтение переменных из файла config.*/
+	/** Чтение переменных из файла config. */
 	private function readConfig()
 	{
 		$this->config = parse_ini_file($_SERVER['DOCUMENT_ROOT']."/../config/config.ini");

@@ -55,7 +55,7 @@
 												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&employeeLogin={$foo.user_id}&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
 												<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
 												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.user_name}" data-lastlogin="{$foo.user_id}" data-countselect="{$countselect}" data-departmentid="{$foo.department_id}" data-editid="{$foo.employee_id}" data-target="#employeeModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a></td>
-												<td><a type="button" class="btn btn-md" href="/index.php?route=list&content=Employee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&action=remove&employeeId={$foo.employee_id}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
+												<td><a type="button" class="btn btn-md" href="/index.php?route=list/removeEmployee&employeeId={$foo.employee_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
 											</tr>
 										{/foreach}
 										{/if}
@@ -95,9 +95,7 @@
 								</div>
 								<div class="modal-footer">
 									<div class="input-group hidden">
-										<input name="route" type="hidden" value="save">
-										<input name="content" type="hidden" value="Employee">
-										<input name="lastPage" type="hidden" value="list">
+										<input id="route" name="route" type="hidden">
 										<input id="action" name="action" type="hidden">
 										<input name="nameUser" type="hidden" value="{$name}">
 										<input name="roleUser" type="hidden" value="{$role}">
@@ -132,6 +130,7 @@
 				var countSelect = button.data('countselect');
 				if (action == 'Edit'){
 					modal.find('.modal-title').text('Редактировать Данные Сотрудника');
+					document.getElementById('route').value = 'list/editEmployee';
 					modal.find('.modal-form-group label').text('Фамилия и Имя:');
 					document.getElementById('nameEmployee').type = "text";
 					document.getElementById('nameEmployee').value = lastName;
@@ -149,6 +148,7 @@
 				}
 				if (action == 'New'){
 					modal.find('.modal-title').text('Новый Сотрудник');
+					document.getElementById('route').value = 'list/newEmployee';
 					modal.find('.modal-form-group label').text('');
 					document.getElementById('nameEmployee').type = "hidden";
 					document.getElementById('nameEmployee').value = null;
