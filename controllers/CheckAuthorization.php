@@ -17,13 +17,15 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 	public $postgreSQL;
 
 	
-	function index($registry) {
+	function index() {
 		
-		$answer=$this->checkUser($registry);
+		$answer=$this->checkUser($_POST['login'], $_POST['password']);
 		
 		if($answer==true){
-			$this->checkDB($registry);
-			$_GET['route']='list/index';
+			$this->checkDB();
+			$_GET['route']='list/viewListDepartment';
+		}else{
+			$_GET['route']='index';
 		}
 		unset($this->registry['GET']);
 		unset($this->registry['POST']);
@@ -31,57 +33,48 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 	}
 	
 	/** Проверка пользователя и запрос роли. */
-	private function checkUser($registry) {
-		if (($_POST['login']!=null)AND($_POST['password']!=null)){
+	private function checkUser($login, $password) {
+		if (($login!=null)AND($password!=null)){
 			$ldap = new LdapOperations();
 			$ldap->connect();
-			$check = $ldap->checkUser($_POST['login'], $_POST['password']);
+			$check = $ldap->checkUser($login, $password);
 			if($check==true){
-				$names = $ldap->getLDAPAccountNamesByPrefix($_POST['login']);
+				$names = $ldap->getLDAPAccountNamesByPrefix($login);
 				$_GET['nameUser'] = $names['0']['sn'].' '.$names['0']['givenName'];
-				$role = $this->postgreSQL->getRoleName($_POST['login']);
+				$role = $this->postgreSQL->getRoleName($login);
 				$_GET['roleUser']=$role;
-				unset($_POST);
 				return true;
 			}
 		}
 	}
 	
 	/** Проверка базы данных. */
-	private function checkDB($registry) {
-		$registry['date'] = new DateTime();
-		$rowsEmployee = $this->postgreSQL->getEmployeeNames($registry['date']);
-		if($rowsEmployee['user_name']==null){
+	private function checkDB() {
+		$date = new DateTime();
+		$rowsEmployee = $this->postgreSQL->getEmployeeNames($date);
+		if($rowsEmployee!=null){
 			$ldap = new LdapOperations();
 			$ldap->connect();
-			if($rowsEmployee!=null){
-				foreach ($rowsEmployee as $key=>$arr){
-					$rows = $ldap->getLDAPAccountNamesByPrefix($arr['user_id']);
-					if($arr['user_name']==null){
-						if (count($rows)>1){
-							$registry['departmwent']=$arr['department_id'];
-							$registry['editId']=$arr['employee_id'];
-							$registry['actionEmployeeFalse']=true;
-							$this->template->vars('rows', $rows);
-							$this->template->view('selectLoginInLDAP', 'selectLoginInLDAPLayout');
-							break;
-						}else{
-							$rowsEmployee[$key]['user_name'] = $rows['0']['sn'].' '.$rows['0']['givenName'];
-							$this->postgreSQL->changeEmployeeInfo($rowsEmployee[$key]['employee_id'], $registry['date'], 
-									$rowsEmployee[$key]['user_id'], $rowsEmployee[$key]['user_name'], 
-										$rowsEmployee[$key]['department_id']);
-						}
-					}else{
-						if (count($rows)>1){
-							$registry['departmwent']=$arr['department_id'];
-							$registry['editId']=$arr['employee_id'];
-							$registry['actionEmployeeFalse']=true;
-							$this->template->vars('rows', $rows);
-							$this->template->view('selectLoginInLDAP', 'selectLoginInLDAPLayout');
-							break;
-						}
+			foreach ($rowsEmployee as $key=>$array){
+				$arrayLDAPAccountNames = $ldap->getLDAPAccountNamesByPrefix($array['user_id']);
+				if (count($arrayLDAPAccountNames)>1){
+					$falseArrayDB['id']=$array['employee_id'];
+					$falseArrayDB['login']=$array['user_id'];
+					$falseArrayDB['name']=$array['user_name'];
+					$falseArrayDB['departmwent']=$array['department_id'];
+				}else{
+					if($array['user_name']==null){
+						$rowsEmployee[$key]['user_name'] = $arrayLDAPAccountNames['0']['sn'].' '.$arrayLDAPAccountNames['0']['givenName'];
+						$this->postgreSQL->changeEmployeeInfo($rowsEmployee[$key]['employee_id'], $date, 
+							$rowsEmployee[$key]['user_id'], $rowsEmployee[$key]['user_name'], 
+								$rowsEmployee[$key]['department_id']);
 					}
 				}
+			}
+			if($falseArrayDB!=null){
+				$this->template->vars('date', $date);
+				$this->template->vars('falseArrayDB', $falseArrayDB);
+				$this->template->view('falseList', 'falseListLayout');
 			}
 		}
 	}

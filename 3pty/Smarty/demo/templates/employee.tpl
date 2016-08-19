@@ -36,8 +36,29 @@
 						<div class="box">
 							<div class="box-header">
 								<h3 class="box-title" style="font-size:23px">Сотрудник: {$employeeName}
-									<a type="button" class="btn btn-md" data-toggle="modal" data-departmentid="{$departmentId}" data-countselect="{$countselect}" data-target="#employeeModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a>
-									<a type="button" class="btn btn-md" href="/index.php?route=list/removeEmployee&employeeId={$employeeId}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a>
+									<a 
+										type="button" 
+										class="btn btn-md" 
+										data-toggle="modal" 
+										data-departmentid="{$departmentId}" 
+										data-countselect="{$countArrayDepartmentNamesForSelect}" 
+										data-target="#employeeModal" 
+										title="Редактировать Данные Сотрудника">
+										<i class="glyphicon glyphicon-pencil"></i>
+									</a>
+									<a 
+										type="button" 
+										class="btn btn-md" 
+										href="/index.php
+											?route=list/removeEmployee
+											&employeeId={$employeeId}
+											&nameUser={$name}
+											&roleUser={$role}
+											&Month={$selectedMonthForGet}
+											&Year={$selectedYearForGet}" 
+										title="Удалить Данные Сотрудника">
+										<i class="glyphicon glyphicon-trash"></i>
+									</a>
 								</h3>
 								<p>(Отдел: {$departmentName})</p>
 							</div>
@@ -53,21 +74,87 @@
 										</tr>
 									</thead>
 									<tbody>
-									{if $array!=null}
-									{foreach from=$array item=foo}
+									{if $arrayEmployeeInfo!=null}
+									{foreach from=$arrayEmployeeInfo item=foo}
 										
 										<tr>
-											<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
-											<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
+											<td>
+												<a 
+													href="/index.php
+														?route=project/index
+														&projectId={$foo.project_id}
+														&projectName={$foo.project_name}
+														&departmentId={$foo.department_id}
+														&departmentName={$foo.department_name}
+														&nameUser={$name}
+														&roleUser={$role}
+														&Month={$selectedMonthForGet}
+														&Year={$selectedYearForGet}">
+													{$foo.project_name}
+												</a>
+											</td>
+											<td>
+												<a 
+													href="/index.php
+														?route=department/index
+														&departmentId={$foo.department_id}
+														&departmentName={$foo.department_name}
+														&nameUser={$name}
+														&roleUser={$role}
+														&Month={$selectedMonthForGet}
+														&Year={$selectedYearForGet}">
+													{$foo.department_name}
+												</a>
+											</td>
 											<td>{$foo.time}%</td>
-											<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lasttime="{$foo.time}" data-countselect="{$countselectPro}" data-projectid="{$foo.project_id}" data-projectname="{$foo.project_name}" data-target="#timeDistModal" title="Редактировать Данные Распределения Времени"><i class="glyphicon glyphicon-pencil"></i></a></td>
-											<td><a type="button" class="btn btn-md" href="/index.php?route=employee/removePercent&projectId={$foo.project_id}&employeeId={$employeeId}&employeeName={$employeeName}&employeeLogin={$employeeLogin}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Распределения Времени"><i class="glyphicon glyphicon-trash"></i></a></td>
+											<td>
+												<a 
+													type="button" 
+													class="btn btn-md" 
+													data-toggle="modal" 
+													data-action="Edit" 
+													data-lasttime="{$foo.time}" 
+													data-countselect="{$countArrayProjectNamesForSelect}" 
+													data-projectid="{$foo.project_id}" 
+													data-projectname="{$foo.project_name}" 
+													data-target="#timeDistModal" 
+													title="Редактировать Данные Распределения Времени">
+													<i class="glyphicon glyphicon-pencil"></i>
+												</a>
+											</td>
+											<td>
+												<a 
+													type="button" 
+													class="btn btn-md" 
+													href="/index.php
+														?route=employee/removePercent
+														&projectId={$foo.project_id}
+														&employeeId={$employeeId}
+														&employeeName={$employeeName}
+														&employeeLogin={$employeeLogin}
+														&nameUser={$name}
+														&roleUser={$role}
+														&Month={$selectedMonthForGet}
+														&Year={$selectedYearForGet}" 
+													title="Удалить Данные Распределения Времени">
+													<i class="glyphicon glyphicon-trash"></i>
+												</a>
+											</td>
 										</tr>
 									{/foreach}
 									{/if}
 									</tbody>
 								</table>
-								<a type="button" data-toggle="modal" data-action="New" ata-countselect="{$countselectPro}" data-target="#timeDistModal" class="btn btn-md" title="Добавить Распределение Времени"><i class="glyphicon glyphicon-plus"></i></a>
+								<a 
+									type="button" 
+									class="btn btn-md" 
+									data-toggle="modal" 
+									data-action="New" 
+									data-countselect="{$countArrayProjectNamesForSelect}" 
+									data-target="#timeDistModal" 
+									title="Добавить Распределение Времени">
+									<i class="glyphicon glyphicon-plus"></i>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -92,7 +179,7 @@
 									<div class="form-group">
 										<label>Отдел:</label>
 										<select name="newDepartmwent" class="form-control select2" id="selectId" style="width: 100%;">
-											{foreach from=$select item=foo}
+											{foreach from=$arrayDepartmentNamesForSelect item=foo}
 											
 											<option value="{$foo.department_id}*-*{$foo.department_name}">{$foo.department_name}</option>
 											{/foreach}
@@ -212,7 +299,7 @@
 				if (action == 'New'){
 					modal.find('.modal-title').text('Новое Распределение Времени');
 					document.getElementById('route').value = 'employee/newPercent';
-					$('#project').html('<label>Проект:</label><select name="projectId" class="form-control select2" id="selectIdPro" style="width: 100%;">{foreach from=$selectPro item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}{foreach from=$selectProNot item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}</select>'); 
+					$('#project').html('<label>Проект:</label><select name="projectId" class="form-control select2" id="selectIdPro" style="width: 100%;">{foreach from=$arrayProjectNamesForDepartmentForSelect item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}{foreach from=$arrayProjectNamesNotForDepartmentForSelect item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}</select>'); 
 					document.getElementById('TimeDistr').value = null;
 					document.getElementById('actionPro').value = action;
 					for (var i = 0; i < countSelectPro; i++) {

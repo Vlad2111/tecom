@@ -13,19 +13,17 @@
 */
 Class Router {
 
-	private $registry;
 	private $path;
 	private $args = array();
 	private $log;
 	
-	function __construct($registry) {
+	function __construct() {
 		/**Настройки*/
 		{
 			$this->setPath();
 			$this->setConfigLogger();
 		}
 		$this->log = Logger::getLogger(__CLASS__);
-		$this->registry = $registry;
 	}
 	
 	/** Получение пути к контроллерам.*/

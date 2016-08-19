@@ -13,7 +13,7 @@
 */
 Class Controller_Index Extends Controller_Base {
 	
-	function index($registry) {
+	function index() {
 		require '3pty/Smarty/libs/Smarty.class.php';
 		$smarty = new Smarty;
 		$smarty->force_compile = true;

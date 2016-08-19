@@ -5,25 +5,19 @@ require '3pty/Smarty/demo/layouts/SmartyRepeatVariables.php';
 
 /** Переменные для отображения информации о проекте. */
 {
-	if (($registry['newIdDepForPro']!=null)AND($registry['newNameDepForPro']!=null)){
-		$smarty->assign('departmentId', $registry['newIdDepForPro']);
-		$smarty->assign('departmentName', $registry['newNameDepForPro']);
-	}else{
-		$smarty->assign('departmentId', $registry['GET']['departmentId']);
-		$smarty->assign('departmentName', $registry['GET']['departmentName']);
-	}
-	if(	$registry['GET']['newName']!=null){
-		$smarty->assign('projectName', $registry['GET']['newName']);
-	}else{
-		$smarty->assign('projectName', $registry['GET']['projectName']);
-	}
-	$smarty->assign('projectId', $registry['GET']['projectId']);
-	$smarty->assign('array', $$key);
-	$smarty->assign('select', $registry['selectDepartment']);
-	$smarty->assign('countselect', count($registry['selectDepartment']));
-	$smarty->assign('selectEmp', $registry['selectEmployee']);
-	$smarty->assign('selectEmpNot', $registry['selectEmployeeNot']);
-	$smarty->assign('countselectEmp', count($registry['selectEmployee'])+count($registry['selectEmployeeNot']));
-	$smarty->assign('title', 'Проект: '. $registry['GET']['projectName']);
+	$smarty->assign('projectId', $projectId);
+	$smarty->assign('projectName', $projectName);
+	$smarty->assign('departmentId', $departmentId);
+	$smarty->assign('departmentName', $departmentName);
+	
+	$smarty->assign('arrayEployeeNamesAndPercentsForProject', $arrayEployeeNamesAndPercentsForProject);
+	
+	$smarty->assign('arrayDepartmentNamesForSelect', $arrayDepartmentNames);
+	$smarty->assign('countArrayDepartmentNamesForSelect', count($arrayDepartmentNames));
+	$smarty->assign('arrayEmployeeNamesForDepartmentForSelect', $arrayEmployeeNamesForDepartment);
+	$smarty->assign('arrayEmployeeNamesNotForDepartmentForSelect', $arrayEmployeeNamesNotForDepartment);
+	$smarty->assign('countArrayEmployeeNamesForDepartmentForSelect', count($arrayEmployeeNamesForDepartment)+count($arrayEmployeeNamesNotForDepartment));
+	
+	$smarty->assign('title', 'Проект: '. $projectName);
 	$smarty->display($contentPage);
 }

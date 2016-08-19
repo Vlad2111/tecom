@@ -29,15 +29,70 @@
 		<aside class="main-sidebar">
 			<section class="sidebar">
 				<ul class="sidebar-menu">		
-					<li class="{$status1}"><a href="/index.php?route=list/listDepartment&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список отделов</span></a></li>
-					<li class="{$status2}"><a href="/index.php?route=list/listEmployee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список сотрудников</span></a></li>
-					<li class="{$status3}"><a href="/index.php?route=list/listProject&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-th-list text-blue"></i><span>Список проектов</span></a></li>
-					<li><a data-toggle="modal" data-target="#cloneInfo" title="Копирование Информации Базы Данных из Одного Месяца в Другой"><i class="fa fa-clone text-blue"></i><span>Новый месяц</span></a></li>
+					<li class="{$status1}">
+						<a 
+							href="/index.php
+								?route=list/viewListDepartment
+								&nameUser={$name}
+								&roleUser={$role}
+								&Month={$selectedMonthForGet}
+								&Year={$selectedYearForGet}">
+							<i class="fa fa-th-list text-blue"></i>
+							<span>Список отделов</span>
+						</a>
+					</li>
+					<li class="{$status2}">
+						<a 
+							href="/index.php
+								?route=list/viewListEmployee
+								&nameUser={$name}
+								&roleUser={$role}
+								&Month={$selectedMonthForGet}
+								&Year={$selectedYearForGet}">
+							<i class="fa fa-th-list text-blue"></i>
+							<span>Список сотрудников</span>
+						</a>
+					</li>
+					<li class="{$status3}">
+						<a 
+							href="/index.php
+								?route=list/viewListProject
+								&nameUser={$name}
+								&roleUser={$role}
+								&Month={$selectedMonthForGet}
+								&Year={$selectedYearForGet}">
+							<i class="fa fa-th-list text-blue"></i>
+							<span>Список проектов</span>
+						</a>
+					</li>
+					<li>
+						<a 
+							data-toggle="modal" 
+							data-target="#cloneInfo" 
+							title="Копирование Информации Базы Данных из Одного Месяца в Другой">
+							<i class="fa fa-clone text-blue"></i>
+							<span>Новый месяц</span>
+						</a>
+					</li>
 					{if $role=="Администратор"}
-						<li class="{$status4}"><a href="/index.php?route=role&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}"><i class="fa fa-user-secret text-blue"></i><span>Пользователи и Роли</span></a></li>
+						<li class="{$status4}">
+							<a 
+								href="/index.php
+									?route=role/viewRole
+									&nameUser={$name}
+									&roleUser={$role}
+									&Month={$selectedMonthForGet}
+									&Year={$selectedYearForGet}">
+								<i class="fa fa-user-secret text-blue"></i>
+								<span>Пользователи и Роли</span>
+							</a>
+						</li>
 					{/if}
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-file text-blue"></i><span>Отчеты</span></a>
+						<a class="dropdown-toggle" data-toggle="dropdown">
+							<i class="glyphicon glyphicon-file text-blue"></i>
+							<span>Отчеты</span>
+						</a>
 						<ul class="treeview-menu">
 							<li><a href="#">Список отделов</a></li>
 							<li><a href="#">Список сотрудников</a></li>
@@ -46,9 +101,24 @@
 					</li>
 				</ul>
 				<ul class="sidebar-menu" style="position: fixed; bottom:0;">
-					<li style="width:230px;"><a class="user"><i class="glyphicon glyphicon-user text-blue" aria-hidden="true"></i><span>Пользователь: <p><b>{$name}</b></p></span></a></li>
-					<li><a class="user"><i class="glyphicon glyphicon-briefcase text-blue" aria-hidden="true"></i><span>Роль: <p><b>{$role}</b></p></span></a></li>
-					<li><a class="user" href="/index.php"><i class="glyphicon glyphicon-log-out text-blue" aria-hidden="true"></i> <span>Выход</span></a></li>
+					<li style="width:230px;">
+						<a class="user">
+							<i class="glyphicon glyphicon-user text-blue" aria-hidden="true"></i>
+							<span>Пользователь: <p><b>{$name}</b></p></span>
+						</a>
+					</li>
+					<li>
+						<a class="user">
+							<i class="glyphicon glyphicon-briefcase text-blue" aria-hidden="true"></i>
+							<span>Роль: <p><b>{$role}</b></p></span>
+						</a>
+					</li>
+					<li>
+						<a class="user" href="/index.php">
+							<i class="glyphicon glyphicon-log-out text-blue" aria-hidden="true"></i>
+							<span>Выход</span>
+						</a>
+					</li>
 				</ul>
 			</section>
 		</aside>

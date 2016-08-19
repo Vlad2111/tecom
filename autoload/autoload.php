@@ -38,5 +38,3 @@ class SiteAutoloader
 		include ($file);
 	}
 }
-
-$registry = new Registry;

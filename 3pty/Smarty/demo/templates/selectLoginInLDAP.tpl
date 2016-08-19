@@ -84,20 +84,50 @@
 										</tr>
 									</thead>
 									<tbody>
-									{if $array!=null}
-									{foreach from=$array item=foo}
+									{if $arrayLDAPAccountNames!=null}
+									{foreach from=$arrayLDAPAccountNames item=foo}
 									
 										<tr>
 											<td>{$foo.sn} {$foo.givenName}</td>
 											<td>{$foo.sAMAccountName}</td>
-											<td><a href="/index.php?route=save&content=Employee&action={$action}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}&editId={$editId}&newDepartmwent={$newDepartmwent}&newLogin={$foo.sAMAccountName}&lastPage={$lastPage}{if $lastPage=='Department'}&departmentId={$departmentId}&departmentName={$departmentName}{/if}{if $lastPage=='Employee'}&employeeId={$employeeId}{/if}" class="btn btn-lg">Выбрать</a></td>
+											<td>
+												<a 
+													href="/index.php
+														?route={$lastPage}/editEmployee
+														&action={$action}
+														&nameUser={$name}
+														&roleUser={$role}
+														&Month={$selectedMonthForGet}
+														&Year={$selectedYearForGet}
+														&editId={$editId}
+														&newDepartmwent={$newDepartmwent}
+														&newLogin={$foo.sAMAccountName}
+														{if $lastPage=='Department'}
+															&departmentId={$departmentId}
+															&departmentName={$departmentName}
+														{/if}
+														{if $lastPage=='Employee'}
+															&employeeId={$employeeId}
+														{/if}" 
+													class="btn btn-lg">Выбрать
+												</a>
+											</td>
 										</tr>
 									{/foreach}
 									{/if}
 									</tbody>
 								</table>
 								<div align="right">
-									<a type="button" href="/index.php?route={$lastPage}&content=Employee&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" class="btn btn-info" data-dismiss="modal">Отмена</a>
+									<a 
+										type="button" 
+										href="/index.php
+											?route={$lastPage}/{$lastAction}
+											&nameUser={$name}
+											&roleUser={$role}
+											&Month={$selectedMonthForGet}
+											&Year={$selectedYearForGet}" 
+										class="btn btn-info" >Отмена
+									</a>
 								</div>
 							</div>
 						</div>

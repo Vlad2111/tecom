@@ -13,20 +13,18 @@
 */
 Class Template {
 
-	private $registry;
 	private $template;
 	private $controller;
 	private $vars = array();
 	private $log;
 	
-	function __construct($controllerName, $registry) {
-		$this->registry = $registry;
+	function __construct($controllerName) {
 		$arr = explode('_', $controllerName);
 		$this->controller = strtolower($arr[1]);
 		$this->log = Logger::getLogger(__CLASS__);
 	}
 	
-	/** Подключение отображаемого контента. */
+	/** Подключение отображаемого контента. (Собирает переменные для Layuot) */
 	function vars($varname, $value) {
 		if (isset($this->vars[$varname]) == true) {
 			$this->log->info("Контент не выбран.");
@@ -36,7 +34,7 @@ Class Template {
 		return true;
 	}
 	
-	/** Подключение основы отображаемого контента.*/
+	/** Подключение основы отображаемого контента. */
 	function view($name, $layouts) {
 		$pathLayout = '3pty/Smarty/demo/layouts/' . $layouts . '.php';
 		$contentPage = '3pty/Smarty/demo/templates/' . $name . '.tpl';
@@ -50,12 +48,12 @@ Class Template {
 			throw new Exception("Шаблон контента ".$name." не найден.");
 			return false;
 		}
-
+		
+		/** Передача данных в Layout. */
 		foreach ($this->vars as $key => $value) {
 			$$key = $value;
 		}
 
-		$registry = $this->registry;
 		include ($pathLayout);                
 	}
 	

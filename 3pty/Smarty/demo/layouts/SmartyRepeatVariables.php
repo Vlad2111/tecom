@@ -25,9 +25,9 @@ echo"/*/*/*/*/";
 }
 /** Дата для отбражения и передачи. */
 {
-	$smarty->assign('selectedMonthForGet', $registry['date']->format('m'));
-	$smarty->assign('selectedYearForGet', $registry['date']->format('Y'));
-	switch($registry['date']->format('m')){
+	$smarty->assign('selectedMonthForGet', $date->format('m'));
+	$smarty->assign('selectedYearForGet', $date->format('Y'));
+	switch($date->format('m')){
 		case '01':
 			$smarty->assign('selectedMonth', 'Январь');
 			break;

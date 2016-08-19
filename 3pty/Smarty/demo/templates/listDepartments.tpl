@@ -45,19 +45,65 @@
 											</tr>
 										</thead>
 										<tbody>
-										{if $array!=null}
-										{foreach from=$array item=foo}
+										{if $arrayDepartmentNames!=null}
+										{foreach from=$arrayDepartmentNames item=foo}
 										
 											<tr>
-												<td><a href="/index.php?route=department&departmentId={$foo.department_id}&departmentName={$foo.department_name}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.department_name}</a></td>
-												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.department_name}" data-editid="{$foo.department_id}" data-target="#departmentModal" title="Редактировать Данные Отдела"><i class="glyphicon glyphicon-pencil"></i></a></td>
-												<td><a type="button" class="btn btn-md" href="/index.php?route=list/removeDepartment&departmentId={$foo.department_id}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Отдела"><i class="glyphicon glyphicon-trash"></i></a></td>
+												<td>
+													<a 
+														href="/index.php
+															?route=department/viewDepartment
+															&departmentId={$foo.department_id}
+															&departmentName={$foo.department_name}
+															&nameUser={$name}
+															&roleUser={$role}
+															&Month={$selectedMonthForGet}
+															&Year={$selectedYearForGet}">
+													{$foo.department_name}
+													</a>
+												</td>
+												<td>
+													<a 
+														type="button" 
+														class="btn btn-md" 
+														data-toggle="modal" 
+														data-action="Edit" 
+														data-lastname="{$foo.department_name}" 
+														data-editid="{$foo.department_id}" 
+														data-target="#departmentModal" 
+														title="Редактировать Данные Отдела">
+														<i class="glyphicon glyphicon-pencil"></i>
+													</a>
+												</td>
+												<td>
+													<a 
+														type="button" 
+														class="btn btn-md" 
+														href="/index.php
+															?route=list/removeDepartment
+															&departmentId={$foo.department_id}
+															&nameUser={$name}
+															&roleUser={$role}
+															&Month={$selectedMonthForGet}
+															&Year={$selectedYearForGet}" 
+														title="Удалить Данные Отдела">
+														<i class="glyphicon glyphicon-trash"></i>
+													</a>
+												</td>
 											</tr>
 										{/foreach}
 										{/if}
 										</tbody>
 									</table>
-									<a type="button" data-toggle="modal" data-action="New" data-target="#departmentModal" class="btn btn-md" title="Добавить Отдел"><i class="glyphicon glyphicon-plus"></i></a>
+									<a 
+										type="button" 
+										class="btn btn-md" 
+										data-toggle="modal" 
+										data-action="New" 
+										data-target="#departmentModal" 
+										title="Добавить Отдел">
+										<i class="glyphicon glyphicon-plus"></i>
+									</a>
 								</div>
 							</div>
 						</div>

@@ -4,23 +4,26 @@ require '3pty/Smarty/demo/layouts/SmartyRepeatVariables.php';
 
 /** Переменные для отображения списка пользователей LDAP. */
 {
-	$smarty->assign('array', $$key);
-	$smarty->assign('action', $registry['GET']['action']);
-	if ($registry['GET']['lastPage']!=null){
-		$smarty->assign('lastPage', $registry['GET']['lastPage']);
-		if($registry['GET']['lastPage']=='Department'){
-			$smarty->assign('departmentName', $registry['GET']['departmentName']);
-			$smarty->assign('departmentId', $registry['GET']['departmentId']);
+	$smarty->assign('arrayLDAPAccountNames', $arrayLDAPAccountNames);
+	$smarty->assign('action', $_GET['action']);
+	if ($_GET['lastPage']!=null){
+		if($_GET['lastPage']=='Department'){
+			$smarty->assign('lastPage', 'department');
+			$smarty->assign('lastAction', 'index');
+			$smarty->assign('departmentName', $_GET['departmentName']);
+			$smarty->assign('departmentId', $_GET['departmentId']);
 		}
-		if($registry['GET']['lastPage']=='Employee'){
-			$smarty->assign('employeeId', $registry['GET']['employeeId']);
+		if($_GET['lastPage']=='Employee'){
+			$smarty->assign('lastPage', 'employee');
+			$smarty->assign('lastAction', 'index');
+			$smarty->assign('employeeId', $_GET['employeeId']);
 		}
 	}else{
 		$smarty->assign('lastPage', 'list');
-		$smarty->assign('content', 'Department');
+		$smarty->assign('lastAction', 'listEmployee');
 	}
-	$smarty->assign('editId', $registry['GET']['editId']);
-	$smarty->assign('newDepartmwent', $registry['GET']['newDepartmwent']);
+	$smarty->assign('editId', $_GET['editId']);
+	$smarty->assign('newDepartmwent', $_GET['newDepartmwent']);
 	if ($registry['actionEmployeeFalse']==true){
 		$smarty->assign('action', 'Edit');
 		$smarty->assign('editId', $registry['editId']);

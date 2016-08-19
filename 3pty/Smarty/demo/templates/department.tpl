@@ -37,8 +37,27 @@
 							<div class="box">
 								<div class="box-header">
 									<h3 class="box-title" style="font-size:23px">Отдел: {$departmentName}	
-										<a type="button" class="btn btn-md" data-toggle="modal" data-target="#departmentModal" title="Редактировать Данные Отдела"><i class="glyphicon glyphicon-pencil"></i></a>
-										<a type="button" class="btn btn-md" href="/index.php?route=list/removeDepartment&departmentId={$departmentId}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Отдела"><i class="glyphicon glyphicon-trash"></i></a>	
+										<a 
+											type="button" 
+											class="btn btn-md" 
+											data-toggle="modal" 
+											data-target="#departmentModal"
+											title="Редактировать Данные Отдела">
+											<i class="glyphicon glyphicon-pencil"></i>
+										</a>
+										<a 
+											type="button" 
+											class="btn btn-md" 
+											href="/index.php
+												?route=list/removeDepartment
+												&departmentId={$departmentId}
+												&nameUser={$name}
+												&roleUser={$role}
+												&Month={$selectedMonthForGet}
+												&Year={$selectedYearForGet}" 
+											title="Удалить Данные Отдела">
+											<i class="glyphicon glyphicon-trash"></i>
+										</a>	
 									</h3>
 								</div>
 							</div>
@@ -60,22 +79,76 @@
 											</tr>
 										</thead>
 										<tbody>
-										{if $array!=null}
-										{foreach from=$array item=foo}
-										{if $foo.employee_id != null AND $foo.user_name != null}
+										{if $arrayEmployeeNamesForDepartment!=null}
+										{foreach from=$arrayEmployeeNamesForDepartment item=foo}
 											<tr>
 												<td>{if $foo.summ<100}<i class="glyphicon glyphicon-info-sign text-blue"></i>{/if}{if $foo.summ==100}<i class="glyphicon glyphicon-ok-sign text-green"></i>{/if}{if $foo.summ>100}<i class="glyphicon glyphicon-exclamation-sign text-red" ></i>{/if}</td>
-												<td><a href="/index.php?route=employee&employeeId={$foo.employee_id}&employeeName={$foo.user_name}&employeeLogin={$foo.user_id}&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.user_name}</a></td>
+												<td>
+													<a 
+														href="/index.php
+															?route=employee
+															&employeeId={$foo.employee_id}
+															&employeeName={$foo.user_name}
+															&employeeLogin={$foo.user_id}
+															&departmentId={$departmentId}
+															&departmentName={$departmentName}
+															&nameUser={$name}
+															&roleUser={$role}
+															&Month={$selectedMonthForGet}
+															&Year={$selectedYearForGet}">
+														{$foo.user_name}
+													</a>
+												</td>
 												<td>{$foo.summ}%</td>
-												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.user_name}" data-lastlogin="{$foo.user_id}" data-countselect="{$countselect}" data-departmentid="{$departmentId}" data-editid="{$foo.employee_id}" data-target="#employeeModal" title="Редактировать Данные Сотрудника"><i class="glyphicon glyphicon-pencil"></i></a></td>
-												<td><a type="button" class="btn btn-md" href="/index.php?route=department/removeEmployee&employeeId={$foo.employee_id}&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
+												<td>
+													<a 
+														type="button" 
+														class="btn btn-md" 
+														data-toggle="modal" 
+														data-action="Edit" 
+														data-lastname="{$foo.user_name}" 
+														data-lastlogin="{$foo.user_id}" 
+														data-countselect="{$countArrayDepartmentNamesForSelect}" 
+														data-departmentid="{$departmentId}" 
+														data-editid="{$foo.employee_id}" 
+														data-target="#employeeModal" 
+														title="Редактировать Данные Сотрудника">
+														<i class="glyphicon glyphicon-pencil"></i>
+													</a>
+												</td>
+												<td>
+													<a 
+														type="button" 
+														class="btn btn-md" 
+														href="/index.php
+															?route=department/removeEmployee
+															&employeeId={$foo.employee_id}
+															&departmentId={$departmentId}
+															&departmentName={$departmentName}
+															&nameUser={$name}
+															&roleUser={$role}
+															&Month={$selectedMonthForGet}
+															&Year={$selectedYearForGet}" 
+														title="Удалить Данные Сотрудника">
+														<i class="glyphicon glyphicon-trash"></i>
+													</a>
+												</td>
 											</tr>
-										{/if}
 										{/foreach}
 										{/if}
 										</tbody>
 									</table>
-									<a type="button" data-toggle="modal" data-action="New" data-countselect="{$countselect}" data-departmentid="{$departmentId}" data-target="#employeeModal" class="btn btn-md" title="Добавить Сотрудника"><i class="glyphicon glyphicon-plus"></i></a>
+									<a 
+										type="button" 
+										class="btn btn-md"
+										data-toggle="modal" 
+										data-action="New" 
+										data-countselect="{$countArrayDepartmentNamesForSelect}" 
+										data-departmentid="{$departmentId}" 
+										data-target="#employeeModal" 
+										title="Добавить Сотрудника">
+										<i class="glyphicon glyphicon-plus"></i>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -94,20 +167,72 @@
 											</tr>
 										</thead>
 										<tbody>
-										{if $array!=null}
-										{foreach from=$array item=foo}
-										{if $foo.project_id != null AND $foo.project_name != null}
+										{if $arrayProjectNamesForDepartment!=null}
+										{foreach from=$arrayProjectNamesForDepartment item=foo}
 											<tr>
-												<td><a href="/index.php?route=project&projectId={$foo.project_id}&projectName={$foo.project_name}&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}">{$foo.project_name}</a></td>
-												<td><a type="button" class="btn btn-md" data-toggle="modal" data-action="Edit" data-lastname="{$foo.project_name}" data-countselect="{$countselect}" data-departmentid="{$departmentId}" data-editid="{$foo.project_id}" data-target="#projectModal" title="Редактировать Данные Проекта"><i class="glyphicon glyphicon-pencil"></i></a></td>
-												<td><a type="button" class="btn btn-md" href="/index.php?route=department/removeProject&projectId={$foo.project_id}&departmentId={$departmentId}&departmentName={$departmentName}&nameUser={$name}&roleUser={$role}&Month={$selectedMonthForGet}&Year={$selectedYearForGet}" title="Удалить Данные Сотрудника"><i class="glyphicon glyphicon-trash"></i></a></td>
+												<td>
+													<a 
+														href="/index.php
+															?route=project
+															&projectId={$foo.project_id}
+															&projectName={$foo.project_name}
+															&departmentId={$departmentId}
+															&departmentName={$departmentName}
+															&nameUser={$name}
+															&roleUser={$role}
+															&Month={$selectedMonthForGet}
+															&Year={$selectedYearForGet}">
+														{$foo.project_name}
+													</a>
+												</td>
+												<td>
+													<a 
+														type="button" 
+														class="btn btn-md" 
+														data-toggle="modal" 
+														data-action="Edit" 
+														data-lastname="{$foo.project_name}" 
+														data-countselect="{$countArrayDepartmentNamesForSelect}" 
+														data-departmentid="{$departmentId}" 
+														data-editid="{$foo.project_id}" 
+														data-target="#projectModal" 
+														title="Редактировать Данные Проекта">
+														<i class="glyphicon glyphicon-pencil"></i>
+													</a>
+												</td>
+												<td>
+													<a 
+														type="button" 
+														class="btn btn-md" 
+														href="/index.php
+															?route=department/removeProject
+															&projectId={$foo.project_id}
+															&departmentId={$departmentId}
+															&departmentName={$departmentName}
+															&nameUser={$name}
+															&roleUser={$role}
+															&Month={$selectedMonthForGet}
+															&Year={$selectedYearForGet}" 
+														title="Удалить Данные Сотрудника">
+														<i class="glyphicon glyphicon-trash"></i>
+													</a>
+												</td>
 											</tr>
-										{/if}
 										{/foreach}
 										{/if}
 										</tbody>
 									</table>
-								<a type="button" data-toggle="modal" data-action="New" data-countselect="{$countselect}" data-departmentid="{$departmentId}" data-target="#projectModal" class="btn btn-md" title="Добавить Проект"><i class="glyphicon glyphicon-plus"></i></a>
+								<a 
+									type="button" 
+									class="btn btn-md" 
+									data-toggle="modal" 
+									data-action="New" 
+									data-countselect="{$countArrayDepartmentNamesForSelect}" 
+									data-departmentid="{$departmentId}" 
+									data-target="#projectModal" 
+									title="Добавить Проект">
+									<i class="glyphicon glyphicon-plus"></i>
+								</a>
 							</div>
 								</div>
 							</div>
@@ -134,7 +259,7 @@
 									<div class="form-group">
 										<label>Отдел:</label>
 										<select name="newDepartmwent" class="form-control select2" id="selectIdEmp" style="width: 100%;">
-											{foreach from=$select item=foo}
+											{foreach from=$arrayDepartmentNamesForSelect item=foo}
 											
 											<option value="{$foo.department_id}">{$foo.department_name}</option>
 											{/foreach}
@@ -176,7 +301,7 @@
 									<div class="form-group">
 										<label>Отдел:</label>
 										<select name="newDepartmwent" class="form-control select2" id="selectIdPro" style="width: 100%;">
-											{foreach from=$select item=foo}
+											{foreach from=$arrayDepartmentNamesForSelect item=foo}
 											
 											<option value="{$foo.department_id}">{$foo.department_name}</option>
 											{/foreach}
