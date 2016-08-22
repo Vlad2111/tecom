@@ -1923,3 +1923,13 @@ DETAIL:  Key (date, department_id)=(2016-08-01 00:00:00, 2) already exists.
 2016-08-19T13:32:03+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_department
 2016-08-19T13:55:26+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_employee
 2016-08-19T14:20:21+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_role
+2016-08-22T11:59:05+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_employee
+2016-08-22T11:59:07+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_employee
+2016-08-22T11:59:11+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_department
+2016-08-22T12:05:23+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_employee
+2016-08-22T12:09:44+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_department
+2016-08-22T12:51:30+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_department
+2016-08-22T12:51:34+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_department
+2016-08-22T13:53:41+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_department
+2016-08-22T13:53:44+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_project
+2016-08-22T14:46:32+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_employee

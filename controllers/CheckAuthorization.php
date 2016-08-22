@@ -27,8 +27,6 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 		}else{
 			$_GET['route']='index';
 		}
-		unset($this->registry['GET']);
-		unset($this->registry['POST']);
 		include 'index.php';
 	}
 	
@@ -51,31 +49,49 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 	/** Проверка базы данных. */
 	private function checkDB() {
 		$date = new DateTime();
+		$rowsDepartment = $this->postgreSQL->getDepartmentNames($date);
+		if($rowsDepartment!=null){
+			foreach ($rowsDepartment as $key=>$array){
+				if (($array['department_id']!=null)AND($array['department_name']==null)){
+					$falseArrayDB['department'][$key]=$array;
+				}
+			}
+		}
 		$rowsEmployee = $this->postgreSQL->getEmployeeNames($date);
 		if($rowsEmployee!=null){
 			$ldap = new LdapOperations();
 			$ldap->connect();
 			foreach ($rowsEmployee as $key=>$array){
-				$arrayLDAPAccountNames = $ldap->getLDAPAccountNamesByPrefix($array['user_id']);
-				if (count($arrayLDAPAccountNames)>1){
-					$falseArrayDB['id']=$array['employee_id'];
-					$falseArrayDB['login']=$array['user_id'];
-					$falseArrayDB['name']=$array['user_name'];
-					$falseArrayDB['departmwent']=$array['department_id'];
-				}else{
-					if($array['user_name']==null){
-						$rowsEmployee[$key]['user_name'] = $arrayLDAPAccountNames['0']['sn'].' '.$arrayLDAPAccountNames['0']['givenName'];
-						$this->postgreSQL->changeEmployeeInfo($rowsEmployee[$key]['employee_id'], $date, 
-							$rowsEmployee[$key]['user_id'], $rowsEmployee[$key]['user_name'], 
-								$rowsEmployee[$key]['department_id']);
+				if (($array['user_id']!=null)AND($array['department_id']!=null)){
+					$arrayLDAPAccountNames = $ldap->getLDAPAccountNamesByPrefix($array['user_id']);
+					if (count($arrayLDAPAccountNames)!=1){
+						$falseArrayDB['employee'][$key]=$array;
+					}else{
+						if($array['user_name']==null){
+							$rowsEmployee[$key]['user_name'] = $arrayLDAPAccountNames['0']['sn'].' '.$arrayLDAPAccountNames['0']['givenName'];
+							$this->postgreSQL->changeEmployeeInfo($rowsEmployee[$key]['employee_id'], $date, 
+								$rowsEmployee[$key]['user_id'], $rowsEmployee[$key]['user_name'], 
+									$rowsEmployee[$key]['department_id']);
+						}	
 					}
+				}else{
+					$falseArrayDB['employee'][$key]=$array;
 				}
 			}
-			if($falseArrayDB!=null){
-				$this->template->vars('date', $date);
-				$this->template->vars('falseArrayDB', $falseArrayDB);
-				$this->template->view('falseList', 'falseListLayout');
+		}
+		$rowsProject = $this->postgreSQL->getProjectNames($date);
+		if($rowsProject!=null){
+			foreach ($rowsProject as $key=>$array){
+				if (($array['project_id']!=null)AND(($array['project_name']==null)OR($array['department_id']==null))){
+					$falseArrayDB['project'][$key]=$array;
+				}
 			}
+		}
+		if($falseArrayDB!=null){
+			$_GET['falseList']=$falseArrayDB;
+			$_GET['route']='falseList/viewFalseList';
+			$_GET['date']=$date;
+			include 'index.php';
 		}
 	}
 	

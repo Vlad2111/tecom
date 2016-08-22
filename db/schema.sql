@@ -30,7 +30,7 @@ CREATE TABLE "Employee" (
 	user_name character varying(150),
     department_id integer,
     CONSTRAINT employee_id_date_pk PRIMARY KEY (date, employee_id),
-	CONSTRAINT user_id_date_unique UNIQUE (date, user_id),
+	CONSTRAINT user_name_date_unique UNIQUE (date, user_name),
     CONSTRAINT department_id_date_vk FOREIGN KEY (date, department_id) REFERENCES "Departments"(date, department_id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE
 );
 

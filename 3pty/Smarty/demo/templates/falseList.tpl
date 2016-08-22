@@ -5,26 +5,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Tecomgroup | {$title}</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<!-- REQUIRED CSS SCRIPTS -->
-		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/skins/_all-skins.min.css">
-		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/AdminLTE.min.css">
-		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/skins/skin-blue.min.css">
-		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.css">
-		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datepicker/datepicker3.css">
-		<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/select2/select2.min.css">
-		<!-- REQUIRED JS SCRIPTS -->
-		<script src="3pty/AdminLTE-2.3.5/plugins/fastclick/fastclick.js"></script>
-		<script src="3pty/AdminLTE-2.3.5/dist/js/demo.js"></script>
-		<script src="3pty/AdminLTE-2.3.5/plugins/jQuery/jquery-2.2.3.min.js" type="text/javascript"></script>
-		<script src="3pty/AdminLTE-2.3.5/bootstrap/js/bootstrap.min.js"></script>
-		<script src="3pty/AdminLTE-2.3.5/dist/js/app.min.js"></script>
-		<script src="3pty/AdminLTE-2.3.5/plugins/datatables/jquery.dataTables.min.js"></script>
-		<script src="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.min.js"></script>
-		<script src="3pty/AdminLTE-2.3.5/plugins/datepicker/bootstrap-datepicker.js"></script>
-		<script src="3pty/AdminLTE-2.3.5/plugins/select2/select2.full.min.js"></script>
 	</head>
 	<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -126,9 +106,7 @@
 		</div>
 		<footer class="main-footer">
 			<div class="pull-right hidden-xs">
-				<b>Version</b> 2.3.5
 			</div>
-			<strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
 		</footer>
 		<script>
 			$('#employeeModal').on('show.bs.modal', function (event) {

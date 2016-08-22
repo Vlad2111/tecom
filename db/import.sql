@@ -27,6 +27,12 @@ INSERT INTO "Role_def" (role_id, role_name)
 values (0, 'Пользователь');
 INSERT INTO "Role_def" (role_id, role_name)
 values (1, 'Глава отдела');
+INSERT INTO "Role_def" (role_id, role_name)
+values (2, 'Сотрудник Отдела Кадров');
+INSERT INTO "Role_def" (role_id, role_name)
+values (3, 'Директор Компании');
+INSERT INTO "Role_def" (role_id, role_name)
+values (4, 'Администратор');
 
 
 INSERT INTO "Role" (employee_id, role_id)
@@ -34,7 +40,7 @@ values (0, 0);
 INSERT INTO "Role" (employee_id, role_id)
 values (1, 1);
 INSERT INTO "Role" (employee_id, role_id)
-values (2, 0);
+values (2, 4);
 
 
 INSERT INTO "Projects" (date, project_id, project_name, department_id)

@@ -5,7 +5,7 @@ require '3pty/Smarty/demo/layouts/SmartyRepeatVariables.php';
 
 /** Переменные для отображения списка пользователей и ролей. */
 {
-	$smarty->assign('array', $$key);
-	$smarty->assign('title', 'Пользователи с Ошибками в Логинах');
+	$smarty->assign('falseList', $falseList);
+	$smarty->assign('title', 'Ошибки в базе данных');
 	$smarty->display($contentPage);
 }

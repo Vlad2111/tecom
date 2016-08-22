@@ -12,7 +12,7 @@
 
 @author smirnov.a
 */
-class LdapOperations
+class LdapOperationsTest
 {
 	private $ldaphost;
 	private $ldapport;
@@ -26,12 +26,13 @@ class LdapOperations
 	const LDAP_OPT_DIAGNOSTIC_MESSAGE = 0x0032;
 	public function connect()
 	{
-		$LDAPConfiguration = Configuration::instance()->config;
-		$this->ldaphost=$LDAPConfiguration['ldaphost'];
-		$this->ldapport=$LDAPConfiguration['ldapport'];
-		$this->login=$LDAPConfiguration['login'];
-		$this->password=$LDAPConfiguration['password'];
-		$this->base=$LDAPConfiguration['base'];
+		include 'ConfigurationTest.php';
+		$LDAPConfigurationTest = ConfigurationTest::instance()->config;
+		$this->ldaphost=$LDAPConfigurationTest['ldaphost'];
+		$this->ldapport=$LDAPConfigurationTest['ldapport'];
+		$this->login=$LDAPConfigurationTest['login'];
+		$this->password=$LDAPConfigurationTest['password'];
+		$this->base=$LDAPConfigurationTest['base'];
 		$this->ldap=ldap_connect($this->ldaphost, $this->ldapport);
 		if (!$this->ldap) {
 			throw new Exception("Cant connect to ldap Server");
