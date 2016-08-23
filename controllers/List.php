@@ -85,7 +85,7 @@ Class Controller_List Extends Controller_Base {
 					
 			$this->postgreSQL->cloneModelData($dateFrom, $dateTo);
 			
-			$this->template->vars('date', $dateTo);
+			$this->template->vars('dateTo', $dateTo);
 			$this->viewListDepartment();
 		}
 	}

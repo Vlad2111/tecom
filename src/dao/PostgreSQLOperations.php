@@ -857,4 +857,28 @@ class PostgreSQLOperations
 					pg_last_error($this->dbConnect));
 		}
 	}
+	
+	/** Запрос id отдела. */
+	public function getDepartmentId(DateTime $date, $departmentName)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT department_id FROM "Departments" '.
+				'WHERE date_part(\'epoch\', date_trunc(\'month\', date))'.
+				' = $1 AND department_name = $2', array($date->format("U"), $departmentName));
+		$departmentId = pg_fetch_all($result);
+		return $departmentId['0']['department_id'];
+	}
+	
+	/** Запрос id сотрудника. */
+	public function getEmployeeId(DateTime $date, $userName)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id FROM "Employee" WHERE '.
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND user_name = $2',
+					array($date->format("U"), $userName));
+		$employeeId = pg_fetch_all($result);
+		return $employeeId['0'];
+	}
 }

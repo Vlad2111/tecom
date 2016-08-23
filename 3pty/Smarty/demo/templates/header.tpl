@@ -160,7 +160,7 @@
 										<input name="date" type="text" class="form-control pull-right" id="datepicker">
 									</div>
 									<div class="input-group hidden">
-										<input name="route" type="hidden" value="list/listDepartment">
+										<input name="route" type="hidden" value="list/viewListDepartment">
 										<input name="nameUser" type="hidden" value="{$name}">
 										<input name="roleUser" type="hidden" value="{$role}">
 									</div>

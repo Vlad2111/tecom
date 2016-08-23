@@ -1933,3 +1933,22 @@ DETAIL:  Key (date, department_id)=(2016-08-01 00:00:00, 2) already exists.
 2016-08-22T13:53:41+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_department
 2016-08-22T13:53:44+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_project
 2016-08-22T14:46:32+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_employee
+2016-08-23T14:14:02+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_list
+2016-08-23T14:29:49+00:00 [ERROR] [PostgreSQLOperations->newDepartment] [625] Не удается выполнить запись нового отдела. ERROR:  duplicate key value violates unique constraint "department_id_date_pk"
+DETAIL:  Key (date, department_id)=(2016-01-01 00:00:00, 3) already exists.
+2016-08-23T14:33:30+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_list
+2016-08-23T14:33:36+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_list
+2016-08-23T14:33:55+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_list
+2016-08-23T14:46:57+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [671] Не удается выполнить запись нового сотрудника. ERROR:  invalid input syntax for integer: "АХЧ"
+2016-08-23T14:54:59+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [671] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-01-01 00:00:00, 3) already exists.
+2016-08-23T14:55:16+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [671] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-01-01 00:00:00, 3) already exists.
+2016-08-23T14:55:22+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [671] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-01-01 00:00:00, 3) already exists.
+2016-08-23T14:58:43+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [671] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-07-01 00:00:00, 1) already exists.
+2016-08-23T15:00:46+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [671] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-07-01 00:00:00, 1) already exists.
+2016-08-23T15:01:22+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [671] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
+DETAIL:  Key (date, employee_id)=(2016-07-01 00:00:00, 1) already exists.
