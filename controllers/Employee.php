@@ -25,6 +25,12 @@ Class Controller_Employee Extends Controller_Base {
 		$this->template->vars('employeeLogin', $_GET['employeeLogin']);
 		$this->template->vars('employeeName', $_GET['employeeName']);
 		$this->template->vars('departmentId', $_GET['departmentId']);
+		if (isset ($_GET['I'])){
+			$_GET['departmentName']=$_GET['departmentName']."&I";
+		}
+		if (isset ($_GET['D'])){
+			$_GET['departmentName']=$_GET['departmentName']."&D";
+		}
 		$this->template->vars('departmentName', $_GET['departmentName']);
 															
 		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);

@@ -24,6 +24,12 @@ Class Controller_Project Extends Controller_Base {
 		$this->template->vars('projectId', $_GET['projectId']);
 		$this->template->vars('projectName', $_GET['projectName']);
 		$this->template->vars('departmentId', $_GET['departmentId']);
+		if (isset ($_GET['I'])){
+			$_GET['departmentName']=$_GET['departmentName']."&I";
+		}
+		if (isset ($_GET['D'])){
+			$_GET['departmentName']=$_GET['departmentName']."&D";
+		}
 		$this->template->vars('departmentName', $_GET['departmentName']);
 		
 		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);

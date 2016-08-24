@@ -1952,3 +1952,56 @@ DETAIL:  Key (date, employee_id)=(2016-07-01 00:00:00, 1) already exists.
 DETAIL:  Key (date, employee_id)=(2016-07-01 00:00:00, 1) already exists.
 2016-08-23T15:01:22+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [671] Не удается выполнить запись нового сотрудника. ERROR:  duplicate key value violates unique constraint "employee_id_date_pk"
 DETAIL:  Key (date, employee_id)=(2016-07-01 00:00:00, 1) already exists.
+2016-08-24T09:21:53+00:00 [ERROR] [PostgreSQLOperations->getRoleName] [56] Нет данных о данном пользователе: ershov.v 
+2016-08-24T10:17:10+00:00 [ERROR] [Router->start] [106] Не существует класс контроллера: Controller_savexlsx
+2016-08-24T10:41:09+00:00 [ERROR] [PostgreSQLOperations->newProject] [718] Не удается выполнить запись нового проекта. ERROR:  insert or update on table "Projects" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-24T10:45:24+00:00 [ERROR] [PostgreSQLOperations->newProject] [718] Не удается выполнить запись нового проекта. ERROR:  insert or update on table "Projects" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-24T10:47:57+00:00 [ERROR] [PostgreSQLOperations->newProject] [718] Не удается выполнить запись нового проекта. ERROR:  insert or update on table "Projects" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-24T10:48:13+00:00 [ERROR] [PostgreSQLOperations->newProject] [718] Не удается выполнить запись нового проекта. ERROR:  insert or update on table "Projects" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-24T10:48:21+00:00 [ERROR] [PostgreSQLOperations->newProject] [718] Не удается выполнить запись нового проекта. ERROR:  insert or update on table "Projects" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-24T10:50:33+00:00 [ERROR] [PostgreSQLOperations->newProject] [718] Не удается выполнить запись нового проекта. ERROR:  insert or update on table "Projects" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-24T10:53:21+00:00 [ERROR] [PostgreSQLOperations->newProject] [718] Не удается выполнить запись нового проекта. ERROR:  insert or update on table "Projects" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-24T11:04:51+00:00 [ERROR] [PostgreSQLOperations->newProject] [718] Не удается выполнить запись нового проекта. ERROR:  insert or update on table "Projects" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-24T11:07:35+00:00 [ERROR] [PostgreSQLOperations->newProject] [718] Не удается выполнить запись нового проекта. ERROR:  insert or update on table "Projects" violates foreign key constraint "department_id_date_vk"
+DETAIL:  MATCH FULL does not allow mixing of null and nonnull key values.
+2016-08-24T11:46:46+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [671] Не удается выполнить запись нового сотрудника. ERROR:  invalid input syntax for integer: ""
+2016-08-24T11:52:44+00:00 [ERROR] [PostgreSQLOperations->newEmployee] [639] Не удается выполнить запрос на получение id сотрудника. ERROR:  could not determine data type of parameter $2
+2016-08-24T12:10:50+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  null value in column "project_id" violates not-null constraint
+DETAIL:  Failing row contains (2016-01-01 00:00:00, null, 0, 1).
+2016-08-24T12:14:05+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  invalid input syntax for integer: "0.09"
+2016-08-24T12:16:22+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 29, 30) already exists.
+2016-08-24T12:39:27+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T12:44:51+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T12:44:53+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T12:44:54+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T12:47:16+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T12:47:19+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T12:53:14+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T12:53:15+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T13:10:46+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  invalid input syntax for integer: "42.5"
+2016-08-24T13:16:00+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T13:16:07+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T13:16:07+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T13:17:56+00:00 [ERROR] [PostgreSQLOperations->newTimeDistribution] [734] Не удается выполнить запись нового распределения времени. ERROR:  duplicate key value violates unique constraint "project_employee_id_date_pk"
+DETAIL:  Key (date, project_id, employee_id)=(2016-01-01 00:00:00, 37, 0) already exists.
+2016-08-24T14:03:40+00:00 [ERROR] [PostgreSQLOperations->getRoleName] [56] Нет данных о данном пользователе: ershov.v 

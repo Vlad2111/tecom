@@ -17,117 +17,128 @@ Class Controller_SaveXLSX Extends Controller_Base {
 	public $postgreSQL;
 
 	
-	function index() {
+	function readerXLSXFile() {
+		require_once '3pty/PHPExcel/Classes/PHPExcel.php';
+		$file_type = PHPExcel_IOFactory::identify( $_FILES['file']['tmp_name'] );
+		$objReader = PHPExcel_IOFactory::createReader( $file_type );
+		$objPHPExcel = $objReader->load( $_FILES['file']['tmp_name'] );
+		$sheet = $objPHPExcel->getSheetByName($_POST['nameSheet']);
+		$sheet1 = $objPHPExcel->getSheetByName('Список проектов');
 		
-		$data = $this->readerXLSXFile('test/testExcel.xlsx');
-		$data = $this->readerXLSXFileProject('test/testExcel.xlsx');
-		//$array = $this->changeValueForSave($data);
-		//print_r($array['January-2016']['date']);
-		//print_r($array['January-2016'][0]);
+		$date = $this->getDate( $sheet );
+		
+		$this->columnOfDepartment( $sheet , $date );
+		$this->columnOfProject( $sheet1 , $date );
+		$this->columnOfEmployee( $sheet , $date );
+		$this->columnsOfTimeDistr( $sheet , $date );
+		
+		$_GET['route']='list/viewListDepartment';
+		include 'index.php';
 	}
 	
-	/** Чтение файла. */
-	private function readerXLSXFile( $filename ){
-		require_once '3pty/PHPExcel/Classes/PHPExcel.php';
-		$file_type = PHPExcel_IOFactory::identify( $filename );
-		$objReader = PHPExcel_IOFactory::createReader( $file_type );
-		$objPHPExcel = $objReader->load( $filename );
-		$sheet = $objPHPExcel->getSheetByName('Список проектов');
-		for ($i = 0; $i <= $sheet->getHighestRow(); $i++) {
-			for ($j = 1; $j < 5; $j++) {
-				$value1[$i][$j] = $sheet->getCellByColumnAndRow($j, $i+2)->getValue();
-			}
+	/** Чтение дат из файла. */
+	private function getDate( $sheet ){
+		for ($i = 4; $i <= 10; $i++) {
+			$date[$i] = $sheet->getCellByColumnAndRow($i, 1)->getValue();
+			$date[$i] = PHPExcel_Shared_Date::ExcelToPHPObject($date[$i]);
 		}
-		print_r($value1);
-		$sheet = $objPHPExcel->getSheetByName('2016');
-		for ($j = 1; $j < 11; $j++) {
-			$value['header'][$j] = $sheet->getCellByColumnAndRow($j, 1)->getValue();
-			if(PHPExcel_Shared_Date::isDateTime($sheet->getCellByColumnAndRow($j, 1))) {
-				$value['date'][$j] = PHPExcel_Shared_Date::ExcelToPHPObject($value['header'][$j]);
-				$value['header'][$j] = PHPExcel_Shared_Date::ExcelToPHPObject($value['header'][$j])->format('F-Y');
-			}
-		}
-		for ($i = 0; $i <= $sheet->getHighestRow(); $i++) {
-
-			for ($j = 1; $j < 11; $j++) {
-				$value[$i][$value['header'][$j]] = $sheet->getCellByColumnAndRow($j, $i+2)->getValue();
-			}
-			if (($value[$i]['Сотрудник']==null)AND($value[$i]['Подразделение']==null)AND($value[$i]['Проект']==null)){
-				unset($value[$i]);
-				unset($value['header']);
+		return $date;
+	}
+	
+	/** Чтение отделов из файла. */
+	private function columnOfDepartment( $sheet , $date ){
+		for ($i = 2; $i <= $sheet->getHighestRow(); $i++) {
+			$departmentName = $sheet->getCellByColumnAndRow(2, $i)->getValue();
+			rtrim($departmentName);
+			if ($departmentName == null){
 				$i = $sheet->getHighestRow();
-			}
-		}
-		return $value;
-	}
-	
-	/** Чтение файла. */
-	private function readerXLSXFileProject( $filename ){
-		require_once '3pty/PHPExcel/Classes/PHPExcel.php';
-		$file_type = PHPExcel_IOFactory::identify( $filename );
-		$objReader = PHPExcel_IOFactory::createReader( $file_type );
-		$objPHPExcel = $objReader->load( $filename );
-		$sheet = $objPHPExcel->getSheetByName('Список проектов');
-		for ($i = 0; $i <= $sheet->getHighestRow(); $i++) {
-			for ($j = 1; $j < 5; $j++) {
-				$value1[$i][$j] = $sheet->getCellByColumnAndRow($j, $i+2)->getValue();
-			}
-		}
-		print_r($value1);
-		return $value;
-	}
-	
-	/** Обработчик файла. */
-	/** Пример полученных данных
-	 * [123] => 
-	 * [Сотрудник] => Ершов Владислав Александрович
-	 * [Подразделение] => Отдел3333
-	 * [Проект] => Проект33
-	 * [January-2016] =>
-	 * [February-2016] =>
-	 * [March-2016] =>
-	 * [April-2016] =>
-	 * [May-2016] =>
-	 * [June-2016] => 1
-	 * [July-2016] => 1
-	 */
-	function changeValueForSave( $value ){
-		if ($value!=null){
-			$date = $value['date'];
-			unset($value['date']);
-			foreach ($value as $key=>$row){
-				foreach ($date as $keyDate=>$rowDate){
-					if($row[$rowDate->format('F-Y')]!=null){
-						$array[$rowDate->format('F-Y')]['date']=$rowDate;
-						
-						$departmentId = $this->postgreSQL->getDepartmentId($rowDate, $row['Подразделение']);
-						if ($departmentId == null){
-							$this->postgreSQL->newDepartment($rowDate, $row['Подразделение']);
-							$departmentId = $this->postgreSQL->getDepartmentId($rowDate, $row['Подразделение']);
-						}
-						$array[$rowDate->format('F-Y')][$key]['department']['id']=$departmentId;
-						$array[$rowDate->format('F-Y')][$key]['department']['name']=$row['Подразделение'];
-						
-						$employeeIdAndLogin = $this->postgreSQL->getEmployeeId($rowDate, $row['Сотрудник']);
-						if ($employeeIdAndLogin == null){
-							$ldap = new LdapOperations();
-							$ldap->connect();
-							$login = $ldap->getLDAPAccountNamesByFullName($row['Сотрудник']);
-							$this->postgreSQL->newEmployee($rowDate, $login[0]['sAMAccountName'], $row['Сотрудник'], $departmentId);
-							$employeeIdAndLogin = $this->postgreSQL->getEmployeeId($rowDate, $row['Сотрудник']);
-						}
-						$array[$rowDate->format('F-Y')][$key]['employee']['id']=$employeeIdAndLogin['employee_id'];
-						$array[$rowDate->format('F-Y')][$key]['employee']['login']=$employeeIdAndLogin['user_id'];
-						$array[$rowDate->format('F-Y')][$key]['employee']['name']=$row['Сотрудник'];
-						$array[$rowDate->format('F-Y')][$key]['employee']['department']=$departmentId;
-
-						$array[$rowDate->format('F-Y')][$key]['project']['name']=$row['Проект'];
-
-						$array[$rowDate->format('F-Y')][$key]['timeDist']=$row[$rowDate->format('F-Y')];
+			}else{
+				foreach ($date as $datetime){
+					$departmentId = $this->postgreSQL->getDepartmentId($datetime, $departmentName);
+					if ($departmentId == null){
+						$this->postgreSQL->newDepartment($datetime, $departmentName);
 					}
 				}
 			}
 		}
-		return $array;
+	}
+	
+	/** Чтение проектов из файла. */
+	private function columnOfProject( $sheet , $date ){
+		for ($i = 2; $i <= $sheet->getHighestRow(); $i++) {
+			$projectName = $sheet->getCellByColumnAndRow(1, $i)->getValue();
+			rtrim($projectName);
+			$departmentName = $sheet->getCellByColumnAndRow(2, $i)->getValue();
+			rtrim($departmentName);
+			foreach ($date as $datetime){
+				$departmentId = $this->postgreSQL->getDepartmentId($datetime, $departmentName);
+				if ($departmentId == null){
+					$this->postgreSQL->newDepartment($datetime, $departmentName);
+					$departmentId = $this->postgreSQL->getDepartmentId($datetime, $departmentName);
+				}
+				$projectId = $this->postgreSQL->getProjectId($datetime, $projectName, $departmentId);
+				if ($projectId == null){
+					$this->postgreSQL->newProject($datetime, $projectName, $departmentId);
+				}
+			}
+		}
+	}
+	
+	/** Чтение сотрудников из файла. */
+	private function columnOfEmployee( $sheet , $date ){
+		for ($i = 2; $i <= $sheet->getHighestRow(); $i++) {
+			$departmentName = $sheet->getCellByColumnAndRow(2, $i)->getValue();
+			rtrim($departmentName);
+			$employeeName = $sheet->getCellByColumnAndRow(1, $i)->getValue();
+			rtrim($employeeName);
+			if (($departmentName == null)AND($employeeName == null)){
+				$i = $sheet->getHighestRow();
+			}else{
+				foreach ($date as $datetime){
+					$departmentId = $this->postgreSQL->getDepartmentId($datetime, $departmentName);
+					$employeeIdAndLogin = $this->postgreSQL->getEmployeeId($datetime, $employeeName);
+					if ($employeeIdAndLogin['employee_id'] == null){
+						$ldap = new LdapOperations();
+						$ldap->connect();
+						$login = $ldap->getLDAPAccountNamesByFullName($employeeName);
+						$this->postgreSQL->newEmployee($datetime, $login[0]['sAMAccountName'], $employeeName, $departmentId);
+					}
+				}
+			}
+		}
+	}
+	
+	/** Чтение распределения времени из файла. */
+	private function columnsOfTimeDistr( $sheet , $date ){
+		foreach ($date as $key=>$datetime){
+			for ($i = 2; $i <= $sheet->getHighestRow(); $i++) {
+				$employeeName = $sheet->getCellByColumnAndRow(1, $i)->getValue();
+				rtrim($employeeName);
+				$projectName = $sheet->getCellByColumnAndRow(3, $i)->getValue();
+				rtrim($projectName);
+				$time = $sheet->getCellByColumnAndRow($key, $i)->getValue();
+				rtrim($time);
+				if (($employeeName == null)AND($projectName == null)){
+					$i = $sheet->getHighestRow();
+				}else{
+					if ($time != null){
+						$employeeIdAndLogin = $this->postgreSQL->getEmployeeId($datetime, $employeeName);
+						$projectId = $this->postgreSQL->getProjectId($datetime, $projectName, $departmentId);
+						if ($projectId==null){
+							$departmentName = $sheet->getCellByColumnAndRow(2, $i)->getValue();
+							rtrim($departmentName);
+							$departmentId = $this->postgreSQL->getDepartmentId($datetime, $departmentName);
+							$this->postgreSQL->newProject($datetime, $projectName, $departmentId);
+							$projectId = $this->postgreSQL->getProjectId($datetime, $projectName, $departmentId);
+						}
+						$checkTime = $this->postgreSQL->checkTime($datetime, $projectId, $employeeIdAndLogin['employee_id']);
+						if ($checkTime==null){
+							$time = $time*100;
+							$this->postgreSQL->newTimeDistribution($datetime, $projectId, $employeeIdAndLogin['employee_id'], $time);
+						}
+					}
+				}
+			}
+		}
 	}
 }

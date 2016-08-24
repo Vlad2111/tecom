@@ -11,6 +11,6 @@ require '3pty/Smarty/demo/layouts/SmartyRepeatVariables.php';
 	$smarty->assign('arrayProjectNamesForDepartment', $arrayProjectNamesForDepartment);
 	$smarty->assign('arrayDepartmentNamesForSelect', $arrayDepartmentNames);
 	$smarty->assign('countArrayDepartmentNamesForSelect', count($arrayDepartmentNames));
-	$smarty->assign('title', 'Отдел: '.	$_departmentName);
+	$smarty->assign('title', 'Отдел: '.	$departmentName);
 	$smarty->display($contentPage);
 }

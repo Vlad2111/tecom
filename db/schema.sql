@@ -48,7 +48,7 @@ CREATE TABLE "Time_distribution" (
     date timestamp without time zone,
     project_id integer,
     employee_id integer,
-    "time" smallint,
+    "time" real,
     CONSTRAINT project_employee_id_date_pk PRIMARY KEY (date, project_id, employee_id),
     CONSTRAINT project_id_date_vk FOREIGN KEY (date, project_id) REFERENCES "Projects"(date, project_id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT employee_id_date_vk FOREIGN KEY (date, employee_id) REFERENCES "Employee"(date, employee_id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE

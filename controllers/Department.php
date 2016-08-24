@@ -21,6 +21,12 @@ Class Controller_Department Extends Controller_Base {
 		$date = $this->getDate();
 		$this->template->vars('date', $date);
 		
+		if (isset ($_GET['I'])){
+			$_GET['departmentName']=$_GET['departmentName']."&I";
+		}
+		if (isset ($_GET['D'])){
+			$_GET['departmentName']=$_GET['departmentName']."&D";
+		}
 		$this->template->vars('departmentId', $_GET['departmentId']);
 		$this->template->vars('departmentName', $_GET['departmentName']);
 		

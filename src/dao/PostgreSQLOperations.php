@@ -633,7 +633,7 @@ class PostgreSQLOperations
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" WHERE user_id '.
-				'= $1', array($userId));
+				'= $1 OR user_name = $2', array($userId, $userName));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение id сотрудника. ".
 					pg_last_error($this->dbConnect));
@@ -880,5 +880,35 @@ class PostgreSQLOperations
 					array($date->format("U"), $userName));
 		$employeeId = pg_fetch_all($result);
 		return $employeeId['0'];
+	}
+	
+	/** Запрос id проекта. */
+	public function getProjectId(DateTime $date, $projectName, $departmentId)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE '.
+						'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_name'.
+							' = $2', array($date->format("U"), $projectName));
+		if (pg_num_rows($result)>1) {
+			$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE '.
+					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_name = $2 '.
+						'AND department_id = $3', array($date->format("U"), $projectName, $departmentId));
+		}
+		$projectId = pg_fetch_all($result);
+		return $projectId['0']['project_id'];
+	}
+	
+	/** Проверка наличия времени. */
+	public function checkTime(DateTime $date, $projectId, $employeeId)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT time FROM "Time_distribution" WHERE '.
+			'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_id = $2 AND '.
+				'employee_id = $3',
+				array($date->format("U"), $projectId, $employeeId));
+		$time = pg_fetch_all($result);
+		return $time['0']['time'];
 	}
 }

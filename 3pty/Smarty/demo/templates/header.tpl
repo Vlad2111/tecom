@@ -94,6 +94,15 @@
 								<span>Новый месяц</span>
 							</a>
 						</li>
+						<li>
+							<a 
+								data-toggle="modal" 
+								data-target="#fileReaderXLSX" 
+								title="Чтение Excel файла">
+								<i class="glyphicon glyphicon-open-file text-blue"></i>
+								<span>Загрузить Excel файл</span>
+							</a>
+						</li>
 						{if $role=="Администратор"}
 							<li class="{$status4}">
 								<a 
@@ -203,6 +212,41 @@
 										<input name="nameUser" type="hidden" value="{$name}">
 										<input name="roleUser" type="hidden" value="{$role}">
 									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+								<button type="submit" class="btn btn-primary" >Сохранить</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="fileReaderXLSX" tabindex="-1" role="dialog" aria-labelledby="fileReaderXLSXLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content" style="z-index:1000;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="fileReaderXLSXLabel">Загрузка файла</h4>
+						</div>
+						<form 
+							action="/index.php
+								?route=saveXLSX/readerXLSXFile
+								&nameUser={$name}
+								&roleUser={$role}
+								&Month={$selectedMonthForGet}
+								&Year={$selectedYearForGet}" 
+							role="form" 
+							enctype="multipart/form-data" 
+							method="post">			
+							<div class="modal-body">
+								<div class="form-group">
+									<label>Файл:</label>
+									<input type="file" id="inputFile" name="file">
+								</div>
+								<div class="form-group">
+									<label>Название листа с таблицей распределения времени:</label>
+									<input name="nameSheet" type="text" class="form-control">
 								</div>
 							</div>
 							<div class="modal-footer">
