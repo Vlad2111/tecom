@@ -16,6 +16,8 @@ Abstract Class Controller_Base {
 	protected $postgreSQL;
 	protected $template;
 	protected $log;
+	protected $errors;
+	protected $errorsNum;
 	
 	public $vars = array();
 

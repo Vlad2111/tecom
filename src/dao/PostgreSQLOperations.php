@@ -38,6 +38,36 @@ class PostgreSQLOperations
 		return $this->dbConnect;
 	}
 	
+	/** Начало транзакции. */
+	public function beginTran()
+	{
+		pg_query($this->dbConnect, 'BEGIN TRANSACTION');
+	}
+	
+	/** Закрытие транзакции. */
+	public function commitTran()
+	{
+		pg_query($this->dbConnect, 'COMMIT TRANSACTION');
+	}
+	
+	/** Откат транзакции. */
+	public function rollbackTran()
+	{
+		pg_query($this->dbConnect, 'ROLLBACK TRANSACTION');
+	}
+	
+	/** Сохранение транзакции. */
+	public function saveTran()
+	{
+		pg_query($this->dbConnect, 'SAVEPOINT complete');
+	}
+	
+	/** Откат к сохранению транзакции. */
+	public function rollbackSaveTran()
+	{
+		pg_query($this->dbConnect, 'ROLLBACK TRANSACTION TO SAVEPOINT complete');
+	}
+	
 	/** Запрос роли пользователя. */
 	public function getRoleName($userId)
 	{
@@ -866,18 +896,31 @@ class PostgreSQLOperations
 		$result = pg_query_params($this->dbConnect, 'SELECT department_id FROM "Departments" '.
 				'WHERE date_part(\'epoch\', date_trunc(\'month\', date))'.
 				' = $1 AND department_name = $2', array($date->format("U"), $departmentName));
+		if (!$result) {
+			$this->log->error("Не удается выполнить запрос Id отдела. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос Id отдела. ".
+					pg_last_error($this->dbConnect));
+		}
 		$departmentId = pg_fetch_all($result);
 		return $departmentId['0']['department_id'];
 	}
 	
 	/** Запрос id сотрудника. */
-	public function getEmployeeId(DateTime $date, $userName)
+	public function getEmployeeId(DateTime $date, $userName, $departmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id FROM "Employee" WHERE '.
-				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND user_name = $2',
-					array($date->format("U"), $userName));
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND user_name = $2 AND '.
+					'department_id = $3',
+					array($date->format("U"), $userName, $departmentId));
+		if (!$result) {
+			$this->log->error("Не удается выполнить запрос Id сотрудника. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос Id сотрудника. ".
+					pg_last_error($this->dbConnect));
+		}
 		$employeeId = pg_fetch_all($result);
 		return $employeeId['0'];
 	}
@@ -888,12 +931,13 @@ class PostgreSQLOperations
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 		$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE '.
-						'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_name'.
-							' = $2', array($date->format("U"), $projectName));
-		if (pg_num_rows($result)>1) {
-			$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE '.
-					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_name = $2 '.
-						'AND department_id = $3', array($date->format("U"), $projectName, $departmentId));
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_name = $2 '.
+					'AND department_id = $3', array($date->format("U"), $projectName, $departmentId));
+		if (!$result) {
+			$this->log->error("Не удается выполнить запрос Id проекта. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос Id проекта. ".
+					pg_last_error($this->dbConnect));
 		}
 		$projectId = pg_fetch_all($result);
 		return $projectId['0']['project_id'];
@@ -908,6 +952,12 @@ class PostgreSQLOperations
 			'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_id = $2 AND '.
 				'employee_id = $3',
 				array($date->format("U"), $projectId, $employeeId));
+		if (!$result) {
+			$this->log->error("Не удается выполнить запрос для проверки времени. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос для проверки времени. ".
+					pg_last_error($this->dbConnect));
+		}
 		$time = pg_fetch_all($result);
 		return $time['0']['time'];
 	}
