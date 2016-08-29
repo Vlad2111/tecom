@@ -15,34 +15,32 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title" style="font-size:23px">Пользователи с Ошибками в Логинах</h3>
+								<h3 class="box-title" style="font-size:23px">Ошибки</h3>
 							</div>
 							<div class="box-body">
 								<table id="errors" class="table table-bordered table-striped">
 									<thead>
 										<tr>
-											<th>№</th>
 											<th>Коментарий</th>
 											<th>Месяц</th>
-											<th>Название</th>
-											<th>Отдел\Распределение времени</th>
+											<th>Сотрудник</th>
+											<th>Проект</th>
+											<th>Время</th>
 											<th>Ошибка</th>
 										</tr>
 									</thead>
 									<tbody>
-									{if $errors!=null}
 									{foreach from=$errors item=foo}
 										
 										<tr>
-											<td>{$foo.id}</td>
 											<td>{$foo.comment}</td>
 											<td>{$foo.info.date}</td>
-											<td>{$foo.info.name}</td>
-											<td>{$foo.info.department}</td>
+											<td>{$foo.info.nameEmp}</td>
+											<td>{$foo.info.namePro}</td>											
+											<td>{$foo.info.time}</td>
 											<td>{$foo.message}</td>
 										</tr>
 									{/foreach}
-									{/if}
 									</tbody>
 								</table>
 							</div>
@@ -57,7 +55,7 @@
 		</footer>
 		<script>
 			$(function () {
-				$('#errors').DataTable({
+				$('#errorsTime').DataTable({
 					"paging": true,
 					"lengthChange": true,
 					"searching": true,

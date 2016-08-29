@@ -72,7 +72,8 @@
 														data-departmentid="{$foo.department_id}" 
 														data-countselect="{$countArrayDepartmentNamesForSelect}"  
 														data-target="#employeeModal" 
-														title="Редактировать Данные Сотрудника">
+														title="Редактировать Данные Сотрудника"
+														{$accessEdit}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 												</td>
@@ -87,7 +88,8 @@
 															&roleUser={$role}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}" 
-														title="Удалить Данные Сотрудника">
+														title="Удалить Данные Сотрудника"
+														{$accessEdit}>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 												</td>
@@ -102,7 +104,8 @@
 										data-countselect="{$countArrayDepartmentNamesForSelect}" 
 										data-target="#employeeModal" 
 										class="btn btn-md" 
-										title="Добавить Сотрудника">
+										title="Добавить Сотрудника"
+										{$accessEdit}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 								</div>
@@ -118,15 +121,38 @@
 									</button>
 									<h4 class="modal-title" id="employeeModalLabel"></h4>
 								</div>
-								<form action="/index.php" method="get">
+								<form action="/index.php" method="get" onsubmit="diactive()">
 									<div class="modal-body">
 										<div class="modal-form-group">
-											<label for="nameEmployee"></label>
-											<input 
-												id="nameEmployee" 
-												type="text" 
-												class="form-control" 
-												disabled>
+											<div class="row">
+												<div class="col-xs-4">
+													<label for="nameEmployeeS">Фамилия</label>
+													<input 
+														id="nameEmployeeS" 
+														name="nameEmployeeS"
+														type="text" 
+														class="form-control" 
+														required="required">
+												</div>
+												<div class="col-xs-4">
+													<label for="nameEmployeeF">Имя</label>
+													<input 
+														id="nameEmployeeF" 
+														name="nameEmployeeF" 
+														type="text" 
+														class="form-control" 
+														required="required">
+												</div>
+												<div class="col-xs-4">
+													<label for="nameEmployeeM">Отчество</label>
+													<input 
+														id="nameEmployeeM" 
+														name="nameEmployeeM"
+														type="text" 
+														class="form-control"
+														required="required">
+												</div>
+											</div>
 										</div>
 										<div class="form-group">
 											<label>Логин:</label>
@@ -134,15 +160,17 @@
 												id="loginEmployee"
 												name="newLogin" 
 												type="text" 
-												class="form-control">
+												class="form-control"
+												required="required">
 										</div>
 										<div class="form-group">
 											<label>Отдел:</label>
 											<select 
 												id="selectId" 
-												name="newDepartmwent" 
+												name="newDepartment" 
 												class="form-control select2" 
-												style="width: 100%;">
+												style="width: 100%;"
+												required="required">
 											{foreach from=$arrayDepartmentNamesForSelect item=foo}
 											
 												<option value="{$foo.department_id}">{$foo.department_name}</option>
@@ -159,8 +187,8 @@
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalF" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+										<button id="buttonModalS" type="submit" class="btn btn-primary">Сохранить</button>
 									</div>
 								</form>
 							</div>
@@ -192,18 +220,19 @@
 					if (editId != null){
 						modal.find('.modal-title').text('Редактировать Данные Сотрудника');
 						document.getElementById('route').value = 'list/editEmployee';
-						modal.find('.modal-form-group label').text('Фамилия и Имя:');
-						document.getElementById('nameEmployee').type = "text";
 						document.getElementById('editId').value = editId;
-						document.getElementById('nameEmployee').value = lastName;
+						lastName=lastName.split(' ');
+						document.getElementById('nameEmployeeF').value = lastName[1];
+						document.getElementById('nameEmployeeS').value = lastName[0];
+						document.getElementById('nameEmployeeM').value = lastName[2];
 						document.getElementById('loginEmployee').value = lastLogin;
 					}else{
 						modal.find('.modal-title').text('Новый Сотрудник');
-						document.getElementById('route').value = 'list/newEmployee';
-						modal.find('.modal-form-group label').text('');
-						document.getElementById('nameEmployee').type = "hidden";						
+						document.getElementById('route').value = 'list/newEmployee';						
 						document.getElementById('editId').value = null;
-						document.getElementById('nameEmployee').value = null;
+						document.getElementById('nameEmployeeF').value = null;
+						document.getElementById('nameEmployeeS').value = null;
+						document.getElementById('nameEmployeeM').value = null;
 						document.getElementById('loginEmployee').value = null;
 					}
 					$(function () {
@@ -214,6 +243,12 @@
 						});
 					});
 				});
+			</script>
+			<script>
+				function diactive() {
+					document.getElementById('buttonModalS').disabled = 1;
+					document.getElementById('buttonModalF').disabled = 1;
+				}
 			</script>
 			<script>
 				$(function () {

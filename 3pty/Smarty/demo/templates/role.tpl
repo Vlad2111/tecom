@@ -35,6 +35,27 @@
 											<tr>
 												<td>{$foo.user_name}</td>
 												<td>{$foo.department_name}</td>
+												{if $foo.head.department_id != null}
+												<td>{$foo.role_name}: {$foo.head.department_name}</td>
+												<td>
+													<a 
+														type="button" 
+														class="btn btn-md" 
+														data-toggle="modal" 
+														data-action="Edit" 
+														data-lastroleid="{$foo.role_id}" 
+														data-lastheadid="{$foo.head.department_id}" 
+														data-countselectrole="{$countArrayRoleDefForSelect}" 
+														data-countselectdep="{$countArrayDepartmentForSelect}" 
+														data-employeeid="{$foo.employee_id}" 
+														data-employeename="{$foo.user_name}" 
+														data-target="#RoleModal" 
+														title="Редактировать Роль Сотрудника">
+														<i class="glyphicon glyphicon-pencil"></i>
+													</a>
+												</td>
+												{/if}
+												{if $foo.head.department_name == null}
 												<td>{$foo.role_name}</td>
 												<td>
 													<a 
@@ -51,6 +72,7 @@
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 												</td>
+												{/if}
 												<td>
 													<a 
 														type="button" 
@@ -110,6 +132,7 @@
 												{/foreach}
 											</select>
 										</div>
+										<div class="form-group" id="headDepartment"></div>
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
@@ -137,9 +160,11 @@
 					var button = $(event.relatedTarget);
 					var modal = $(this);
 					var lastRoleId = button.data('lastroleid');
+					var lastHeadId = button.data('lastheadid');
 					var employeeName = button.data('employeename');
 					var employeeId = button.data('employeeid');
 					var countSelectRole = button.data('countselectrole');
+					var countSelectDep = button.data('countselectdep');
 					if (lastRoleId == null){
 						modal.find('.modal-title').text('Новая Роль Пользователя');
 						document.getElementById('route').value = 'role/newRole';

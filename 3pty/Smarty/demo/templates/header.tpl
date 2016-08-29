@@ -56,7 +56,9 @@
 									&nameUser={$name}
 									&roleUser={$role}
 									&Month={$selectedMonthForGet}
-									&Year={$selectedYearForGet}">
+									&Year={$selectedYearForGet}
+									&headId={$headId}
+									&roleIdUser={$roleId}">
 								<i class="fa fa-th-list text-blue"></i>
 								<span>Список отделов</span>
 							</a>
@@ -68,7 +70,9 @@
 									&nameUser={$name}
 									&roleUser={$role}
 									&Month={$selectedMonthForGet}
-									&Year={$selectedYearForGet}">
+									&Year={$selectedYearForGet}
+									&headId={$headId}
+									&roleIdUser={$roleId}">
 								<i class="fa fa-th-list text-blue"></i>
 								<span>Список сотрудников</span>
 							</a>
@@ -80,7 +84,9 @@
 									&nameUser={$name}
 									&roleUser={$role}
 									&Month={$selectedMonthForGet}
-									&Year={$selectedYearForGet}">
+									&Year={$selectedYearForGet}
+									&headId={$headId}
+									&roleIdUser={$roleId}">
 								<i class="fa fa-th-list text-blue"></i>
 								<span>Список проектов</span>
 							</a>
@@ -111,7 +117,9 @@
 										&nameUser={$name}
 										&roleUser={$role}
 										&Month={$selectedMonthForGet}
-										&Year={$selectedYearForGet}">
+										&Year={$selectedYearForGet}
+										&headId={$headId}
+										&roleIdUser={$roleId}">
 									<i class="fa fa-user-secret text-blue"></i>
 									<span>Пользователи и Роли</span>
 								</a>
@@ -158,7 +166,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h4 class="modal-title" id="dateChooseLabel">Выбор Даты</h4>
 						</div>
-						<form action="/index.php" method="get">			
+						<form action="/index.php" method="get" onsubmit="diactivedate()">			
 							<div class="modal-body">
 								<div class="form-group">
 									<label>Дата:</label>
@@ -166,18 +174,20 @@
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input name="date" type="text" class="form-control pull-right" id="datepicker">
+										<input name="date" type="text" class="form-control pull-right" id="datepicker" required="required">
 									</div>
 									<div class="input-group hidden">
 										<input name="route" type="hidden" value="list/viewListDepartment">
 										<input name="nameUser" type="hidden" value="{$name}">
+										<input name="headId" type="hidden" value="{$headId}">
+										<input name="roleIdUser" type="hidden" value="{$roleId}">
 										<input name="roleUser" type="hidden" value="{$role}">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-								<button type="submit" class="btn btn-primary" >Сохранить</button>
+								<button id="buttonModalFdate" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+								<button id="buttonModalSdate" type="submit" class="btn btn-primary">Сохранить</button>
 							</div>
 						</form>
 					</div>
@@ -190,7 +200,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h4 class="modal-title" id="cloneInfoLabel">Копирование Информации из Месяца в Месяц</h4>
 						</div>
-						<form action="/index.php" method="get">			
+						<form action="/index.php" method="get" onsubmit="diactivecopy()">			
 							<div class="modal-body">
 								<div class="form-group">
 									<label>Дата Откуда Копируем:</label>
@@ -198,25 +208,27 @@
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input name="dateFrom" type="text" class="form-control pull-right" id="datepicker1">
+										<input name="dateFrom" type="text" class="form-control pull-right" id="datepicker1" required="required">
 									</div>
 									<label>Дата Куда Копируем:</label>
 									<div class="input-group date" style="z-index:2000;">
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input name="dateTo" type="text" class="form-control pull-right" id="datepicker2">
+										<input name="dateTo" type="text" class="form-control pull-right" id="datepicker2" required="required">
 									</div>
 									<div class="input-group hidden">
 										<input name="route" type="hidden" value="list/cloneData">
 										<input name="nameUser" type="hidden" value="{$name}">
+										<input name="headId" type="hidden" value="{$headId}">
+										<input name="roleIdUser" type="hidden" value="{$roleId}">
 										<input name="roleUser" type="hidden" value="{$role}">
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-								<button type="submit" class="btn btn-primary" >Сохранить</button>
+								<button id="buttonModalFcopy" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+								<button id="buttonModalScopy" type="submit" class="btn btn-primary">Сохранить</button>
 							</div>
 						</form>
 					</div>
@@ -235,23 +247,25 @@
 								&nameUser={$name}
 								&roleUser={$role}
 								&Month={$selectedMonthForGet}
-								&Year={$selectedYearForGet}" 
+								&Year={$selectedYearForGet} 
+								&headId={$headId}&roleIdUser={$roleId}"
 							role="form" 
 							enctype="multipart/form-data" 
-							method="post">			
+							method="post"
+							onsubmit="diactivefile()">			
 							<div class="modal-body">
 								<div class="form-group">
 									<label>Файл:</label>
-									<input type="file" id="inputFile" name="file">
+									<input type="file" id="inputFile" name="file" accept=".xlsx, .xls, .csv" required="required">
 								</div>
 								<div class="form-group">
 									<label>Название листа с таблицей распределения времени:</label>
-									<input name="nameSheet" type="text" class="form-control">
+									<input id="nameSheet" name="nameSheet" type="text" class="form-control" required="required">
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-								<button type="submit" class="btn btn-primary" >Сохранить</button>
+								<button id="buttonModalFfile" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+								<button id="buttonModalSfile" type="submit" class="btn btn-primary">Сохранить</button>
 							</div>
 						</form>
 					</div>
@@ -277,4 +291,23 @@
 						autoclose: true
 					});
 				});
+			</script>
+			<script>
+				function diactivefile() {
+					document.getElementById('buttonModalSfile').disabled = 1;
+					document.getElementById('buttonModalFfile').disabled = 1;
+					document.getElementById("nameSheet").setAttribute("readonly", "readonly");
+				}
+			</script>
+			<script>
+				function diactivecopy() {
+					document.getElementById('buttonModalScopy').disabled = 1;
+					document.getElementById('buttonModalFcopy').disabled = 1;
+				}
+			</script>
+			<script>
+				function diactivedate() {
+					document.getElementById('buttonModalSdate').disabled = 1;
+					document.getElementById('buttonModalFdate').disabled = 1;
+				}
 			</script>

@@ -1,6 +1,6 @@
 <?php
 echo"/*/*/*/*/";
-//print_r($_GET);
+print_r($_GET);
 print_r($_POST);
 print_r($_FILES);
 echo"/*/*/*/*/";
@@ -15,8 +15,16 @@ echo"/*/*/*/*/";
 }
 /** Имя и роль пользователя для отбражения и передачи. */
 {
+	if ((isset ($_GET['I']))AND($_GET['roleUser']=="Глава Отдела: C")){
+		$_GET['roleUser']=$_GET['roleUser']."&I";
+	}
+	if ((isset ($_GET['D']))AND($_GET['roleUser']=="Глава Отдела: R")){
+		$_GET['roleUser']=$_GET['roleUser']."&D";
+	}
 	$smarty->assign('name', $_GET['nameUser']);
 	$smarty->assign('role', $_GET['roleUser']);
+	$smarty->assign('headId', $_GET['headId']);
+	$smarty->assign('roleId', $_GET['roleIdUser']);
 }
 /** Переменные для выделения в левом меню активного списка. */
 {

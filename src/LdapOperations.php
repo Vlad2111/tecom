@@ -135,9 +135,8 @@ class LdapOperations
 		$nameFST = explode(' ', $fullName);
 		$firstName = $nameFST['1'];
 		$secondName = $nameFST['0'];
-		$thirdName = $nameFST['2'];
 		$result_ent = $this->searchLDAP("(&(objectClass=person)(givenName=*{$firstName}*)(sn=*{$secondName}*))",
-		array('name', 'useraccountcontrol', 'sAMAccountName', 'sn', 'givenName', 'mail'));
+			array('name', 'useraccountcontrol', 'sAMAccountName', 'sn', 'givenName', 'mail'));
 		$names = array();
 		$iter = function($value, $key) use (&$names)
 		{

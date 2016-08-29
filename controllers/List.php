@@ -116,26 +116,36 @@ Class Controller_List Extends Controller_Base {
 	/** -->Добавление сотрудника. */
 	function newEmployee(){
 		$date = $this->getDate();
-		$user = $this->checkLoginLdapForEmployee();
-		$this->postgreSQL->newEmployee($date, $user['Login'], $user['Name'], $_GET['newDepartmwent']);
+		$user = $this->checkLoginLdapForEmployee($_GET['newLogin']);
+		$checkUser = $this->getLoginLdapForEmployee($_GET['nameEmployeeS'].' '.$_GET['nameEmployeeF']);
+		if($checkUser != $user){
+			$user=null;
+		}
+		if ($user != null){
+			if($_GET['nameEmployeeM']!=null){
+				$user['Name']=$user['Name'].' '.$_GET['nameEmployeeM'];
+			}
+			$this->postgreSQL->newEmployee($date, $user['Login'], $user['Name'], $_GET['newDepartment']);
+		}
 		$this->viewListEmployee();
 	}
 	
 	/** -->Редактирование информации сотрудника. */
 	function editEmployee(){
 		$date = $this->getDate();
-		$user = $this->checkLoginLdapForEmployee();
-		if ($user != null){
-			$idNameDepartment = explode('*-*', $_GET['newDepartmwent']);
-			if($idNameDepartment['1']!=null){
-				$departmentId = $idNameDepartment['0'];
-				$departmentName = $idNameDepartment['1'];
-			}else{
-				$departmentId=$_GET['newDepartmwent'];
-			}
-			$this->postgreSQL->changeEmployeeInfo($_GET['editId'], $date, $user['Login'], $user['Name'], $departmentId);
-			$this->viewListEmployee();
+		$user = $this->checkLoginLdapForEmployee($_GET['newLogin']);
+		$checkUser = $this->getLoginLdapForEmployee($_GET['nameEmployeeS'].' '.$_GET['nameEmployeeF']);
+		if($checkUser != $user){
+			$user=null;
 		}
+		if ($user != null){
+			if($_GET['nameEmployeeM']!=null){
+				$user['Name']=$user['Name'].' '.$_GET['nameEmployeeM'];
+			}
+			
+			$this->postgreSQL->changeEmployeeInfo($_GET['editId'], $date, $user['Login'], $user['Name'], $_GET['newDepartment']);
+		}
+		$this->viewListEmployee();
 	}
 	
 	/** -->Удаление информации сотрудника. */
@@ -146,10 +156,27 @@ Class Controller_List Extends Controller_Base {
 	}
 	
 	/** Проверка логина сотрудника в LDAP при создании и редактировании. */
-	private function checkLoginLdapForEmployee() {
+	private function checkLoginLdapForEmployee($login) {
 		$ldap = new LdapOperations();
 		$ldap->connect();
-		$arrayLDAPAccountNames = $ldap->getLDAPAccountNamesByPrefix($_GET['newLogin']);
+		$arrayLDAPAccountNames = $ldap->getLDAPAccountNamesByPrefix($login);
+		if (count($arrayLDAPAccountNames)>1){
+			$date = $this->getDate();
+			$this->template->vars('date', $date);
+			$this->template->vars('arrayLDAPAccountNames', $arrayLDAPAccountNames);
+			$this->template->view('selectLoginInLDAP', 'selectLoginInLDAPLayout');
+		}else{
+			$user['Name'] = $arrayLDAPAccountNames['0']['sn'].' '.$arrayLDAPAccountNames['0']['givenName'];
+			$user['Login'] = $arrayLDAPAccountNames['0']['sAMAccountName'];
+			return $user;
+		}
+	}
+	
+	/** Запрос логина сотрудника из LDAP при создании и редактировании. */
+	private function getLoginLdapForEmployee($fullName) {
+		$ldap = new LdapOperations();
+		$ldap->connect();
+		$arrayLDAPAccountNames = $ldap->getLDAPAccountNamesByFullName($fullName);
 		if (count($arrayLDAPAccountNames)>1){
 			$date = $this->getDate();
 			$this->template->vars('date', $date);
@@ -173,14 +200,7 @@ Class Controller_List Extends Controller_Base {
 	/** -->Редактирование проекта. */
 	function editProject(){
 		$date = $this->getDate();
-		$idNameDepartment = explode('*-*', $_GET['newDepartmwent']);
-		if($idNameDepartment['1'] != null){
-			$departmentId = $idNameDepartment['0'];
-			$departmentName = $idNameDepartment['1'];
-		}else{
-			$departmentId = $_GET['newDepartmwent'];
-		}
-		$this->postgreSQL->changeProjectNameAndDepartmentId($_GET['editId'], $date, $_GET['newName'], $departmentId);
+		$this->postgreSQL->changeProjectNameAndDepartmentId($_GET['editId'], $date, $_GET['newName'], $_GET['newDepartment']);
 		$this->viewListProject();
 	}
 	

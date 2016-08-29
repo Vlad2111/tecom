@@ -40,19 +40,22 @@
 															&nameUser={$name}
 															&roleUser={$role}
 															&Month={$selectedMonthForGet}
-															&Year={$selectedYearForGet}">
+															&Year={$selectedYearForGet}
+															&headId={$headId}
+															&roleIdUser={$roleId}">
 													{$foo.department_name}
 													</a>
 												</td>
 													<td>
 													<a 
-														type="button" 
 														class="btn btn-md" 
+														type="button" 
 														data-toggle="modal" 
 														data-lastname="{$foo.department_name}" 
 														data-editid="{$foo.department_id}" 
 														data-target="#departmentModal" 
-														title="Редактировать Данные Отдела">
+														title="Редактировать Данные Отдела"
+														{$accessEdit}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 												</td>
@@ -66,8 +69,11 @@
 															&nameUser={$name}
 															&roleUser={$role}
 															&Month={$selectedMonthForGet}
-															&Year={$selectedYearForGet}" 
-														title="Удалить Данные Отдела">
+															&Year={$selectedYearForGet}
+															&headId={$headId}
+															&roleIdUser={$roleId}" 
+														title="Удалить Данные Отдела"
+														{$accessEdit}>
 														<i class="glyphicon glyphicon-trash"></i>
 														</a>
 												</td>
@@ -81,7 +87,8 @@
 										class="btn btn-md" 
 										data-toggle="modal" 
 										data-target="#departmentModal" 
-										title="Добавить Отдел">
+										title="Добавить Отдел"
+										{$accessEdit}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 								</div>
@@ -95,11 +102,11 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="departmentModalLabel"></h4>
 								</div>
-								<form action="/index.php" method="get">
+								<form action="/index.php" method="get" onsubmit="diactive()">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Название:</label>
-											<input name="newName" type="text" class="form-control" id="nameDepartment" value="">
+											<input name="newName" type="text" class="form-control" id="nameDepartment" value="" required="required">
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -110,9 +117,11 @@
 											<input name="roleUser" type="hidden" value="{$role}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
+											<input name="roleUser" type="hidden" value="{$role}">
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalF" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+										<button id="buttonModalS" type="submit" class="btn btn-primary">Сохранить</button>
 									</div>
 								</form>
 							</div>
@@ -142,6 +151,12 @@
 						document.getElementById('editId').value = null;
 					}
 				});
+			</script>
+			<script>
+				function diactive() {
+					document.getElementById('buttonModalS').disabled = 1;
+					document.getElementById('buttonModalF').disabled = 1;
+				}
 			</script>
 			<script>
 				$(function () {

@@ -114,7 +114,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="projectModalLabel"></h4>
 								</div>
-								<form action="/index.php" method="get">
+								<form action="/index.php" method="get" onsubmit="diactive()">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Название:</label>
@@ -122,15 +122,17 @@
 												id="nameProject"
 												name="newName" 
 												type="text" 
-												class="form-control" >
+												class="form-control" 
+												required="required">
 										</div>
 										<div class="form-group">
 											<label>Отдел:</label>
 											<select 
 												id="selectId" 
-												name="newDepartmwent" 
+												name="newDepartment" 
 												class="form-control select2" 
-												style="width: 100%;">
+												style="width: 100%;"
+												required="required">
 												{foreach from=$arrayDepartmentNamesForSelect item=foo}
 											
 												<option value="{$foo.department_id}">{$foo.department_name}</option>
@@ -147,8 +149,8 @@
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalF" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+										<button id="buttonModalS" type="submit" class="btn btn-primary">Сохранить</button>
 									</div>
 								</form>
 							</div>
@@ -195,6 +197,12 @@
 						});
 					});
 				});
+			</script>
+			<script>
+				function diactive() {
+					document.getElementById('buttonModalS').disabled = 1;
+					document.getElementById('buttonModalF').disabled = 1;
+				}
 			</script>
 			<script>
 				$(function () {

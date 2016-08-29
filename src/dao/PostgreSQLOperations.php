@@ -71,7 +71,7 @@ class PostgreSQLOperations
 	/** Запрос роли пользователя. */
 	public function getRoleName($userId)
 	{
-		$result = pg_query_params($this->dbConnect, 'SELECT rd.role_name FROM "Role" '.
+		$result = pg_query_params($this->dbConnect, 'SELECT rd.role_name, rd.role_id FROM "Role" '.
 				'AS r inner join "Role_def" AS rd on r.role_id = rd.role_id WHERE r.employee_id = (SELECT '.
 					'employee_id FROM "Employee" WHERE user_id = $1 ORDER BY "date" desc limit 1)', 
 						array($userId));
@@ -91,31 +91,33 @@ class PostgreSQLOperations
 			$this->log->error("Ошибка запроса. Получено несколько результатов");
 			throw new Exception("Ошибка запроса. Получено несколько результатов");
 		}
-		$roleNameAndId = pg_fetch_result($result, 0, 0);
+		$roleNameAndId = pg_fetch_all($result);
 		return $roleNameAndId;
 	}
 	
 	/** Запрос роли главы отдела. */
-	public function getDepartmentHead(DateTime $date ,$employeeId)
+	public function getDepartmentHead(DateTime $date ,$userId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 		$result = pg_query_params($this->dbConnect, 'SELECT r.department_id, rd.department_name FROM '.
 				'"Head_departments" AS r inner join "Departments" AS rd on r.date = rd.date AND '.
 					'r.department_id = rd.department_id WHERE date_part(\'epoch\', date_trunc(\'month\','.
-						' rd.date)) = $1 AND r.employee_id = $2', array($date->format("U"),	$employeeId));
+						' rd.date)) = $1 AND r.employee_id = (SELECT employee_id FROM "Employee" WHERE '.
+							'user_id = $2 AND date_part(\'epoch\', date_trunc(\'month\', date)) = $1)',
+								array($date->format("U"), $userId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос информации отдела для роли ".
-					"\"Директор подразделения\". Id пользователя: ". $employeeId ." ". 
+					"\"Директор подразделения\". Id пользователя: ". $userId ." ". 
 						pg_last_error($this->dbConnect));
 			throw new Exception("Не удается выполнить запрос информации отдела для роли ".
-					"\"Директор подразделения\". Id пользователя: ". $employeeId ." ". 
+					"\"Директор подразделения\". Id пользователя: ". $userId ." ". 
 						pg_last_error($this->dbConnect));
 		}
 		if (pg_num_rows($result)<1) {
-			$this->log->error("Нет данных о данном пользователе. Id: ". $employeeId ." ".
+			$this->log->error("Нет данных о данном пользователе. Id: ". $userId ." ".
 					pg_last_error($this->dbConnect));
-			throw new Exception("Нет данных о данном пользователе. Id: ". $employeeId ." ".
+			throw new Exception("Нет данных о данном пользователе. Id: ". $userId ." ".
 					pg_last_error($this->dbConnect));
 		}
 		if (pg_num_rows($result)>1) {
@@ -145,6 +147,14 @@ class PostgreSQLOperations
 					pg_last_error($this->dbConnect));
 		}
 		$employeeNamesAndRoles = pg_fetch_all($result);
+		foreach ($employeeNamesAndRoles as $key=>$arr){
+			if ($arr['role_id'] == 1){
+				$departmentNameAndId = $this->getDepartmentHead($date, $arr['user_id']);
+				print_r($departmentNameAndId);
+				$employeeNamesAndRoles[$key]['head']['department_name'] = $departmentNameAndId['0']['department_name'];
+				$employeeNamesAndRoles[$key]['head']['department_id'] = $departmentNameAndId['0']['department_id'];
+			}
+		}
 		return $employeeNamesAndRoles;
 	}
 	
@@ -907,14 +917,13 @@ class PostgreSQLOperations
 	}
 	
 	/** Запрос id сотрудника. */
-	public function getEmployeeId(DateTime $date, $userName, $departmentId)
+	public function getEmployeeId(DateTime $date, $userName)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id FROM "Employee" WHERE '.
-				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND user_name = $2 AND '.
-					'department_id = $3',
-					array($date->format("U"), $userName, $departmentId));
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND user_name = $2',
+					array($date->format("U"), $userName));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос Id сотрудника. ".
 					pg_last_error($this->dbConnect));
@@ -926,13 +935,13 @@ class PostgreSQLOperations
 	}
 	
 	/** Запрос id проекта. */
-	public function getProjectId(DateTime $date, $projectName, $departmentId)
+	public function getProjectId(DateTime $date, $projectName)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
 		$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE '.
-				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_name = $2 '.
-					'AND department_id = $3', array($date->format("U"), $projectName, $departmentId));
+				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_name = $2',
+					array($date->format("U"), $projectName));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос Id проекта. ".
 					pg_last_error($this->dbConnect));
