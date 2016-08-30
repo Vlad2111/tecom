@@ -24,6 +24,9 @@ Class Controller_Role Extends Controller_Base {
 		$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
 		$this->template->vars('arrayEmployeeNames', $arrayEmployeeNames);
 		
+		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+		
 		$arrayRoleDef = $this->postgreSQL->getRoleDef();
 		$this->template->vars('arrayRoleDef', $arrayRoleDef);
 		
@@ -53,12 +56,28 @@ Class Controller_Role Extends Controller_Base {
 	function newRole(){
 		$date = $this->getDate();
 		$this->postgreSQL->newRole($_GET['employeeId'], $_GET['roleId']);
+		if($_GET['roleId']=='1'){
+			$this->postgreSQL->newHeadDepartment($date, $_GET['employeeId'], $_GET['headDepartmentId']);
+		}
 		$this->viewRole();
 	}
 		
 	/** -->Редактирование роли. */
 	function editRole(){
 		$date = $this->getDate();
+		
+		if(($_GET['lastHeadDepartmentId']!=null)AND($_GET['roleId']!='1')){
+			$this->postgreSQL->deleteHeadDepartment($date, $_GET['employeeId'], $_GET['lastHeadDepartmentId']);
+		}
+		
+		if(($_GET['lastHeadDepartmentId']==null)AND($_GET['roleId']=='1')){
+			$this->postgreSQL->newHeadDepartment($date, $_GET['employeeId'], $_GET['headDepartmentId']);
+		}
+		
+		if(($_GET['lastHeadDepartmentId']!=null)AND($_GET['roleId']=='1')){
+			$this->postgreSQL->changeHeadDepartment($date, $_GET['employeeId'], $_GET['lastHeadDepartmentId'], $_GET['headDepartmentId']);
+		}
+		
 		$this->postgreSQL->changeRole($_GET['employeeId'], $_GET['roleId']);
 		$this->viewRole();
 	}
@@ -67,6 +86,9 @@ Class Controller_Role Extends Controller_Base {
 	function removeRole() {
 		$date = $this->getDate();
 		$this->postgreSQL->deleteRole($_GET['employeeId']);
+		if($_GET['lastHeadDepartmentId']!=null){
+			$this->postgreSQL->deleteHeadDepartment($date, $_GET['employeeId'], $_GET['lastHeadDepartmentId']);
+		}
 		$this->viewRole();
 	}
 	

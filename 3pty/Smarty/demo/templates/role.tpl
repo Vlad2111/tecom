@@ -42,16 +42,33 @@
 														type="button" 
 														class="btn btn-md" 
 														data-toggle="modal" 
-														data-action="Edit" 
 														data-lastroleid="{$foo.role_id}" 
 														data-lastheadid="{$foo.head.department_id}" 
 														data-countselectrole="{$countArrayRoleDefForSelect}" 
-														data-countselectdep="{$countArrayDepartmentForSelect}" 
+														data-countselectdep="{$countArrayDepartmentNamesForSelect}"
 														data-employeeid="{$foo.employee_id}" 
 														data-employeename="{$foo.user_name}" 
 														data-target="#RoleModal" 
 														title="Редактировать Роль Сотрудника">
 														<i class="glyphicon glyphicon-pencil"></i>
+													</a>
+												</td>
+												<td>
+													<a 
+														type="button" 
+														class="btn btn-md" 
+														href="/index.php
+															?route=role/removeRole
+															&nameUser={$name}
+															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
+															&Month={$selectedMonthForGet}
+															&Year={$selectedYearForGet}
+															&employeeId={$foo.employee_id}
+															&lastHeadDepartmentId={$foo.head.department_id}" 
+														title="Удалить Роль Сотрудника">
+														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 												</td>
 												{/if}
@@ -62,7 +79,6 @@
 														type="button" 
 														class="btn btn-md" 
 														data-toggle="modal" 
-														data-action="Edit" 
 														data-lastroleid="{$foo.role_id}" 
 														data-countselectrole="{$countArrayRoleDefForSelect}" 
 														data-employeeid="{$foo.employee_id}" 
@@ -72,7 +88,6 @@
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 												</td>
-												{/if}
 												<td>
 													<a 
 														type="button" 
@@ -81,13 +96,16 @@
 															?route=role/removeRole
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}
-															&employeeId={$foo.employee_id}" 
+															&employeeId={$foo.employee_id}"
 														title="Удалить Роль Сотрудника">
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 												</td>
+												{/if}
 											</tr>
 										{/foreach}
 										{/if}
@@ -125,20 +143,24 @@
 												id="selectIdRole" 
 												name="roleId" 
 												class="form-control select2" 
-												style="width: 100%;">
+												style="width: 100%;"
+												onChange="headDepRole()">
 												{foreach from=$arrayRoleDefForSelect item=foo}
 												
 												<option value="{$foo.role_id}">{$foo.role_name}</option>
 												{/foreach}
 											</select>
 										</div>
+										<div class="form-group" id="department"></div>
 										<div class="form-group" id="headDepartment"></div>
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
 											<input id="route" name="route" type="hidden" >
+											<input id="lastHeadId" name="lastHeadDepartmentId" type="hidden">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -166,8 +188,10 @@
 					var countSelectRole = button.data('countselectrole');
 					var countSelectDep = button.data('countselectdep');
 					if (lastRoleId == null){
+						$('#department').html('');
 						modal.find('.modal-title').text('Новая Роль Пользователя');
 						document.getElementById('route').value = 'role/newRole';
+						document.getElementById('lastHeadId').value = null;
 						$('#employee').html('<label>Пользователь:<\/label><select name="employeeId" class="form-control select2" id="selectIdEmp" style="width: 100%;">{foreach from=$arrayEmployeeNamesForSelect item=foo}<option value="{$foo.employee_id}">{$foo.user_name}</option>{/foreach}</select>'); 
 						var n = document.getElementById('selectIdEmp').options.selectedIndex;
 						if (n!=null){
@@ -179,8 +203,23 @@
 					}else{
 						modal.find('.modal-title').text('Редактировать Роль Пользоателя');
 						document.getElementById('route').value = 'role/editRole';
-						$('#employee').html('<label>Пользователь:<\/label><input type="text" class="form-control" id="employeeName" value="" disabled><input type="hidden" class="form-control" name="employeeId" id="employeeId" value="">'); 
+						$('#employee').html('<label>Пользователь:<\/label><input type="text" class="form-control" id="employeeName" disabled><input type="hidden" class="form-control" name="employeeId" id="employeeId" value="">'); 
 						document.getElementById('employeeName').value = employeeName;
+						if(lastHeadId!=null){
+							document.getElementById('lastHeadId').value = lastHeadId;
+							$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId" class="form-control select2" id="selectIdHead" style="width: 100%;">{foreach from=$arrayDepartmentNamesForSelect item=foo}<option value="{$foo.department_id}">{$foo.department_name}</option>{/foreach}</select>'); 
+							for (var i = 0; i < countSelectDep; i++) {
+							var val = document.getElementById('selectIdHead').options[i].value;
+								if (val == lastHeadId){
+									document.getElementById('selectIdHead').options[i].selected=true;
+								}else{
+									document.getElementById('selectIdHead').options[i].selected=false;
+								}
+							}
+						}else{
+							document.getElementById('lastHeadId').value = null;
+							$('#department').html('');
+						}
 						document.getElementById('employeeId').value = employeeId;
 						for (var i = 0; i < countSelectRole; i++) {
 						var val = document.getElementById('selectIdRole').options[i].value;
@@ -199,6 +238,23 @@
 						});
 					});
 				});
+				
+				function headDepRole() {
+					var n = document.getElementById('selectIdRole').options.selectedIndex;
+					var val = document.getElementById('selectIdRole').options[n].value;
+					if (val == '1'){
+						$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId" class="form-control select2" id="selectIdHead" style="width: 100%;">{foreach from=$arrayDepartmentNamesForSelect item=foo}<option value="{$foo.department_id}">{$foo.department_name}</option>{/foreach}</select>'); 
+					}else{
+						$('#department').html('');
+					}
+					$(function () {
+						$(".select2").select2({
+						modal: true,
+						placeholder: "Выбирете....",
+						allowClear: true
+						});
+					});
+				}
 			</script>
 			<script>
 				$(function () {

@@ -50,12 +50,14 @@
 													<a 
 														class="btn btn-md" 
 														type="button" 
+														{if $access == null}
 														data-toggle="modal" 
 														data-lastname="{$foo.department_name}" 
 														data-editid="{$foo.department_id}" 
 														data-target="#departmentModal" 
+														{/if}
 														title="Редактировать Данные Отдела"
-														{$accessEdit}>
+														{$access}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 												</td>
@@ -63,6 +65,7 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
+														{if $access == null}
 														href="/index.php
 															?route=list/removeDepartment
 															&departmentId={$foo.department_id}
@@ -72,8 +75,9 @@
 															&Year={$selectedYearForGet}
 															&headId={$headId}
 															&roleIdUser={$roleId}" 
+														{/if}
 														title="Удалить Данные Отдела"
-														{$accessEdit}>
+														{$access}>
 														<i class="glyphicon glyphicon-trash"></i>
 														</a>
 												</td>
@@ -85,10 +89,12 @@
 									<a 
 										type="button" 
 										class="btn btn-md" 
+										{if $access == null}
 										data-toggle="modal" 
 										data-target="#departmentModal" 
+										{/if}
 										title="Добавить Отдел"
-										{$accessEdit}>
+										{$access}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 								</div>
@@ -99,14 +105,21 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
 									<h4 class="modal-title" id="departmentModalLabel"></h4>
 								</div>
 								<form action="/index.php" method="get" onsubmit="diactive()">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Название:</label>
-											<input name="newName" type="text" class="form-control" id="nameDepartment" value="" required="required">
+											<input 
+												id="nameDepartment" 
+												name="newName" 
+												type="text" 
+												class="form-control" 
+												required="required">
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -118,6 +131,7 @@
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 											<input name="roleIdUser" type="hidden" value="{$roleId}">
+											<input name="headId" type="hidden" value="{$headId}">
 											<input name="roleUser" type="hidden" value="{$role}">
 										</div>
 										<button id="buttonModalF" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
@@ -156,6 +170,7 @@
 				function diactive() {
 					document.getElementById('buttonModalS').disabled = 1;
 					document.getElementById('buttonModalF').disabled = 1;
+					document.getElementById("nameDepartment").setAttribute("readonly", "readonly");
 				}
 			</script>
 			<script>

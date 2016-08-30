@@ -91,25 +91,29 @@
 								<span>Список проектов</span>
 							</a>
 						</li>
-						<li>
-							<a 
-								data-toggle="modal" 
-								data-target="#cloneInfo" 
-								title="Копирование Информации Базы Данных из Одного Месяца в Другой">
-								<i class="fa fa-clone text-blue"></i>
-								<span>Новый месяц</span>
-							</a>
-						</li>
-						<li>
-							<a 
-								data-toggle="modal" 
-								data-target="#fileReaderXLSX" 
-								title="Чтение Excel файла">
-								<i class="glyphicon glyphicon-open-file text-blue"></i>
-								<span>Загрузить Excel файл</span>
-							</a>
-						</li>
-						{if $role=="Администратор"}
+						{if $role=="Администратор" || $role=="Директор Компании" || $role=="Отдел Кадров"}
+							<li>
+								<a 
+									data-toggle="modal" 
+									data-target="#cloneInfo" 
+									title="Копирование Информации Базы Данных из Одного Месяца в Другой">
+									<i class="fa fa-clone text-blue"></i>
+									<span>Новый месяц</span>
+								</a>
+							</li>
+						{/if}
+						{if $role=="Администратор" || $role=="Директор Компании" || $role=="Отдел Кадров"}
+							<li>
+								<a 
+									data-toggle="modal" 
+									data-target="#fileReaderXLSX" 
+									title="Чтение Excel файла">
+									<i class="glyphicon glyphicon-open-file text-blue"></i>
+									<span>Загрузить Excel файл</span>
+								</a>
+							</li>
+						{/if}
+						{if $role=="Администратор" || $role=="Директор Компании"}
 							<li class="{$status4}">
 								<a 
 									href="/index.php
@@ -248,7 +252,8 @@
 								&roleUser={$role}
 								&Month={$selectedMonthForGet}
 								&Year={$selectedYearForGet} 
-								&headId={$headId}&roleIdUser={$roleId}"
+								&headId={$headId}
+								&roleIdUser={$roleId}"
 							role="form" 
 							enctype="multipart/form-data" 
 							method="post"

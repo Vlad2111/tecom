@@ -20,22 +20,30 @@
 											<a 
 												type="button" 
 												class="btn btn-md" 
+												{if $accessDep == null}
 												data-toggle="modal" 
 												data-target="#departmentModal"
-												title="Редактировать Данные Отдела">
+												{/if}
+												title="Редактировать Данные Отдела"
+												{$accessDep}>
 												<i class="glyphicon glyphicon-pencil"></i>
 											</a>
 											<a 
 												type="button" 
 												class="btn btn-md" 
+												{if $accessDep == null}
 												href="/index.php
 													?route=list/removeDepartment
 													&departmentId={$departmentId}
 													&nameUser={$name}
 													&roleUser={$role}
+													&headId={$headId}
+													&roleIdUser={$roleId}
 													&Month={$selectedMonthForGet}
 													&Year={$selectedYearForGet}" 
-												title="Удалить Данные Отдела">
+												{/if}
+												title="Удалить Данные Отдела"
+												{$accessDep}>
 												<i class="glyphicon glyphicon-trash"></i>
 											</a>	
 										</h3>
@@ -52,7 +60,7 @@
 											<thead>
 												<tr>
 													<th style="width: 5px"></th>
-													<th>Фамилия и Имя</th>
+													<th>ФИО</th>
 													<th style="width: 25px"></th>
 													<th style="width: 18px"></th>
 													<th style="width: 18px"></th>
@@ -74,6 +82,8 @@
 																&departmentName={$departmentName}
 																&nameUser={$name}
 																&roleUser={$role}
+																&headId={$headId}
+																&roleIdUser={$roleId}
 																&Month={$selectedMonthForGet}
 																&Year={$selectedYearForGet}">
 															{$foo.user_name}
@@ -84,6 +94,7 @@
 														<a 
 															type="button" 
 															class="btn btn-md" 
+															{if $accessDep == null}
 															data-toggle="modal" 
 															data-editid="{$foo.employee_id}" 
 															data-lastname="{$foo.user_name}" 
@@ -91,7 +102,9 @@
 															data-departmentid="{$departmentId}" 
 															data-countselect="{$countArrayDepartmentNamesForSelect}" 
 															data-target="#employeeModal" 
-															title="Редактировать Данные Сотрудника">
+															{/if}
+															title="Редактировать Данные Сотрудника"
+															{$accessDep}>
 															<i class="glyphicon glyphicon-pencil"></i>
 														</a>
 													</td>
@@ -99,6 +112,7 @@
 														<a 
 															type="button" 
 															class="btn btn-md" 
+															{if $accessDep == null}
 															href="/index.php
 																?route=department/removeEmployee
 																&employeeId={$foo.employee_id}
@@ -106,9 +120,13 @@
 																&departmentName={$departmentName}
 																&nameUser={$name}
 																&roleUser={$role}
+																&headId={$headId}
+																&roleIdUser={$roleId}
 																&Month={$selectedMonthForGet}
-																&Year={$selectedYearForGet}" 
-															title="Удалить Данные Сотрудника">
+																&Year={$selectedYearForGet}"
+															{/if}																
+															title="Удалить Данные Сотрудника"
+															{$accessDep}>
 															<i class="glyphicon glyphicon-trash"></i>
 														</a>
 													</td>
@@ -120,11 +138,14 @@
 										<a 
 											type="button" 
 											class="btn btn-md"
+											{if $accessDep == null}
 											data-toggle="modal" 
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#employeeModal" 
-											title="Добавить Сотрудника">
+											{/if}
+											title="Добавить Сотрудника"
+											{$accessDep}>
 											<i class="glyphicon glyphicon-plus"></i>
 										</a>
 									</div>
@@ -158,6 +179,8 @@
 																&departmentName={$departmentName}
 																&nameUser={$name}
 																&roleUser={$role}
+																&headId={$headId}
+																&roleIdUser={$roleId}
 																&Month={$selectedMonthForGet}
 																&Year={$selectedYearForGet}">
 															{$foo.project_name}
@@ -167,13 +190,18 @@
 														<a 
 															type="button" 
 															class="btn btn-md" 
+															{if $accessPro == null || $headId == $departmentId}
 															data-toggle="modal" 
 															data-editid="{$foo.project_id}" 
 															data-lastname="{$foo.project_name}" 
 															data-departmentid="{$departmentId}" 
 															data-countselect="{$countArrayDepartmentNamesForSelect}" 
 															data-target="#projectModal" 
-															title="Редактировать Данные Проекта">
+															{/if}
+															title="Редактировать Данные Проекта"
+															{if $headId != $departmentId}
+															{$accessPro}
+															{/if}>
 															<i class="glyphicon glyphicon-pencil"></i>
 														</a>
 													</td>
@@ -181,6 +209,7 @@
 														<a 
 															type="button" 
 															class="btn btn-md" 
+															{if $accessPro == null || $headId == $departmentId}
 															href="/index.php
 																?route=department/removeProject
 																&projectId={$foo.project_id}
@@ -188,9 +217,15 @@
 																&departmentName={$departmentName}
 																&nameUser={$name}
 																&roleUser={$role}
+																&headId={$headId}
+																&roleIdUser={$roleId}
 																&Month={$selectedMonthForGet}
 																&Year={$selectedYearForGet}" 
-															title="Удалить Данные Сотрудника">
+															{/if}
+															title="Удалить Данные Сотрудника"
+															{if $headId != $departmentId}
+															{$accessPro}
+															{/if}>
 															<i class="glyphicon glyphicon-trash"></i>
 														</a>
 													</td>
@@ -202,11 +237,16 @@
 										<a 
 											type="button" 
 											class="btn btn-md" 
+											{if $accessPro == null || $headId == $departmentId}
 											data-toggle="modal" 
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#projectModal" 
-											title="Добавить Проект">
+											{/if}
+											title="Добавить Проект"
+											{if $headId != $departmentId}
+											{$accessPro}
+											{/if}>
 											<i class="glyphicon glyphicon-plus"></i>
 										</a>
 									</div>
@@ -223,15 +263,36 @@
 									</button>
 									<h4 class="modal-title" id="employeeModalLabel"></h4>
 								</div>
-								<form action="/index.php" method="get">
+								<form action="/index.php" method="get" onsubmit="diactiveEmp()">
 									<div class="modal-body">
-										<div class="modal-form-group">
-											<label for="nameEmployee"></label>
-											<input 
-												id="nameEmployee" 
-												type="text" 
-												class="form-control" 
-												disabled>
+										<div class="row">
+											<div class="col-xs-4">
+												<label for="nameEmployeeS">Фамилия</label>
+												<input 
+													id="nameEmployeeS" 
+													name="nameEmployeeS"
+													type="text" 
+													class="form-control" 
+													required="required">
+											</div>
+											<div class="col-xs-4">
+												<label for="nameEmployeeF">Имя</label>
+												<input 
+													id="nameEmployeeF" 
+													name="nameEmployeeF" 
+													type="text" 
+													class="form-control" 
+													required="required">
+											</div>
+											<div class="col-xs-4">
+												<label for="nameEmployeeM">Отчество</label>
+												<input 
+													id="nameEmployeeM" 
+													name="nameEmployeeM"
+													type="text" 
+													class="form-control"
+													required="required">
+											</div>
 										</div>
 										<div class="form-group">
 											<label>Логин:</label>
@@ -239,7 +300,8 @@
 												id="loginEmployee"
 												name="newLogin" 
 												type="text" 
-												class="form-control">
+												class="form-control"
+												required="required">
 										</div>
 										<div class="form-group">
 											<label>Отдел:</label>
@@ -247,7 +309,8 @@
 												id="selectIdEmp" 
 												name="newDepartmwent" 
 												class="form-control select2" 
-												style="width: 100%;">
+												style="width: 100%;"
+												required="required">
 												{foreach from=$arrayDepartmentNamesForSelect item=foo}
 												
 												<option value="{$foo.department_id}">{$foo.department_name}</option>
@@ -263,11 +326,13 @@
 											<input name="departmentName" type="hidden" value="{$departmentName}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalFEmp" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+										<button id="buttonModalSEmp" type="submit" class="btn btn-primary">Сохранить</button>
 									</div>
 								</form>
 							</div>
@@ -282,7 +347,7 @@
 									</button>
 									<h4 class="modal-title" id="projectModalLabel"></h4>
 								</div>
-								<form action="/index.php" method="get">
+								<form action="/index.php" method="get" onsubmit="diactivePro()">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Название:</label>
@@ -290,7 +355,8 @@
 												id="nameProject"
 												name="newName" 
 												type="text" 
-												class="form-control">
+												class="form-control"
+												required="required">
 										</div>
 										<div class="form-group">
 											<label>Отдел:</label>
@@ -298,7 +364,8 @@
 												id="selectIdPro" 
 												name="newDepartmwent" 
 												class="form-control select2" 
-												style="width: 100%;">
+												style="width: 100%;"
+												required="required">
 												{foreach from=$arrayDepartmentNamesForSelect item=foo}
 												
 												<option value="{$foo.department_id}">{$foo.department_name}</option>
@@ -314,11 +381,13 @@
 											<input name="departmentName" type="hidden" value="{$departmentName}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">		
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalFPro" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+										<button id="buttonModalSPro" type="submit" class="btn btn-primary">Сохранить</button>
 									</div>
 								</form>
 							</div>
@@ -333,7 +402,7 @@
 									</button>
 									<h4 class="modal-title" id="departmentModalLabel">Редактировать Данные Отдела</h4>
 								</div>
-								<form action="/index.php" method="get">
+								<form action="/index.php" method="get" onsubmit="diactiveDep()">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Название:</label>
@@ -341,7 +410,8 @@
 												name="newName" 
 												type="text" 
 												class="form-control" 
-												value="{$departmentName}">
+												value="{$departmentName}"
+												required="required">
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -350,11 +420,13 @@
 											<input name="editId" type="hidden" value="{$departmentId}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalFDep" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+										<button id="buttonModalSDep" type="submit" class="btn btn-primary">Сохранить</button>
 									</div>
 								</form>
 							</div>
@@ -423,18 +495,19 @@
 					if (editId != null){
 						modal.find('.modal-title').text('Редактировать Данные Сотрудника');
 						document.getElementById('routeEmp').value = 'department/editEmployee';
-						modal.find('.modal-form-group label').text('Фамилия и Имя:');
-						document.getElementById('nameEmployee').type = "text";
 						document.getElementById('editIdEmp').value = editId;
-						document.getElementById('nameEmployee').value = lastName;
+						lastName=lastName.split(' ');
+						document.getElementById('nameEmployeeF').value = lastName[1];
+						document.getElementById('nameEmployeeS').value = lastName[0];
+						document.getElementById('nameEmployeeM').value = lastName[2];
 						document.getElementById('loginEmployee').value = lastLogin;
 					}else{
 						modal.find('.modal-title').text('Новый Сотрудник');
 						document.getElementById('routeEmp').value = 'department/newEmployee';
-						modal.find('.modal-form-group label').text('');
-						document.getElementById('nameEmployee').type = "hidden";
 						document.getElementById('editIdEmp').value = null;
-						document.getElementById('nameEmployee').value = null;
+						document.getElementById('nameEmployeeF').value = null;
+						document.getElementById('nameEmployeeS').value = null;
+						document.getElementById('nameEmployeeM').value = null;
 						document.getElementById('loginEmployee').value = null;
 					}
 					$(function () {
@@ -445,6 +518,30 @@
 						});
 					});
 				});
+			</script>
+			<script>
+				function diactiveEmp() {
+					document.getElementById('buttonModalSEmp').disabled = 1;
+					document.getElementById('buttonModalFEmp').disabled = 1;
+					document.getElementById("loginEmployee").setAttribute("readonly", "readonly");
+					document.getElementById("nameEmployeeM").setAttribute("readonly", "readonly");
+					document.getElementById("nameEmployeeF").setAttribute("readonly", "readonly");
+					document.getElementById("nameEmployeeS").setAttribute("readonly", "readonly");
+				}
+			</script>
+			<script>
+				function diactivePro() {
+					document.getElementById('buttonModalSPro').disabled = 1;
+					document.getElementById('buttonModalFPro').disabled = 1;
+					document.getElementById("nameProject").setAttribute("readonly", "readonly");
+				}
+			</script>
+			<script>
+				function diactiveDep() {
+					document.getElementById('buttonModalSDep').disabled = 1;
+					document.getElementById('buttonModalFDep').disabled = 1;
+					document.getElementById("nameDepartment").setAttribute("readonly", "readonly");
+				}
 			</script>
 			<script>
 				$(function () {

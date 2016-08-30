@@ -9,6 +9,8 @@ require '3pty/Smarty/demo/layouts/SmartyRepeatVariables.php';
 	$smarty->assign('arrayEmployeeRoleNamesAndId', $arrayEmployeeRoleNamesAndId);
 	
 	$smarty->assign('arrayEmployeeNamesForSelect', $arrayEmployeeNames);
+	$smarty->assign('arrayDepartmentNamesForSelect', $arrayDepartmentNames);
+	$smarty->assign('countArrayDepartmentNamesForSelect', count($arrayDepartmentNames));
 	$smarty->assign('arrayRoleDefForSelect', $arrayRoleDef);
 	$smarty->assign('countArrayRoleDefForSelect', count($arrayRoleDef));
 	

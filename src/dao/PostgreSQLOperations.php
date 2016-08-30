@@ -620,7 +620,21 @@ class PostgreSQLOperations
 					pg_last_error($this->dbConnect));
 		}
 	}
-
+	
+	/** Обновление роли пользователя. */
+	public function changeHeadDepartment(DateTime $date, $employeeId, $departmentId, $newDepartmentId)
+	{
+		$result = pg_query_params($this->dbConnect, 'UPDATE "Head_departments" SET department_id = $4 '.
+				'WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND department_id = $3 '.
+				'AND employee_id = $2',	array($date->format("U"), $employeeId, $departmentId, $newDepartmentId));
+		if (!$result) {
+			$this->log->error("Не удается выполнить обновление главы отдела. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить обновление главы отдела. ".
+					pg_last_error($this->dbConnect));
+		}
+	}
+	 
 	/** Добавление нового отдела. */
 	public function newDepartment(DateTime $date, $departmentName)
 	{

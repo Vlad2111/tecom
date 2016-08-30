@@ -19,24 +19,32 @@
 										<a 
 											type="button" 
 											class="btn btn-md" 
+											{if $accessEmp == null}	
 											data-toggle="modal" 
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#employeeModal" 
-											title="Редактировать Данные Сотрудника">
+											{/if}
+											title="Редактировать Данные Сотрудника"
+											{$accessEmp}>
 											<i class="glyphicon glyphicon-pencil"></i>
 										</a>
 										<a 
 											type="button" 
 											class="btn btn-md" 
+											{if $accessEmp == null}	
 											href="/index.php
 												?route=list/removeEmployee
 												&employeeId={$employeeId}
 												&nameUser={$name}
 												&roleUser={$role}
+												&headId={$headId}
+												&roleIdUser={$roleId}
 												&Month={$selectedMonthForGet}
 												&Year={$selectedYearForGet}" 
-											title="Удалить Данные Сотрудника">
+											{/if}
+											title="Удалить Данные Сотрудника"
+											{$accessEmp}>
 											<i class="glyphicon glyphicon-trash"></i>
 										</a>
 									</h3>
@@ -92,6 +100,8 @@
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.project_name}
@@ -105,6 +115,8 @@
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.department_name}
@@ -115,12 +127,17 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
+														{if $accessPro == null || $headId == $departmentId}
 														data-toggle="modal" 
 														data-lasttime="{$foo.time}" 
 														data-projectid="{$foo.project_id}" 
 														data-projectname="{$foo.project_name}" 
 														data-target="#timeDistModal" 
-														title="Редактировать Данные Распределения Времени">
+														{/if}
+														title="Редактировать Данные Распределения Времени"
+														{if $headId != $departmentId}
+														{$accessPro}
+														{/if}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 												</td>
@@ -128,6 +145,7 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
+														{if $accessPro == null || $headId == $departmentId}
 														href="/index.php
 															?route=employee/removePercent
 															&projectId={$foo.project_id}
@@ -136,9 +154,15 @@
 															&employeeLogin={$employeeLogin}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}" 
-														title="Удалить Данные Распределения Времени">
+														{/if}
+														title="Удалить Данные Распределения Времени"
+														{if $headId != $departmentId}
+														{$accessPro}
+														{/if}>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 												</td>
@@ -150,10 +174,15 @@
 									<a 
 										type="button" 
 										class="btn btn-md" 
+										{if $accessPro == null || $headId == $departmentId}
 										data-toggle="modal" 
 										data-countselect="{$countArrayProjectNamesForSelect}" 
 										data-target="#timeDistModal" 
-										title="Добавить Распределение Времени">
+										{/if}
+										title="Добавить Распределение Времени"
+										{if $headId != $departmentId}
+										{$accessPro}
+										{/if}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 								</div>
@@ -208,6 +237,8 @@
 											<input name="editId" type="hidden" value="{$employeeId}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -261,6 +292,8 @@
 											<input name="departmentName" type="hidden" value="{$departmentName}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>

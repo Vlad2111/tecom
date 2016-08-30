@@ -40,9 +40,9 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 				$_GET['nameUser'] = $names['0']['sn'].' '.$names['0']['givenName'];
 				$role = $this->postgreSQL->getRoleName($login);
 				if ($role['0']['role_name'] == "Глава Отдела"){
-					$department = $this->postgreSQL->getDepartmentHead($login);
-					$role['0']['role_name'] = $role['0']['role_name'].': '.$department['department_name'];
-					$_GET['headId']=$department['department_id'];
+					$department = $this->postgreSQL->getDepartmentHead(new DateTime(), $login);
+					$role['0']['role_name'] = $role['0']['role_name'].': '.$department['0']['department_name'];
+					$_GET['headId']=$department['0']['department_id'];
 				}
 				$_GET['roleUser']=$role['0']['role_name'];
 				$_GET['roleIdUser']=$role['0']['role_id'];

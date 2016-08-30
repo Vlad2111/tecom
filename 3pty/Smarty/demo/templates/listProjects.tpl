@@ -42,6 +42,8 @@
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.project_name}
@@ -55,6 +57,8 @@
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.department_name}
@@ -64,13 +68,18 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
+														{if $access == null || $headId == $foo.department_id}
 														data-toggle="modal" 
 														data-editid="{$foo.project_id}" 
 														data-lastname="{$foo.project_name}" 
 														data-departmentid="{$foo.department_id}" 
 														data-countselect="{$countArrayDepartmentNamesForSelect}" 
 														data-target="#projectModal" 
-														title="Редактировать Данные Проекта">
+														{/if}
+														title="Редактировать Данные Проекта"
+														{if $headId != $foo.department_id}
+														{$access}
+														{/if}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 												</td>
@@ -78,14 +87,21 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
+														{if $access == null || $headId == $foo.department_id}
 														href="/index.php
 															?route=list/removeProject
 															&projectId={$foo.project_id}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}" 
-														title="Удалить Данные Проекта">
+														{/if}
+														title="Удалить Данные Проекта"
+														{if $headId != $foo.department_id}
+														{$access}
+														{/if}>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 												</td>
@@ -96,11 +112,14 @@
 									</table>
 									<a 
 										type="button" 
+										class="btn btn-md" 
+										{if $access == null}
 										data-toggle="modal" 
 										data-countselect="{$countArrayDepartmentNamesForSelect}" 
 										data-target="#projectModal" 
-										class="btn btn-md" 
-										title="Добавить Проект">
+										{/if}
+										title="Добавить Проект"
+										{$access}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 								</div>
@@ -111,7 +130,9 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
 									<h4 class="modal-title" id="projectModalLabel"></h4>
 								</div>
 								<form action="/index.php" method="get" onsubmit="diactive()">
@@ -146,6 +167,8 @@
 											<input id="editId" name="editId" type="hidden">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -202,6 +225,7 @@
 				function diactive() {
 					document.getElementById('buttonModalS').disabled = 1;
 					document.getElementById('buttonModalF').disabled = 1;
+					document.getElementById("nameProject").setAttribute("readonly", "readonly");
 				}
 			</script>
 			<script>

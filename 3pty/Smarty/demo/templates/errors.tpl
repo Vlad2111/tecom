@@ -55,7 +55,7 @@
 		</footer>
 		<script>
 			$(function () {
-				$('#errorsTime').DataTable({
+				$('#errors').DataTable({
 					"paging": true,
 					"lengthChange": true,
 					"searching": true,

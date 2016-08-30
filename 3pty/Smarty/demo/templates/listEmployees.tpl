@@ -43,6 +43,8 @@
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.user_name}
@@ -56,6 +58,8 @@
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.department_name}
@@ -65,6 +69,7 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
+														{if $access == null}
 														data-toggle="modal" 
 														data-editid="{$foo.employee_id}"
 														data-lastlogin="{$foo.user_id}" 
@@ -72,8 +77,9 @@
 														data-departmentid="{$foo.department_id}" 
 														data-countselect="{$countArrayDepartmentNamesForSelect}"  
 														data-target="#employeeModal" 
+														{/if}
 														title="Редактировать Данные Сотрудника"
-														{$accessEdit}>
+														{$access}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 												</td>
@@ -81,15 +87,19 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
+														{if $access == null}
 														href="/index.php
 															?route=list/removeEmployee
 															&employeeId={$foo.employee_id}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}" 
+														{/if}
 														title="Удалить Данные Сотрудника"
-														{$accessEdit}>
+														{$access}>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 												</td>
@@ -100,12 +110,14 @@
 									</table>
 									<a 
 										type="button" 
+										class="btn btn-md" 
+										{if $access == null}
 										data-toggle="modal" 
 										data-countselect="{$countArrayDepartmentNamesForSelect}" 
 										data-target="#employeeModal" 
-										class="btn btn-md" 
+										{/if}
 										title="Добавить Сотрудника"
-										{$accessEdit}>
+										{$access}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 								</div>
@@ -184,6 +196,8 @@
 											<input id="editId" name="editId" type="hidden">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -248,6 +262,10 @@
 				function diactive() {
 					document.getElementById('buttonModalS').disabled = 1;
 					document.getElementById('buttonModalF').disabled = 1;
+					document.getElementById("loginEmployee").setAttribute("readonly", "readonly");
+					document.getElementById("nameEmployeeM").setAttribute("readonly", "readonly");
+					document.getElementById("nameEmployeeF").setAttribute("readonly", "readonly");
+					document.getElementById("nameEmployeeS").setAttribute("readonly", "readonly");
 				}
 			</script>
 			<script>

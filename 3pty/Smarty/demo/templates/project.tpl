@@ -18,25 +18,37 @@
 									<h3 class="box-title" style="font-size:23px">Проект: {$projectName}
 										<a 
 											type="button" 
-											class="btn btn-md" 
+											class="btn btn-md"
+											{if $access == null || $headId == $departmentId}										
 											data-toggle="modal" 
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#projectModal" 
-											title="Редактировать Данные Проекта">
+											{/if}
+											title="Редактировать Данные Проекта"
+											{if $headId != $departmentId}
+											{$access}
+											{/if}>
 											<i class="glyphicon glyphicon-pencil"></i>
 										</a>
 										<a 
 											type="button" 
 											class="btn btn-md" 
+											{if $access == null || $headId == $departmentId}
 											href="/index.php
 												?route=list/removeProject
 												&nameUser={$name}
 												&roleUser={$role}
+												&headId={$headId}
+												&roleIdUser={$roleId}
 												&Month={$selectedMonthForGet}
 												&Year={$selectedYearForGet}
 												&projectId={$projectId}" 
-											title="Удалить Данные Проекта">
+											{/if}
+											title="Удалить Данные Проекта"
+											{if $headId != $departmentId}
+											{$access}
+											{/if}>
 											<i class="glyphicon glyphicon-trash"></i>
 										</a>
 									</h3>	
@@ -46,7 +58,7 @@
 									<table id="project" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th>Фамилия и Имя</th>
+												<th>ФИО</th>
 												<th>Отдел</th>
 												<th style="width:20px">Занятость</th>
 												<th style="width: 18px"></th>
@@ -69,6 +81,8 @@
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.user_name}
@@ -82,6 +96,8 @@
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.department_name}
@@ -92,19 +108,25 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
+														{if $access == null || $headId == $departmentId}
 														data-toggle="modal" 
 														data-lasttime="{$foo.time}" 
 														data-employeeid="{$foo.employee_id}" 
 														data-employeename="{$foo.user_name}" 
 														data-target="#timeDistModal" 
-														title="Редактировать Данные Распределения Времени">
+														{/if}
+														title="Редактировать Данные Распределения Времени"
+														{if $headId != $departmentId}
+														{$access}
+														{/if}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 												</td>
 												<td>
 													<a 
 														type="button" 
-														class="btn btn-md" 
+														class="btn btn-md"
+														{if $access == null || $headId == $departmentId}
 														href="/index.php
 															?route=project/removePercent
 															&projectId={$projectId}
@@ -113,10 +135,16 @@
 															&departmentName={$departmentName}
 															&nameUser={$name}
 															&roleUser={$role}
+															&headId={$headId}
+															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}
 															&projectId={$foo.project_id}" 
-														title="Удалить Данные Распределения Времени">
+														{/if}
+														title="Удалить Данные Распределения Времени"
+														{if $headId != $departmentId}
+														{$access}
+														{/if}>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 												</td>
@@ -127,11 +155,16 @@
 									</table>
 									<a 
 										type="button" 
+										class="btn btn-md" 
+										{if $access == null || $headId == $departmentId}
 										data-toggle="modal" 
 										data-countselect="{$countArrayEmployeeNamesForDepartmentForSelect}" 
 										data-target="#timeDistModal" 
-										class="btn btn-md" 
-										title="Добавить Распределение Времени">
+										{/if}
+										title="Добавить Распределение Времени"
+										{if $headId != $departmentId}
+										{$access}
+										{/if}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 								</div>
@@ -177,6 +210,8 @@
 											<input name="editId" type="hidden" value="{$projectId}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -229,6 +264,8 @@
 											<input name="departmentName" type="hidden" value="{$departmentName}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="headId" type="hidden" value="{$headId}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
