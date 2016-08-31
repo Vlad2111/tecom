@@ -158,6 +158,24 @@ class PostgreSQLOperations
 		return $employeeNamesAndRoles;
 	}
 	
+	/** Запрос статуса редактирования данных для месяца. */
+	public function getDataStatusForEditing(DateTime $date)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'SELECT editing_status FROM "Month" '.
+				'WHERE date_part(\'epoch\', date_trunc(\'month\', date))'.
+				' = $1', array($date->format("U")));
+		if (!$result) {
+			$this->log->error("Не удается выполнить запрос на получение статуса редактирования для месяца. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запрос на получение статуса редактирования для месяца. ".
+					pg_last_error($this->dbConnect));
+		}
+		$status = pg_fetch_all($result);
+		return $status;
+	}
+	
 	/** Запрос списка ролей. */
 	public function getRoleDef()
 	{
@@ -634,7 +652,38 @@ class PostgreSQLOperations
 					pg_last_error($this->dbConnect));
 		}
 	}
-	 
+	
+	/** Обновление статуса редактирования данных для месяца. */
+	public function changeDataStatusForEditing(DateTime $date, $newStatus)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'UPDATE "Month" SET editing_status = $2 '.
+				'WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1 ', 
+					array($date->format("U"), $newStatus));
+		if (!$result) {
+			$this->log->error("Не удается выполнить обновление статуса редактирования для месяца. ".
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить обновление статуса редактирования для месяца. ".
+					pg_last_error($this->dbConnect));
+		}
+	}
+	
+	/** Добавление статуса редактирования данных для месяца. */
+	public function newDataStatusForEditing(DateTime $date, $status)
+	{
+		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Month" (date, editing_status)'.
+				' VALUES ($1, $2)', array($date->format("Y-m-d"), $status));
+		if (!$result) {
+			$this->log->error("Не удается выполнить запись нового статуса редактирования для месяца. ". 
+					pg_last_error($this->dbConnect));
+			throw new Exception("Не удается выполнить запись нового статуса редактирования для месяца. ". 
+					pg_last_error($this->dbConnect));
+		}
+	}
+	
 	/** Добавление нового отдела. */
 	public function newDepartment(DateTime $date, $departmentName)
 	{

@@ -13,9 +13,13 @@
 				<section class="content">
 					<div class="row">
 						<div class="col-xs-12">
+						{if $statusEditing != null}
+						{$statusEditing}
+						{/if}
 							<div class="box">
 								<div class="box-header">
 									<h3 class="box-title" style="font-size:23px">Сотрудник: {$employeeName}
+										{if $status == FALSE}
 										<a 
 											type="button" 
 											class="btn btn-md" 
@@ -33,20 +37,14 @@
 											type="button" 
 											class="btn btn-md" 
 											{if $accessEmp == null}	
-											href="/index.php
-												?route=list/removeEmployee
-												&employeeId={$employeeId}
-												&nameUser={$name}
-												&roleUser={$role}
-												&headId={$headId}
-												&roleIdUser={$roleId}
-												&Month={$selectedMonthForGet}
-												&Year={$selectedYearForGet}" 
+											data-toggle="modal"  
+											data-target="#removeModalEmp" 
 											{/if}
 											title="Удалить Данные Сотрудника"
 											{$accessEmp}>
 											<i class="glyphicon glyphicon-trash"></i>
 										</a>
+										{/if}
 									</h3>
 									<p style="text-align:justify;">
 										<table class="text" style="width:100%; border-spacing:0;">
@@ -81,8 +79,8 @@
 												<th>Название Проекта</th>
 												<th>Отдел</th>
 												<th style="width:20px">Занятость</th>
-												<th style="width: 18px"></th>
-												<th style="width: 18px"></th>
+												<th style="width:18px"></th>
+												<th style="width:18px"></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -124,6 +122,7 @@
 												</td>
 												<td>{$foo.time}%</td>
 												<td>
+													{if $status == FALSE}
 													<a 
 														type="button" 
 														class="btn btn-md" 
@@ -140,24 +139,19 @@
 														{/if}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
+													{/if}
 												</td>
 												<td>
+													{if $status == FALSE}
 													<a 
 														type="button" 
 														class="btn btn-md" 
 														{if $accessPro == null || $headId == $departmentId}
-														href="/index.php
-															?route=employee/removePercent
-															&projectId={$foo.project_id}
-															&employeeId={$employeeId}
-															&employeeName={$employeeName}
-															&employeeLogin={$employeeLogin}
-															&nameUser={$name}
-															&roleUser={$role}
-															&headId={$headId}
-															&roleIdUser={$roleId}
-															&Month={$selectedMonthForGet}
-															&Year={$selectedYearForGet}" 
+														data-toggle="modal"  
+														data-projectid="{$foo.project_id}"
+														data-projectname="{$foo.project_name}" 
+														data-employeename="{$employeeName}"
+														data-target="#removeModalTime" 
 														{/if}
 														title="Удалить Данные Распределения Времени"
 														{if $headId != $departmentId}
@@ -165,12 +159,14 @@
 														{/if}>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
+													{/if}
 												</td>
 											</tr>
 										{/foreach}
 										{/if}
 										</tbody>
 									</table>
+									{if $status == FALSE}
 									<a 
 										type="button" 
 										class="btn btn-md" 
@@ -185,6 +181,7 @@
 										{/if}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
+									{/if}
 								</div>
 							</div>
 						</div>
@@ -201,21 +198,45 @@
 								<form action="/index.php" method="get">
 									<div class="modal-body">
 										<div class="modal-form-group">
-											<label for="nameEmployee">Фамилия и Имя:</label>
-											<input 
-												type="text" 
-												class="form-control" 
-												name="employeeName" 
-												value="{$employeeName}" 
-												disabled>
+											<div class="row">
+												<div class="col-xs-4">
+													<label for="nameEmployeeS">Фамилия</label>
+													<input 
+														id="nameEmployeeS" 
+														name="nameEmployeeS"
+														type="text" 
+														class="form-control" 
+														required="required">
+												</div>
+												<div class="col-xs-4">
+													<label for="nameEmployeeF">Имя</label>
+													<input 
+														id="nameEmployeeF" 
+														name="nameEmployeeF" 
+														type="text" 
+														class="form-control" 
+														required="required">
+												</div>
+												<div class="col-xs-4">
+													<label for="nameEmployeeM">Отчество</label>
+													<input 
+														id="nameEmployeeM" 
+														name="nameEmployeeM"
+														type="text" 
+														class="form-control"
+														required="required">
+												</div>
+											</div>
 										</div>
 										<div class="form-group">
 											<label>Логин:</label>
 											<input 
+												id="newLogin"
 												name="newLogin" 
 												type="text" 
 												class="form-control" 
-												value="{$employeeLogin}">
+												value="{$employeeLogin}"
+												required="required">
 										</div>
 										<div class="form-group">
 											<label>Отдел:</label>
@@ -223,7 +244,8 @@
 												id="selectId" 
 												name="newDepartmwent" 
 												class="form-control select2" 
-												style="width: 100%;">
+												style="width: 100%;"
+												required="required">
 												{foreach from=$arrayDepartmentNamesForSelect item=foo}
 												
 												<option value="{$foo.department_id}*-*{$foo.department_name}">{$foo.department_name}</option>
@@ -242,8 +264,8 @@
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalFEmp" type="button" style="width: 200px" class="btn btn-default pull-left" data-dismiss="modal">Отмена</button>
+										<button id="buttonModalSEmp" type="submit" style="width: 200px" class="btn btn-primary">Сохранить</button>
 									</div>
 								</form>
 							</div>
@@ -258,7 +280,7 @@
 									</button>
 									<h4 class="modal-title" id="timeDistModalLabel"></h4>
 								</div>
-								<form action="/index.php" method="get">
+								<form action="/index.php" method="get" onsubmit="diactiveTime()">
 									<div class="modal-body">
 										<div class="modal-form-group">
 											<label for="nameEmployee">Сотрудник</label>
@@ -278,7 +300,8 @@
 													id="TimeDistr"
 													name="newTime" 
 													type="text" 
-													class="form-control">
+													class="form-control"
+													required="required">
 												<span class="input-group-addon">%</span>
 											</div>
 										</div>
@@ -297,8 +320,108 @@
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalFTime" type="button" style="width: 200px" class="btn btn-default pull-left" data-dismiss="modal">Отмена</button>
+										<button id="buttonModalSTime" type="submit" style="width: 200px" class="btn btn-primary">Сохранить</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="removeModalEmp" tabindex="-1" role="dialog" style="margin: 0 auto;">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="removeModalEmpLabel">Вы уверены, что хотите удалить данные сотрудника: <u><b>{$employeeName}</u></b></h4>
+								</div>							
+								<form action="/index.php" method="get" onsubmit="diactiveRemoveEmp()">
+									<div class="modal-body">
+									</div>
+									<div class="modal-footer">
+										<div class="input-group hidden">
+											<input name="route" type="hidden" value="list/removeEmployee">
+											<input name="employeeId" type="hidden" value="{$employeeId}">
+											<input name="nameUser" type="hidden" value="{$name}">
+											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+											<input name="Year" type="hidden" value="{$selectedYearForGet}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
+											<input name="headId" type="hidden" value="{$headId}">
+										</div>
+										<button id="buttonModalFRemoveEmp" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+										<button id="buttonModalSRemoveEmp" type="submit" class="btn btn-primary" style="width: 200px">Да</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="removeModalTime" tabindex="-1" role="dialog" style="margin: 0 auto;">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="removeModalTimeLabel"></h4>
+								</div>							
+								<form action="/index.php" method="get" onsubmit="diactiveRemoveTime()">
+									<div class="modal-body">
+									</div>
+									<div class="modal-footer">
+										<div class="input-group hidden">
+											<input name="route" type="hidden" value="employee/removePercent">
+											<input name="employeeId" type="hidden" value="{$employeeId}">
+											<input id="projectId" name="projectId" type="hidden">
+											<input name="employeeName" type="hidden" value="{$employeeName}">
+											<input name="employeeLogin" type="hidden" value="{$employeeLogin}">
+											<input name="departmentId" type="hidden" value="{$departmentId}">
+											<input name="departmentName" type="hidden" value="{$departmentName}">
+											<input name="nameUser" type="hidden" value="{$name}">
+											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+											<input name="Year" type="hidden" value="{$selectedYearForGet}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
+											<input name="headId" type="hidden" value="{$headId}">
+										</div>
+										<button id="buttonModalFRemoveTime" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+										<button id="buttonModalSRemoveTime" type="submit" class="btn btn-primary" style="width: 200px">Да</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="changeDataMonthEditing" tabindex="-1" role="dialog" style="margin: 0 auto;">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="changeDataMonthEditingLabel"></h4>
+								</div>							
+								<form action="/index.php" method="get" onsubmit="diactiveChangeDataMonthEditing()">
+									<div class="modal-body">
+									</div>
+									<div class="modal-footer">
+										<div class="input-group hidden">
+											<input name="route" type="hidden" value="employee/changeDataStatusForEditing">
+											<input name="lastStatus" type="hidden" value="{$status}">
+											<input name="employeeId" type="hidden" value="{$employeeId}">
+											<input name="employeeName" type="hidden" value="{$employeeName}">
+											<input name="employeeLogin" type="hidden" value="{$employeeLogin}">
+											<input name="departmentId" type="hidden" value="{$departmentId}">
+											<input name="departmentName" type="hidden" value="{$departmentName}">
+											<input name="nameUser" type="hidden" value="{$name}">
+											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+											<input name="Year" type="hidden" value="{$selectedYearForGet}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
+											<input name="headId" type="hidden" value="{$headId}">
+										</div>
+										<button id="buttonModalFData" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+										<button id="buttonModalSData" type="submit" class="btn btn-primary" style="width: 200px">Да</button>
 									</div>
 								</form>
 							</div>
@@ -314,6 +437,7 @@
 				$('#employeeModal').on('show.bs.modal', function (event) {
 					var button = $(event.relatedTarget);
 					var modal = $(this);
+					var lastName = button.data('lastname');
 					var departmentId = button.data('departmentid');
 					var countSelect = button.data('countselect');
 					for (var i = 0; i < countSelect; i++) {
@@ -325,6 +449,10 @@
 							document.getElementById('selectId').options[i].selected=false;
 						}
 					}
+					lastName=lastName.split(' ');
+					document.getElementById('nameEmployeeF').value = lastName[1];
+					document.getElementById('nameEmployeeS').value = lastName[0];
+					document.getElementById('nameEmployeeM').value = lastName[2];
 					$(function () {
 						$(".select2").select2({
 						modal: true,
@@ -333,6 +461,16 @@
 						});
 					});
 				});
+			</script>
+			<script>
+				function diactiveEmp() {
+					document.getElementById('buttonModalSEmp').disabled = 1;
+					document.getElementById('buttonModalFEmp').disabled = 1;
+					document.getElementById("nameEmployeeF").setAttribute("readonly", "readonly");
+					document.getElementById("nameEmployeeS").setAttribute("readonly", "readonly");
+					document.getElementById("nameEmployeeM").setAttribute("readonly", "readonly");
+					document.getElementById("newLogin").setAttribute("readonly", "readonly");
+				}
 			</script>
 			<script>
 				$('#timeDistModal').on('show.bs.modal', function (event) {
@@ -352,7 +490,7 @@
 					}else{
 						modal.find('.modal-title').text('Новое Распределение Времени');
 						document.getElementById('route').value = 'project/newPercent';
-						$('#project').html('<label>Проект:</label><select id="selectIdPro" name="projectId" class="form-control select2" style="width: 100%;">{foreach from=$arrayProjectNamesForDepartmentForSelect item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}{foreach from=$arrayProjectNamesNotForDepartmentForSelect item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}</select>'); 
+						$('#project').html('<label>Проект:</label><select id="selectIdPro" name="projectId" class="form-control select2" style="width: 100%;" required="required">{foreach from=$arrayProjectNamesForDepartmentForSelect item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}{foreach from=$arrayProjectNamesNotForDepartmentForSelect item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}</select>'); 
 						document.getElementById('TimeDistr').value = null;
 						for (var i = 0; i < countSelectPro; i++) {
 							document.getElementById('selectIdPro').options[i].selected=false;
@@ -366,6 +504,42 @@
 						});
 					});
 				});
+			</script>
+			<script>
+				function diactiveTime() {
+					document.getElementById('buttonModalSTime').disabled = 1;
+					document.getElementById('buttonModalFTime').disabled = 1;
+					document.getElementById("TimeDistr").setAttribute("readonly", "readonly");
+				}
+			</script>
+			<script>
+				function diactiveRemoveEmp() {
+					document.getElementById('buttonModalSRemoveEmp').disabled = 1;
+					document.getElementById('buttonModalFRemoveEmp').disabled = 1;
+				}
+			</script>
+			<script>
+				$('#removeModalTime').on('show.bs.modal', function (event) {
+					var button = $(event.relatedTarget);
+					var modal = $(this);
+					var projectId = button.data('projectid');
+					var projectName = button.data('projectname');
+					var employeeName = button.data('employeename');
+					modal.find('.modal-title').html('Вы уверены, что хотите удалить данные распредеения времени сотрудника: <u><b>'+employeeName+'</u></b> для проекта: <u><b>'+projectName+'</u></b>');
+					document.getElementById('projectId').value = projectId;
+				});
+			</script>
+			<script>
+				function diactiveRemoveTime() {
+					document.getElementById('buttonModalSRemoveTime').disabled = 1;
+					document.getElementById('buttonModalFRemoveTime').disabled = 1;
+				}
+			</script>
+			<script>
+				function diactiveChangeDataMonthEditing() {
+					document.getElementById('buttonModalSData').disabled = 1;
+					document.getElementById('buttonModalFData').disabled = 1;
+				}
 			</script>
 			<script>
 				$(function () {

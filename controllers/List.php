@@ -22,6 +22,9 @@ Class Controller_List Extends Controller_Base {
 		$date = $this->getDate();
 		$this->template->vars('date', $date);
 		
+		$status = $this->checkDataEditingForDate($date);
+		$this->template->vars('statusEditingData', $status);
+		
 		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
 		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
 		
@@ -32,6 +35,9 @@ Class Controller_List Extends Controller_Base {
 	function viewListEmployee() {
 		$date = $this->getDate();
 		$this->template->vars('date', $date);
+		
+		$status = $this->checkDataEditingForDate($date);
+		$this->template->vars('statusEditingData', $status);
 		
 		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
 		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
@@ -46,6 +52,9 @@ Class Controller_List Extends Controller_Base {
 	function viewListProject() {
 		$date = $this->getDate();
 		$this->template->vars('date', $date);
+		
+		$status = $this->checkDataEditingForDate($date);
+		$this->template->vars('statusEditingData', $status);
 		
 		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
 		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
@@ -72,6 +81,18 @@ Class Controller_List Extends Controller_Base {
 		}
 		return $date;
 	}
+	
+	/** Проверка данных для даты на возможность редактирования. */
+	private function checkDataEditingForDate(DateTime $date) {
+		$status = $this->postgreSQL->getDataStatusForEditing($date);
+		if($status == null){
+			$this->postgreSQL->newDataStatusForEditing($date, 0);
+			return FALSE;
+		}else{
+			return $status['0']['editing_status'];
+		}
+	}
+	
 	/**Клонирование информации в новый месяц*/
 	function cloneData() {
 		if (($_GET['dateFrom']!=null)AND($_GET['dateTo']!=null)){
@@ -193,7 +214,7 @@ Class Controller_List Extends Controller_Base {
 	/** -->Добавление проекта. */
 	function newProject(){
 		$date = $this->getDate();
-		$this->postgreSQL->newProject($date, $_GET['newName'], $_GET['newDepartmwent']);
+		$this->postgreSQL->newProject($date, $_GET['newName'], $_GET['newDepartment']);
 		$this->viewListProject();
 	}
 	

@@ -5,6 +5,7 @@ DROP TABLE "Time_distribution";
 DROP TABLE "Projects";
 DROP TABLE "Employee";
 DROP TABLE "Departments";
+DROP TABLE "Month";
 DROP SEQUENCE "Role_def_role_id_seq";
 
 CREATE SEQUENCE "Role_def_role_id_seq"
@@ -13,6 +14,13 @@ CREATE SEQUENCE "Role_def_role_id_seq"
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
+
+CREATE TABLE "Month" (
+    date timestamp without time zone,
+    editing_status boolean,
+    CONSTRAINT editing_status_date_pk PRIMARY KEY (date, editing_status)
+
+);
     
 CREATE TABLE "Departments" (
     date timestamp without time zone,

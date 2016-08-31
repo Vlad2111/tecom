@@ -13,6 +13,9 @@
 				<section class="content">
 					<div class="row">
 						<div class="col-xs-12">
+						{if $statusEditing != null}
+						{$statusEditing}
+						{/if}
 							<div class="box">
 								<div class="box-header">
 									<h3 class="box-title" style="font-size:23px">Список Отделов</h3>	
@@ -46,7 +49,8 @@
 													{$foo.department_name}
 													</a>
 												</td>
-													<td>
+												<td>
+													{if $status == FALSE}
 													<a 
 														class="btn btn-md" 
 														type="button" 
@@ -60,32 +64,31 @@
 														{$access}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
+													{/if}
 												</td>
 												<td>
+													{if $status == FALSE}
 													<a 
 														type="button" 
 														class="btn btn-md" 
 														{if $access == null}
-														href="/index.php
-															?route=list/removeDepartment
-															&departmentId={$foo.department_id}
-															&nameUser={$name}
-															&roleUser={$role}
-															&Month={$selectedMonthForGet}
-															&Year={$selectedYearForGet}
-															&headId={$headId}
-															&roleIdUser={$roleId}" 
+														data-toggle="modal" 
+														data-departmentid="{$foo.department_id}" 
+														data-departmentname="{$foo.department_name}" 
+														data-target="#removeModal" 
 														{/if}
 														title="Удалить Данные Отдела"
 														{$access}>
 														<i class="glyphicon glyphicon-trash"></i>
-														</a>
+													</a>
+													{/if}
 												</td>
 											</tr>
 										{/foreach}
 										{/if}
 										</tbody>
 									</table>
+									{if $status == FALSE}
 									<a 
 										type="button" 
 										class="btn btn-md" 
@@ -97,6 +100,7 @@
 										{$access}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
+									{/if}
 								</div>
 							</div>
 						</div>
@@ -134,8 +138,68 @@
 											<input name="headId" type="hidden" value="{$headId}">
 											<input name="roleUser" type="hidden" value="{$role}">
 										</div>
-										<button id="buttonModalF" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button id="buttonModalS" type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalF" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+										<button id="buttonModalS" type="submit" class="btn btn-primary" style="width: 200px">Сохранить</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" style="margin: 0 auto;">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="removeModalLabel"></h4>
+								</div>							
+								<form action="/index.php" method="get" onsubmit="diactiveRemove()">
+									<div class="modal-body">
+									</div>
+									<div class="modal-footer">
+										<div class="input-group hidden">
+											<input name="route" type="hidden" value="list/removeDepartment">
+											<input id="departmentId" name="departmentId" type="hidden">
+											<input name="nameUser" type="hidden" value="{$name}">
+											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+											<input name="Year" type="hidden" value="{$selectedYearForGet}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
+											<input name="headId" type="hidden" value="{$headId}">
+										</div>
+										<button id="buttonModalFRemove" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+										<button id="buttonModalSRemove" type="submit" class="btn btn-primary" style="width: 200px">Да</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="changeDataMonthEditing" tabindex="-1" role="dialog" style="margin: 0 auto;">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="changeDataMonthEditingLabel"></h4>
+								</div>							
+								<form action="/index.php" method="get" onsubmit="diactiveChangeDataMonthEditing()">
+									<div class="modal-body">
+									</div>
+									<div class="modal-footer">
+										<div class="input-group hidden">
+											<input name="route" type="hidden" value="department/changeDataStatusForEditing">
+											<input name="lastStatus" type="hidden" value="{$status}">
+											<input name="nameUser" type="hidden" value="{$name}">
+											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+											<input name="Year" type="hidden" value="{$selectedYearForGet}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
+											<input name="headId" type="hidden" value="{$headId}">
+										</div>
+										<button id="buttonModalFData" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+										<button id="buttonModalSData" type="submit" class="btn btn-primary" style="width: 200px">Да</button>
 									</div>
 								</form>
 							</div>
@@ -171,6 +235,28 @@
 					document.getElementById('buttonModalS').disabled = 1;
 					document.getElementById('buttonModalF').disabled = 1;
 					document.getElementById("nameDepartment").setAttribute("readonly", "readonly");
+				}
+			</script>
+			<script>
+				$('#removeModal').on('show.bs.modal', function (event) {
+					var button = $(event.relatedTarget);
+					var modal = $(this);
+					var departmentId = button.data('departmentid');
+					var departmentName = button.data('departmentname');
+					modal.find('.modal-title').html('Вы уверены, что хотите удалить данные отдела: <u><b>'+departmentName+'</b></u>');
+					document.getElementById('departmentId').value = departmentId;
+				});
+			</script>
+			<script>
+				function diactiveRemove() {
+					document.getElementById('buttonModalSRemove').disabled = 1;
+					document.getElementById('buttonModalFRemove').disabled = 1;
+				}
+			</script>
+			<script>
+				function diactiveChangeDataMonthEditing() {
+					document.getElementById('buttonModalSData').disabled = 1;
+					document.getElementById('buttonModalFData').disabled = 1;
 				}
 			</script>
 			<script>

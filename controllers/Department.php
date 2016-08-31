@@ -21,6 +21,9 @@ Class Controller_Department Extends Controller_Base {
 		$date = $this->getDate();
 		$this->template->vars('date', $date);
 		
+		$status = $this->checkDataEditingForDate($date);
+		$this->template->vars('statusEditingData', $status);
+		
 		if ((isset ($_GET['I']))AND($_GET['departmentName']=="C")){
 			$_GET['departmentName']=$_GET['departmentName']."&I";
 		}
@@ -55,6 +58,17 @@ Class Controller_Department Extends Controller_Base {
 			}
 		}
 		return $date;
+	}
+	
+	/** Проверка данных для даты на возможность редактирования. */
+	private function checkDataEditingForDate(DateTime $date) {
+		$status = $this->postgreSQL->getDataStatusForEditing($date);
+		if($status == null){
+			$this->postgreSQL->newDataStatusForEditing($date, 0);
+			return FALSE;
+		}else{
+			return $status['0']['editing_status'];
+		}
 	}
 	
 	/** Редактирование отдела. */

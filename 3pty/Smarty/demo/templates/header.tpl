@@ -41,6 +41,11 @@
 									<b style="font-size:35px">{$selectedMonth}-{$selectedYearForGet}</b>
 								</div>
 							</li>
+							<li>
+								<a data-toggle="modal" data-target="#changeDataMonthEditing" class="btn btn-lg text-grey" title="Изменить статус редактирования данных для данного месяца">
+									<i class="glyphicon glyphicon-refresh"></i>
+								</a>
+							</li>
 							{/if}
 						</ul>
 					</div>
@@ -190,8 +195,8 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button id="buttonModalFdate" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-								<button id="buttonModalSdate" type="submit" class="btn btn-primary">Сохранить</button>
+								<button id="buttonModalFdate" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+								<button id="buttonModalSdate" type="submit" class="btn btn-primary" style="width: 200px">Сохранить</button>
 							</div>
 						</form>
 					</div>
@@ -231,8 +236,8 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button id="buttonModalFcopy" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-								<button id="buttonModalScopy" type="submit" class="btn btn-primary">Сохранить</button>
+								<button id="buttonModalFcopy" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+								<button id="buttonModalScopy" type="submit" class="btn btn-primary" style="width: 200px">Сохранить</button>
 							</div>
 						</form>
 					</div>
@@ -269,8 +274,8 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button id="buttonModalFfile" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-								<button id="buttonModalSfile" type="submit" class="btn btn-primary">Сохранить</button>
+								<button id="buttonModalFfile" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+								<button id="buttonModalSfile" type="submit" class="btn btn-primary" style="width: 200px">Сохранить</button>
 							</div>
 						</form>
 					</div>

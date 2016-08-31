@@ -92,15 +92,11 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
-														href="/index.php
-															?route=role/removeRole
-															&nameUser={$name}
-															&roleUser={$role}
-															&headId={$headId}
-															&roleIdUser={$roleId}
-															&Month={$selectedMonthForGet}
-															&Year={$selectedYearForGet}
-															&employeeId={$foo.employee_id}"
+														data-toggle="modal"  
+														data-employeeid="{$foo.employee_id}" 
+														data-employeename="{$foo.user_name}" 
+														data-rolename="{$foo.role_name}" 
+														data-target="#removeModal" 
 														title="Удалить Роль Сотрудника">
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
@@ -134,7 +130,7 @@
 									</button>
 									<h4 class="modal-title" id="RoleModalLabel"></h4>
 								</div>
-								<form action="/index.php" method="get">
+								<form action="/index.php" method="get" onsubmit="diactive()">
 									<div class="modal-body">
 										<div class="form-group" id="employee"></div>
 										<div class="form-group">
@@ -144,7 +140,8 @@
 												name="roleId" 
 												class="form-control select2" 
 												style="width: 100%;"
-												onChange="headDepRole()">
+												onChange="headDepRole()"
+												required="required">
 												{foreach from=$arrayRoleDefForSelect item=foo}
 												
 												<option value="{$foo.role_id}">{$foo.role_name}</option>
@@ -164,8 +161,38 @@
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-										<button type="submit" class="btn btn-primary">Сохранить</button>
+										<button id="buttonModalF" type="button" style="width: 200px" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+										<button id="buttonModalS" type="submit" style="width: 200px" class="btn btn-primary" style="width: 200px">Сохранить</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" style="margin: 0 auto;">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="removeModalLabel"></h4>
+								</div>							
+								<form action="/index.php" method="get" onsubmit="diactiveRemove()">
+									<div class="modal-body">
+									</div>
+									<div class="modal-footer">
+										<div class="input-group hidden">
+											<input name="route" type="hidden" value="role/removeRole">
+											<input id="employeeId" name="employeeId" type="hidden">
+											<input name="nameUser" type="hidden" value="{$name}">
+											<input name="roleUser" type="hidden" value="{$role}">
+											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
+											<input name="Year" type="hidden" value="{$selectedYearForGet}">
+											<input name="roleIdUser" type="hidden" value="{$roleId}">
+											<input name="headId" type="hidden" value="{$headId}">
+										</div>
+										<button id="buttonModalFRemove" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+										<button id="buttonModalSRemove" type="submit" class="btn btn-primary" style="width: 200px">Да</button>
 									</div>
 								</form>
 							</div>
@@ -192,7 +219,7 @@
 						modal.find('.modal-title').text('Новая Роль Пользователя');
 						document.getElementById('route').value = 'role/newRole';
 						document.getElementById('lastHeadId').value = null;
-						$('#employee').html('<label>Пользователь:<\/label><select name="employeeId" class="form-control select2" id="selectIdEmp" style="width: 100%;">{foreach from=$arrayEmployeeNamesForSelect item=foo}<option value="{$foo.employee_id}">{$foo.user_name}</option>{/foreach}</select>'); 
+						$('#employee').html('<label>Пользователь:<\/label><select name="employeeId" class="form-control select2" id="selectIdEmp" style="width: 100%;" required="required">{foreach from=$arrayEmployeeNamesForSelect item=foo}<option value="{$foo.employee_id}">{$foo.user_name}</option>{/foreach}</select>'); 
 						var n = document.getElementById('selectIdEmp').options.selectedIndex;
 						if (n!=null){
 							document.getElementById('selectIdEmp').options[n].selected=false;
@@ -207,7 +234,7 @@
 						document.getElementById('employeeName').value = employeeName;
 						if(lastHeadId!=null){
 							document.getElementById('lastHeadId').value = lastHeadId;
-							$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId" class="form-control select2" id="selectIdHead" style="width: 100%;">{foreach from=$arrayDepartmentNamesForSelect item=foo}<option value="{$foo.department_id}">{$foo.department_name}</option>{/foreach}</select>'); 
+							$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId" class="form-control select2" id="selectIdHead" style="width: 100%;" required="required">{foreach from=$arrayDepartmentNamesForSelect item=foo}<option value="{$foo.department_id}">{$foo.department_name}</option>{/foreach}</select>'); 
 							for (var i = 0; i < countSelectDep; i++) {
 							var val = document.getElementById('selectIdHead').options[i].value;
 								if (val == lastHeadId){
@@ -243,7 +270,7 @@
 					var n = document.getElementById('selectIdRole').options.selectedIndex;
 					var val = document.getElementById('selectIdRole').options[n].value;
 					if (val == '1'){
-						$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId" class="form-control select2" id="selectIdHead" style="width: 100%;">{foreach from=$arrayDepartmentNamesForSelect item=foo}<option value="{$foo.department_id}">{$foo.department_name}</option>{/foreach}</select>'); 
+						$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId" class="form-control select2" id="selectIdHead" style="width: 100%;" required="required">{foreach from=$arrayDepartmentNamesForSelect item=foo}<option value="{$foo.department_id}">{$foo.department_name}</option>{/foreach}</select>'); 
 					}else{
 						$('#department').html('');
 					}
@@ -254,6 +281,29 @@
 						allowClear: true
 						});
 					});
+				}
+			</script>
+			<script>
+				function diactive() {
+					document.getElementById('buttonModalS').disabled = 1;
+					document.getElementById('buttonModalF').disabled = 1;
+				}
+			</script>
+			<script>
+				$('#removeModal').on('show.bs.modal', function (event) {
+					var button = $(event.relatedTarget);
+					var modal = $(this);
+					var employeeId = button.data('employeeid');
+					var employeeName = button.data('employeename');
+					var roleName = button.data('rolename');
+					modal.find('.modal-title').html('Вы уверены, что хотите удалить данные роли сотрудника: <u><b>'+employeeName+'</u></b>. Роль: <u><b>'+roleName+'</u></b>');
+					document.getElementById('employeeId').value = employeeId;
+				});
+			</script>
+			<script>
+				function diactiveRemove() {
+					document.getElementById('buttonModalSRemove').disabled = 1;
+					document.getElementById('buttonModalFRemove').disabled = 1;
 				}
 			</script>
 			<script>
