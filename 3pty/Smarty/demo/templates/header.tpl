@@ -57,7 +57,7 @@
 						<li class="{$status1}">
 							<a 
 								href="/index.php
-									?route=list/viewListDepartment
+									?route=List/viewListDepartment
 									&nameUser={$name}
 									&roleUser={$role}
 									&Month={$selectedMonthForGet}
@@ -71,7 +71,7 @@
 						<li class="{$status2}">
 							<a 
 								href="/index.php
-									?route=list/viewListEmployee
+									?route=List/viewListEmployee
 									&nameUser={$name}
 									&roleUser={$role}
 									&Month={$selectedMonthForGet}
@@ -85,7 +85,7 @@
 						<li class="{$status3}">
 							<a 
 								href="/index.php
-									?route=list/viewListProject
+									?route=List/viewListProject
 									&nameUser={$name}
 									&roleUser={$role}
 									&Month={$selectedMonthForGet}
@@ -122,7 +122,7 @@
 							<li class="{$status4}">
 								<a 
 									href="/index.php
-										?route=role/viewRole
+										?route=Role/viewRole
 										&nameUser={$name}
 										&roleUser={$role}
 										&Month={$selectedMonthForGet}
@@ -186,7 +186,7 @@
 										<input name="date" type="text" class="form-control pull-right" id="datepicker" required="required">
 									</div>
 									<div class="input-group hidden">
-										<input name="route" type="hidden" value="list/viewListDepartment">
+										<input name="route" type="hidden" value="List/viewListDepartment">
 										<input name="nameUser" type="hidden" value="{$name}">
 										<input name="headId" type="hidden" value="{$headId}">
 										<input name="roleIdUser" type="hidden" value="{$roleId}">
@@ -227,7 +227,7 @@
 										<input name="dateTo" type="text" class="form-control pull-right" id="datepicker2" required="required">
 									</div>
 									<div class="input-group hidden">
-										<input name="route" type="hidden" value="list/cloneData">
+										<input name="route" type="hidden" value="List/cloneData">
 										<input name="nameUser" type="hidden" value="{$name}">
 										<input name="headId" type="hidden" value="{$headId}">
 										<input name="roleIdUser" type="hidden" value="{$roleId}">
@@ -252,7 +252,7 @@
 						</div>
 						<form 
 							action="/index.php
-								?route=saveXLSX/readerXLSXFile
+								?route=SaveXLSX/readerXLSXFile
 								&nameUser={$name}
 								&roleUser={$role}
 								&Month={$selectedMonthForGet}

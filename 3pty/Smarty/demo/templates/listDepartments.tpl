@@ -37,7 +37,7 @@
 												<td>
 													<a 
 														href="/index.php
-															?route=department/viewDepartment
+															?route=Department/viewDepartment
 															&departmentId={$foo.department_id}
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
@@ -159,7 +159,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="list/removeDepartment">
+											<input name="route" type="hidden" value="List/removeDepartment">
 											<input id="departmentId" name="departmentId" type="hidden">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
@@ -189,7 +189,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="list/changeDataStatusForEditing">
+											<input name="route" type="hidden" value="List/changeDataStatusForEditing">
 											<input name="lastStatus" type="hidden" value="{$status}">
 											<input name="lastPage" type="hidden" value="Department">
 											<input name="nameUser" type="hidden" value="{$name}">
@@ -221,12 +221,12 @@
 					var editId = button.data('editid');
 					if (editId != null){
 						modal.find('.modal-title').text('Редактировать Данные Отдела');
-						document.getElementById('route').value = 'list/editDepartment';
+						document.getElementById('route').value = 'List/editDepartment';
 						document.getElementById('nameDepartment').value = lastName;
 						document.getElementById('editId').value = editId;
 					}else{
 						modal.find('.modal-title').text('Новый Отдел');
-						document.getElementById('route').value = 'list/newDepartment';
+						document.getElementById('route').value = 'List/newDepartment';
 						document.getElementById('nameDepartment').value = null;
 						document.getElementById('editId').value = null;
 					}

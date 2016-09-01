@@ -38,7 +38,7 @@
 												<td>
 													<a 
 														href="/index.php
-															?route=employee/viewEmployee
+															?route=Employee/viewEmployee
 															&employeeId={$foo.employee_id}
 															&employeeName={$foo.user_name}
 															&employeeLogin={$foo.user_id}
@@ -56,7 +56,7 @@
 												<td>
 													<a 
 														href="/index.php
-															?route=department/viewDepartment
+															?route=Department/viewDepartment
 															&departmentId={$foo.department_id}
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
@@ -226,7 +226,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="list/removeEmployee">
+											<input name="route" type="hidden" value="List/removeEmployee">
 											<input id="employeeId" name="employeeId" type="hidden">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
@@ -256,7 +256,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="list/changeDataStatusForEditing">
+											<input name="route" type="hidden" value="List/changeDataStatusForEditing">
 											<input name="lastStatus" type="hidden" value="{$status}">
 											<input name="lastPage" type="hidden" value="Employee">
 											<input name="nameUser" type="hidden" value="{$name}">
@@ -298,7 +298,7 @@
 					}
 					if (editId != null){
 						modal.find('.modal-title').text('Редактировать Данные Сотрудника');
-						document.getElementById('route').value = 'list/editEmployee';
+						document.getElementById('route').value = 'List/editEmployee';
 						document.getElementById('editId').value = editId;
 						lastName=lastName.split(' ');
 						document.getElementById('nameEmployeeF').value = lastName[1];
@@ -307,7 +307,7 @@
 						document.getElementById('loginEmployee').value = lastLogin;
 					}else{
 						modal.find('.modal-title').text('Новый Сотрудник');
-						document.getElementById('route').value = 'list/newEmployee';						
+						document.getElementById('route').value = 'List/newEmployee';						
 						document.getElementById('editId').value = null;
 						document.getElementById('nameEmployeeF').value = null;
 						document.getElementById('nameEmployeeS').value = null;

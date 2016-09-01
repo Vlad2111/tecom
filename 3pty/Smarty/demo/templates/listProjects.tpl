@@ -38,7 +38,7 @@
 												<td>
 													<a 
 														href="/index.php
-															?route=project/viewProject
+															?route=Project/viewProject
 															&projectId={$foo.project_id}
 															&projectName={$foo.project_name}
 															&departmentId={$foo.department_id}
@@ -55,7 +55,7 @@
 												<td>
 													<a 
 														href="/index.php
-															?route=department/viewDepartment
+															?route=Department/viewDepartment
 															&departmentId={$foo.department_id}
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
@@ -197,7 +197,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="list/removeProject">
+											<input name="route" type="hidden" value="List/removeProject">
 											<input id="projectId" name="projectId" type="hidden">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
@@ -227,7 +227,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="list/changeDataStatusForEditing">
+											<input name="route" type="hidden" value="List/changeDataStatusForEditing">
 											<input name="lastStatus" type="hidden" value="{$status}">
 											<input name="lastPage" type="hidden" value="Project">
 											<input name="nameUser" type="hidden" value="{$name}">
@@ -260,12 +260,12 @@
 					var countSelect = button.data('countselect');
 					if (editId != null){
 						modal.find('.modal-title').text('Редактировать Данные Проекта');
-						document.getElementById('route').value = 'list/editProject';
+						document.getElementById('route').value = 'List/editProject';
 						document.getElementById('editId').value = editId;
 						document.getElementById('nameProject').value = lastName;
 					}else{
 						modal.find('.modal-title').text('Новый Проект');
-						document.getElementById('route').value = 'list/newProject';
+						document.getElementById('route').value = 'List/newProject';
 						document.getElementById('nameProject').value = null;
 						document.getElementById('editId').value = null;
 					}

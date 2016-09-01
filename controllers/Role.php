@@ -33,7 +33,7 @@ Class Controller_Role Extends Controller_Base {
 		$arrayEmployeeRoleNamesAndId = $this->postgreSQL->getEmployeeRoleNamesAndId($date);
 		$this->template->vars('arrayEmployeeRoleNamesAndId', $arrayEmployeeRoleNamesAndId);
 		
-		$this->template->view('Role', 'RoleLayout');
+		$this->template->view('role', 'RoleLayout');
 	}
 	
 	/** Получение даты. */

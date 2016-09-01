@@ -52,7 +52,7 @@ Class Router {
 	private function getController(&$file, &$controller, &$action, &$args) {
         $route = (empty($_GET['route'])) ? '' : $_GET['route'];
         if (empty($route)) {
-			$route = 'index'; 
+			$route = 'Index'; 
 		}
 		
         $route = trim($route, '/\\');
@@ -76,7 +76,7 @@ Class Router {
         }
 
         if (empty($controller)) {
-			$controller = 'index'; 
+			$controller = 'Index'; 
 		}
 
         $action = array_shift($parts);

@@ -20,7 +20,7 @@ Class Controller_Errors Extends Controller_Base {
 		$this->template->vars('errors', $_GET['errors']);
 		
 		$this->template->vars('date', $date);
-		$this->template->view('Errors', 'ErrorsLayout');
+		$this->template->view('errors', 'ErrorsLayout');
 	}
 	
 	/** Получение даты. */

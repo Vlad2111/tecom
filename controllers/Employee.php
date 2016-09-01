@@ -54,7 +54,7 @@ Class Controller_Employee Extends Controller_Base {
 		}
 		$this->template->vars('employeePercent', $employeePercentSum);
 		
-		$this->template->view('Employee', 'EmployeeLayout');
+		$this->template->view('employee', 'EmployeeLayout');
 	}
 		
 	/** Получение даты. */

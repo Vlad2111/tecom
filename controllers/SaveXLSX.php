@@ -41,7 +41,7 @@ Class Controller_SaveXLSX Extends Controller_Base {
 			include 'index.php';
 		}else{
 			$this->postgreSQL->rollbackTran();
-			$_GET['route'] = 'errors/viewListErrorsXLSX';
+			$_GET['route'] = 'Errors/viewListErrorsXLSX';
 			$_GET['errors']= $this->errors;
 			include 'index.php';
 		}

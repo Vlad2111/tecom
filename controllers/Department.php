@@ -42,7 +42,7 @@ Class Controller_Department Extends Controller_Base {
 		$arrayProjectNamesForDepartment = $this->postgreSQL->getProjectNamesForDepartment($_GET['departmentId'], $date);
 		$this->template->vars('arrayProjectNamesForDepartment', $arrayProjectNamesForDepartment);
 		
-		$this->template->view('Department', 'DepartmentLayout');
+		$this->template->view('department', 'DepartmentLayout');
 	}
 	
 	/** Получение даты. */

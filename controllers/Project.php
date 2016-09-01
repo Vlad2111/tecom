@@ -47,7 +47,7 @@ Class Controller_Project Extends Controller_Base {
 		$arrayEployeeNamesAndPercentsForProject = $this->postgreSQL->getEployeeNamesAndPercentsForProject($_GET['projectId'], $date);
 		$this->template->vars('arrayEployeeNamesAndPercentsForProject', $arrayEployeeNamesAndPercentsForProject);
 		
-		$this->template->view('Project', 'ProjectLayout');
+		$this->template->view('project', 'ProjectLayout');
 	}
 		
 	/** Получение даты. */

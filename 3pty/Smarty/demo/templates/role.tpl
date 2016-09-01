@@ -57,16 +57,12 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
-														href="/index.php
-															?route=role/removeRole
-															&nameUser={$name}
-															&roleUser={$role}
-															&headId={$headId}
-															&roleIdUser={$roleId}
-															&Month={$selectedMonthForGet}
-															&Year={$selectedYearForGet}
-															&employeeId={$foo.employee_id}
-															&lastHeadDepartmentId={$foo.head.department_id}" 
+														data-toggle="modal"  
+														data-employeeid="{$foo.employee_id}" 
+														data-employeename="{$foo.user_name}" 
+														data-rolename="{$foo.role_name}" 
+														data-target="#removeModal"
+														data-lastheadid="{$foo.head.department_id}" 
 														title="Удалить Роль Сотрудника">
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
@@ -182,8 +178,9 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="role/removeRole">
+											<input name="route" type="hidden" value="Role/removeRole">
 											<input id="employeeId" name="employeeId" type="hidden">
+											<input id="lastHeadId" name="lastHeadDepartmentId" type="hidden">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
@@ -217,7 +214,7 @@
 					if (lastRoleId == null){
 						$('#department').html('');
 						modal.find('.modal-title').text('Новая Роль Пользователя');
-						document.getElementById('route').value = 'role/newRole';
+						document.getElementById('route').value = 'Role/newRole';
 						document.getElementById('lastHeadId').value = null;
 						$('#employee').html('<label>Пользователь:<\/label><select name="employeeId" class="form-control select2" id="selectIdEmp" style="width: 100%;" required="required">{foreach from=$arrayEmployeeNamesForSelect item=foo}<option value="{$foo.employee_id}">{$foo.user_name}</option>{/foreach}</select>'); 
 						var n = document.getElementById('selectIdEmp').options.selectedIndex;
@@ -229,7 +226,7 @@
 						}
 					}else{
 						modal.find('.modal-title').text('Редактировать Роль Пользоателя');
-						document.getElementById('route').value = 'role/editRole';
+						document.getElementById('route').value = 'Role/editRole';
 						$('#employee').html('<label>Пользователь:<\/label><input type="text" class="form-control" id="employeeName" disabled><input type="hidden" class="form-control" name="employeeId" id="employeeId" value="">'); 
 						document.getElementById('employeeName').value = employeeName;
 						if(lastHeadId!=null){
@@ -295,9 +292,15 @@
 					var modal = $(this);
 					var employeeId = button.data('employeeid');
 					var employeeName = button.data('employeename');
+					var lastHeadId = button.data('lastheadid');
 					var roleName = button.data('rolename');
 					modal.find('.modal-title').html('Вы уверены, что хотите удалить данные роли сотрудника: <u><b>'+employeeName+'</u></b>. Роль: <u><b>'+roleName+'</u></b>');
 					document.getElementById('employeeId').value = employeeId;
+					if(lastHeadId!=null){
+						document.getElementById('lastHeadId').value = lastHeadId;
+					}else{
+						document.getElementById('lastHeadId').value = null;
+					}
 				});
 			</script>
 			<script>

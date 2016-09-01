@@ -22,9 +22,9 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 		$answer=$this->checkUser($_POST['login'], $_POST['password']);
 		
 		if($answer==true){
-			$_GET['route']='list/viewListDepartment';
+			$_GET['route']='List/viewListDepartment';
 		}else{
-			$_GET['route']='index';
+			$_GET['route']='Index';
 		}
 		include 'index.php';
 	}

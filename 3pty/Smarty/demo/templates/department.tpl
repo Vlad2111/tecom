@@ -72,7 +72,7 @@
 													<td>
 														<a 
 															href="/index.php
-																?route=employee/viewEmployee
+																?route=Employee/viewEmployee
 																&employeeId={$foo.employee_id}
 																&employeeName={$foo.user_name}
 																&employeeLogin={$foo.user_id}
@@ -169,7 +169,7 @@
 													<td>
 														<a 
 															href="/index.php
-																?route=project/viewProject
+																?route=Project/viewProject
 																&projectId={$foo.project_id}
 																&projectName={$foo.project_name}
 																&departmentId={$departmentId}
@@ -412,7 +412,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="department/editDepartment">
+											<input name="route" type="hidden" value="Department/editDepartment">
 											<input name="editId" type="hidden" value="{$departmentId}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
@@ -442,7 +442,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="list/removeDepartment">
+											<input name="route" type="hidden" value="List/removeDepartment">
 											<input name="departmentId" type="hidden" value="{$departmentId}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
@@ -472,7 +472,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="department/removeEmployee">
+											<input name="route" type="hidden" value="Department/removeEmployee">
 											<input id="employeeId" name="employeeId" type="hidden">
 											<input name="departmentId" type="hidden" value="{$departmentId}">
 											<input name="departmentName" type="hidden" value="{$departmentName}">
@@ -504,7 +504,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="department/removeProject">
+											<input name="route" type="hidden" value="Department/removeProject">
 											<input id="projectId" name="projectId" type="hidden">
 											<input name="departmentId" type="hidden" value="{$departmentId}">
 											<input name="departmentName" type="hidden" value="{$departmentName}">
@@ -536,7 +536,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="department/changeDataStatusForEditing">
+											<input name="route" type="hidden" value="Department/changeDataStatusForEditing">
 											<input name="lastStatus" type="hidden" value="{$status}">
 											<input name="departmentId" type="hidden" value="{$departmentId}">
 											<input name="departmentName" type="hidden" value="{$departmentName}">
@@ -585,13 +585,13 @@
 					}
 					if (editId != null){
 						modal.find('.modal-title').text('Редактировать Данные Проекта');
-						document.getElementById('routePro').value = 'department/editProject';
+						document.getElementById('routePro').value = 'Department/editProject';
 						document.getElementById('nameProject').value = lastName;
 						document.getElementById('editIdPro').value = editId;
 						
 					}else{
 						modal.find('.modal-title').text('Новый Проект');
-						document.getElementById('routePro').value = 'department/newProject';
+						document.getElementById('routePro').value = 'Department/newProject';
 						document.getElementById('nameProject').value = null;
 						document.getElementById('editIdPro').value = null;
 					}
@@ -630,7 +630,7 @@
 					}
 					if (editId != null){
 						modal.find('.modal-title').text('Редактировать Данные Сотрудника');
-						document.getElementById('routeEmp').value = 'department/editEmployee';
+						document.getElementById('routeEmp').value = 'Department/editEmployee';
 						document.getElementById('editIdEmp').value = editId;
 						lastName=lastName.split(' ');
 						document.getElementById('nameEmployeeF').value = lastName[1];
@@ -639,7 +639,7 @@
 						document.getElementById('loginEmployee').value = lastLogin;
 					}else{
 						modal.find('.modal-title').text('Новый Сотрудник');
-						document.getElementById('routeEmp').value = 'department/newEmployee';
+						document.getElementById('routeEmp').value = 'Department/newEmployee';
 						document.getElementById('editIdEmp').value = null;
 						document.getElementById('nameEmployeeF').value = null;
 						document.getElementById('nameEmployeeS').value = null;

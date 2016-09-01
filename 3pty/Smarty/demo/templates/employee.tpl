@@ -91,7 +91,7 @@
 												<td>
 													<a 
 														href="/index.php
-															?route=project/viewProject
+															?route=Project/viewProject
 															&projectId={$foo.project_id}
 															&projectName={$foo.project_name}
 															&departmentId={$foo.department_id}
@@ -108,7 +108,7 @@
 												<td>
 													<a 
 														href="/index.php
-															?route=department/viewDepartment
+															?route=Department/viewDepartment
 															&departmentId={$foo.department_id}
 															&departmentName={$foo.department_name}
 															&nameUser={$name}
@@ -255,7 +255,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="employee/editEmployee">
+											<input name="route" type="hidden" value="Employee/editEmployee">
 											<input name="editId" type="hidden" value="{$employeeId}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
@@ -341,7 +341,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="list/removeEmployee">
+											<input name="route" type="hidden" value="List/removeEmployee">
 											<input name="employeeId" type="hidden" value="{$employeeId}">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
@@ -371,7 +371,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="employee/removePercent">
+											<input name="route" type="hidden" value="Employee/removePercent">
 											<input name="employeeId" type="hidden" value="{$employeeId}">
 											<input id="projectId" name="projectId" type="hidden">
 											<input name="employeeName" type="hidden" value="{$employeeName}">
@@ -406,7 +406,7 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="employee/changeDataStatusForEditing">
+											<input name="route" type="hidden" value="Employee/changeDataStatusForEditing">
 											<input name="lastStatus" type="hidden" value="{$status}">
 											<input name="employeeId" type="hidden" value="{$employeeId}">
 											<input name="employeeName" type="hidden" value="{$employeeName}">
@@ -482,14 +482,14 @@
 					var countSelectPro = button.data('countselect');
 					if (projectName != null){
 						modal.find('.modal-title').text('Редактировать Данные Распределения Времени');
-						document.getElementById('route').value = 'project/editPercent';
+						document.getElementById('route').value = 'Project/editPercent';
 						$('#project').html('<label>Проект:</label><input id="projectName" type="text" class="form-control" readonly><input id="projectId" name="projectId" type="hidden">'); 
 						document.getElementById('projectId').value = projectId;
 						document.getElementById('projectName').value = projectName;
 						document.getElementById('TimeDistr').value = lasttime;
 					}else{
 						modal.find('.modal-title').text('Новое Распределение Времени');
-						document.getElementById('route').value = 'project/newPercent';
+						document.getElementById('route').value = 'Project/newPercent';
 						$('#project').html('<label>Проект:</label><select id="selectIdPro" name="projectId" class="form-control select2" style="width: 100%;" required="required">{foreach from=$arrayProjectNamesForDepartmentForSelect item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}{foreach from=$arrayProjectNamesNotForDepartmentForSelect item=foo}<option value="{$foo.project_id}">{$foo.project_name}</option>{/foreach}</select>'); 
 						document.getElementById('TimeDistr').value = null;
 						for (var i = 0; i < countSelectPro; i++) {
