@@ -76,6 +76,17 @@ Class Controller_Project Extends Controller_Base {
 		}
 	}
 	
+	/** Изменение возможности редактирования данных. */
+	function changeDataStatusForEditing() {
+		$date = $this->getDate();
+		if($_GET['lastStatus']==FALSE){
+			$status = $this->postgreSQL->changeDataStatusForEditing($date, 1);
+		}else{
+			$status = $this->postgreSQL->changeDataStatusForEditing($date, 0);
+		}
+		$this->viewProject();
+	}
+	
 	/** Редактирование проекта. */
 	function editProject(){
 		$date = $this->getDate();

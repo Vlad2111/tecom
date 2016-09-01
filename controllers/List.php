@@ -93,6 +93,25 @@ Class Controller_List Extends Controller_Base {
 		}
 	}
 	
+	/** Изменение возможности редактирования данных. */
+	function changeDataStatusForEditing() {
+		$date = $this->getDate();
+		if($_GET['lastStatus']==FALSE){
+			$status = $this->postgreSQL->changeDataStatusForEditing($date, 1);
+		}else{
+			$status = $this->postgreSQL->changeDataStatusForEditing($date, 0);
+		}
+		if($_GET['lastPage']=="Department"){
+			$this->viewListDepartment();
+		}
+		if($_GET['lastPage']=="Employee"){
+			$this->viewListEmployee();
+		}
+		if($_GET['lastPage']=="Project"){
+			$this->viewListProject();
+		}
+	}
+	
 	/**Клонирование информации в новый месяц*/
 	function cloneData() {
 		if (($_GET['dateFrom']!=null)AND($_GET['dateTo']!=null)){

@@ -82,7 +82,18 @@ Class Controller_Employee Extends Controller_Base {
 			return $status['0']['editing_status'];
 		}
 	}
-		
+	
+	/** Изменение возможности редактирования данных. */
+	function changeDataStatusForEditing() {
+		$date = $this->getDate();
+		if($_GET['lastStatus']==FALSE){
+			$status = $this->postgreSQL->changeDataStatusForEditing($date, 1);
+		}else{
+			$status = $this->postgreSQL->changeDataStatusForEditing($date, 0);
+		}
+		$this->viewEmployee();
+	}
+	
 	/** Редактирование информации сотрудника. */
 	function editEmployee(){
 		$date = $this->getDate();

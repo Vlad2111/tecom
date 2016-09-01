@@ -220,15 +220,16 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-									<h4 class="modal-title" id="changeDataMonthEditingLabel"></h4>
+									<h4 class="modal-title" id="changeDataMonthEditingLabel">Вы уверены что хотите заблокировать данные месяца <b>({$selectedMonth}-{$selectedYearForGet})</b> для редактирования.</h4>
 								</div>							
 								<form action="/index.php" method="get" onsubmit="diactiveChangeDataMonthEditing()">
 									<div class="modal-body">
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="department/changeDataStatusForEditing">
+											<input name="route" type="hidden" value="list/changeDataStatusForEditing">
 											<input name="lastStatus" type="hidden" value="{$status}">
+											<input name="lastPage" type="hidden" value="Project">
 											<input name="nameUser" type="hidden" value="{$name}">
 											<input name="roleUser" type="hidden" value="{$role}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
