@@ -32,6 +32,6 @@ class Configuration
 	/** Чтение переменных из файла config. */
 	private function readConfig()
 	{
-		$this->config = parse_ini_file($_SERVER['DOCUMENT_ROOT']."/../config/config.ini");
+		$this->config = parse_ini_file($_SERVER['DOCUMENT_ROOT']."/../hr-timetrack-config");
 	}
 }

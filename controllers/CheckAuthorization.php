@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -18,7 +19,7 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 
 	
 	function index() {
-		
+
 		$answer=$this->checkUser($_POST['login'], $_POST['password']);
 		
 		if($answer==true){
@@ -31,21 +32,26 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 	
 	/** Проверка пользователя и запрос роли. */
 	private function checkUser($login, $password) {
+
 		if (($login!=null)AND($password!=null)){
+
 			$ldap = new LdapOperations();
 			$ldap->connect();
 			$check = $ldap->checkUser($login, $password);
 			if($check==true){
+				$_SESSION['startSESSION'] = 1;
 				$names = $ldap->getLDAPAccountNamesByPrefix($login);
-				$_GET['nameUser'] = $names['0']['sn'].' '.$names['0']['givenName'];
+				$_SESSION['nameUser'] = $names['0']['sn'].' '.$names['0']['givenName'];
 				$role = $this->postgreSQL->getRoleName($login);
 				if ($role['0']['role_name'] == "Глава Отдела"){
-					$department = $this->postgreSQL->getDepartmentHead(new DateTime(), $login);
+					$date = new DateTime();
+					$date->setTimezone(new DateTimeZone('UTC'));
+					$department = $this->postgreSQL->getDepartmentHead($date, $login);
 					$role['0']['role_name'] = $role['0']['role_name'].': '.$department['0']['department_name'];
-					$_GET['headId']=$department['0']['department_id'];
+					$_SESSION['headId']=$department['0']['department_id'];
 				}
-				$_GET['roleUser']=$role['0']['role_name'];
-				$_GET['roleIdUser']=$role['0']['role_id'];
+				$_SESSION['roleUser']=$role['0']['role_name'];
+				$_SESSION['roleIdUser']=$role['0']['role_id'];
 				return true;
 			}
 		}

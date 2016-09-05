@@ -20,7 +20,8 @@ class SiteAutoloader
 	
 	/** Автозагрузка классов.*/
 	public static function autoload($className){
-		$filename = strtolower($className) . '.php';
+
+		$filename = $className . '.php';
 		$expArr = explode('_', $className);
 		if((empty($expArr[1])) AND ($expArr[0] == 'Logger')){
 			$folder = '3pty/apache-log4php-2.3.0';

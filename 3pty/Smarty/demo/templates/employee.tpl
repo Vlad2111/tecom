@@ -25,6 +25,7 @@
 											class="btn btn-md" 
 											{if $accessEmp == null}	
 											data-toggle="modal" 
+											data-lastname="{$employeeName}"
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#employeeModal" 
@@ -399,7 +400,15 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-									<h4 class="modal-title" id="changeDataMonthEditingLabel">Вы уверены что хотите заблокировать данные месяца <b>({$selectedMonth}-{$selectedYearForGet})</b> для редактирования.</h4>
+									<h4 class="modal-title" id="changeDataMonthEditingLabel">Вы уверены что хотите 
+										{if $statusEditing == null}
+											заблокировать
+										{/if}
+										{if $statusEditing != null}
+											разблокировать
+										{/if}
+										 данные месяца <b>({$selectedMonth}-{$selectedYearForGet})</b> для редактирования.
+									</h4>
 								</div>							
 								<form action="/index.php" method="get" onsubmit="diactiveChangeDataMonthEditing()">
 									<div class="modal-body">

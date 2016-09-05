@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -20,30 +21,44 @@ Class Controller_SaveXLSX Extends Controller_Base {
 
 	
 	function readerXLSXFile() {
-		$this->errorsNum = 0;
-		require_once '3pty/PHPExcel/Classes/PHPExcel.php';
-		$file_type = PHPExcel_IOFactory::identify( $_FILES['file']['tmp_name'] );
-		$objReader = PHPExcel_IOFactory::createReader( $file_type );
-		$objPHPExcel = $objReader->load( $_FILES['file']['tmp_name'] );
-		$sheet = $objPHPExcel->getSheetByName($_POST['nameSheet']);
-		$sheet1 = $objPHPExcel->getSheetByName('Список проектов');
-		
-		$date = $this->getDate( $sheet );
-		
-		$this->postgreSQL->beginTran();
-		$this->columnOfDepartment( $sheet , $date );
-		$this->columnOfProject( $sheet1 , $date );
-		$this->columnOfEmployee( $sheet , $date );
-		$this->columnsOfTimeDistr( $sheet , $date );
-		if($this->errorsNum == 0){
-			$this->postgreSQL->commitTran();
+		if($this->checkSession() == TRUE){	
+			$this->errorsNum = 0;
+			require_once '3pty/PHPExcel/Classes/PHPExcel.php';
+			$file_type = PHPExcel_IOFactory::identify( $_FILES['file']['tmp_name'] );
+			$objReader = PHPExcel_IOFactory::createReader( $file_type );
+			$objPHPExcel = $objReader->load( $_FILES['file']['tmp_name'] );
+			$sheet = $objPHPExcel->getSheetByName($_POST['nameSheet']);
+			$sheet1 = $objPHPExcel->getSheetByName('Список проектов');
+			
+			$date = $this->getDate( $sheet );
+			
+			$this->postgreSQL->beginTran();
+			$this->columnOfDepartment( $sheet , $date );
+			$this->columnOfProject( $sheet1 , $date );
+			$this->columnOfEmployee( $sheet , $date );
+			$this->columnsOfTimeDistr( $sheet , $date );
+			if($this->errorsNum == 0){
+				$this->postgreSQL->commitTran();
 			$_GET['route']='list/viewListDepartment';
-			include 'index.php';
+				include 'index.php';
+			}else{
+				$this->postgreSQL->rollbackTran();
+				$_GET['route'] = 'Errors/viewListErrorsXLSX';
+				$_GET['errors']= $this->errors;
+				include 'index.php';
+			}
 		}else{
-			$this->postgreSQL->rollbackTran();
-			$_GET['route'] = 'Errors/viewListErrorsXLSX';
-			$_GET['errors']= $this->errors;
+			$_GET['route']='Index';
 			include 'index.php';
+		}
+	}
+
+	/** Проверка сессии. */
+	private function checkSession() {
+		if($_SESSION['startSESSION'] == 1){
+			return TRUE;
+		}else{
+			return FALSE;
 		}
 	}
 	
@@ -52,6 +67,7 @@ Class Controller_SaveXLSX Extends Controller_Base {
 		for ($i = 4; $i < 11; $i++) {
 			$date[$i] = $sheet->getCellByColumnAndRow($i, 1)->getValue();
 			$date[$i] = PHPExcel_Shared_Date::ExcelToPHPObject($date[$i]);
+			$date[$i]->setTimezone(new DateTimeZone('UTC'));
 		}
 		return $date;
 	}

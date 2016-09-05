@@ -25,11 +25,11 @@ class PostgreSQLOperations
 	{ 
 		$dbConnect = null;
 		$DBConfiguration = Configuration::instance()->config;
-		$DBConfigurationString = "host={$DBConfiguration['host']} ".
-				"port={$DBConfiguration['port']} ".
-				"dbname={$DBConfiguration['dbName']} ".
-				"user={$DBConfiguration['user']} ". 
-				"password={$DBConfiguration['password']}";
+		$DBConfigurationString = "host={$DBConfiguration['dbhost']} ".
+				"port={$DBConfiguration['dbport']} ".
+				"dbname={$DBConfiguration['dbname']} ".
+				"user={$DBConfiguration['dbuser']} ". 
+				"password={$DBConfiguration['dbpassword']}";
 		$this->dbConnect = pg_pconnect($DBConfigurationString);
 		if (!$this->dbConnect) {
 			$this->log->error("Не удается подключится к базе данных. ".$DBConfigurationString." ");
@@ -99,7 +99,7 @@ class PostgreSQLOperations
 	public function getDepartmentHead(DateTime $date ,$userId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT r.department_id, rd.department_name FROM '.
 				'"Head_departments" AS r inner join "Departments" AS rd on r.date = rd.date AND '.
 					'r.department_id = rd.department_id WHERE date_part(\'epoch\', date_trunc(\'month\','.
@@ -132,7 +132,7 @@ class PostgreSQLOperations
 	public function getEmployeeRoleNamesAndId(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT r.employee_id, r.user_id, r.user_name, '.
 				'r.department_id, rd.department_name, rddd.role_name, rdd.role_id FROM "Departments" '.
 					'AS rd inner join ("Employee" AS r inner join ("Role" AS rdd inner join "Role_def" '.
@@ -162,7 +162,7 @@ class PostgreSQLOperations
 	public function getDataStatusForEditing(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT editing_status FROM "Month" '.
 				'WHERE date_part(\'epoch\', date_trunc(\'month\', date))'.
 				' = $1', array($date->format("U")));
@@ -194,7 +194,7 @@ class PostgreSQLOperations
 	public function getDepartmentNames(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT department_id, department_name'.
 				' FROM "Departments" WHERE date_part(\'epoch\', date_trunc(\'month\', date))'.
 					' = $1', array($date->format("U")));
@@ -212,7 +212,7 @@ class PostgreSQLOperations
 	public function getUserNames(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT r.employee_id, r.user_id, r.user_name, '.
 				'r.department_id, rd.department_name FROM "Employee" AS r inner join "Departments" '.
 				'AS rd on r.department_id = rd.department_id AND r.date = rd.date WHERE '.
@@ -238,7 +238,7 @@ class PostgreSQLOperations
 	public function getEmployeeNames(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT r.employee_id, r.user_id, r.user_name, '.
 				'r.department_id, rd.department_name FROM "Employee" AS r inner join "Departments" '.
 				'AS rd on r.department_id = rd.department_id AND r.date = rd.date WHERE '.
@@ -257,7 +257,7 @@ class PostgreSQLOperations
 	public function getProjectNames(DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT r.project_id, r.project_name, '.
 				'r.department_id, rd.department_name FROM "Projects" AS r inner join "Departments" '.
 					'AS rd on r.department_id = rd.department_id AND r.date = rd.date WHERE '.
@@ -276,7 +276,7 @@ class PostgreSQLOperations
 	public function getProjectNamesForDepartment($departmentId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT project_id, project_name FROM "Projects" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND department_id = $2',
 					array($date->format("U"), $departmentId));
@@ -294,7 +294,7 @@ class PostgreSQLOperations
 	public function getEmployeeNamesForDepartment($departmentId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id, user_name FROM '.
 				'"Employee" WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND '.
 					'department_id = $2', array($date->format("U"), $departmentId));
@@ -327,7 +327,7 @@ class PostgreSQLOperations
 	public function getEployeeNamesAndPercentsForProject($projectId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT rd.employee_id, rd.user_id, rd.user_name, '.
 				'rdd.department_id, rdd.department_name, r.time FROM "Time_distribution" AS r inner join '.
 					'("Employee" AS rd inner join "Departments" AS rdd on rd.department_id = rdd.department_id'.
@@ -348,7 +348,7 @@ class PostgreSQLOperations
 	public function getEmployeeInfo($employeeId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT rd.project_id, rd.project_name, rdd.department_id,'.
 				' rdd.department_name, r.time FROM "Time_distribution" AS r inner join ("Projects" AS rd inner '.
 					'join "Departments" AS rdd on rd.department_id = rdd.department_id AND rd.date = rdd.date) on'.
@@ -371,7 +371,7 @@ class PostgreSQLOperations
 	public function getProjectNamesNotForDepartment($departmentId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT project_id, project_name FROM "Projects" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND department_id != $2',
 				array($date->format("U"), $departmentId));
@@ -389,7 +389,7 @@ class PostgreSQLOperations
 	public function getEmployeeNamesNotForDepartment($departmentId, DateTime $date)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id, user_name FROM '.
 				'"Employee" WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND '.
 				'department_id != $2', array($date->format("U"), $departmentId));
@@ -564,7 +564,7 @@ class PostgreSQLOperations
 	public function changeDepartmentName($departmentId, DateTime $date, $newDepartmentName)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'UPDATE "Departments" SET department_name = $3 WHERE'.
 				' date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND department_id = $2',
 					array($date->format("U"), $departmentId, $newDepartmentName));
@@ -581,7 +581,7 @@ class PostgreSQLOperations
 			$newDepartmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'UPDATE "Projects" SET project_name = $3, department_id = '.
 				'$4 WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_id = $2',
 					array($date->format("U"), $projectId, $newProjectName, $newDepartmentId));
@@ -597,7 +597,7 @@ class PostgreSQLOperations
 	public function changeEployeeTimeForProject($employeeId, $projectId, DateTime $date, $newTime)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'UPDATE "Time_distribution" SET time = $4 WHERE'.
 				' date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND employee_id = $2 AND project_id = $3',
 				array($date->format("U"), $employeeId, $projectId, $newTime));
@@ -613,7 +613,7 @@ class PostgreSQLOperations
 	public function changeEmployeeInfo($employeeId, DateTime $date, $userId, $userName, $newDepartmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'UPDATE "Employee" SET user_id = $4, user_name=$5,'.
 				'department_id = $3 WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = '.
 					'$1 AND employee_id = $2 ',	array($date->format("U"), $employeeId,
@@ -657,7 +657,7 @@ class PostgreSQLOperations
 	public function changeDataStatusForEditing(DateTime $date, $newStatus)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'UPDATE "Month" SET editing_status = $2 '.
 				'WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1 ', 
 					array($date->format("U"), $newStatus));
@@ -673,7 +673,7 @@ class PostgreSQLOperations
 	public function newDataStatusForEditing(DateTime $date, $status)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Month" (date, editing_status)'.
 				' VALUES ($1, $2)', array($date->format("Y-m-d"), $status));
 		if (!$result) {
@@ -688,7 +688,7 @@ class PostgreSQLOperations
 	public function newDepartment(DateTime $date, $departmentName)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT department_id FROM "Departments" WHERE department_name '.
 				'= $1', array($departmentName));
 		if (!$result) {
@@ -734,7 +734,7 @@ class PostgreSQLOperations
 	public function newEmployee(DateTime $date, $userId, $userName, $departmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" WHERE user_id '.
 				'= $1 OR user_name = $2', array($userId, $userName));
 		if (!$result) {
@@ -781,7 +781,7 @@ class PostgreSQLOperations
 	public function newProject(DateTime $date, $projectName, $departmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE project_name '.
 				'= $1 AND department_id = $2', array($projectName, $departmentId));
 		if (!$result) {
@@ -828,7 +828,7 @@ class PostgreSQLOperations
 	public function newTimeDistribution(DateTime $date, $projectId, $employeeId, $time)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Time_distribution" (date, project_id, '.
 				'employee_id, time) VALUES ($1, $2, $3, $4)', array($date->format("Y-m-d"), $projectId,	
 						$employeeId, $time));
@@ -857,7 +857,7 @@ class PostgreSQLOperations
 	public function newHeadDepartment(DateTime $date, $employeeId, $departmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'INSERT INTO "Head_departments" (date, employee_id, '.
 				'department_id) VALUES ($1, $2, $3)', array($date->format("Y-m-d"), $employeeId, $departmentId));
 		if (!$result) {
@@ -872,7 +872,7 @@ class PostgreSQLOperations
 	public function deleteDepartment(DateTime $date, $departmentId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Departments" WHERE date_part(\'epoch\', '.
 				'date_trunc(\'month\', date)) = $1 AND department_id = $2', array($date->format("U"), 
 						$departmentId));
@@ -888,7 +888,7 @@ class PostgreSQLOperations
 	public function deleteEmployee(DateTime $date, $employeeId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Employee" WHERE date_part(\'epoch\', '.
 				'date_trunc(\'month\', date)) = $1 AND employee_id = $2', array($date->format("U"),
 						$employeeId));
@@ -904,7 +904,7 @@ class PostgreSQLOperations
 	public function deleteProject(DateTime $date, $projectId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Projects" WHERE date_part(\'epoch\', '.
 				'date_trunc(\'month\', date)) = $1 AND project_id = $2', array($date->format("U"),
 						$projectId));
@@ -920,7 +920,7 @@ class PostgreSQLOperations
 	public function deleteTimeDistribution(DateTime $date, $projectId, $employeeId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Time_distribution" WHERE date_part(\'epoch\', '.
 				'date_trunc(\'month\', date)) = $1 AND project_id = $2 AND employee_id = $3', 
 					array($date->format("U"), $projectId, $employeeId));
@@ -949,7 +949,7 @@ class PostgreSQLOperations
 	public function deleteHeadDepartment(DateTime $date, $departmentId, $employeeId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'DELETE FROM "Head_departments" WHERE date_part(\'epoch\', '.
 				'date_trunc(\'month\', date)) = $1 AND employee_id = $2 AND department_id = $3',
 				array($date->format("U"), $employeeId, $departmentId));
@@ -965,7 +965,7 @@ class PostgreSQLOperations
 	public function getDepartmentId(DateTime $date, $departmentName)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT department_id FROM "Departments" '.
 				'WHERE date_part(\'epoch\', date_trunc(\'month\', date))'.
 				' = $1 AND department_name = $2', array($date->format("U"), $departmentName));
@@ -983,7 +983,7 @@ class PostgreSQLOperations
 	public function getEmployeeId(DateTime $date, $userName)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, user_id FROM "Employee" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND user_name = $2',
 					array($date->format("U"), $userName));
@@ -1001,7 +1001,7 @@ class PostgreSQLOperations
 	public function getProjectId(DateTime $date, $projectName)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_name = $2',
 					array($date->format("U"), $projectName));
@@ -1019,7 +1019,7 @@ class PostgreSQLOperations
 	public function checkTime(DateTime $date, $projectId, $employeeId)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
-		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
 		$result = pg_query_params($this->dbConnect, 'SELECT time FROM "Time_distribution" WHERE '.
 			'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND project_id = $2 AND '.
 				'employee_id = $3',

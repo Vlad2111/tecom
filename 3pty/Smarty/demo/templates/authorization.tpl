@@ -29,7 +29,7 @@
 				<b>Текомыч</b>
 			</div>
 			<div class="login-box-body">
-				<form action="/index.php?route=CheckAuthorization/index" method="post">
+				<form action="/index.php?route=CheckAuthorization" method="post">
 					<div class="form-group has-feedback">
 						<input name="login" type="login" class="form-control" placeholder="Логин">
 						<span class="glyphicon glyphicon-user form-control-feedback"></span>

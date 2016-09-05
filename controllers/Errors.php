@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -16,11 +17,16 @@ Class Controller_Errors Extends Controller_Base {
 	
 	/** Отображение списка XLSX ошибок . */
 	function viewListErrorsXLSX() {
-		$date = $this->getDate();
-		$this->template->vars('errors', $_GET['errors']);
+		if($this->checkSession() == TRUE){
+			$date = $this->getDate();
+			$this->template->vars('errors', $_GET['errors']);
 		
-		$this->template->vars('date', $date);
-		$this->template->view('errors', 'ErrorsLayout');
+			$this->template->vars('date', $date);
+			$this->template->view('errors', 'ErrorsLayout');
+		}else{
+			$_GET['route']='Index';
+			include 'index.php';
+		}
 	}
 	
 	/** Получение даты. */
@@ -33,8 +39,18 @@ Class Controller_Errors Extends Controller_Base {
 				$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
 			}else{
 				$date = new DateTime();
+				$date->setTimezone(new DateTimeZone('UTC'));
 			}
 		}
 		return $date;
+	}
+	
+	/** Проверка сессии. */
+	private function checkSession() {
+		if($_SESSION['startSESSION'] == 1){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
 	}
 }

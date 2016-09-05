@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -18,43 +19,48 @@ Class Controller_Employee Extends Controller_Base {
 	
 	/** Отображение списка проетов и время сотрудника. */
 	function viewEmployee() {
-		$date = $date = $this->getDate();
-		$this->template->vars('date', $date);
+		if($this->checkSession() == TRUE){
+			$date = $date = $this->getDate();
+			$this->template->vars('date', $date);
+			
+			$status = $this->checkDataEditingForDate($date);
+			$this->template->vars('statusEditingData', $status);
+			
+			$this->template->vars('employeeId', $_GET['employeeId']);
+			$this->template->vars('employeeLogin', $_GET['employeeLogin']);
+			$this->template->vars('employeeName', $_GET['employeeName']);
+			$this->template->vars('departmentId', $_GET['departmentId']);
+			if (isset ($_GET['I'])){
+				$_GET['departmentName']=$_GET['departmentName']."&I";
+			}
+			if (isset ($_GET['D'])){
+				$_GET['departmentName']=$_GET['departmentName']."&D";
+			}
+			$this->template->vars('departmentName', $_GET['departmentName']);
+																
+			$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+			$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+			
+			$arrayProjectNamesForDepartment = $this->postgreSQL->getProjectNamesForDepartment($_GET['departmentId'], $date);
+			$this->template->vars('arrayProjectNamesForDepartment', $arrayProjectNamesForDepartment);
 		
-		$status = $this->checkDataEditingForDate($date);
-		$this->template->vars('statusEditingData', $status);
+			$arrayProjectNamesNotForDepartment = $this->postgreSQL->getProjectNamesNotForDepartment($_GET['departmentId'], $date);
+			$this->template->vars('arrayProjectNamesNotForDepartment', $arrayProjectNamesNotForDepartment);
+			
+			$arrayEmployeeInfo = $this->postgreSQL->getEmployeeInfo($_GET['employeeId'], $date);
+			$this->template->vars('arrayEmployeeInfo', $arrayEmployeeInfo);
 		
-		$this->template->vars('employeeId', $_GET['employeeId']);
-		$this->template->vars('employeeLogin', $_GET['employeeLogin']);
-		$this->template->vars('employeeName', $_GET['employeeName']);
-		$this->template->vars('departmentId', $_GET['departmentId']);
-		if (isset ($_GET['I'])){
-			$_GET['departmentName']=$_GET['departmentName']."&I";
+			$employeePercentSum = 0;
+			for ($i=0; $i<count($arrayEmployeeInfo); $i++){
+				$employeePercentSum = $employeePercentSum + $arrayEmployeeInfo[$i]['time'];
+			}
+			$this->template->vars('employeePercent', $employeePercentSum);
+			
+			$this->template->view('employee', 'EmployeeLayout');
+		}else{
+			$_GET['route']='Index';
+			include 'index.php';
 		}
-		if (isset ($_GET['D'])){
-			$_GET['departmentName']=$_GET['departmentName']."&D";
-		}
-		$this->template->vars('departmentName', $_GET['departmentName']);
-															
-		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
-		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
-		
-		$arrayProjectNamesForDepartment = $this->postgreSQL->getProjectNamesForDepartment($_GET['departmentId'], $date);
-		$this->template->vars('arrayProjectNamesForDepartment', $arrayProjectNamesForDepartment);
-		
-		$arrayProjectNamesNotForDepartment = $this->postgreSQL->getProjectNamesNotForDepartment($_GET['departmentId'], $date);
-		$this->template->vars('arrayProjectNamesNotForDepartment', $arrayProjectNamesNotForDepartment);
-		
-		$arrayEmployeeInfo = $this->postgreSQL->getEmployeeInfo($_GET['employeeId'], $date);
-		$this->template->vars('arrayEmployeeInfo', $arrayEmployeeInfo);
-		
-		$employeePercentSum = 0;
-		for ($i=0; $i<count($arrayEmployeeInfo); $i++){
-			$employeePercentSum = $employeePercentSum + $arrayEmployeeInfo[$i]['time'];
-		}
-		$this->template->vars('employeePercent', $employeePercentSum);
-		
-		$this->template->view('employee', 'EmployeeLayout');
 	}
 		
 	/** Получение даты. */
@@ -67,9 +73,19 @@ Class Controller_Employee Extends Controller_Base {
 				$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
 			}else{
 				$date = new DateTime();
+				$date->setTimezone(new DateTimeZone('UTC'));
 			}
 		}
 		return $date;
+	}
+
+	/** Проверка сессии. */
+	private function checkSession() {
+		if($_SESSION['startSESSION'] == 1){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
 	}
 	
 	/** Проверка данных для даты на возможность редактирования. */

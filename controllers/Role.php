@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -18,22 +19,27 @@ Class Controller_Role Extends Controller_Base {
 	
 	/** Отображение списка пользоваьелей и ролей. */
 	function viewRole() {
-		$date = $this->getDate();
-		$this->template->vars('date', $date);
+		if($this->checkSession() == TRUE){
+			$date = $this->getDate();
+			$this->template->vars('date', $date);
 		
-		$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
-		$this->template->vars('arrayEmployeeNames', $arrayEmployeeNames);
-		
-		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
-		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
-		
-		$arrayRoleDef = $this->postgreSQL->getRoleDef();
-		$this->template->vars('arrayRoleDef', $arrayRoleDef);
-		
-		$arrayEmployeeRoleNamesAndId = $this->postgreSQL->getEmployeeRoleNamesAndId($date);
-		$this->template->vars('arrayEmployeeRoleNamesAndId', $arrayEmployeeRoleNamesAndId);
-		
-		$this->template->view('role', 'RoleLayout');
+			$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
+			$this->template->vars('arrayEmployeeNames', $arrayEmployeeNames);
+			
+			$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+			$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+			
+			$arrayRoleDef = $this->postgreSQL->getRoleDef();
+			$this->template->vars('arrayRoleDef', $arrayRoleDef);
+			
+			$arrayEmployeeRoleNamesAndId = $this->postgreSQL->getEmployeeRoleNamesAndId($date);
+			$this->template->vars('arrayEmployeeRoleNamesAndId', $arrayEmployeeRoleNamesAndId);
+			
+			$this->template->view('role', 'RoleLayout');
+		}else{
+			$_GET['route']='Index';
+			include 'index.php';
+		}
 	}
 	
 	/** Получение даты. */
@@ -46,9 +52,19 @@ Class Controller_Role Extends Controller_Base {
 				$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
 			}else{
 				$date = new DateTime();
+				$date->setTimezone(new DateTimeZone('UTC'));
 			}
 		}
 		return $date;
+	}
+
+	/** Проверка сессии. */
+	private function checkSession() {
+		if($_SESSION['startSESSION'] == 1){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
 	}
 	
 	/* Действия с ролями */

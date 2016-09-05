@@ -29,9 +29,9 @@ class LdapOperations
 		$LDAPConfiguration = Configuration::instance()->config;
 		$this->ldaphost=$LDAPConfiguration['ldaphost'];
 		$this->ldapport=$LDAPConfiguration['ldapport'];
-		$this->login=$LDAPConfiguration['login'];
-		$this->password=$LDAPConfiguration['password'];
-		$this->base=$LDAPConfiguration['base'];
+		$this->login=$LDAPConfiguration['ldaplogin'];
+		$this->password=$LDAPConfiguration['ldappassword'];
+		$this->base=$LDAPConfiguration['ldapbase'];
 		$this->ldap=ldap_connect($this->ldaphost, $this->ldapport);
 		if (!$this->ldap) {
 			throw new Exception("Cant connect to ldap Server");

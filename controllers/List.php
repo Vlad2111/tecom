@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -19,50 +20,65 @@ Class Controller_List Extends Controller_Base {
 	/* Отображение списков. */
 	/** -->Список отделов. */
 	function viewListDepartment() {
-		$date = $this->getDate();
-		$this->template->vars('date', $date);
-		
-		$status = $this->checkDataEditingForDate($date);
-		$this->template->vars('statusEditingData', $status);
-		
-		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
-		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
-		
-		$this->template->view('listDepartments', 'listDepartmentLayout');
+		if($this->checkSession() == TRUE){
+			$date = $this->getDate();
+			$this->template->vars('date', $date);
+			
+			$status = $this->checkDataEditingForDate($date);
+			$this->template->vars('statusEditingData', $status);
+			
+			$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+			$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+			
+			$this->template->view('listDepartments', 'listDepartmentLayout');
+		}else{
+			$_GET['route']='Index';
+			include 'index.php';
+		}
 	}
 	
 	/** -->Список сотрудников. */
 	function viewListEmployee() {
-		$date = $this->getDate();
-		$this->template->vars('date', $date);
+		if($this->checkSession() == TRUE){
+			$date = $this->getDate();
+			$this->template->vars('date', $date);
+			
+			$status = $this->checkDataEditingForDate($date);
+			$this->template->vars('statusEditingData', $status);
+			
+			$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+			$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+			
+			$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
+			$this->template->vars('arrayEmployeeNames', $arrayEmployeeNames);
 		
-		$status = $this->checkDataEditingForDate($date);
-		$this->template->vars('statusEditingData', $status);
-		
-		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
-		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
-		
-		$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
-		$this->template->vars('arrayEmployeeNames', $arrayEmployeeNames);
-		
-		$this->template->view('listEmployees', 'listEmployeeLayout');
+			$this->template->view('listEmployees', 'listEmployeeLayout');
+		}else{
+			$_GET['route']='Index';
+			include 'index.php';
+		}
 	}
 	
 	/** -->Список проектов. */
 	function viewListProject() {
-		$date = $this->getDate();
-		$this->template->vars('date', $date);
+		if($this->checkSession() == TRUE){
+			$date = $this->getDate();
+			$this->template->vars('date', $date);
 		
-		$status = $this->checkDataEditingForDate($date);
-		$this->template->vars('statusEditingData', $status);
+			$status = $this->checkDataEditingForDate($date);
+			$this->template->vars('statusEditingData', $status);
 		
-		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
-		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+			$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+			$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
 		
-		$arrayProjectNames = $this->postgreSQL->getProjectNames($date);
-		$this->template->vars('arrayProjectNames', $arrayProjectNames);
+			$arrayProjectNames = $this->postgreSQL->getProjectNames($date);
+			$this->template->vars('arrayProjectNames', $arrayProjectNames);
 		
-		$this->template->view('listProjects', 'listProjectLayout');
+			$this->template->view('listProjects', 'listProjectLayout');
+		}else{
+			$_GET['route']='Index';
+			include 'index.php';
+		}
 	}
 		
 	/** Получение даты. */
@@ -77,9 +93,19 @@ Class Controller_List Extends Controller_Base {
 						new DateTimeZone('UTC'));
 			}else{
 				$date = new DateTime();
+				$date->setTimezone(new DateTimeZone('UTC'));
 			}
 		}
 		return $date;
+	}
+
+	/** Проверка сессии. */
+	private function checkSession() {
+		if($_SESSION['startSESSION'] == 1){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
 	}
 	
 	/** Проверка данных для даты на возможность редактирования. */

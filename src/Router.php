@@ -31,8 +31,9 @@ Class Router {
 		$configForController = Configuration::instance()->config;
 		$path = $configForController['pathController'];
 		$path = rtrim($path, '/\\');
-        $path .= '/';
-        $this->path = $path;
+		$path =  'controllers';
+        	$path .= '/';
+        	$this->path = $path;
 	}
 	
 	/** Подключение настроек для логов.*/
@@ -96,10 +97,8 @@ Class Router {
 			die ('404 Not Found');
         }
         include ($file);
-        $this->registry['GET']=$_GET;
-        $this->registry['POST']=$_POST;
         $class = 'Controller_'.$controller;
-        $controller = new $class($this->registry);
+        $controller = new $class();
        
 		
         if (is_callable(array($controller, $action)) == false) {
@@ -107,6 +106,6 @@ Class Router {
 			die ('404 Not Found');
         }
 		
-        $controller->$action($this->registry);
+        $controller->$action();
 	}
 }
