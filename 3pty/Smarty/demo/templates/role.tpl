@@ -151,9 +151,6 @@
 										<div class="input-group hidden">
 											<input id="route" name="route" type="hidden" >
 											<input id="lastHeadId" name="lastHeadDepartmentId" type="hidden">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
-											<input name="headId" type="hidden" value="{$headId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -181,12 +178,8 @@
 											<input name="route" type="hidden" value="Role/removeRole">
 											<input id="employeeId" name="employeeId" type="hidden">
 											<input id="lastHeadId" name="lastHeadDepartmentId" type="hidden">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
-											<input name="roleIdUser" type="hidden" value="{$roleId}">
-											<input name="headId" type="hidden" value="{$headId}">
 										</div>
 										<button id="buttonModalFRemove" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
 										<button id="buttonModalSRemove" type="submit" class="btn btn-primary" style="width: 200px">Да</button>

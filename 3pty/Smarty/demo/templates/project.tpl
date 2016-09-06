@@ -77,10 +77,6 @@
 															&employeeLogin={$foo.user_id}
 															&departmentId={$foo.department_id}
 															&departmentName={$foo.department_name}
-															&nameUser={$name}
-															&roleUser={$role}
-															&headId={$headId}
-															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.user_name}
@@ -92,10 +88,6 @@
 															?route=Department/viewDepartment
 															&departmentId={$foo.department_id}
 															&departmentName={$foo.department_name}
-															&nameUser={$name}
-															&roleUser={$role}
-															&headId={$headId}
-															&roleIdUser={$roleId}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
 														{$foo.department_name}
@@ -206,10 +198,6 @@
 										<div class="input-group hidden">
 											<input name="route" type="hidden" value="Project/editProject">
 											<input name="editId" type="hidden" value="{$projectId}">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
-											<input name="headId" type="hidden" value="{$headId}">
-											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -261,10 +249,6 @@
 											<input name="projectId" type="hidden" value="{$projectId}">
 											<input name="departmentId" type="hidden" value="{$departmentId}">
 											<input name="departmentName" type="hidden" value="{$departmentName}">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
-											<input name="headId" type="hidden" value="{$headId}">
-											<input name="roleIdUser" type="hidden" value="{$roleId}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -291,12 +275,8 @@
 										<div class="input-group hidden">
 											<input name="route" type="hidden" value="List/removeProject">
 											<input name="projectId" type="hidden" value="{$projectId}">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
-											<input name="roleIdUser" type="hidden" value="{$roleId}">
-											<input name="headId" type="hidden" value="{$headId}">
 										</div>
 										<button id="buttonModalFRemovePro" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
 										<button id="buttonModalSRemovePro" type="submit" class="btn btn-primary" style="width: 200px">Да</button>
@@ -325,12 +305,8 @@
 											<input name="projectName" type="hidden" value="{$projectName}">
 											<input name="departmentId" type="hidden" value="{$departmentId}">
 											<input name="departmentName" type="hidden" value="{$departmentName}">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
-											<input name="roleIdUser" type="hidden" value="{$roleId}">
-											<input name="headId" type="hidden" value="{$headId}">
 										</div>
 										<button id="buttonModalFRemoveTime" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
 										<button id="buttonModalSRemoveTime" type="submit" class="btn btn-primary" style="width: 200px">Да</button>
@@ -367,12 +343,8 @@
 											<input name="projectName" type="hidden" value="{$projectName}">
 											<input name="departmentId" type="hidden" value="{$departmentId}">
 											<input name="departmentName" type="hidden" value="{$departmentName}">
-											<input name="nameUser" type="hidden" value="{$name}">
-											<input name="roleUser" type="hidden" value="{$role}">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
-											<input name="roleIdUser" type="hidden" value="{$roleId}">
-											<input name="headId" type="hidden" value="{$headId}">
 										</div>
 										<button id="buttonModalFData" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
 										<button id="buttonModalSData" type="submit" class="btn btn-primary" style="width: 200px">Да</button>

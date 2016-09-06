@@ -1,5 +1,5 @@
 <?php
-session_start();
+if(isset($_COOKIE[session_name()])) {session_start();}
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -21,53 +21,76 @@ Class Controller_SaveXLSX Extends Controller_Base {
 
 	
 	function readerXLSXFile() {
-		if($this->checkSession() == TRUE){	
-			$this->errorsNum = 0;
-			require_once '3pty/PHPExcel/Classes/PHPExcel.php';
-			$file_type = PHPExcel_IOFactory::identify( $_FILES['file']['tmp_name'] );
-			$objReader = PHPExcel_IOFactory::createReader( $file_type );
-			$objPHPExcel = $objReader->load( $_FILES['file']['tmp_name'] );
-			$sheet = $objPHPExcel->getSheetByName($_POST['nameSheet']);
-			$sheet1 = $objPHPExcel->getSheetByName('Список проектов');
-			
-			$date = $this->getDate( $sheet );
-			
-			$this->postgreSQL->beginTran();
-			$this->columnOfDepartment( $sheet , $date );
-			$this->columnOfProject( $sheet1 , $date );
-			$this->columnOfEmployee( $sheet , $date );
-			$this->columnsOfTimeDistr( $sheet , $date );
-			if($this->errorsNum == 0){
-				$this->postgreSQL->commitTran();
-			$_GET['route']='list/viewListDepartment';
-				include 'index.php';
-			}else{
-				$this->postgreSQL->rollbackTran();
-				$_GET['route'] = 'Errors/viewListErrorsXLSX';
-				$_GET['errors']= $this->errors;
-				include 'index.php';
-			}
+		$this->checkSession();
+		
+		$this->errorsNum = 0;
+		require_once '3pty/PHPExcel/Classes/PHPExcel.php';
+		$file_type = PHPExcel_IOFactory::identify( $_FILES['file']['tmp_name'] );
+		$objReader = PHPExcel_IOFactory::createReader( $file_type );
+		$objPHPExcel = $objReader->load( $_FILES['file']['tmp_name'] );
+		$sheet = $objPHPExcel->getSheetByName($_POST['nameSheet']);
+		$sheet1 = $objPHPExcel->getSheetByName('Список проектов');
+		
+		$date = $this->getDate( $sheet );
+		
+		$this->postgreSQL->beginTran();
+		$this->columnOfDepartment( $sheet , $date );
+		$this->columnOfProject( $sheet1 , $date );
+		$this->columnOfEmployee( $sheet , $date );
+		$this->columnsOfTimeDistr( $sheet , $date );
+		if($this->errorsNum == 0){
+			$this->postgreSQL->commitTran();
+		$_GET['route']='list/viewListDepartment';
+			include 'index.php';
 		}else{
-			$_GET['route']='Index';
+			$this->postgreSQL->rollbackTran();
+			$_GET['route'] = 'Errors/viewListErrorsXLSX';
+			$_GET['errors']= $this->errors;
 			include 'index.php';
 		}
 	}
 
 	/** Проверка сессии. */
 	private function checkSession() {
-		if($_SESSION['startSESSION'] == 1){
-			return TRUE;
-		}else{
-			return FALSE;
+		if(($_SESSION[session_name()] != $_COOKIE[session_name()])OR(($_SESSION == null)AND($_COOKIE == null))){
+			session_start();
+			session_unset();
+			session_destroy();
+			$_GET['route']='Index';
+			include 'index.php';
+			exit;
 		}
 	}
 	
 	/** Чтение дат из файла. */
 	private function getDate( $sheet ){
-		for ($i = 4; $i < 11; $i++) {
+		if ($_POST['date1']!=null){
+			$dayMonthYear = explode('/', $_POST['date1']);
+			$date1 = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'], new DateTimeZone('UTC'));
+		}
+		if ($_POST['date2']!=null){
+			$dayMonthYear = explode('/', $_POST['date2']);
+			$date2 = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'], new DateTimeZone('UTC'));
+		}
+		if($date1->format('U') > $date2->format('U')){
+			$_GET['route']='Errors/uncorrectDate';
+			$_POST['date1'] = $date1;
+			$_POST['date2'] = $date2;
+			include 'index.php';
+			exit;
+		}
+		for ($i = 4; $i < 20; $i++) {
 			$date[$i] = $sheet->getCellByColumnAndRow($i, 1)->getValue();
 			$date[$i] = PHPExcel_Shared_Date::ExcelToPHPObject($date[$i]);
 			$date[$i]->setTimezone(new DateTimeZone('UTC'));
+			if ($date[$i]->format('U') >= $date1->format('U')){
+				if($date[$i]->format('U') > $date2->format('U')){
+					unset($date[$i]);
+					$i = 20;
+				}
+			}else{
+				unset($date[$i]);
+			}
 		}
 		return $date;
 	}

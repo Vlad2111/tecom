@@ -31,7 +31,6 @@ Class Router {
 		$configForController = Configuration::instance()->config;
 		$path = $configForController['pathController'];
 		$path = rtrim($path, '/\\');
-		$path =  'controllers';
         	$path .= '/';
         	$this->path = $path;
 	}

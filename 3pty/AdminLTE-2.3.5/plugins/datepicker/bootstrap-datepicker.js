@@ -867,6 +867,7 @@
 			var d = new Date(this.viewDate),
 				year = d.getUTCFullYear(),
 				month = d.getUTCMonth();
+
 			switch (this.viewMode){
 				case 0:
 					if (this.o.startDate !== -Infinity && year <= this.o.startDate.getUTCFullYear() && month <= this.o.startDate.getUTCMonth()){
@@ -1396,7 +1397,7 @@
 		daysOfWeekDisabled: [],
 		endDate: Infinity,
 		forceParse: true,
-		format: 'mm/dd/yyyy',
+		format: 'mm/yyyy',
 		keyboardNavigation: true,
 		language: 'en',
 		minViewMode: 0,
@@ -1452,7 +1453,7 @@
 		getDaysInMonth: function(year, month){
 			return [31, (DPGlobal.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
 		},
-		validParts: /dd?|DD?|mm?|MM?|yy(?:yy)?/g,
+		validParts: /mm?|MM?|yy(?:yy)?/g,
 		nonpunctuation: /[^ -\/:-@\[\u3400-\u9fff-`{-~\t\n\r]+/g,
 		parseFormat: function(format){
 			// IE treats \0 as a string end in inputs (truncating the value),
@@ -1499,7 +1500,7 @@
 			parts = date && date.match(this.nonpunctuation) || [];
 			date = new Date();
 			var parsed = {},
-				setters_order = ['yyyy', 'yy', 'M', 'MM', 'm', 'mm', 'd', 'dd'],
+				setters_order = ['yyyy', 'yy', 'M', 'MM', 'm', 'mm'],
 				setters_map = {
 					yyyy: function(d,v){
 						return d.setUTCFullYear(v);
@@ -1524,7 +1525,6 @@
 				},
 				val, filtered;
 			setters_map['M'] = setters_map['MM'] = setters_map['mm'] = setters_map['m'];
-			setters_map['dd'] = setters_map['d'];
 			date = UTCDate(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0);
 			var fparts = format.parts.slice();
 			// Remove noop parts
@@ -1577,16 +1577,12 @@
 			if (typeof format === 'string')
 				format = DPGlobal.parseFormat(format);
 			var val = {
-				d: date.getUTCDate(),
-				D: dates[language].daysShort[date.getUTCDay()],
-				DD: dates[language].days[date.getUTCDay()],
 				m: date.getUTCMonth() + 1,
 				M: dates[language].monthsShort[date.getUTCMonth()],
 				MM: dates[language].months[date.getUTCMonth()],
 				yy: date.getUTCFullYear().toString().substring(2),
 				yyyy: date.getUTCFullYear()
 			};
-			val.dd = (val.d < 10 ? '0' : '') + val.d;
 			val.mm = (val.m < 10 ? '0' : '') + val.m;
 			date = [];
 			var seps = $.extend([], format.separators);

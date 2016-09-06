@@ -14,6 +14,12 @@
 Class Controller_Index Extends Controller_Base {
 	
 	function index() {
+		if ($_GET['action'] == "Exit")
+		{
+			session_start();
+			session_unset();
+			session_destroy();
+		}
 		require '3pty/Smarty/libs/Smarty.class.php';
 		$smarty = new Smarty;
 		$smarty->force_compile = true;

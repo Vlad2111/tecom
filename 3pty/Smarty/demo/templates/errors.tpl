@@ -18,6 +18,8 @@
 								<h3 class="box-title" style="font-size:23px">Ошибки</h3>
 							</div>
 							<div class="box-body">
+							<h3> {$message} </h3>
+							{if $errors != null}
 								<table id="errors" class="table table-bordered table-striped">
 									<thead>
 										<tr>
@@ -43,6 +45,7 @@
 									{/foreach}
 									</tbody>
 								</table>
+							{/if}
 							</div>
 						</div>
 					</div>

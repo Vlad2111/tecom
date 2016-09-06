@@ -6,6 +6,7 @@
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/AdminLTE.min.css">
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/skins/skin-blue.min.css">
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/daterangepicker/daterangepicker.css">
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datepicker/datepicker3.css">
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/select2/select2.min.css">
 			<!-- REQUIRED JS SCRIPTS -->
@@ -17,6 +18,8 @@
 			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/jquery.dataTables.min.js"></script>
 			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.min.js"></script>
 			<script src="3pty/AdminLTE-2.3.5/plugins/datepicker/bootstrap-datepicker.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/daterangepicker/moment.min.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/daterangepicker/daterangepicker.js"></script>
 			<script src="3pty/AdminLTE-2.3.5/plugins/select2/select2.full.min.js"></script>
 			<header class="main-header">
 				<a class="logo">
@@ -58,12 +61,8 @@
 							<a 
 								href="/index.php
 									?route=List/viewListDepartment
-									&nameUser={$name}
-									&roleUser={$role}
 									&Month={$selectedMonthForGet}
-									&Year={$selectedYearForGet}
-									&headId={$headId}
-									&roleIdUser={$roleId}">
+									&Year={$selectedYearForGet}">
 								<i class="fa fa-th-list text-blue"></i>
 								<span>Список отделов</span>
 							</a>
@@ -72,12 +71,8 @@
 							<a 
 								href="/index.php
 									?route=List/viewListEmployee
-									&nameUser={$name}
-									&roleUser={$role}
 									&Month={$selectedMonthForGet}
-									&Year={$selectedYearForGet}
-									&headId={$headId}
-									&roleIdUser={$roleId}">
+									&Year={$selectedYearForGet}">
 								<i class="fa fa-th-list text-blue"></i>
 								<span>Список сотрудников</span>
 							</a>
@@ -86,12 +81,8 @@
 							<a 
 								href="/index.php
 									?route=List/viewListProject
-									&nameUser={$name}
-									&roleUser={$role}
 									&Month={$selectedMonthForGet}
-									&Year={$selectedYearForGet}
-									&headId={$headId}
-									&roleIdUser={$roleId}">
+									&Year={$selectedYearForGet}">
 								<i class="fa fa-th-list text-blue"></i>
 								<span>Список проектов</span>
 							</a>
@@ -123,12 +114,8 @@
 								<a 
 									href="/index.php
 										?route=Role/viewRole
-										&nameUser={$name}
-										&roleUser={$role}
 										&Month={$selectedMonthForGet}
-										&Year={$selectedYearForGet}
-										&headId={$headId}
-										&roleIdUser={$roleId}">
+										&Year={$selectedYearForGet}">
 									<i class="fa fa-user-secret text-blue"></i>
 									<span>Пользователи и Роли</span>
 								</a>
@@ -160,7 +147,7 @@
 							</a>
 						</li>
 						<li>
-							<a class="user" href="/index.php">
+							<a class="user" href="/index.php?action=Exit">
 								<i class="glyphicon glyphicon-log-out text-blue" aria-hidden="true"></i>
 								<span>Выход</span>
 							</a>
@@ -187,10 +174,6 @@
 									</div>
 									<div class="input-group hidden">
 										<input name="route" type="hidden" value="List/viewListDepartment">
-										<input name="nameUser" type="hidden" value="{$name}">
-										<input name="headId" type="hidden" value="{$headId}">
-										<input name="roleIdUser" type="hidden" value="{$roleId}">
-										<input name="roleUser" type="hidden" value="{$role}">
 									</div>
 								</div>
 							</div>
@@ -228,10 +211,6 @@
 									</div>
 									<div class="input-group hidden">
 										<input name="route" type="hidden" value="List/cloneData">
-										<input name="nameUser" type="hidden" value="{$name}">
-										<input name="headId" type="hidden" value="{$headId}">
-										<input name="roleIdUser" type="hidden" value="{$roleId}">
-										<input name="roleUser" type="hidden" value="{$role}">
 									</div>
 								</div>
 							</div>
@@ -253,12 +232,8 @@
 						<form 
 							action="/index.php
 								?route=SaveXLSX/readerXLSXFile
-								&nameUser={$name}
-								&roleUser={$role}
 								&Month={$selectedMonthForGet}
-								&Year={$selectedYearForGet} 
-								&headId={$headId}
-								&roleIdUser={$roleId}"
+								&Year={$selectedYearForGet} "
 							role="form" 
 							enctype="multipart/form-data" 
 							method="post"
@@ -271,6 +246,29 @@
 								<div class="form-group">
 									<label>Название листа с таблицей распределения времени:</label>
 									<input id="nameSheet" name="nameSheet" type="text" class="form-control" required="required">
+								</div>
+								<div class="form-group">
+									<label>Даты для импорта:</label>
+									<div class="row">
+										<div class="col-xs-6">
+											<label>C:</label>
+											<div class="input-group date" style="z-index:2000;">
+												<div class="input-group-addon">
+													<i class="fa fa-calendar"></i>
+												</div>
+												<input name="date1" type="text" class="form-control pull-right" id="datepickerXLSX1">
+											</div>
+										</div>
+										<div class="col-xs-6">
+											<label>До:</label>
+											<div class="input-group date" style="z-index:2000;">
+												<div class="input-group-addon">
+													<i class="fa fa-calendar"></i>
+												</div>
+												<input name="date2" type="text" class="form-control pull-right" id="datepickerXLSX2">
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -298,6 +296,20 @@
 			<script>
 				$(function () {
 					$('#datepicker2').datepicker({
+						autoclose: true
+					});
+				});
+			</script>
+			<script>
+				$(function () {
+					$('#datepickerXLSX1').datepicker({
+						autoclose: true
+					});
+				});
+			</script>
+			<script>
+				$(function () {
+					$('#datepickerXLSX2').datepicker({
 						autoclose: true
 					});
 				});

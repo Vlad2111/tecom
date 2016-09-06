@@ -1,5 +1,5 @@
 <?php
-session_start();
+if(isset($_COOKIE[session_name()])) {session_start();}
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -20,65 +20,60 @@ Class Controller_List Extends Controller_Base {
 	/* Отображение списков. */
 	/** -->Список отделов. */
 	function viewListDepartment() {
-		if($this->checkSession() == TRUE){
-			$date = $this->getDate();
-			$this->template->vars('date', $date);
-			
-			$status = $this->checkDataEditingForDate($date);
-			$this->template->vars('statusEditingData', $status);
-			
-			$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
-			$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
-			
-			$this->template->view('listDepartments', 'listDepartmentLayout');
-		}else{
-			$_GET['route']='Index';
-			include 'index.php';
+		if($_POST['login']==null)
+		{
+			$this->checkSession();
 		}
+		
+		$date = $this->getDate();
+		$this->template->vars('date', $date);
+		
+		$status = $this->checkDataEditingForDate($date);
+		$this->template->vars('statusEditingData', $status);
+		
+		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+		
+		$this->template->view('listDepartments', 'listDepartmentLayout');
 	}
 	
 	/** -->Список сотрудников. */
 	function viewListEmployee() {
-		if($this->checkSession() == TRUE){
-			$date = $this->getDate();
-			$this->template->vars('date', $date);
-			
-			$status = $this->checkDataEditingForDate($date);
-			$this->template->vars('statusEditingData', $status);
-			
-			$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
-			$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
-			
-			$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
-			$this->template->vars('arrayEmployeeNames', $arrayEmployeeNames);
+		$this->checkSession();
 		
-			$this->template->view('listEmployees', 'listEmployeeLayout');
-		}else{
-			$_GET['route']='Index';
-			include 'index.php';
-		}
+		$date = $this->getDate();
+		$this->template->vars('date', $date);
+		
+		$status = $this->checkDataEditingForDate($date);
+		$this->template->vars('statusEditingData', $status);
+		
+		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+		
+		$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
+		$this->template->vars('arrayEmployeeNames', $arrayEmployeeNames);
+		
+		$this->template->view('listEmployees', 'listEmployeeLayout');
+		
 	}
 	
 	/** -->Список проектов. */
 	function viewListProject() {
-		if($this->checkSession() == TRUE){
-			$date = $this->getDate();
-			$this->template->vars('date', $date);
+		$this->checkSession();
 		
-			$status = $this->checkDataEditingForDate($date);
-			$this->template->vars('statusEditingData', $status);
+		$date = $this->getDate();
+		$this->template->vars('date', $date);
 		
-			$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
-			$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
-		
-			$arrayProjectNames = $this->postgreSQL->getProjectNames($date);
-			$this->template->vars('arrayProjectNames', $arrayProjectNames);
-		
-			$this->template->view('listProjects', 'listProjectLayout');
-		}else{
-			$_GET['route']='Index';
-			include 'index.php';
-		}
+		$status = $this->checkDataEditingForDate($date);
+		$this->template->vars('statusEditingData', $status);
+
+		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+
+		$arrayProjectNames = $this->postgreSQL->getProjectNames($date);
+		$this->template->vars('arrayProjectNames', $arrayProjectNames);
+
+		$this->template->view('listProjects', 'listProjectLayout');
 	}
 		
 	/** Получение даты. */
@@ -89,7 +84,7 @@ Class Controller_List Extends Controller_Base {
 		}else{
 			if ($_GET['date']!=null){
 				$dayMonthYear = explode('/', $_GET['date']);
-				$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'],
+				$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'],
 						new DateTimeZone('UTC'));
 			}else{
 				$date = new DateTime();
@@ -98,13 +93,16 @@ Class Controller_List Extends Controller_Base {
 		}
 		return $date;
 	}
-
+	
 	/** Проверка сессии. */
 	private function checkSession() {
-		if($_SESSION['startSESSION'] == 1){
-			return TRUE;
-		}else{
-			return FALSE;
+		if(($_SESSION[session_name()] != $_COOKIE[session_name()])OR(($_SESSION == null)AND($_COOKIE == null))){
+			session_start();
+			session_unset();
+			session_destroy();
+			$_GET['route']='Index';
+			include 'index.php';
+			exit;
 		}
 	}
 	

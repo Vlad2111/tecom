@@ -735,7 +735,7 @@ class PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
-		$result = pg_query_params($this->dbConnect, 'SELECT employee_id FROM "Employee" WHERE user_id '.
+		$result = pg_query_params($this->dbConnect, 'SELECT employee_id, department_id FROM "Employee" WHERE user_id '.
 				'= $1 OR user_name = $2', array($userId, $userName));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение id сотрудника. ".
@@ -743,8 +743,12 @@ class PostgreSQLOperations
 			throw new Exception("Не удается выполнить запрос на получение id сотрудника. ".
 					pg_last_error($this->dbConnect));
 		}
+		$employeeIdLast = pg_fetch_all($result);
 		if (pg_num_rows($result)>0){
-			$employeeId = pg_fetch_result($result,0,0);
+			$employeeId = $employeeIdLast['0']['employee_id'];
+			if($_GET['route']=="SaveXLSX/readerXLSXFile"){
+				$departmentId = $employeeIdLast['0']['department_id'];
+			}
 		}else{
 			$result = pg_query($this->dbConnect, 'SELECT employee_id FROM "Employee"');
 			if (!$result) {
@@ -782,7 +786,7 @@ class PostgreSQLOperations
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$date->format("d.m.Y H:i:s"));
 		$date = new DateTime($convertDate['year']."-".$convertDate['month']."-01", new DateTimeZone('UTC'));
-		$result = pg_query_params($this->dbConnect, 'SELECT project_id FROM "Projects" WHERE project_name '.
+		$result = pg_query_params($this->dbConnect, 'SELECT project_id, department_id FROM "Projects" WHERE project_name '.
 				'= $1 AND department_id = $2', array($projectName, $departmentId));
 		if (!$result) {
 			$this->log->error("Не удается выполнить запрос на получение id проекта. ".
@@ -790,8 +794,12 @@ class PostgreSQLOperations
 			throw new Exception("Не удается выполнить запрос на получение id проекта. ".
 					pg_last_error($this->dbConnect));
 		}
+		$projectIdLast = pg_fetch_all($result);
 		if (pg_num_rows($result)>0){
-			$projectId = pg_fetch_result($result,0,0);
+			$projectId = $projectIdLast['0']['project_id'];
+			if($_GET['route']=="SaveXLSX/readerXLSXFile"){
+				$departmentId = $projectIdLast['0']['department_id'];
+			}
 		}else{
 			$result = pg_query($this->dbConnect, 'SELECT project_id FROM "Projects"');
 			if (!$result) {

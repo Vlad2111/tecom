@@ -1,5 +1,5 @@
 <?php
-session_start();
+if(isset($_COOKIE[session_name()])) {session_start();}
 /*
 * Copyright (c) 2016 Tecom LLC
 * All rights reserved
@@ -19,27 +19,24 @@ Class Controller_Role Extends Controller_Base {
 	
 	/** Отображение списка пользоваьелей и ролей. */
 	function viewRole() {
-		if($this->checkSession() == TRUE){
-			$date = $this->getDate();
-			$this->template->vars('date', $date);
+		$this->checkSession();
 		
-			$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
-			$this->template->vars('arrayEmployeeNames', $arrayEmployeeNames);
+		$date = $this->getDate();
+		$this->template->vars('date', $date);
+		
+		$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
+		$this->template->vars('arrayEmployeeNames', $arrayEmployeeNames);
 			
-			$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
-			$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
 			
-			$arrayRoleDef = $this->postgreSQL->getRoleDef();
-			$this->template->vars('arrayRoleDef', $arrayRoleDef);
+		$arrayRoleDef = $this->postgreSQL->getRoleDef();
+		$this->template->vars('arrayRoleDef', $arrayRoleDef);
 			
-			$arrayEmployeeRoleNamesAndId = $this->postgreSQL->getEmployeeRoleNamesAndId($date);
-			$this->template->vars('arrayEmployeeRoleNamesAndId', $arrayEmployeeRoleNamesAndId);
+		$arrayEmployeeRoleNamesAndId = $this->postgreSQL->getEmployeeRoleNamesAndId($date);
+		$this->template->vars('arrayEmployeeRoleNamesAndId', $arrayEmployeeRoleNamesAndId);
 			
-			$this->template->view('role', 'RoleLayout');
-		}else{
-			$_GET['route']='Index';
-			include 'index.php';
-		}
+		$this->template->view('role', 'RoleLayout');
 	}
 	
 	/** Получение даты. */
@@ -49,7 +46,7 @@ Class Controller_Role Extends Controller_Base {
 		}else{
 			if ($_GET['date']!=null){
 				$dayMonthYear = explode('/', $_GET['date']);
-				$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'], new DateTimeZone('UTC'));
+				$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'], new DateTimeZone('UTC'));
 			}else{
 				$date = new DateTime();
 				$date->setTimezone(new DateTimeZone('UTC'));
@@ -60,10 +57,13 @@ Class Controller_Role Extends Controller_Base {
 
 	/** Проверка сессии. */
 	private function checkSession() {
-		if($_SESSION['startSESSION'] == 1){
-			return TRUE;
-		}else{
-			return FALSE;
+		if(($_SESSION[session_name()] != $_COOKIE[session_name()])OR(($_SESSION == null)AND($_COOKIE == null))){
+			session_start();
+			session_unset();
+			session_destroy();
+			$_GET['route']='Index';
+			include 'index.php';
+			exit;
 		}
 	}
 	
