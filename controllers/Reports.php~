@@ -25,7 +25,7 @@ Class Controller_Reports Extends Controller_Base {
 		require_once '3pty/PHPExcel/Classes/PHPExcel.php';
 		require_once '3pty/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php';
 		
-		$file_type = PHPExcel_IOFactory::identify('report/modelReports.xlsx');
+		$file_type = PHPExcel_IOFactory::identify( 'report/modelReports.xlsx' );
 		$objReader = PHPExcel_IOFactory::createReader( $file_type );
 		$objPHPExcel = $objReader->load( 'report/modelReports.xlsx' );
 		$sheet = $objPHPExcel->getSheetByName('date');
@@ -34,8 +34,8 @@ Class Controller_Reports Extends Controller_Base {
 		
 		$sheet->setTitle($date->format('Y'));
 		
-		$this->rowOfHeaders($sheet, $date);
-		$this->cellOfEmployeeAndDepartment($sheet, $date);
+		//$this->rowOfHeaders($sheet, $date);
+		//$this->cellOfEmployeeAndDepartment($sheet, $date);
 		header("Content-Type:application/vnd.ms-excel");
 		$dateNow = new DateTime();
 		header("Content-Disposition:attachment; filename='Распределение_ресурсов_".$date->format('m.Y')."_текомыч ".$dateNow->format('d.m.Y').".xlsx'");
