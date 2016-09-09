@@ -127,9 +127,8 @@
 								<span>Отчеты</span>
 							</a>
 							<ul class="treeview-menu">
-								<li><a href="#">Список отделов</a></li>
+								<li><a href="#">Распределение времени</a></li>
 								<li><a href="#">Список сотрудников</a></li>
-								<li><a href="#">список проектов</a></li>
 							</ul>
 						</li>
 					</ul>
