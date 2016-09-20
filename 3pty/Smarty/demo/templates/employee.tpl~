@@ -463,7 +463,7 @@
 					var countSelectPro = button.data('countselect');
 					if (projectName != null){
 						modal.find('.modal-title').text('Редактировать Данные Распределения Времени');
-						document.getElementById('route').value = 'Employee/editPercent';
+						document.getElementById('route').value = 'Project/editPercent';
 						$('#project').html('<label>Проект:</label><input id="projectName" type="text" class="form-control" readonly><input id="projectId" name="projectId" type="hidden">'); 
 						document.getElementById('projectId').value = projectId;
 						document.getElementById('projectName').value = projectName;

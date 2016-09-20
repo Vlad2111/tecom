@@ -36,9 +36,11 @@ Class Controller_Reports Extends Controller_Base {
 		
 		$this->rowOfHeaders($sheet, $date);
 		$this->cellOfEmployeeAndDepartment($sheet, $date);
+
+		ob_end_clean();
 		header("Content-Type:application/vnd.ms-excel");
 		$dateNow = new DateTime();
-		header("Content-Disposition:attachment; filename='Распределение_ресурсов_".$date->format('m.Y')."_текомыч ".$dateNow->format('d.m.Y').".xlsx'");
+		header("Content-Disposition:attachment; filename='Распределение_ресурсов_".$date->format('m.Y')."_Текомыч ".$dateNow->format('d.m.Y').".xlsx'");
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 		$objWriter->save('php://output');
 	}
@@ -57,33 +59,31 @@ Class Controller_Reports Extends Controller_Base {
 	
 	/** Запись шапки таблицы. */
 	private function rowOfHeaders($sheet, $date){
-		$sheet->setCellValue("E1", $date->format('d.m.Y'));
+		$date=
+		$sheet->setCellValue("E1", PHPExcel_Shared_Date::PHPToExcel($date));
 	}
 	
 	/** Запись сотрудников. */
 	private function cellOfEmployeeAndDepartment($sheet, $date){
 		$this->numRow=2;
 		$arrayEmployeeNames = $this->postgreSQL->getEmployeeNames($date);
-		usort($arrayEmployeeNames, 'sortEmployee');
+		foreach ($arrayEmployeeNames as $key => $row) {
+			$userName[$key]  = $row['user_name'];
+		}
+		array_multisort($userName, SORT_ASC, SORT_STRING, $arrayEmployeeNames);
 		foreach ($arrayEmployeeNames as $employee){
 			$this->cellOfProjectAndTimeForEmployee($sheet, $date, $employee);
 		}
 	}
 	
-	/** Функция для сотрировки сотрудников. */
-	private function sortEmployee($a, $b)
-	{
-		return strcmp($a['user_name'], $b['user_name']);
-	}
-	
 	/** Запись проектов. */
 	private function cellOfProjectAndTimeForEmployee($sheet, $date, $employee){
-		$arrayEmployeeInfo = $this->postgreSQL->getEmployeeInfo($employee['employeeId'], $date);
+		$arrayEmployeeInfo = $this->postgreSQL->getEmployeeInfo($employee['employee_id'], $date);
 		foreach ($arrayEmployeeInfo as $project){
 			 $sheet->setCellValueByColumnAndRow(1, $this->numRow, $employee['user_name']);
 			 $sheet->setCellValueByColumnAndRow(2, $this->numRow, $employee['department_name']);
 			 $sheet->setCellValueByColumnAndRow(3, $this->numRow, $project['project_name']);
-			 $sheet->setCellValueByColumnAndRow(4, $this->numRow, $project['time']);
+			 $sheet->setCellValueByColumnAndRow(4, $this->numRow, $project['time']/100);
 			 $this->numRow = $this->numRow+1;
 		}
 	}

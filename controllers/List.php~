@@ -199,6 +199,7 @@ Class Controller_List Extends Controller_Base {
 		$date = $this->getDate();
 		$user = $this->checkLoginLdapForEmployee($_GET['newLogin']);
 		$checkUser = $this->getLoginLdapForEmployee($_GET['nameEmployeeS'].' '.$_GET['nameEmployeeF']);
+print_r($user);print_r($checkUser);
 		if(($user != 'error')or($checkUser != 'error')){
 			if($checkUser != 'error'){
 				$correctUser = $checkUser;

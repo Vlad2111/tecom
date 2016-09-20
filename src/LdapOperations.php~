@@ -92,6 +92,7 @@ class LdapOperations
 			'sAMAccountName' => 'skyluke',  <- название аккаунта
 			'sn' => 'Скайвокер', <- фамилия
 			'givenName' => 'Люк', <- имя
+			'??????' => 'Дартвейдерович' <- отчество
 			'mail' => 'skyluke@tecomgroup.ru' <- аккаутн почты
 		]
 	)

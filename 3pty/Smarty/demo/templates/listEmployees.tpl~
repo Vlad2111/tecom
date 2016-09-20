@@ -343,6 +343,11 @@
 					document.getElementById('buttonModalFData').disabled = 1;
 				}
 			</script>
+			 <style type="text/css">
+				Alert{
+					font-size: 130pt;
+				}
+			</style>
 			<script>
 				function errorMassage() {
 					alert('{$errorMessage}');
