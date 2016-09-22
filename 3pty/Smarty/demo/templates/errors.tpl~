@@ -6,7 +6,7 @@
 		<title>Tecomgroup | {$title}</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	</head>
-	<body style="height:100%;" class="hold-transition skin-blue sidebar-mini">
+	<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		{include file='3pty/Smarty/demo/templates/header.tpl'}
 		<div class="content-wrapper">

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -6,9 +6,9 @@
 		<title>Tecomgroup | {$title}</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	</head>
-	<body style="height:100%;" class="hold-transition skin-blue sidebar-mini">
+	<body class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
-			{include file='3pty/Smarty/demo/templates/header.tpl'}
+		{include file='3pty/Smarty/demo/templates/header.tpl'}
 			<div class="content-wrapper">
 				<section class="content">
 					<div class="row">
@@ -18,22 +18,36 @@
 						{/if}
 							<div class="box">
 								<div class="box-header">
-									<h3 class="box-title" style="font-size:23px">Список Отделов</h3>	
+									<h3 class="box-title" style="font-size:23px">Список Проектов</h3>	
 								</div>
 								<div class="box-body">
-									<table id="department" class="table table-bordered table-striped">
+									<table id="project" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>Название</th>
+												<th>Отдел</th>
 												<th style="width: 18px"></th>
 												<th style="width: 18px"></th>
 											</tr>
 										</thead>
 										<tbody>
-										{if $arrayDepartmentNames!=null}
-										{foreach from=$arrayDepartmentNames item=foo}
-									
+										{if $arrayProjectNames!=null}
+										{foreach from=$arrayProjectNames item=foo}
+										
 											<tr>
+												<td>
+													<a 
+														href="/index.php
+															?route=Project/viewProject
+															&projectId={$foo.project_id}
+															&projectName={$foo.project_name}
+															&departmentId={$foo.department_id}
+															&departmentName={$foo.department_name}
+															&Month={$selectedMonthForGet}
+															&Year={$selectedYearForGet}">
+														{$foo.project_name}
+													</a>
+												</td>
 												<td>
 													<a 
 														href="/index.php
@@ -42,22 +56,26 @@
 															&departmentName={$foo.department_name}
 															&Month={$selectedMonthForGet}
 															&Year={$selectedYearForGet}">
-													{$foo.department_name}
+														{$foo.department_name}
 													</a>
 												</td>
 												<td>
 													{if $status == FALSE}
 													<a 
-														class="btn btn-md" 
 														type="button" 
-														{if $access == null}
+														class="btn btn-md" 
+														{if $access == null || $headId == $foo.department_id}
 														data-toggle="modal" 
-														data-lastname="{$foo.department_name}" 
-														data-editid="{$foo.department_id}" 
-														data-target="#departmentModal" 
+														data-editid="{$foo.project_id}" 
+														data-lastname="{$foo.project_name}" 
+														data-departmentid="{$foo.department_id}" 
+														data-countselect="{$countArrayDepartmentNamesForSelect}" 
+														data-target="#projectModal" 
 														{/if}
-														title="Редактировать Данные Отдела"
-														{$access}>
+														title="Редактировать Данные Проекта"
+														{if $headId != $foo.department_id}
+														{$access}
+														{/if}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 													{/if}
@@ -67,14 +85,16 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
-														{if $access == null}
+														{if $access == null || $headId == $foo.department_id}
 														data-toggle="modal" 
-														data-departmentid="{$foo.department_id}" 
-														data-departmentname="{$foo.department_name}" 
+														data-projectid="{$foo.project_id}" 
+														data-projectname="{$foo.project_name}" 
 														data-target="#removeModal" 
 														{/if}
-														title="Удалить Данные Отдела"
-														{$access}>
+														title="Удалить Данные Проекта"
+														{if $headId != $foo.department_id}
+														{$access}
+														{/if}>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 													{/if}
@@ -90,9 +110,10 @@
 										class="btn btn-md" 
 										{if $access == null}
 										data-toggle="modal" 
-										data-target="#departmentModal" 
+										data-countselect="{$countArrayDepartmentNamesForSelect}" 
+										data-target="#projectModal" 
 										{/if}
-										title="Добавить Отдел"
+										title="Добавить Проект"
 										{$access}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
@@ -101,25 +122,39 @@
 							</div>
 						</div>
 					</div>
-					<div class="modal fade" id="departmentModal" tabindex="-1" role="dialog" aria-labelledby="departmentModalLabel">
+					<div class="modal fade" id="projectModal" role="dialog" aria-labelledby="projectModalLabel">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-									<h4 class="modal-title" id="departmentModalLabel"></h4>
+									<h4 class="modal-title" id="projectModalLabel"></h4>
 								</div>
 								<form action="/index.php" method="get" onsubmit="diactive()">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Название:</label>
 											<input 
-												id="nameDepartment" 
+												id="nameProject"
 												name="newName" 
 												type="text" 
 												class="form-control" 
 												required="required">
+										</div>
+										<div class="form-group">
+											<label>Отдел:</label>
+											<select 
+												id="selectId" 
+												name="newDepartment" 
+												class="form-control select2" 
+												style="width: 100%;"
+												required="required">
+												{foreach from=$arrayDepartmentNamesForSelect item=foo}
+											
+												<option value="{$foo.department_id}">{$foo.department_name}</option>
+												{/foreach}
+											</select>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -129,8 +164,8 @@
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
-										<button id="buttonModalF" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
-										<button id="buttonModalS" type="submit" class="btn btn-primary" style="width: 200px">Сохранить</button>
+										<button id="buttonModalF" style="width: 200px" type="button" class="btn btn-default pull-left" data-dismiss="modal">Отмена</button>
+										<button id="buttonModalS" style="width: 200px" type="submit" class="btn btn-primary">Сохранить</button>
 									</div>
 								</form>
 							</div>
@@ -150,8 +185,8 @@
 									</div>
 									<div class="modal-footer">
 										<div class="input-group hidden">
-											<input name="route" type="hidden" value="List/removeDepartment">
-											<input id="departmentId" name="departmentId" type="hidden">
+											<input name="route" type="hidden" value="List/removeProject">
+											<input id="projectId" name="projectId" type="hidden">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -186,7 +221,7 @@
 										<div class="input-group hidden">
 											<input name="route" type="hidden" value="List/changeDataStatusForEditing">
 											<input name="lastStatus" type="hidden" value="{$status}">
-											<input name="lastPage" type="hidden" value="Department">
+											<input name="lastPage" type="hidden" value="Project">
 											<input name="Month" type="hidden" value="{$selectedMonthForGet}">
 											<input name="Year" type="hidden" value="{$selectedYearForGet}">
 										</div>
@@ -204,39 +239,56 @@
 				</div>
 			</footer>
 			<script>
-				$('#departmentModal').on('show.bs.modal', function (event) {
+				$('#projectModal').on('show.bs.modal', function (event) {
 					var button = $(event.relatedTarget);
 					var modal = $(this);
+					var	 editId = button.data('editid');
 					var lastName = button.data('lastname');
-					var editId = button.data('editid');
+					var departmentId = button.data('departmentid');
+					var countSelect = button.data('countselect');
 					if (editId != null){
-						modal.find('.modal-title').text('Редактировать Данные Отдела');
-						document.getElementById('route').value = 'List/editDepartment';
-						document.getElementById('nameDepartment').value = lastName;
+						modal.find('.modal-title').text('Редактировать Данные Проекта');
+						document.getElementById('route').value = 'List/editProject';
 						document.getElementById('editId').value = editId;
+						document.getElementById('nameProject').value = lastName;
 					}else{
-						modal.find('.modal-title').text('Новый Отдел');
-						document.getElementById('route').value = 'List/newDepartment';
-						document.getElementById('nameDepartment').value = null;
+						modal.find('.modal-title').text('Новый Проект');
+						document.getElementById('route').value = 'List/newProject';
+						document.getElementById('nameProject').value = null;
 						document.getElementById('editId').value = null;
 					}
+					for (var i = 0; i < countSelect; i++) {
+					var val = document.getElementById('selectId').options[i].value;
+						if (val == departmentId){
+							document.getElementById('selectId').options[i].selected=true;
+						}else{
+							document.getElementById('selectId').options[i].selected=false;
+						}
+					}
+					$(function () {
+						$(".select2").select2({
+						modal: true,
+						placeholder: "Выберите Отдел",
+						allowClear: true
+						});
+					});
 				});
 			</script>
 			<script>
 				function diactive() {
 					document.getElementById('buttonModalS').disabled = 1;
 					document.getElementById('buttonModalF').disabled = 1;
-					document.getElementById("nameDepartment").setAttribute("readonly", "readonly");
+					document.getElementById("nameProject").setAttribute("readonly", "readonly");
 				}
 			</script>
 			<script>
 				$('#removeModal').on('show.bs.modal', function (event) {
 					var button = $(event.relatedTarget);
 					var modal = $(this);
-					var departmentId = button.data('departmentid');
-					var departmentName = button.data('departmentname');
-					modal.find('.modal-title').html('Вы уверены, что хотите удалить данные отдела: <u><b>'+departmentName+'</b></u>');
-					document.getElementById('departmentId').value = departmentId;
+					var projectId = button.data('projectid');
+					var projectName = button.data('projectname');
+					modal.find('.modal-title').html('Вы уверены, что хотите удалить данные проекта: <u><b>'+projectName+'</u></b>');
+					document.getElementById('projectId').value = projectId;
 				});
 			</script>
 			<script>
@@ -253,7 +305,7 @@
 			</script>
 			<script>
 				$(function () {
-					$('#department').DataTable({
+					$('#project').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
@@ -271,7 +323,7 @@
 								"last": "Последний",
 								"next": "Следующая",
 								"previous": "Предыдущая"
-							},
+								},
 							"loadingRecords": "Загрузка...",
 							"processing": "Обработка...",
 							"search": "Поиск:"
@@ -281,4 +333,4 @@
 			</script>
 		</div>
 	</body>
-</html>
+</html>								

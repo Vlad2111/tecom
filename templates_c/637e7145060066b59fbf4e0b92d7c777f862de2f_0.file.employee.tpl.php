@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-20 11:34:20
+/* Smarty version 3.1.28, created on 2016-09-22 18:17:45
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/employee.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e0f48caa8431_96040940',
+  'unifunc' => 'content_57e3f6195ed472_20497896',
   'file_dependency' => 
   array (
     '637e7145060066b59fbf4e0b92d7c777f862de2f' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/employee.tpl',
-      1 => 1474279508,
+      1 => 1474557403,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e0f48caa8431_96040940 ($_smarty_tpl) {
+function content_57e3f6195ed472_20497896 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ function content_57e0f48caa8431_96040940 ($_smarty_tpl) {
 </title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	</head>
-	<body class="hold-transition skin-blue sidebar-mini">
+	<body style="height:100%;" class="hold-transition skin-blue sidebar-mini" onload="summPercents()">
 		<div class="wrapper">
 			<?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:3pty/Smarty/demo/templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -46,8 +46,8 @@ function content_57e0f48caa8431_96040940 ($_smarty_tpl) {
 						<?php }?>
 							<div class="box">
 								<div class="box-header">
-									<h3 class="box-title" style="font-size:23px">Сотрудник: <?php echo $_smarty_tpl->tpl_vars['employeeName']->value;?>
-
+									<h3 class="box-title" style="font-size:23px">Сотрудник: <b><?php echo $_smarty_tpl->tpl_vars['employeeName']->value;?>
+</b>
 										<?php if ($_smarty_tpl->tpl_vars['status']->value == FALSE) {?>
 										<a 
 											type="button" 
@@ -84,26 +84,10 @@ function content_57e0f48caa8431_96040940 ($_smarty_tpl) {
 									<p style="text-align:justify;">
 										<table class="text" style="width:100%; border-spacing:0;">
 											<tr style="vertical-align: top;">
-												<td style="text-align: left;">(Отдел: <?php echo $_smarty_tpl->tpl_vars['departmentName']->value;?>
-)</td>
+												<td style="text-align: left;">(Отдел: <b><?php echo $_smarty_tpl->tpl_vars['departmentName']->value;?>
+</b>)</td>
 												<td style="text-align: right;">
-													<?php echo $_smarty_tpl->tpl_vars['employeePercent']->value;?>
-%
-													<?php if ($_smarty_tpl->tpl_vars['employeePercent']->value < 100) {?>
-														<i class="glyphicon glyphicon-info-sign text-blue"></i>
-														Время не распределено до конца
-														<i class="glyphicon glyphicon-info-sign text-blue"></i>
-													<?php }?>
-													<?php if ($_smarty_tpl->tpl_vars['employeePercent']->value == 100) {?>
-														<i class="glyphicon glyphicon-ok-sign text-green"></i>
-														Время распределено
-														<i class="glyphicon glyphicon-ok-sign text-green"></i>
-													<?php }?>
-													<?php if ($_smarty_tpl->tpl_vars['employeePercent']->value > 100) {?>
-														<i class="glyphicon glyphicon-exclamation-sign text-red" ></i>
-														Ошибка
-														<i class="glyphicon glyphicon-exclamation-sign text-red" ></i>
-													<?php }?>	
+													<div id="summPercent"></div>	
 												</td>
 											</tr>
 										</table>
@@ -122,6 +106,8 @@ function content_57e0f48caa8431_96040940 ($_smarty_tpl) {
 										</thead>
 										<tbody>
 										<?php if ($_smarty_tpl->tpl_vars['arrayEmployeeInfo']->value != null) {?>
+										<?php $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'i', 0);?>
 										<?php
 $_from = $_smarty_tpl->tpl_vars['arrayEmployeeInfo']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -172,8 +158,23 @@ $__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 
 													</a>
 												</td>
-												<td><?php echo $_smarty_tpl->tpl_vars['foo']->value['time'];?>
-%</td>
+												<td>
+													<div id="time<?php echo $_smarty_tpl->tpl_vars['i']->value;
+echo $_smarty_tpl->tpl_vars['i']->value;?>
+" class="input-group">
+														<input id="time<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+" type="text" style="width:60px;" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['time'];?>
+" onchange="changeTime('<?php echo $_smarty_tpl->tpl_vars['i']->value;
+echo $_smarty_tpl->tpl_vars['i']->value;?>
+')">
+														<input id="timelast<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+" hidden type="text" value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['time'];?>
+">
+														<?php $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable($_smarty_tpl->tpl_vars['i']->value+1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'i', 0);?>
+														<span style="width:0px;" class="input-group-addon">%</span>
+													</div>	
+												</td>
 												<td>
 													<?php if ($_smarty_tpl->tpl_vars['status']->value == FALSE) {?>
 													<a 
@@ -235,22 +236,31 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_0_saved_item;
 										</tbody>
 									</table>
 									<?php if ($_smarty_tpl->tpl_vars['status']->value == FALSE) {?>
-									<a 
-										type="button" 
-										class="btn btn-md" 
-										<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['headId']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
-										data-toggle="modal" 
-										data-countselect="<?php echo $_smarty_tpl->tpl_vars['countArrayProjectNamesForSelect']->value;?>
+									<table style="width:100%; border-spacing:0;">
+										<tr>
+											<td style="text-align: left;">
+												<a 
+													type="button" 
+													class="btn btn-md" 
+													<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['headId']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+													data-toggle="modal" 
+													data-countselect="<?php echo $_smarty_tpl->tpl_vars['countArrayProjectNamesForSelect']->value;?>
 " 
-										data-target="#timeDistModal" 
-										<?php }?>
-										title="Добавить Распределение Времени"
-										<?php if ($_smarty_tpl->tpl_vars['headId']->value != $_smarty_tpl->tpl_vars['departmentId']->value) {?>
-										<?php echo $_smarty_tpl->tpl_vars['accessPro']->value;?>
+													data-target="#timeDistModal" 
+													<?php }?>
+													title="Добавить Распределение Времени"
+													<?php if ($_smarty_tpl->tpl_vars['headId']->value != $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+													<?php echo $_smarty_tpl->tpl_vars['accessPro']->value;?>
 
-										<?php }?>>
-										<i class="glyphicon glyphicon-plus"></i>
-									</a>
+													<?php }?>>
+													<i class="glyphicon glyphicon-plus"></i>
+												</a>
+											</td>
+											<td style="text-align: right;">
+												<div id="divTime"></div>
+											</td><td style="width:11%;"></td>
+										</tr>
+									</table>
 									<?php }?>
 								</div>
 							</div>
@@ -538,6 +548,103 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_item;
 							</div>
 						</div>
 					</div>
+					<div class="modal fade" id="timeDistSaveModal" tabindex="-1" role="dialog" style="margin: 0 auto;">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="timeDistSaveModalLabel">Вы уверены, что хотите сохранить новые распределения времени для сотрудника: <b><?php echo $_smarty_tpl->tpl_vars['employeeName']->value;?>
+</b>?</h4>
+								</div>							
+								<form action="/index.php" method="get" onsubmit="diactiveSaveTime()">
+									<div class="modal-body">
+										<table id="employeeSave" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Название Проекта</th>
+												<th>Отдел</th>
+												<th>Занятость</th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php if ($_smarty_tpl->tpl_vars['arrayEmployeeInfo']->value != null) {?>
+										<?php $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'i', 0);?>
+										<?php
+$_from = $_smarty_tpl->tpl_vars['arrayEmployeeInfo']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_foo_2_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
+$__foreach_foo_2_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_2_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
+$__foreach_foo_2_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+?>
+											
+											<tr style="align:center;">
+												<td>
+													<?php echo $_smarty_tpl->tpl_vars['foo']->value['project_name'];?>
+
+													<input name="projectId<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['project_id'];?>
+">
+												</td>
+												<td>
+													<?php echo $_smarty_tpl->tpl_vars['foo']->value['department_name'];?>
+
+												</td>
+												<td>
+													<div id="newTimeDiv<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+"></div><input id="newTime<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+" name="newTime<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+" type="hidden">
+												</td>
+												<?php $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable($_smarty_tpl->tpl_vars['i']->value+1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'i', 0);?>
+											</tr>
+										<?php
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_local_item;
+}
+}
+if ($__foreach_foo_2_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_item;
+}
+?>
+										<?php }?>
+										</tbody>
+									</table>						
+									</div>
+									<div class="modal-footer">
+										<div class="input-group hidden">
+											<input name="countRow" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+">
+											<input name="route" type="hidden" value="Employee/editAllPercent">
+											<input name="employeeId" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['employeeId']->value;?>
+">
+											<input name="employeeName" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['employeeName']->value;?>
+">
+											<input name="employeeLogin" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['employeeLogin']->value;?>
+">
+											<input name="departmentId" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['departmentId']->value;?>
+">
+											<input name="departmentName" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['departmentName']->value;?>
+">
+											<input name="Month" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['selectedMonthForGet']->value;?>
+">
+											<input name="Year" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['selectedYearForGet']->value;?>
+">
+										</div>
+										<button id="buttonModalFSaveTime" type="button" class="btn btn-default pull-left" data-dismiss="modal" style="width: 200px">Отмена</button>
+										<button id="buttonModalSSaveTime" type="submit" class="btn btn-primary" style="width: 200px">Да</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 				</section>
 			</div>
 			<footer class="main-footer">
@@ -611,25 +718,6 @@ $_from = $_smarty_tpl->tpl_vars['arrayProjectNamesForDepartmentForSelect']->valu
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_2_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
-$_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_2_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_2_total) {
-foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_2_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
-?><option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['project_id'];?>
-"><?php echo $_smarty_tpl->tpl_vars['foo']->value['project_name'];?>
-</option><?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_local_item;
-}
-}
-if ($__foreach_foo_2_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_item;
-}
-$_from = $_smarty_tpl->tpl_vars['arrayProjectNamesNotForDepartmentForSelect']->value;
-if (!is_array($_from) && !is_object($_from)) {
-settype($_from, 'array');
-}
 $__foreach_foo_3_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
 $__foreach_foo_3_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
@@ -644,6 +732,25 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_local_item;
 }
 if ($__foreach_foo_3_saved_item) {
 $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_item;
+}
+$_from = $_smarty_tpl->tpl_vars['arrayProjectNamesNotForDepartmentForSelect']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_foo_4_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
+$__foreach_foo_4_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_4_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
+$__foreach_foo_4_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+?><option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['project_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['foo']->value['project_name'];?>
+</option><?php
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_4_saved_local_item;
+}
+}
+if ($__foreach_foo_4_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_4_saved_item;
 }
 ?></select>'); 
 						document.getElementById('TimeDistr').value = null;
@@ -706,7 +813,80 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_item;
 					document.getElementById('buttonModalFData').disabled = 1;
 				}
 			<?php echo '</script'; ?>
->z
+>
+			<?php echo '<script'; ?>
+>
+				function diactiveSaveTime() {
+					document.getElementById('buttonModalSSaveTime').disabled = 1;
+					document.getElementById('buttonModalFSaveTime').disabled = 1;
+				}
+			<?php echo '</script'; ?>
+>
+			<?php echo '<script'; ?>
+>
+				function changeTime(id) {
+					document.getElementById('time'+id).style="border: 2px solid #00c0ef;";
+					$('#divTime').html('<a type="button" class="btn btn-lg" onclick="diactiveChangeTime()" title="Отменить Редактирование Распределений Времени"><i class="glyphicon glyphicon-refresh" style="color:#00c0ef;"></i></a><a type="button" class="btn btn-lg" data-toggle="modal" data-target="#timeDistSaveModal" title="Сохранить Все Распределения Времени"><i class="glyphicon glyphicon-floppy-save" style="color:#00c0ef;"></i></a>');
+					summPercents();
+												
+				}
+			<?php echo '</script'; ?>
+>
+			<?php echo '<script'; ?>
+>
+				$('#timeDistSaveModal').on('show.bs.modal', function (event) {
+					var button = $(event.relatedTarget);
+					var modal = $(this);
+					for(i=1;i<<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+;i++){
+						$('#newTimeDiv'+i).html(document.getElementById('time'+i).value+'%');
+						document.getElementById('newTime'+i).value=document.getElementById('time'+i).value;
+					}
+				});
+				$('#employeeSave').DataTable({
+						"paging": false,
+						"lengthChange": false,
+						"searching": false,
+						"ordering": true,
+						"info": false,
+						"autoWidth": false
+					});
+			<?php echo '</script'; ?>
+>
+			<?php echo '<script'; ?>
+>
+				function diactiveChangeTime() {
+					for(i=1;i<<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+;i++){
+						document.getElementById('time'+i+i).style=" ";
+						document.getElementById('time'+i).value=document.getElementById('timelast'+i).value;
+					}
+					$('#divTime').html('');
+					summPercents();
+												
+				}
+			<?php echo '</script'; ?>
+>
+			<?php echo '<script'; ?>
+>
+				function summPercents() {
+					summ = 0;
+					for(i=1;i<<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+;i++){
+						summ = summ + Number(document.getElementById('time'+i).value);
+					}
+					if (summ<100){
+						$('#summPercent').html('<b>'+summ+'%</b> &emsp; <i class="glyphicon glyphicon-info-sign text-blue"></i> &ensp;<b> Время не распределено до конца </b>&ensp; <i class="glyphicon glyphicon-info-sign text-blue"></i>');
+					}
+					if (summ==100){
+						$('#summPercent').html('<b>'+summ+'%</b> &emsp; <i class="glyphicon glyphicon-ok-sign text-green"></i> &ensp;<b> Время распределено </b>&ensp; <i class="glyphicon glyphicon-ok-sign text-green"></i>');
+					}
+					if (summ>100){
+						$('#summPercent').html('<b>'+summ+'%</b> &emsp; <i class="glyphicon glyphicon-exclamation-sign text-red" ></i> &ensp;<b> Ошибка </b>&ensp; <i class="glyphicon glyphicon-exclamation-sign text-red" ></i>');
+					}
+				}
+			<?php echo '</script'; ?>
+>
 			<?php echo '<script'; ?>
 >
 				$(function () {

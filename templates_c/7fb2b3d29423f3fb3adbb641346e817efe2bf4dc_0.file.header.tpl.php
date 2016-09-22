@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-20 11:34:58
+/* Smarty version 3.1.28, created on 2016-09-22 18:18:50
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/header.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e0f4b282e564_25097454',
+  'unifunc' => 'content_57e3f65a43e797_71827845',
   'file_dependency' => 
   array (
     '7fb2b3d29423f3fb3adbb641346e817efe2bf4dc' => 
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57e0f4b282e564_25097454 ($_smarty_tpl) {
+function content_57e3f65a43e797_71827845 ($_smarty_tpl) {
 ?>
 			<!-- REQUIRED CSS SCRIPTS -->
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/skins/_all-skins.min.css">

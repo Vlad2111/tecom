@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-20 11:34:16
+/* Smarty version 3.1.28, created on 2016-09-22 18:18:29
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/project.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e0f488edc291_25921664',
+  'unifunc' => 'content_57e3f64524af00_10725740',
   'file_dependency' => 
   array (
     '88d4ce891a4328a98b610947cd1b06ba9c4b2f5b' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/project.tpl',
-      1 => 1473166564,
+      1 => 1474556613,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e0f488edc291_25921664 ($_smarty_tpl) {
+function content_57e3f64524af00_10725740 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ function content_57e0f488edc291_25921664 ($_smarty_tpl) {
 </title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	</head>
-	<body class="hold-transition skin-blue sidebar-mini">
+	<body style="height:100%;" class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
 			<?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:3pty/Smarty/demo/templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -46,8 +46,8 @@ function content_57e0f488edc291_25921664 ($_smarty_tpl) {
 						<?php }?>
 							<div class="box">
 								<div class="box-header">
-									<h3 class="box-title" style="font-size:23px">Проект: <?php echo $_smarty_tpl->tpl_vars['projectName']->value;?>
-
+									<h3 class="box-title" style="font-size:23px">Проект: <b><?php echo $_smarty_tpl->tpl_vars['projectName']->value;?>
+</b>
 										<?php if ($_smarty_tpl->tpl_vars['status']->value == FALSE) {?>
 										<a 
 											type="button" 
@@ -83,8 +83,8 @@ function content_57e0f488edc291_25921664 ($_smarty_tpl) {
 										</a>
 										<?php }?>
 									</h3>	
-									<p>(Отдел: <?php echo $_smarty_tpl->tpl_vars['departmentName']->value;?>
-)</p>
+									<p>(Отдел: <b><?php echo $_smarty_tpl->tpl_vars['departmentName']->value;?>
+</b>)</p>
 								</div>
 								<div class="box-body">
 									<table id="project" class="table table-bordered table-striped">

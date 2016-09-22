@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-20 11:34:33
+/* Smarty version 3.1.28, created on 2016-09-22 18:18:42
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/role.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e0f49999bc63_14631570',
+  'unifunc' => 'content_57e3f6525a16e5_22366530',
   'file_dependency' => 
   array (
     '1bc33036c702fae6202c0d6dd0b2890efc1eaed3' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/role.tpl',
-      1 => 1473166564,
+      1 => 1474556619,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e0f49999bc63_14631570 ($_smarty_tpl) {
+function content_57e3f6525a16e5_22366530 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ function content_57e0f49999bc63_14631570 ($_smarty_tpl) {
 </title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	</head>
-	<body class="hold-transition skin-blue sidebar-mini">
+	<body style="height:100%;" class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
 			<?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:3pty/Smarty/demo/templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -494,5 +494,6 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_4_saved_item;
 >
 		</div>
 	</body>
-</html><?php }
+</html>
+<?php }
 }

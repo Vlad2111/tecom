@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-20 11:28:27
+/* Smarty version 3.1.28, created on 2016-09-22 18:18:45
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listDepartments.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e0f32bcedac5_80277924',
+  'unifunc' => 'content_57e3f65553cfe9_93665336',
   'file_dependency' => 
   array (
     '3cca3bc80009b6a71068869338a6e0d3e70d2ca5' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listDepartments.tpl',
-      1 => 1474281700,
+      1 => 1474556602,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e0f32bcedac5_80277924 ($_smarty_tpl) {
+function content_57e3f65553cfe9_93665336 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ function content_57e0f32bcedac5_80277924 ($_smarty_tpl) {
 </title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	</head>
-	<body class="hold-transition skin-blue sidebar-mini">
+	<body style="height:100%;" class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
 			<?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:3pty/Smarty/demo/templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

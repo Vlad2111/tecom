@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-20 11:34:58
+/* Smarty version 3.1.28, created on 2016-09-22 18:18:47
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listEmployees.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e0f4b2793149_31187602',
+  'unifunc' => 'content_57e3f657d9b085_67394449',
   'file_dependency' => 
   array (
     'cc2a1f490cb6bd4154e49d9e61a5e0f484479620' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listEmployees.tpl',
-      1 => 1474283684,
+      1 => 1474556300,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e0f4b2793149_31187602 ($_smarty_tpl) {
+function content_57e3f657d9b085_67394449 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ function content_57e0f4b2793149_31187602 ($_smarty_tpl) {
 </title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	</head>
-	<body class="hold-transition skin-blue sidebar-mini" <?php echo $_smarty_tpl->tpl_vars['errorAlert']->value;?>
+	<body style="height:100%;" class="hold-transition skin-blue sidebar-mini" <?php echo $_smarty_tpl->tpl_vars['errorAlert']->value;?>
 >
 		<div class="wrapper">
 			<?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:3pty/Smarty/demo/templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

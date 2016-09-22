@@ -40,6 +40,8 @@ require '3pty/Smarty/demo/layouts/SmartyRepeatVariables.php';
 	$smarty->assign('departmentId', $departmentId);
 	$smarty->assign('departmentName', $departmentName);
 	
+	$smarty->assign('employeePercent', $employeePercent);
+	
 	$smarty->assign('arrayEmployeeInfo', $arrayEmployeeInfo);
 	$smarty->assign('arrayDepartmentNamesForSelect', $arrayDepartmentNames);
 	$smarty->assign('countArrayDepartmentNamesForSelect', count($arrayDepartmentNames));

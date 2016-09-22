@@ -252,7 +252,6 @@
 				}
 			</script>
 			<script>
-				alert('123');
 				$(function () {
 					$('#department').DataTable({
 						"paging": true,

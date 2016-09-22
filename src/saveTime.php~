@@ -1,0 +1,52 @@
+<?php
+if(isset($_COOKIE[session_name()])) {session_start();}
+/*
+* Copyright (c) 2016 Tecom LLC
+* All rights reserved
+*
+* Исключительное право (c) 2016 пренадлежит ООО Теком
+* Все права защищены
+*/
+/**
+Класс 
+
+@author ershov.v
+*/
+Class saveTimeDist Extends Controller_Base {
+
+	public $postgreSQL;
+		
+	/** Получение даты. */
+	private function getDate() {
+		if ($_GET['date']!=null){
+			$dayMonthYear = explode('/', $_GET['date']);
+			$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'],
+					new DateTimeZone('UTC'));
+		}else{
+			$date = new DateTime();
+			$date->setTimezone(new DateTimeZone('UTC'));
+		}
+		return $date;
+	}
+	
+	/** Проверка сессии. */
+	private function checkSession() {
+		if(($_SESSION[session_name()] != $_COOKIE[session_name()])OR(($_SESSION == null)AND($_COOKIE == null))){
+			session_start();
+			session_unset();
+			session_destroy();
+			$_GET['route']='Index';
+			include 'index.php';
+			exit;
+		}
+	}
+
+	/** -->Редактирование времени. */
+	function editPercent(){
+		$this->checkSession();
+		$date = $this->getDate();
+		$this->postgreSQL->changeEployeeTimeForProject($_GET['employeeId'], $_GET['projectId'],
+				$date, $_GET['newTime']);
+	}
+}
+saveTimeDist->editPercent();
