@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-22 18:18:50
+/* Smarty version 3.1.28, created on 2016-10-03 14:20:01
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listProjects.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e3f65a3ace82_54781870',
+  'unifunc' => 'content_57f23ee107e1d6_37657387',
   'file_dependency' => 
   array (
     'a5755745a6f050672fac9f49509f19528c5d5a42' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listProjects.tpl',
-      1 => 1474556608,
+      1 => 1475491807,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e3f65a3ace82_54781870 ($_smarty_tpl) {
+function content_57f23ee107e1d6_37657387 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +49,7 @@ function content_57e3f65a3ace82_54781870 ($_smarty_tpl) {
 									<h3 class="box-title" style="font-size:23px">Список Проектов</h3>	
 								</div>
 								<div class="box-body">
-									<table id="project" class="table table-bordered table-striped">
+									<table id="projectList" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>Название</th>
@@ -115,7 +115,21 @@ $__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 													<a 
 														type="button" 
 														class="btn btn-md" 
-														<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['headId']->value == $_smarty_tpl->tpl_vars['foo']->value['department_id']) {?>
+														<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>
+														<?php
+$_from = $_smarty_tpl->tpl_vars['headId']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_fooo_1_saved_item = isset($_smarty_tpl->tpl_vars['fooo']) ? $_smarty_tpl->tpl_vars['fooo'] : false;
+$_smarty_tpl->tpl_vars['fooo'] = new Smarty_Variable();
+$__foreach_fooo_1_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_fooo_1_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
+$__foreach_fooo_1_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
+?>
+														<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['foo']->value['department_id']) {?>
 														data-toggle="modal" 
 														data-editid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['project_id'];?>
 " 
@@ -126,12 +140,24 @@ $__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 														data-countselect="<?php echo $_smarty_tpl->tpl_vars['countArrayDepartmentNamesForSelect']->value;?>
 " 
 														data-target="#projectModal" 
+														<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>
 														<?php }?>
+														<?php
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_1_saved_local_item;
+}
+}
+if ($__foreach_fooo_1_saved_item) {
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_1_saved_item;
+}
+?>
 														title="Редактировать Данные Проекта"
-														<?php if ($_smarty_tpl->tpl_vars['headId']->value != $_smarty_tpl->tpl_vars['foo']->value['department_id']) {?>
+														<?php if ($_smarty_tpl->tpl_vars['accessJ']->value != 1) {?>
 														<?php echo $_smarty_tpl->tpl_vars['access']->value;?>
 
-														<?php }?>>
+														<?php }?>
+														<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 													<?php }?>
@@ -141,19 +167,43 @@ $__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 													<a 
 														type="button" 
 														class="btn btn-md" 
-														<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['headId']->value == $_smarty_tpl->tpl_vars['foo']->value['department_id']) {?>
+														<?php
+$_from = $_smarty_tpl->tpl_vars['headId']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_fooo_2_saved_item = isset($_smarty_tpl->tpl_vars['fooo']) ? $_smarty_tpl->tpl_vars['fooo'] : false;
+$_smarty_tpl->tpl_vars['fooo'] = new Smarty_Variable();
+$__foreach_fooo_2_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_fooo_2_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
+$__foreach_fooo_2_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
+?>
+														<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['foo']->value['department_id']) {?>
 														data-toggle="modal" 
 														data-projectid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['project_id'];?>
 " 
 														data-projectname="<?php echo $_smarty_tpl->tpl_vars['foo']->value['project_name'];?>
 " 
 														data-target="#removeModal" 
+														<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>
 														<?php }?>
+														<?php
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_2_saved_local_item;
+}
+}
+if ($__foreach_fooo_2_saved_item) {
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_2_saved_item;
+}
+?>
 														title="Удалить Данные Проекта"
-														<?php if ($_smarty_tpl->tpl_vars['headId']->value != $_smarty_tpl->tpl_vars['foo']->value['department_id']) {?>
+														<?php if ($_smarty_tpl->tpl_vars['accessJ']->value != 1) {?>
 														<?php echo $_smarty_tpl->tpl_vars['access']->value;?>
 
-														<?php }?>>
+														<?php }?>
+														<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 													<?php }?>
@@ -223,23 +273,23 @@ $_from = $_smarty_tpl->tpl_vars['arrayDepartmentNamesForSelect']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_1_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$__foreach_foo_3_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_1_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_1_total) {
+$__foreach_foo_3_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_3_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_1_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+$__foreach_foo_3_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 ?>
 											
 												<option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['department_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['foo']->value['department_name'];?>
 </option>
 												<?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_local_item;
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_local_item;
 }
 }
-if ($__foreach_foo_1_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_item;
+if ($__foreach_foo_3_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_item;
 }
 ?>
 											</select>
@@ -413,13 +463,15 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_item;
 			<?php echo '<script'; ?>
 >
 				$(function () {
-					$('#project').DataTable({
+					$('#projectList').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

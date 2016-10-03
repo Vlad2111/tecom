@@ -54,7 +54,7 @@
 										<h3 class="box-title" style="font-size:20px">Сотрудники</h3>	
 									</div>
 									<div class="box-body">
-										<table id="employee" class="table table-bordered table-striped">
+										<table id="employeeDep" class="table table-bordered table-striped">
 											<thead>
 												<tr>
 													<th style="width: 5px"></th>
@@ -150,7 +150,7 @@
 										<h3 class="box-title" style="font-size:20px">Проекты</h3>	
 									</div>
 									<div class="box-body">
-										<table id="project" class="table table-bordered table-striped">
+										<table id="projectDep" class="table table-bordered table-striped">
 											<thead>
 												<tr>
 													<th>Название</th>
@@ -180,18 +180,23 @@
 														<a 
 															type="button" 
 															class="btn btn-md" 
-															{if $accessPro == null || $headId == $departmentId}
+															{$accessJ = 0}
+															{foreach from=$headId item=fooo}
+															{if $accessPro == null || $fooo == $departmentId}
 															data-toggle="modal" 
 															data-editid="{$foo.project_id}" 
 															data-lastname="{$foo.project_name}" 
 															data-departmentid="{$departmentId}" 
 															data-countselect="{$countArrayDepartmentNamesForSelect}" 
 															data-target="#projectModal" 
+															{$accessJ = 1}
 															{/if}
+															{/foreach}
 															title="Редактировать Данные Проекта"
-															{if $headId != $departmentId}
+															{if $accessJ != 1}
 															{$accessPro}
-															{/if}>
+															{/if}
+															{$accessJ = 0}>
 															<i class="glyphicon glyphicon-pencil"></i>
 														</a>
 														{/if}
@@ -201,16 +206,20 @@
 														<a 
 															type="button" 
 															class="btn btn-md" 
-															{if $accessPro == null || $headId == $departmentId}
+															{foreach from=$headId item=fooo}
+															{if $accessPro == null || $fooo == $departmentId}
 															data-toggle="modal" 
 															data-projectid="{$foo.project_id}" 
 															data-projectname="{$foo.project_name}" 
 															data-target="#removeModalPro" 
+															{$accessJ = 1}
 															{/if}
+															{/foreach}
 															title="Удалить Данные Проекта"
-															{if $headId != $departmentId}
+															{if $accessJ != 1}
 															{$accessPro}
-															{/if}>
+															{/if}
+															{$accessJ = 0}>
 															<i class="glyphicon glyphicon-trash"></i>
 														</a>
 														{/if}
@@ -224,16 +233,20 @@
 										<a 
 											type="button" 
 											class="btn btn-md" 
-											{if $accessPro == null || $headId == $departmentId}
+											{foreach from=$headId item=fooo}
+											{if $accessPro == null || $fooo == $departmentId}
 											data-toggle="modal" 
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#projectModal" 
+											{$accessJ = 1}
 											{/if}
+											{/foreach}
 											title="Добавить Проект"
-											{if $headId != $departmentId}
+											{if $accessJ != 1}
 											{$accessPro}
-											{/if}>
+											{/if}
+											{$accessJ = 0}>
 											<i class="glyphicon glyphicon-plus"></i>
 										</a>
 										{/if}
@@ -683,13 +696,15 @@
 			</script>
 			<script>
 				$(function () {
-					$('#employee').DataTable({
+					$('#employeeDep').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",
@@ -707,13 +722,15 @@
 							"search": "Поиск:"
 						}
 					});
-					$('#project').DataTable({
+					$('#projectDep').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

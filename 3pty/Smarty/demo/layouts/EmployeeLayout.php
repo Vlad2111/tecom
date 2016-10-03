@@ -14,19 +14,19 @@ require '3pty/Smarty/demo/layouts/SmartyRepeatVariables.php';
 
 		/** Переменные для доступа к функционалу ролей. */
 		{
-			if($_GET['roleIdUser']=='0'){
+			if($_SESSION['roleIdUser']=='0'){
 				$smarty->assign('accessEmp', 'disabled');
 				$smarty->assign('accessPro', 'disabled');
 			}
-			if($_GET['roleIdUser']=='1'){
+			if($_SESSION['roleIdUser']=='1'){
 				$smarty->assign('accessEmp', 'disabled');
 				$smarty->assign('accessPro', 'disabled');
 			}
-			if($_GET['roleIdUser']=='2'){
+			if($_SESSION['roleIdUser']=='2'){
 				$smarty->assign('accessPro', 'disabled');
 			}
-			if($_GET['roleIdUser']=='3'){}
-			if($_GET['roleIdUser']=='4'){}
+			if($_SESSION['roleIdUser']=='3'){}
+			if($_SESSION['roleIdUser']=='4'){}
 		}
 		
 	}

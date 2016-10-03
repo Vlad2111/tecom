@@ -47,9 +47,23 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 					$date = new DateTime();
 					$date->setTimezone(new DateTimeZone('UTC'));
 					$department = $this->postgreSQL->getDepartmentHead($date, $login);
-					$role['0']['role_name'] = $role['0']['role_name'].': '.$department['0']['department_name'];
-					$_SESSION['headId']=$department['0']['department_id'];
+					$countHeadId = 0;
+					foreach($department as $key=>$dep){
+						if($countHeadId == 0){
+							if(count($department)!=1){
+								$role['0']['role_name'] = 'Глава Отделов: <br>'.$dep['department_name'].'<br>';
+							}else{
+								$role['0']['role_name'] = $role['0']['role_name'].': <br>'.$dep['department_name'].'<br>';
+							}
+							$_SESSION['headId'.$countHeadId]=$dep['department_id'];
+						}else{
+							$role['0']['role_name'] = $role['0']['role_name'].' '.$dep['department_name'].'<br>';
+							$_SESSION['headId'.$countHeadId]=$dep['department_id'];
+						}
+						$countHeadId = $countHeadId+1;
+					}
 				}
+				$_SESSION['countHeadId']=$countHeadId;
 				$_SESSION['roleUser']=$role['0']['role_name'];
 				$_SESSION['roleIdUser']=$role['0']['role_id'];
 				return true;

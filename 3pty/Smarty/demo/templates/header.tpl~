@@ -138,13 +138,13 @@
 						<li style="width:230px;">
 							<a class="user">
 								<i class="glyphicon glyphicon-user text-blue" aria-hidden="true"></i>
-								<span>Пользователь: <p><b>{$name}</b></p></span>
+								<span>Пользователь: <p style="width: 160px; word-break: break-all;"><b>{$name}</b></p></span>
 							</a>
 						</li>
 						<li>
 							<a class="user">
 								<i class="glyphicon glyphicon-briefcase text-blue" aria-hidden="true"></i>
-								<span>Роль: <p><b>{$role}</b></p></span>
+								<span>Роль: <p style="width: 160px; word-break: break-all;"><b>{$role}</b></p></span>
 							</a>
 						</li>
 						<li>

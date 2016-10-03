@@ -21,7 +21,7 @@
 									<h3 class="box-title" style="font-size:23px">Список Сотрудников</h3>	
 								</div>
 								<div class="box-body">
-									<table id="employee" class="table table-bordered table-striped">
+									<table id="employeeList" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>Фамилия и Имя</th>
@@ -350,13 +350,15 @@
 			</script>
 			<script>
 				$(function () {
-					$('#employee').DataTable({
+					$('#employeeList').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

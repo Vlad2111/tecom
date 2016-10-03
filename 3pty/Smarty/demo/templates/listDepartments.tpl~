@@ -6,7 +6,7 @@
 		<title>Tecomgroup | {$title}</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	</head>
-	<body class="hold-transition skin-blue sidebar-mini">
+	<body style="height:100%;" class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
 			{include file='3pty/Smarty/demo/templates/header.tpl'}
 			<div class="content-wrapper">
@@ -260,6 +260,8 @@
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

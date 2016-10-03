@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-22 18:18:29
+/* Smarty version 3.1.28, created on 2016-10-03 13:56:51
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/project.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e3f64524af00_10725740',
+  'unifunc' => 'content_57f2397360f8c0_63178427',
   'file_dependency' => 
   array (
     '88d4ce891a4328a98b610947cd1b06ba9c4b2f5b' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/project.tpl',
-      1 => 1474556613,
+      1 => 1475492014,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e3f64524af00_10725740 ($_smarty_tpl) {
+function content_57f2397360f8c0_63178427 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,33 +52,83 @@ function content_57e3f64524af00_10725740 ($_smarty_tpl) {
 										<a 
 											type="button" 
 											class="btn btn-md"
-											<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['headId']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>										
+											<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>
+											<?php
+$_from = $_smarty_tpl->tpl_vars['headId']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_fooo_0_saved_item = isset($_smarty_tpl->tpl_vars['fooo']) ? $_smarty_tpl->tpl_vars['fooo'] : false;
+$_smarty_tpl->tpl_vars['fooo'] = new Smarty_Variable();
+$__foreach_fooo_0_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_fooo_0_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
+$__foreach_fooo_0_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
+?>
+											<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 											data-toggle="modal" 
 											data-departmentid="<?php echo $_smarty_tpl->tpl_vars['departmentId']->value;?>
 " 
 											data-countselect="<?php echo $_smarty_tpl->tpl_vars['countArrayDepartmentNamesForSelect']->value;?>
 " 
 											data-target="#projectModal" 
+											<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>
 											<?php }?>
+											<?php
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_0_saved_local_item;
+}
+}
+if ($__foreach_fooo_0_saved_item) {
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_0_saved_item;
+}
+?>
 											title="Редактировать Данные Проекта"
-											<?php if ($_smarty_tpl->tpl_vars['headId']->value != $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+											<?php if ($_smarty_tpl->tpl_vars['accessJ']->value != 1) {?>
 											<?php echo $_smarty_tpl->tpl_vars['access']->value;?>
 
-											<?php }?>>
+											<?php }?>
+											<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>>
 											<i class="glyphicon glyphicon-pencil"></i>
 										</a>
 										<a 
 											type="button" 
 											class="btn btn-md" 
-											<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['headId']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+											<?php
+$_from = $_smarty_tpl->tpl_vars['headId']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_fooo_1_saved_item = isset($_smarty_tpl->tpl_vars['fooo']) ? $_smarty_tpl->tpl_vars['fooo'] : false;
+$_smarty_tpl->tpl_vars['fooo'] = new Smarty_Variable();
+$__foreach_fooo_1_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_fooo_1_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
+$__foreach_fooo_1_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
+?>
+											<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 											data-toggle="modal"  
 											data-target="#removeModalPro" 
+											<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>
 											<?php }?>
+											<?php
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_1_saved_local_item;
+}
+}
+if ($__foreach_fooo_1_saved_item) {
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_1_saved_item;
+}
+?>
 											title="Удалить Данные Проекта"
-											<?php if ($_smarty_tpl->tpl_vars['headId']->value != $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+											<?php if ($_smarty_tpl->tpl_vars['accessJ']->value != 1) {?>
 											<?php echo $_smarty_tpl->tpl_vars['access']->value;?>
 
-											<?php }?>>
+											<?php }?>
+											<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>>
 											<i class="glyphicon glyphicon-trash"></i>
 										</a>
 										<?php }?>
@@ -87,7 +137,7 @@ function content_57e3f64524af00_10725740 ($_smarty_tpl) {
 </b>)</p>
 								</div>
 								<div class="box-body">
-									<table id="project" class="table table-bordered table-striped">
+									<table id="projectPro" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>ФИО</th>
@@ -104,12 +154,12 @@ $_from = $_smarty_tpl->tpl_vars['arrayEployeeNamesAndPercentsForProject']->value
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_0_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$__foreach_foo_2_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_0_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_0_total) {
+$__foreach_foo_2_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_2_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+$__foreach_foo_2_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 ?>
 											
 											<tr>
@@ -158,7 +208,19 @@ $__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 													<a 
 														type="button" 
 														class="btn btn-md" 
-														<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['headId']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+														<?php
+$_from = $_smarty_tpl->tpl_vars['headId']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_fooo_3_saved_item = isset($_smarty_tpl->tpl_vars['fooo']) ? $_smarty_tpl->tpl_vars['fooo'] : false;
+$_smarty_tpl->tpl_vars['fooo'] = new Smarty_Variable();
+$__foreach_fooo_3_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_fooo_3_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
+$__foreach_fooo_3_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
+?>
+														<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 														data-toggle="modal" 
 														data-lasttime="<?php echo $_smarty_tpl->tpl_vars['foo']->value['time'];?>
 " 
@@ -167,12 +229,24 @@ $__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 														data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
 " 
 														data-target="#timeDistModal" 
+														<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>
 														<?php }?>
+														<?php
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_3_saved_local_item;
+}
+}
+if ($__foreach_fooo_3_saved_item) {
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_3_saved_item;
+}
+?>
 														title="Редактировать Данные Распределения Времени"
-														<?php if ($_smarty_tpl->tpl_vars['headId']->value != $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+														<?php if ($_smarty_tpl->tpl_vars['accessJ']->value != 1) {?>
 														<?php echo $_smarty_tpl->tpl_vars['access']->value;?>
 
-														<?php }?>>
+														<?php }?>
+														<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 													<?php }?>
@@ -182,7 +256,19 @@ $__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 													<a 
 														type="button" 
 														class="btn btn-md"
-														<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['headId']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+														<?php
+$_from = $_smarty_tpl->tpl_vars['headId']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_fooo_4_saved_item = isset($_smarty_tpl->tpl_vars['fooo']) ? $_smarty_tpl->tpl_vars['fooo'] : false;
+$_smarty_tpl->tpl_vars['fooo'] = new Smarty_Variable();
+$__foreach_fooo_4_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_fooo_4_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
+$__foreach_fooo_4_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
+?>
+														<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 														data-toggle="modal"  
 														data-projectname="<?php echo $_smarty_tpl->tpl_vars['projectName']->value;?>
 " 
@@ -191,23 +277,35 @@ $__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 														data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
 "
 														data-target="#removeModalTime" 
+														<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>
 														<?php }?>
+														<?php
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_4_saved_local_item;
+}
+}
+if ($__foreach_fooo_4_saved_item) {
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_4_saved_item;
+}
+?>
 														title="Удалить Данные Распределения Времени"
-														<?php if ($_smarty_tpl->tpl_vars['headId']->value != $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+														<?php if ($_smarty_tpl->tpl_vars['accessJ']->value != 1) {?>
 														<?php echo $_smarty_tpl->tpl_vars['access']->value;?>
 
-														<?php }?>>
+														<?php }?>
+														<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 													<?php }?>
 												</td>
 											</tr>
 										<?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_0_saved_local_item;
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_local_item;
 }
 }
-if ($__foreach_foo_0_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_0_saved_item;
+if ($__foreach_foo_2_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_item;
 }
 ?>
 										<?php }?>
@@ -217,17 +315,41 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_0_saved_item;
 									<a 
 										type="button" 
 										class="btn btn-md" 
-										<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['headId']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+										<?php
+$_from = $_smarty_tpl->tpl_vars['headId']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_fooo_5_saved_item = isset($_smarty_tpl->tpl_vars['fooo']) ? $_smarty_tpl->tpl_vars['fooo'] : false;
+$_smarty_tpl->tpl_vars['fooo'] = new Smarty_Variable();
+$__foreach_fooo_5_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_fooo_5_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
+$__foreach_fooo_5_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
+?>
+										<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 										data-toggle="modal" 
 										data-countselect="<?php echo $_smarty_tpl->tpl_vars['countArrayEmployeeNamesForDepartmentForSelect']->value;?>
 " 
 										data-target="#timeDistModal" 
+										<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>
 										<?php }?>
+										<?php
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_5_saved_local_item;
+}
+}
+if ($__foreach_fooo_5_saved_item) {
+$_smarty_tpl->tpl_vars['fooo'] = $__foreach_fooo_5_saved_item;
+}
+?>
 										title="Добавить Распределение Времени"
-										<?php if ($_smarty_tpl->tpl_vars['headId']->value != $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+										<?php if ($_smarty_tpl->tpl_vars['accessJ']->value != 1) {?>
 										<?php echo $_smarty_tpl->tpl_vars['access']->value;?>
 
-										<?php }?>>
+										<?php }?>
+										<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 									<?php }?>
@@ -269,12 +391,12 @@ $_from = $_smarty_tpl->tpl_vars['arrayDepartmentNamesForSelect']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_1_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$__foreach_foo_6_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_1_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_1_total) {
+$__foreach_foo_6_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_6_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_1_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+$__foreach_foo_6_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 ?>
 												
 												<option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['department_id'];?>
@@ -282,11 +404,11 @@ $__foreach_foo_1_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 "><?php echo $_smarty_tpl->tpl_vars['foo']->value['department_name'];?>
 </option>
 												<?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_local_item;
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_6_saved_local_item;
 }
 }
-if ($__foreach_foo_1_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_item;
+if ($__foreach_foo_6_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_6_saved_item;
 }
 ?>
 											</select>
@@ -544,39 +666,39 @@ $_from = $_smarty_tpl->tpl_vars['arrayEmployeeNamesForDepartmentForSelect']->val
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_2_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$__foreach_foo_7_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_2_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_2_total) {
+$__foreach_foo_7_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_7_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_2_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+$__foreach_foo_7_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 ?><option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
 </option><?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_local_item;
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_7_saved_local_item;
 }
 }
-if ($__foreach_foo_2_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_item;
+if ($__foreach_foo_7_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_7_saved_item;
 }
 $_from = $_smarty_tpl->tpl_vars['arrayEmployeeNamesNotForDepartmentForSelect']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_3_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$__foreach_foo_8_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_3_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_3_total) {
+$__foreach_foo_8_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_8_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_3_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+$__foreach_foo_8_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 ?><option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
 </option><?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_local_item;
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_8_saved_local_item;
 }
 }
-if ($__foreach_foo_3_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_item;
+if ($__foreach_foo_8_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_8_saved_item;
 }
 ?></select>'); 
 						document.getElementById('TimeDistr').value = null;
@@ -643,13 +765,15 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_item;
 			<?php echo '<script'; ?>
 >
 				$(function () {
-					$('#project').DataTable({
+					$('#projectPro').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

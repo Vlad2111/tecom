@@ -79,7 +79,7 @@ CREATE TABLE "Head_departments" (
     date timestamp without time zone,
     employee_id integer,
     department_id integer,
-    CONSTRAINT date_department_id_pk PRIMARY KEY (date, department_id),
+    CONSTRAINT date_employee_department_id_pk PRIMARY KEY (date, employee_id, department_id),
     CONSTRAINT employee_id_date_vk FOREIGN KEY (date, employee_id) REFERENCES "Employee"(date, employee_id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT department_id_date_vk FOREIGN KEY (date, department_id) REFERENCES "Departments"(date, department_id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE
 );

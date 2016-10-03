@@ -21,7 +21,7 @@
 									<h3 class="box-title" style="font-size:23px">Список Проектов</h3>	
 								</div>
 								<div class="box-body">
-									<table id="project" class="table table-bordered table-striped">
+									<table id="projectList" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>Название</th>
@@ -64,18 +64,23 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
-														{if $access == null || $headId == $foo.department_id}
+														{$accessJ = 0}
+														{foreach from=$headId item=fooo}
+														{if $access == null || $fooo == $foo.department_id}
 														data-toggle="modal" 
 														data-editid="{$foo.project_id}" 
 														data-lastname="{$foo.project_name}" 
 														data-departmentid="{$foo.department_id}" 
 														data-countselect="{$countArrayDepartmentNamesForSelect}" 
 														data-target="#projectModal" 
+														{$accessJ = 1}
 														{/if}
+														{/foreach}
 														title="Редактировать Данные Проекта"
-														{if $headId != $foo.department_id}
+														{if $accessJ != 1}
 														{$access}
-														{/if}>
+														{/if}
+														{$accessJ = 0}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 													{/if}
@@ -85,16 +90,20 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
-														{if $access == null || $headId == $foo.department_id}
+														{foreach from=$headId item=fooo}
+														{if $access == null || $fooo == $foo.department_id}
 														data-toggle="modal" 
 														data-projectid="{$foo.project_id}" 
 														data-projectname="{$foo.project_name}" 
 														data-target="#removeModal" 
+														{$accessJ = 1}
 														{/if}
+														{/foreach}
 														title="Удалить Данные Проекта"
-														{if $headId != $foo.department_id}
+														{if $accessJ != 1}
 														{$access}
-														{/if}>
+														{/if}
+														{$accessJ = 0}>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 													{/if}
@@ -305,13 +314,15 @@
 			</script>
 			<script>
 				$(function () {
-					$('#project').DataTable({
+					$('#projectList').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

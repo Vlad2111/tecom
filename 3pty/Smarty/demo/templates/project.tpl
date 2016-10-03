@@ -23,29 +23,38 @@
 										<a 
 											type="button" 
 											class="btn btn-md"
-											{if $access == null || $headId == $departmentId}										
+											{$accessJ = 0}
+											{foreach from=$headId item=fooo}
+											{if $accessPro == null || $fooo == $departmentId}
 											data-toggle="modal" 
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#projectModal" 
+											{$accessJ = 1}
 											{/if}
+											{/foreach}
 											title="Редактировать Данные Проекта"
-											{if $headId != $departmentId}
+											{if $accessJ != 1}
 											{$access}
-											{/if}>
+											{/if}
+											{$accessJ = 0}>
 											<i class="glyphicon glyphicon-pencil"></i>
 										</a>
 										<a 
 											type="button" 
 											class="btn btn-md" 
-											{if $access == null || $headId == $departmentId}
+											{foreach from=$headId item=fooo}
+											{if $accessPro == null || $fooo == $departmentId}
 											data-toggle="modal"  
 											data-target="#removeModalPro" 
+											{$accessJ = 1}
 											{/if}
+											{/foreach}
 											title="Удалить Данные Проекта"
-											{if $headId != $departmentId}
+											{if $accessJ != 1}
 											{$access}
-											{/if}>
+											{/if}
+											{$accessJ = 0}>
 											<i class="glyphicon glyphicon-trash"></i>
 										</a>
 										{/if}
@@ -53,7 +62,7 @@
 									<p>(Отдел: <b>{$departmentName}</b>)</p>
 								</div>
 								<div class="box-body">
-									<table id="project" class="table table-bordered table-striped">
+									<table id="projectPro" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>ФИО</th>
@@ -99,17 +108,21 @@
 													<a 
 														type="button" 
 														class="btn btn-md" 
-														{if $access == null || $headId == $departmentId}
+														{foreach from=$headId item=fooo}
+														{if $accessPro == null || $fooo == $departmentId}
 														data-toggle="modal" 
 														data-lasttime="{$foo.time}" 
 														data-employeeid="{$foo.employee_id}" 
 														data-employeename="{$foo.user_name}" 
 														data-target="#timeDistModal" 
+														{$accessJ = 1}
 														{/if}
+														{/foreach}
 														title="Редактировать Данные Распределения Времени"
-														{if $headId != $departmentId}
+														{if $accessJ != 1}
 														{$access}
-														{/if}>
+														{/if}
+														{$accessJ = 0}>
 														<i class="glyphicon glyphicon-pencil"></i>
 													</a>
 													{/if}
@@ -119,17 +132,21 @@
 													<a 
 														type="button" 
 														class="btn btn-md"
-														{if $access == null || $headId == $departmentId}
+														{foreach from=$headId item=fooo}
+														{if $accessPro == null || $fooo == $departmentId}
 														data-toggle="modal"  
 														data-projectname="{$projectName}" 
 														data-employeeid="{$foo.employee_id}" 
 														data-employeename="{$foo.user_name}"
 														data-target="#removeModalTime" 
+														{$accessJ = 1}
 														{/if}
+														{/foreach}
 														title="Удалить Данные Распределения Времени"
-														{if $headId != $departmentId}
+														{if $accessJ != 1}
 														{$access}
-														{/if}>
+														{/if}
+														{$accessJ = 0}>
 														<i class="glyphicon glyphicon-trash"></i>
 													</a>
 													{/if}
@@ -143,15 +160,19 @@
 									<a 
 										type="button" 
 										class="btn btn-md" 
-										{if $access == null || $headId == $departmentId}
+										{foreach from=$headId item=fooo}
+										{if $accessPro == null || $fooo == $departmentId}
 										data-toggle="modal" 
 										data-countselect="{$countArrayEmployeeNamesForDepartmentForSelect}" 
 										data-target="#timeDistModal" 
+										{$accessJ = 1}
 										{/if}
+										{/foreach}
 										title="Добавить Распределение Времени"
-										{if $headId != $departmentId}
+										{if $accessJ != 1}
 										{$access}
-										{/if}>
+										{/if}
+										{$accessJ = 0}>
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 									{/if}
@@ -461,13 +482,15 @@
 			</script>
 			<script>
 				$(function () {
-					$('#project').DataTable({
+					$('#projectPro').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

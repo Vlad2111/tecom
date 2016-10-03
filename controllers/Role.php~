@@ -73,9 +73,7 @@ Class Controller_Role Extends Controller_Base {
 		$date = $this->getDate();
 		$this->postgreSQL->newRole($_GET['employeeId'], $_GET['roleId']);
 		if($_GET['roleId']=='1'){
-			foreach($_GET['headDepartmentId'] as $headDepartmentId){
-				$this->postgreSQL->newHeadDepartment($date, $_GET['employeeId'], $headDepartmentId);
-			}
+			$this->postgreSQL->newHeadDepartment($date, $_GET['employeeId'], $_GET['headDepartmentId']);
 		}
 		$this->viewRole();
 	}
@@ -95,9 +93,7 @@ Class Controller_Role Extends Controller_Base {
 		
 		if(($_GET['lastHeadDepartmentId']!=null)AND($_GET['roleId']=='1')){
 			$this->postgreSQL->deleteHeadDepartment($date, $_GET['employeeId']);
-			foreach($_GET['headDepartmentId'] as $headDepartmentId){
-				$this->postgreSQL->newHeadDepartment($date, $_GET['employeeId'], $headDepartmentId);
-			}
+			$this->postgreSQL->changeHeadDepartment($date, $_GET['employeeId'], $_GET['lastHeadDepartmentId'], $_GET['headDepartmentId']);
 		}
 		
 		$this->postgreSQL->changeRole($_GET['employeeId'], $_GET['roleId']);

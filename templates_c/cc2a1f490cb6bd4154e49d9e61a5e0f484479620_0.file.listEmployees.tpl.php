@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-22 18:18:47
+/* Smarty version 3.1.28, created on 2016-10-03 14:20:16
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listEmployees.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e3f657d9b085_67394449',
+  'unifunc' => 'content_57f23ef0f29036_32595789',
   'file_dependency' => 
   array (
     'cc2a1f490cb6bd4154e49d9e61a5e0f484479620' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listEmployees.tpl',
-      1 => 1474556300,
+      1 => 1474972551,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e3f657d9b085_67394449 ($_smarty_tpl) {
+function content_57f23ef0f29036_32595789 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +50,7 @@ function content_57e3f657d9b085_67394449 ($_smarty_tpl) {
 									<h3 class="box-title" style="font-size:23px">Список Сотрудников</h3>	
 								</div>
 								<div class="box-body">
-									<table id="employee" class="table table-bordered table-striped">
+									<table id="employeeList" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>Фамилия и Имя</th>
@@ -464,13 +464,15 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_item;
 			<?php echo '<script'; ?>
 >
 				$(function () {
-					$('#employee').DataTable({
+					$('#employeeList').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

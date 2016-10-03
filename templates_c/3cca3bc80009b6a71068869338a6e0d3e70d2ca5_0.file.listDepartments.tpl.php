@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-22 18:18:45
+/* Smarty version 3.1.28, created on 2016-10-03 14:30:45
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listDepartments.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e3f65553cfe9_93665336',
+  'unifunc' => 'content_57f24165ddbae9_82257291',
   'file_dependency' => 
   array (
     '3cca3bc80009b6a71068869338a6e0d3e70d2ca5' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/listDepartments.tpl',
-      1 => 1474556602,
+      1 => 1474972532,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e3f65553cfe9_93665336 ($_smarty_tpl) {
+function content_57f24165ddbae9_82257291 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +49,7 @@ function content_57e3f65553cfe9_93665336 ($_smarty_tpl) {
 									<h3 class="box-title" style="font-size:23px">Список Отделов</h3>	
 								</div>
 								<div class="box-body">
-									<table id="department" class="table table-bordered table-striped">
+									<table id="departmentList" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>Название</th>
@@ -331,13 +331,15 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_0_saved_item;
 			<?php echo '<script'; ?>
 >
 				$(function () {
-					$('#department').DataTable({
+					$('#departmentList').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

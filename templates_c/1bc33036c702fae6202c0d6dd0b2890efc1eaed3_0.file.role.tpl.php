@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-22 18:18:42
+/* Smarty version 3.1.28, created on 2016-10-03 14:30:33
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/role.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57e3f6525a16e5_22366530',
+  'unifunc' => 'content_57f24159b45d73_92862368',
   'file_dependency' => 
   array (
     '1bc33036c702fae6202c0d6dd0b2890efc1eaed3' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/role.tpl',
-      1 => 1474556619,
+      1 => 1475493878,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57e3f6525a16e5_22366530 ($_smarty_tpl) {
+function content_57f24159b45d73_92862368 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,7 +56,9 @@ function content_57e3f6525a16e5_22366530 ($_smarty_tpl) {
 											</tr>
 										</thead>
 										<tbody>
-										<?php if ($_smarty_tpl->tpl_vars['arrayEmployeeRoleNamesAndId']->value != null) {?>
+										<?php if ($_smarty_tpl->tpl_vars['arrayEmployeeRoleNamesAndId']->value != null) {
+$_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'i', 0);?>
 										<?php
 $_from = $_smarty_tpl->tpl_vars['arrayEmployeeRoleNamesAndId']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -75,88 +77,171 @@ $__foreach_foo_0_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 </td>
 												<td><?php echo $_smarty_tpl->tpl_vars['foo']->value['department_name'];?>
 </td>
-												<?php if ($_smarty_tpl->tpl_vars['foo']->value['head']['department_id'] != null) {?>
-												<td><?php echo $_smarty_tpl->tpl_vars['foo']->value['role_name'];?>
-: <?php echo $_smarty_tpl->tpl_vars['foo']->value['head']['department_name'];?>
-</td>
-												<td>
-													<a 
-														type="button" 
-														class="btn btn-md" 
-														data-toggle="modal" 
-														data-lastroleid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['role_id'];?>
+												<?php if ($_smarty_tpl->tpl_vars['foo']->value['head'][0]['department_id'] != null) {?>
+													<td>
+													<?php if ($_smarty_tpl->tpl_vars['foo']->value['head'][1]['department_name'] == null) {
+echo $_smarty_tpl->tpl_vars['foo']->value['role_name'];?>
+: <?php echo $_smarty_tpl->tpl_vars['foo']->value['head'][0]['department_name'];
+}?>
+													<?php if ($_smarty_tpl->tpl_vars['foo']->value['head'][1]['department_name'] != null) {?>Глава Отделов: 
+														<?php
+$_from = $_smarty_tpl->tpl_vars['foo']->value['head'];
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_foo1_1_saved_item = isset($_smarty_tpl->tpl_vars['foo1']) ? $_smarty_tpl->tpl_vars['foo1'] : false;
+$_smarty_tpl->tpl_vars['foo1'] = new Smarty_Variable();
+$__foreach_foo1_1_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo1_1_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['foo1']->value) {
+$__foreach_foo1_1_saved_local_item = $_smarty_tpl->tpl_vars['foo1'];
+?> 
+
+															<?php if ($_smarty_tpl->tpl_vars['foo1']->value['department_id'] != $_smarty_tpl->tpl_vars['foo']->value['head'][0]['department_id']) {?>, <?php }?>
+															<b><u><?php echo $_smarty_tpl->tpl_vars['foo1']->value['department_name'];?>
+</b></u> 
+														<?php
+$_smarty_tpl->tpl_vars['foo1'] = $__foreach_foo1_1_saved_local_item;
+}
+}
+if ($__foreach_foo1_1_saved_item) {
+$_smarty_tpl->tpl_vars['foo1'] = $__foreach_foo1_1_saved_item;
+}
+?>
+													<?php }?>
+													</td>
+													<td>
+														<a 
+															type="button" 
+															class="btn btn-md" 
+															data-toggle="modal" 
+															data-lastroleid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['role_id'];?>
 " 
-														data-lastheadid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['head']['department_id'];?>
+															<?php if ($_smarty_tpl->tpl_vars['foo']->value['head'][1]['department_name'] == null) {?>
+															data-lastheadid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['head'][0]['department_id'];?>
+" <?php }?>
+															<?php if ($_smarty_tpl->tpl_vars['foo']->value['head'][1]['department_name'] != null) {?>
+															<?php $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'i', 0);?>
+															<?php
+$_from = $_smarty_tpl->tpl_vars['foo']->value['head'];
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_foo1_2_saved_item = isset($_smarty_tpl->tpl_vars['foo1']) ? $_smarty_tpl->tpl_vars['foo1'] : false;
+$_smarty_tpl->tpl_vars['foo1'] = new Smarty_Variable();
+$__foreach_foo1_2_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo1_2_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['foo1']->value) {
+$__foreach_foo1_2_saved_local_item = $_smarty_tpl->tpl_vars['foo1'];
+?> <?php $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable($_smarty_tpl->tpl_vars['i']->value+1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'i', 0);?>
+															data-lastheadid<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+="<?php echo $_smarty_tpl->tpl_vars['foo1']->value['department_id'];?>
+" <?php
+$_smarty_tpl->tpl_vars['foo1'] = $__foreach_foo1_2_saved_local_item;
+}
+}
+if ($__foreach_foo1_2_saved_item) {
+$_smarty_tpl->tpl_vars['foo1'] = $__foreach_foo1_2_saved_item;
+}
+}?>
+															data-countselectrole="<?php echo $_smarty_tpl->tpl_vars['countArrayRoleDefForSelect']->value;?>
 " 
-														data-countselectrole="<?php echo $_smarty_tpl->tpl_vars['countArrayRoleDefForSelect']->value;?>
-" 
-														data-countselectdep="<?php echo $_smarty_tpl->tpl_vars['countArrayDepartmentNamesForSelect']->value;?>
+															data-countselectdep="<?php echo $_smarty_tpl->tpl_vars['countArrayDepartmentNamesForSelect']->value;?>
 "
-														data-employeeid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
+															data-employeeid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
 " 
-														data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
+															data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
 " 
-														data-target="#RoleModal" 
-														title="Редактировать Роль Сотрудника">
-														<i class="glyphicon glyphicon-pencil"></i>
-													</a>
-												</td>
-												<td>
-													<a 
-														type="button" 
-														class="btn btn-md" 
-														data-toggle="modal"  
-														data-employeeid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
+															data-target="#RoleModal" 
+															title="Редактировать Роль Сотрудника">
+															<i class="glyphicon glyphicon-pencil"></i>
+														</a>
+													</td>
+													<td>
+														<a 
+															type="button" 
+															class="btn btn-md" 
+															data-toggle="modal"  
+															data-employeeid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
 " 
-														data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
+															data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
 " 
-														data-rolename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['role_name'];?>
+															data-rolename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['role_name'];?>
 " 
-														data-target="#removeModal"
-														data-lastheadid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['head']['department_id'];?>
-" 
-														title="Удалить Роль Сотрудника">
-														<i class="glyphicon glyphicon-trash"></i>
-													</a>
-												</td>
+															data-target="#removeModal"
+															<?php if ($_smarty_tpl->tpl_vars['foo']->value['head'][1]['department_name'] == null) {?>
+															data-lastheadid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['head'][0]['department_id'];?>
+" <?php }?>
+															<?php if ($_smarty_tpl->tpl_vars['foo']->value['head'][1]['department_name'] != null) {?>
+															<?php $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(0, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'i', 0);?>
+															<?php
+$_from = $_smarty_tpl->tpl_vars['foo']->value['head'];
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_foo1_3_saved_item = isset($_smarty_tpl->tpl_vars['foo1']) ? $_smarty_tpl->tpl_vars['foo1'] : false;
+$_smarty_tpl->tpl_vars['foo1'] = new Smarty_Variable();
+$__foreach_foo1_3_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo1_3_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['foo1']->value) {
+$__foreach_foo1_3_saved_local_item = $_smarty_tpl->tpl_vars['foo1'];
+?> <?php $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable($_smarty_tpl->tpl_vars['i']->value+1, null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'i', 0);?>
+															data-lastheadid<?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+="<?php echo $_smarty_tpl->tpl_vars['foo1']->value['department_name'];?>
+" <?php
+$_smarty_tpl->tpl_vars['foo1'] = $__foreach_foo1_3_saved_local_item;
+}
+}
+if ($__foreach_foo1_3_saved_item) {
+$_smarty_tpl->tpl_vars['foo1'] = $__foreach_foo1_3_saved_item;
+}
+}?>
+															title="Удалить Роль Сотрудника">
+															<i class="glyphicon glyphicon-trash"></i>
+														</a>
+													</td>
 												<?php }?>
-												<?php if ($_smarty_tpl->tpl_vars['foo']->value['head']['department_name'] == null) {?>
-												<td><?php echo $_smarty_tpl->tpl_vars['foo']->value['role_name'];?>
+												<?php if ($_smarty_tpl->tpl_vars['foo']->value['head'][0]['department_name'] == null) {?>
+													<td><?php echo $_smarty_tpl->tpl_vars['foo']->value['role_name'];?>
 </td>
-												<td>
-													<a 
-														type="button" 
-														class="btn btn-md" 
-														data-toggle="modal" 
-														data-lastroleid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['role_id'];?>
+													<td>
+														<a 
+															type="button" 
+															class="btn btn-md" 
+															data-toggle="modal" 
+															data-lastroleid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['role_id'];?>
 " 
-														data-countselectrole="<?php echo $_smarty_tpl->tpl_vars['countArrayRoleDefForSelect']->value;?>
+															data-countselectrole="<?php echo $_smarty_tpl->tpl_vars['countArrayRoleDefForSelect']->value;?>
 " 
-														data-employeeid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
+															data-employeeid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
 " 
-														data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
+															data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
 " 
-														data-target="#RoleModal" 
-														title="Редактировать Роль Сотрудника">
-														<i class="glyphicon glyphicon-pencil"></i>
-													</a>
-												</td>
-												<td>
-													<a 
-														type="button" 
-														class="btn btn-md" 
-														data-toggle="modal"  
-														data-employeeid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
+															data-target="#RoleModal" 
+															title="Редактировать Роль Сотрудника">
+															<i class="glyphicon glyphicon-pencil"></i>
+														</a>
+													</td>
+													<td>
+														<a 
+															type="button" 
+															class="btn btn-md" 
+															data-toggle="modal"  
+															data-employeeid="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
 " 
-														data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
+															data-employeename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
 " 
-														data-rolename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['role_name'];?>
+															data-rolename="<?php echo $_smarty_tpl->tpl_vars['foo']->value['role_name'];?>
 " 
-														data-target="#removeModal" 
-														title="Удалить Роль Сотрудника">
-														<i class="glyphicon glyphicon-trash"></i>
-													</a>
-												</td>
+															data-target="#removeModal" 
+															title="Удалить Роль Сотрудника">
+															<i class="glyphicon glyphicon-trash"></i>
+														</a>
+													</td>
 												<?php }?>
 											</tr>
 										<?php
@@ -187,7 +272,7 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_0_saved_item;
 					</div>
 					<div class="modal fade" id="RoleModal" role="dialog" aria-labelledby="RoleModalLabel">
 						<div class="modal-dialog" role="document">
-							<div class="modal-content">
+							<div class="modal-content" style="z-index:1000;">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
@@ -211,28 +296,28 @@ $_from = $_smarty_tpl->tpl_vars['arrayRoleDefForSelect']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_1_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$__foreach_foo_4_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_1_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_1_total) {
+$__foreach_foo_4_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_4_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_1_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+$__foreach_foo_4_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 ?>
 												
 												<option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['role_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['foo']->value['role_name'];?>
 </option>
 												<?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_local_item;
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_4_saved_local_item;
 }
 }
-if ($__foreach_foo_1_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_item;
+if ($__foreach_foo_4_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_4_saved_item;
 }
 ?>
 											</select>
 										</div>
-										<div class="form-group" id="department"></div>
+										<div class="form-group" id="department" style="z-index:2000;"></div>
 										<div class="form-group" id="headDepartment"></div>
 									</div>
 									<div class="modal-footer">
@@ -292,7 +377,12 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_1_saved_item;
 					var button = $(event.relatedTarget);
 					var modal = $(this);
 					var lastRoleId = button.data('lastroleid');
-					var lastHeadId = button.data('lastheadid');
+					var countI = <?php echo $_smarty_tpl->tpl_vars['i']->value;?>
+;
+					var lastHeadId = [];
+					for (var i = 1; i <= countI; i++) {
+						lastHeadId[i] = button.data('lastheadid'+i);
+					}
 					var employeeName = button.data('employeename');
 					var employeeId = button.data('employeeid');
 					var countSelectRole = button.data('countselectrole');
@@ -307,20 +397,20 @@ $_from = $_smarty_tpl->tpl_vars['arrayEmployeeNamesForSelect']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_2_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$__foreach_foo_5_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_2_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_2_total) {
+$__foreach_foo_5_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_5_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_2_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+$__foreach_foo_5_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 ?><option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['employee_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['foo']->value['user_name'];?>
 </option><?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_local_item;
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_5_saved_local_item;
 }
 }
-if ($__foreach_foo_2_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_item;
+if ($__foreach_foo_5_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_5_saved_item;
 }
 ?></select>'); 
 						var n = document.getElementById('selectIdEmp').options.selectedIndex;
@@ -335,35 +425,36 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_2_saved_item;
 						document.getElementById('route').value = 'Role/editRole';
 						$('#employee').html('<label>Пользователь:<\/label><input type="text" class="form-control" id="employeeName" disabled><input type="hidden" class="form-control" name="employeeId" id="employeeId" value="">'); 
 						document.getElementById('employeeName').value = employeeName;
-						if(lastHeadId!=null){
-							document.getElementById('lastHeadId').value = lastHeadId;
-							$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId" class="form-control select2" id="selectIdHead" style="width: 100%;" required="required"><?php
+						if(lastHeadId[1]!=null){
+							document.getElementById('lastHeadId').value = lastHeadId[1];
+							$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId[]" multiple="multiple" class="form-control select2" id="selectIdHead" style="width: 100%;" required="required"><?php
 $_from = $_smarty_tpl->tpl_vars['arrayDepartmentNamesForSelect']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_3_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$__foreach_foo_6_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_3_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_3_total) {
+$__foreach_foo_6_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_6_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_3_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+$__foreach_foo_6_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 ?><option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['department_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['foo']->value['department_name'];?>
 </option><?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_local_item;
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_6_saved_local_item;
 }
 }
-if ($__foreach_foo_3_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_item;
+if ($__foreach_foo_6_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_6_saved_item;
 }
 ?></select>'); 
 							for (var i = 0; i < countSelectDep; i++) {
-							var val = document.getElementById('selectIdHead').options[i].value;
-								if (val == lastHeadId){
-									document.getElementById('selectIdHead').options[i].selected=true;
-								}else{
-									document.getElementById('selectIdHead').options[i].selected=false;
+								var val = document.getElementById('selectIdHead').options[i].value;
+								document.getElementById('selectIdHead').options[i].selected=false;
+								for (var j = 1; j <= countI; j++) {
+									if (val == lastHeadId[j]){
+										document.getElementById('selectIdHead').options[i].selected=true;
+									}
 								}
 							}
 						}else{
@@ -393,25 +484,25 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_3_saved_item;
 					var n = document.getElementById('selectIdRole').options.selectedIndex;
 					var val = document.getElementById('selectIdRole').options[n].value;
 					if (val == '1'){
-						$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId" class="form-control select2" id="selectIdHead" style="width: 100%;" required="required"><?php
+						$('#department').html('<label>Отдел:<\/label><select name="headDepartmentId[]" multiple="multiple" class="form-control select2" id="selectIdHead" style="width: 100%;" required="required"><?php
 $_from = $_smarty_tpl->tpl_vars['arrayDepartmentNamesForSelect']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_foo_4_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
+$__foreach_foo_7_saved_item = isset($_smarty_tpl->tpl_vars['foo']) ? $_smarty_tpl->tpl_vars['foo'] : false;
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable();
-$__foreach_foo_4_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_foo_4_total) {
+$__foreach_foo_7_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_foo_7_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->value) {
-$__foreach_foo_4_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
+$__foreach_foo_7_saved_local_item = $_smarty_tpl->tpl_vars['foo'];
 ?><option value="<?php echo $_smarty_tpl->tpl_vars['foo']->value['department_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['foo']->value['department_name'];?>
 </option><?php
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_4_saved_local_item;
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_7_saved_local_item;
 }
 }
-if ($__foreach_foo_4_saved_item) {
-$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_4_saved_item;
+if ($__foreach_foo_7_saved_item) {
+$_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_7_saved_item;
 }
 ?></select>'); 
 					}else{
@@ -472,6 +563,8 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_4_saved_item;
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

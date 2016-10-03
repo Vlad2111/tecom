@@ -140,11 +140,11 @@ Class Controller_List Extends Controller_Base {
 	function cloneData() {
 		if (($_GET['dateFrom']!=null)AND($_GET['dateTo']!=null)){
 			$dayMonthYear = explode('/', $_GET['dateFrom']);
-			$dateFrom = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'],
+			$dateFrom = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'],
 					new DateTimeZone('UTC'));
-					
+
 			$dayMonthYear = explode('/', $_GET['dateTo']);
-			$dateTo = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['2'],
+			$dateTo = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'],
 					new DateTimeZone('UTC'));
 					
 			$this->postgreSQL->cloneModelData($dateFrom, $dateTo);

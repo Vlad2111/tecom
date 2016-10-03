@@ -6,7 +6,7 @@
 		<title>Tecomgroup | {$title}</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	</head>
-	<body class="hold-transition skin-blue sidebar-mini">
+	<body style="height:100%;" class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
 			{include file='3pty/Smarty/demo/templates/header.tpl'}
 			<div class="content-wrapper">
@@ -54,7 +54,7 @@
 										<h3 class="box-title" style="font-size:20px">Сотрудники</h3>	
 									</div>
 									<div class="box-body">
-										<table id="employee" class="table table-bordered table-striped">
+										<table id="employeeDep" class="table table-bordered table-striped">
 											<thead>
 												<tr>
 													<th style="width: 5px"></th>
@@ -150,7 +150,7 @@
 										<h3 class="box-title" style="font-size:20px">Проекты</h3>	
 									</div>
 									<div class="box-body">
-										<table id="project" class="table table-bordered table-striped">
+										<table id="projectDep" class="table table-bordered table-striped">
 											<thead>
 												<tr>
 													<th>Название</th>
@@ -180,18 +180,23 @@
 														<a 
 															type="button" 
 															class="btn btn-md" 
-															{if $accessPro == null || $headId == $departmentId}
+															{$accesJ = 0}
+															{foreach from=$headId item=fooo}
+															{if $accessPro == null || $fooo == $departmentId}
 															data-toggle="modal" 
 															data-editid="{$foo.project_id}" 
 															data-lastname="{$foo.project_name}" 
 															data-departmentid="{$departmentId}" 
 															data-countselect="{$countArrayDepartmentNamesForSelect}" 
 															data-target="#projectModal" 
+															{$accesJ = 1}
 															{/if}
 															title="Редактировать Данные Проекта"
-															{if $headId != $departmentId}
+															{if $accesJ != 1}
 															{$accessPro}
-															{/if}>
+															{/if}
+															{/foreach}
+															{$accesJ = 0}>
 															<i class="glyphicon glyphicon-pencil"></i>
 														</a>
 														{/if}
@@ -201,16 +206,21 @@
 														<a 
 															type="button" 
 															class="btn btn-md" 
-															{if $accessPro == null || $headId == $departmentId}
+															{foreach from=$headId item=fooo}
+															{if $accessPro == null || $fooo == $departmentId}
 															data-toggle="modal" 
 															data-projectid="{$foo.project_id}" 
 															data-projectname="{$foo.project_name}" 
 															data-target="#removeModalPro" 
+															{$accesJ = 1}
 															{/if}
 															title="Удалить Данные Проекта"
-															{if $headId != $departmentId}
+															{if $fooo != $departmentId}
+															{if $accesJ != 1}
 															{$accessPro}
-															{/if}>
+															{/if}
+															{/foreach}
+															{$accesJ = 0}>
 															<i class="glyphicon glyphicon-trash"></i>
 														</a>
 														{/if}
@@ -224,16 +234,20 @@
 										<a 
 											type="button" 
 											class="btn btn-md" 
-											{if $accessPro == null || $headId == $departmentId}
+											{foreach from=$headId item=fooo}
+											{if $accessPro == null || $fooo == $departmentId}
 											data-toggle="modal" 
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#projectModal" 
+											{$accesJ = 1}
 											{/if}
 											title="Добавить Проект"
-											{if $headId != $departmentId}
+											{if $accesJ != 1}
 											{$accessPro}
-											{/if}>
+											{/if}
+											{/foreach}
+											{$accesJ = 0}>
 											<i class="glyphicon glyphicon-plus"></i>
 										</a>
 										{/if}
@@ -683,13 +697,15 @@
 			</script>
 			<script>
 				$(function () {
-					$('#employee').DataTable({
+					$('#employeeDep').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",
@@ -707,13 +723,15 @@
 							"search": "Поиск:"
 						}
 					});
-					$('#project').DataTable({
+					$('#projectDep').DataTable({
 						"paging": true,
 						"lengthChange": true,
 						"searching": true,
 						"ordering": true,
 						"info": true,
 						"autoWidth": true,
+						"stateSave": true,
+						"stateDuration": -1,
 						"language": {
 							"lengthMenu": "Показать _MENU_ элементов",
 							"zeroRecords": "Ничего не найдено",

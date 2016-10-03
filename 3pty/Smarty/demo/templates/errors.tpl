@@ -65,6 +65,8 @@
 					"ordering": true,
 					"info": true,
 					"autoWidth": true,
+					"stateSave": true,
+					"stateDuration": -1,
 					"language": {
 						"lengthMenu": "Показать _MENU_ элементов",
 						"zeroRecords": "Ничего не найдено",

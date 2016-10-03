@@ -15,12 +15,16 @@ require '3pty/Smarty/demo/layouts/SmartyRepeatVariables.php';
 		/** Переменные для доступа к функционалу ролей. */
 		{
 			if($_GET['roleIdUser']=='0'){
-				$smarty->assign('access', 'disabled');
+				$smarty->assign('accessDep', 'disabled');
+				$smarty->assign('accessPro', 'disabled');
 			}
 			if($_GET['roleIdUser']=='1'){
-				$smarty->assign('access', 'disabled');
+				$smarty->assign('accessDep', 'disabled');
+				$smarty->assign('accessPro', 'disabled');
 			}
-			if($_GET['roleIdUser']=='2'){}
+			if($_GET['roleIdUser']=='2'){
+				$smarty->assign('accessPro', 'disabled');
+			}
 			if($_GET['roleIdUser']=='3'){}
 			if($_GET['roleIdUser']=='4'){}
 		}
@@ -28,16 +32,14 @@ require '3pty/Smarty/demo/layouts/SmartyRepeatVariables.php';
 	}
 }
 
-/** Переменные для отображения списка сотрудников. */
+/** Переменные для отображения информации об отделе. */
 {
-	if($error!=null){
-		$smarty->assign('errorAlert', $error['alert']);
-		$smarty->assign('errorMessage', $error['message']);
-	}
-	$smarty->assign('arrayEmployeeNames', $arrayEmployeeNames);
+	$smarty->assign('departmentName', $departmentName);
+	$smarty->assign('departmentId',	$departmentId);
+	$smarty->assign('arrayEmployeeNamesForDepartment', $arrayEmployeeNamesForDepartment);
+	$smarty->assign('arrayProjectNamesForDepartment', $arrayProjectNamesForDepartment);
 	$smarty->assign('arrayDepartmentNamesForSelect', $arrayDepartmentNames);
 	$smarty->assign('countArrayDepartmentNamesForSelect', count($arrayDepartmentNames));
-	$smarty->assign('status2', 'active');
-	$smarty->assign('title', 'Список Сотрудников');
+	$smarty->assign('title', 'Отдел: '.	$departmentName);
 	$smarty->display($contentPage);
 }
