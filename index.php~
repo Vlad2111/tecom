@@ -1,7 +1,0 @@
-<?php
-error_reporting(E_ERROR);
-
-require_once('autoload/autoload.php');
-		print_r($_GET);
-$router = new Router();
-$router->start();
