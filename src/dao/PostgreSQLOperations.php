@@ -152,6 +152,7 @@ class PostgreSQLOperations
 				}
 			}
 		}
+print_r($employeeNamesAndRoles);
 		return $employeeNamesAndRoles;
 	}
 	

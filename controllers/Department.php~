@@ -191,7 +191,6 @@ Class Controller_Department Extends Controller_Base {
 	/** Добавление проекта. */
 	function newProject(){
 		$date = $this->getDate();
-		rtrim($_GET['newName']);
 		$this->postgreSQL->newProject($date, $_GET['newName'],
 				$_GET['newDepartmwent']);
 		$this->viewDepartment();
@@ -200,16 +199,17 @@ Class Controller_Department Extends Controller_Base {
 	/** Редактирование проекта. */
 	function editProject(){
 		$date = $this->getDate();
-		rtrim($_GET['newName']);
-		$idNameDepartment = explode('*-*', $_GET['newDepartment']);
+		$idNameDepartment = explode('*-*', $_GET['newDepartmwent']);
 		if($idNameDepartment['1']!=null){
 			$departmentId=$idNameDepartment['0'];
 			$departmentName=$idNameDepartment['1'];
 		}else{
-			$departmentId=$_GET['newDepartment'];
+			$departmentId=$_GET['newDepartmwent'];
 		}
 		$this->postgreSQL->changeProjectNameAndDepartmentId($_GET['editId'],
 				$date, $_GET['newName'], $departmentId);
+		$registry['newIdDepForPro']=$departmentId;
+		$registry['newNameDepForPro']=$departmentName;
 		$this->viewDepartment();
 	}
 	

@@ -87,8 +87,14 @@ Class Controller_List Extends Controller_Base {
 				$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'],
 						new DateTimeZone('UTC'));
 			}else{
-				$date = new DateTime();
-				$date->setTimezone(new DateTimeZone('UTC'));
+				if ($_GET['dateTo']!=null){
+					$dayMonthYear = explode('/', $_GET['dateTo']);
+					$date = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'],
+							new DateTimeZone('UTC'));
+				}else{
+					$date = new DateTime();
+					$date->setTimezone(new DateTimeZone('UTC'));
+				}
 			}
 		}
 		return $date;
@@ -142,14 +148,13 @@ Class Controller_List Extends Controller_Base {
 			$dayMonthYear = explode('/', $_GET['dateFrom']);
 			$dateFrom = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'],
 					new DateTimeZone('UTC'));
-			print_r($dayMonthYear);	
+
 			$dayMonthYear = explode('/', $_GET['dateTo']);
 			$dateTo = new DateTime('01.'.$dayMonthYear['0'].'.'.$dayMonthYear['1'],
 					new DateTimeZone('UTC'));
 					
 			$this->postgreSQL->cloneModelData($dateFrom, $dateTo);
 			
-			$this->template->vars('dateTo', $dateTo);
 			$this->viewListDepartment();
 		}
 	}
@@ -158,6 +163,7 @@ Class Controller_List Extends Controller_Base {
 	/** -->Добавление отдела. */
 	function newDepartment(){
 		$date = $this->getDate();
+		rtrim($_GET['newName']);
 		$this->postgreSQL->newDepartment($date, $_GET['newName']);
 		$this->viewListDepartment();
 	}
@@ -165,6 +171,7 @@ Class Controller_List Extends Controller_Base {
 	/** -->Редактирование отдела. */
 	function editDepartment(){
 		$date = $this->getDate();
+		rtrim($_GET['newName']);
 		$this->postgreSQL->changeDepartmentName($_GET['editId'], $date, $_GET['newName']);
 		$this->viewListDepartment();
 	}
@@ -180,6 +187,10 @@ Class Controller_List Extends Controller_Base {
 	/** -->Добавление сотрудника. */
 	function newEmployee(){
 		$date = $this->getDate();
+		rtrim($_GET['newLogin']);
+		rtrim($_GET['nameEmployeeS']);
+		rtrim($_GET['nameEmployeeF']);
+		rtrim($_GET['nameEmployeeM']);
 		$user = $this->checkLoginLdapForEmployee($_GET['newLogin']);
 		$checkUser = $this->getLoginLdapForEmployee($_GET['nameEmployeeS'].' '.$_GET['nameEmployeeF']);
 		if($checkUser != $user){
@@ -197,6 +208,10 @@ Class Controller_List Extends Controller_Base {
 	/** -->Редактирование информации сотрудника. */
 	function editEmployee(){
 		$date = $this->getDate();
+		rtrim($_GET['newLogin']);
+		rtrim($_GET['nameEmployeeS']);
+		rtrim($_GET['nameEmployeeF']);
+		rtrim($_GET['nameEmployeeM']);
 		$user = $this->checkLoginLdapForEmployee($_GET['newLogin']);
 		$checkUser = $this->getLoginLdapForEmployee($_GET['nameEmployeeS'].' '.$_GET['nameEmployeeF']);
 		if(($user != 'error')or($checkUser != 'error')){
@@ -257,6 +272,7 @@ Class Controller_List Extends Controller_Base {
 	/** -->Добавление проекта. */
 	function newProject(){
 		$date = $this->getDate();
+		rtrim($_GET['newName']);
 		$this->postgreSQL->newProject($date, $_GET['newName'], $_GET['newDepartment']);
 		$this->viewListProject();
 	}
@@ -264,6 +280,7 @@ Class Controller_List Extends Controller_Base {
 	/** -->Редактирование проекта. */
 	function editProject(){
 		$date = $this->getDate();
+		rtrim($_GET['newName']);
 		$this->postgreSQL->changeProjectNameAndDepartmentId($_GET['editId'], $date, $_GET['newName'], $_GET['newDepartment']);
 		$this->viewListProject();
 	}

@@ -29,7 +29,7 @@
 											</tr>
 										</thead>
 										<tbody>
-										{if $arrayEmployeeRoleNamesAndId!=null}{$i = 0}
+										{$i = 0}{if $arrayEmployeeRoleNamesAndId!=null}
 										{foreach from=$arrayEmployeeRoleNamesAndId item=foo}
 											
 											<tr>

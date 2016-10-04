@@ -152,6 +152,7 @@ class PostgreSQLOperations
 				}
 			}
 		}
+print_r($employeeNamesAndRoles);
 		return $employeeNamesAndRoles;
 	}
 	
@@ -404,15 +405,16 @@ class PostgreSQLOperations
 	public function cloneModelData(DateTime $datefrom, DateTime $dateto)
 	{
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$datefrom->format("d.m.Y H:i:s"));
-		$datefrom = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$datefrom = new DateTime($convertDate['year']."-".$convertDate['month']."-01",
+					new DateTimeZone('UTC'));
 		$convertDate=date_parse_from_format("d.m.Y H:i:s",$dateto->format("d.m.Y H:i:s"));
-		$dateto = new DateTime($convertDate['year']."-".$convertDate['month']."-01");
+		$dateto = new DateTime($convertDate['year']."-".$convertDate['month']."-01",
+					new DateTimeZone('UTC'));
 
 		/** Возврат строк таблицы отделов. */
 		$result = pg_query_params($this->dbConnect, 'SELECT * FROM "Departments" WHERE '.
 				'date_part(\'epoch\', date_trunc(\'month\', date)) = $1', array($dateto->format("U")));
 		$inspectionData = pg_fetch_all($result);
-print_r($dateto);
 		if (!$inspectionData) {
 			$result = pg_query_params($this->dbConnect, 'SELECT department_id, department_name FROM '.
 					'"Departments" WHERE date_part(\'epoch\', date_trunc(\'month\', date)) = $1', 

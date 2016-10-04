@@ -16,6 +16,9 @@ session_start();
 	for($i=0;$i<$_SESSION['countHeadId'];$i++){
 		$headId[$i]= $_SESSION['headId'.$i];
 	}
+	if($headId == null){
+		$headId[0] = null;
+	}
 	$smarty->assign('headId', $headId);
 	$smarty->assign('roleId', $_SESSION['roleIdUser']);
 }

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-10-03 14:22:42
+/* Smarty version 3.1.28, created on 2016-10-04 13:43:33
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/department.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57f23f828e3bd5_35254601',
+  'unifunc' => 'content_57f387d56f9b93_04407107',
   'file_dependency' => 
   array (
     'be0faf38ae70b56dfedeb6ac460b3f1e362a8e9b' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/department.tpl',
-      1 => 1475490390,
+      1 => 1475577784,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57f23f828e3bd5_35254601 ($_smarty_tpl) {
+function content_57f387d56f9b93_04407107 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -477,7 +477,7 @@ $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'accessJ', 0);?>>
 											<label>Отдел:</label>
 											<select 
 												id="selectIdEmp" 
-												name="newDepartmwent" 
+												name="newDepartment" 
 												class="form-control select2" 
 												style="width: 100%;"
 												required="required">
@@ -552,7 +552,7 @@ $_smarty_tpl->tpl_vars['foo'] = $__foreach_foo_5_saved_item;
 											<label>Отдел:</label>
 											<select 
 												id="selectIdPro" 
-												name="newDepartmwent" 
+												name="newDepartment" 
 												class="form-control select2" 
 												style="width: 100%;"
 												required="required">

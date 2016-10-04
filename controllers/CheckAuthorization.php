@@ -43,11 +43,11 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 				$names = $ldap->getLDAPAccountNamesByPrefix($login);
 				$_SESSION['nameUser'] = $names['0']['sn'].' '.$names['0']['givenName'];
 				$role = $this->postgreSQL->getRoleName($login);
+				$countHeadId = 0;
 				if ($role['0']['role_name'] == "Глава Отдела"){
 					$date = new DateTime();
 					$date->setTimezone(new DateTimeZone('UTC'));
 					$department = $this->postgreSQL->getDepartmentHead($date, $login);
-					$countHeadId = 0;
 					foreach($department as $key=>$dep){
 						if($countHeadId == 0){
 							if(count($department)!=1){

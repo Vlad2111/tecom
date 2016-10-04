@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-10-03 13:56:51
+/* Smarty version 3.1.28, created on 2016-10-04 13:34:22
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/project.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57f2397360f8c0_63178427',
+  'unifunc' => 'content_57f385ae0441e0_69739100',
   'file_dependency' => 
   array (
     '88d4ce891a4328a98b610947cd1b06ba9c4b2f5b' => 
     array (
       0 => '/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/project.tpl',
-      1 => 1475492014,
+      1 => 1475575049,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:3pty/Smarty/demo/templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_57f2397360f8c0_63178427 ($_smarty_tpl) {
+function content_57f385ae0441e0_69739100 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,7 +66,7 @@ if ($__foreach_fooo_0_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
 $__foreach_fooo_0_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
 ?>
-											<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+											<?php if ($_smarty_tpl->tpl_vars['access']->value != 'disabled' || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 											data-toggle="modal" 
 											data-departmentid="<?php echo $_smarty_tpl->tpl_vars['departmentId']->value;?>
 " 
@@ -108,7 +108,7 @@ if ($__foreach_fooo_1_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
 $__foreach_fooo_1_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
 ?>
-											<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+											<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 											data-toggle="modal"  
 											data-target="#removeModalPro" 
 											<?php $_smarty_tpl->tpl_vars['accessJ'] = new Smarty_Variable(1, null);
@@ -220,7 +220,7 @@ if ($__foreach_fooo_3_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
 $__foreach_fooo_3_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
 ?>
-														<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+														<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 														data-toggle="modal" 
 														data-lasttime="<?php echo $_smarty_tpl->tpl_vars['foo']->value['time'];?>
 " 
@@ -268,7 +268,7 @@ if ($__foreach_fooo_4_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
 $__foreach_fooo_4_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
 ?>
-														<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+														<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 														data-toggle="modal"  
 														data-projectname="<?php echo $_smarty_tpl->tpl_vars['projectName']->value;?>
 " 
@@ -327,7 +327,7 @@ if ($__foreach_fooo_5_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['fooo']->value) {
 $__foreach_fooo_5_saved_local_item = $_smarty_tpl->tpl_vars['fooo'];
 ?>
-										<?php if ($_smarty_tpl->tpl_vars['accessPro']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
+										<?php if ($_smarty_tpl->tpl_vars['access']->value == null || $_smarty_tpl->tpl_vars['fooo']->value == $_smarty_tpl->tpl_vars['departmentId']->value) {?>
 										data-toggle="modal" 
 										data-countselect="<?php echo $_smarty_tpl->tpl_vars['countArrayEmployeeNamesForDepartmentForSelect']->value;?>
 " 

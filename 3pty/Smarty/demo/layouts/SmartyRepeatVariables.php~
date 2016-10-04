@@ -13,10 +13,13 @@ session_start();
 {
 	$smarty->assign('name', $_SESSION['nameUser']);
 	$smarty->assign('role', $_SESSION['roleUser']);
-	$smarty->assign('countHeadId', $_SESSION['countHeadId']);
 	for($i=0;$i<$_SESSION['countHeadId'];$i++){
-		$smarty->assign('headId'.$i, $_SESSION['headId'.$i]);
+		$headId[$i]= $_SESSION['headId'.$i];
 	}
+	if($headId == null){
+		$headId[0] = null;
+	}
+	$smarty->assign('headId', $headId);
 	$smarty->assign('roleId', $_SESSION['roleIdUser']);
 }
 /** Переменные для выделения в левом меню активного списка. */

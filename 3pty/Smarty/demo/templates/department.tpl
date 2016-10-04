@@ -308,7 +308,7 @@
 											<label>Отдел:</label>
 											<select 
 												id="selectIdEmp" 
-												name="newDepartmwent" 
+												name="newDepartment" 
 												class="form-control select2" 
 												style="width: 100%;"
 												required="required">
@@ -359,7 +359,7 @@
 											<label>Отдел:</label>
 											<select 
 												id="selectIdPro" 
-												name="newDepartmwent" 
+												name="newDepartment" 
 												class="form-control select2" 
 												style="width: 100%;"
 												required="required">

@@ -51,13 +51,13 @@ Class Controller_CheckAuthorization Extends Controller_Base {
 					foreach($department as $key=>$dep){
 						if($countHeadId == 0){
 							if(count($department)!=1){
-								$role['0']['role_name'] = 'Глава Отделов: <br><p>'.$dep['department_name'].'</p><br>';
+								$role['0']['role_name'] = 'Глава Отделов: <br>'.$dep['department_name'].'<br>';
 							}else{
-								$role['0']['role_name'] = $role['0']['role_name'].': <br><p>'.$dep['department_name'].'</p><br>';
+								$role['0']['role_name'] = $role['0']['role_name'].': <br>'.$dep['department_name'].'<br>';
 							}
 							$_SESSION['headId'.$countHeadId]=$dep['department_id'];
 						}else{
-							$role['0']['role_name'] = $role['0']['role_name'].' <p>'.$dep['department_name'].'</p><br>';
+							$role['0']['role_name'] = $role['0']['role_name'].' '.$dep['department_name'].'<br>';
 							$_SESSION['headId'.$countHeadId]=$dep['department_id'];
 						}
 						$countHeadId = $countHeadId+1;

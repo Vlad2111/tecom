@@ -41,7 +41,7 @@
 													{if $foo.head.1.department_name!=null}Глава Отделов: 
 														{foreach from=$foo.head item=foo1} 
 
-															{if $foo1.department_id != $foo.head.0.department_id} , {/if}
+															{if $foo1.department_id != $foo.head.0.department_id}, {/if}
 															<b><u>{$foo1.department_name}</b></u> 
 														{/foreach}
 													{/if}

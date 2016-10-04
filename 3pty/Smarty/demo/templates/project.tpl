@@ -25,7 +25,7 @@
 											class="btn btn-md"
 											{$accessJ = 0}
 											{foreach from=$headId item=fooo}
-											{if $accessPro == null || $fooo == $departmentId}
+											{if $access != 'disabled' || $fooo == $departmentId}
 											data-toggle="modal" 
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
@@ -44,7 +44,7 @@
 											type="button" 
 											class="btn btn-md" 
 											{foreach from=$headId item=fooo}
-											{if $accessPro == null || $fooo == $departmentId}
+											{if $access == null || $fooo == $departmentId}
 											data-toggle="modal"  
 											data-target="#removeModalPro" 
 											{$accessJ = 1}
@@ -109,7 +109,7 @@
 														type="button" 
 														class="btn btn-md" 
 														{foreach from=$headId item=fooo}
-														{if $accessPro == null || $fooo == $departmentId}
+														{if $access == null || $fooo == $departmentId}
 														data-toggle="modal" 
 														data-lasttime="{$foo.time}" 
 														data-employeeid="{$foo.employee_id}" 
@@ -133,7 +133,7 @@
 														type="button" 
 														class="btn btn-md"
 														{foreach from=$headId item=fooo}
-														{if $accessPro == null || $fooo == $departmentId}
+														{if $access == null || $fooo == $departmentId}
 														data-toggle="modal"  
 														data-projectname="{$projectName}" 
 														data-employeeid="{$foo.employee_id}" 
@@ -161,7 +161,7 @@
 										type="button" 
 										class="btn btn-md" 
 										{foreach from=$headId item=fooo}
-										{if $accessPro == null || $fooo == $departmentId}
+										{if $access == null || $fooo == $departmentId}
 										data-toggle="modal" 
 										data-countselect="{$countArrayEmployeeNamesForDepartmentForSelect}" 
 										data-target="#timeDistModal" 

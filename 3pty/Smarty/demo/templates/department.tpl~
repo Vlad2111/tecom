@@ -180,7 +180,7 @@
 														<a 
 															type="button" 
 															class="btn btn-md" 
-															{$accesJ = 0}
+															{$accessJ = 0}
 															{foreach from=$headId item=fooo}
 															{if $accessPro == null || $fooo == $departmentId}
 															data-toggle="modal" 
@@ -189,14 +189,14 @@
 															data-departmentid="{$departmentId}" 
 															data-countselect="{$countArrayDepartmentNamesForSelect}" 
 															data-target="#projectModal" 
-															{$accesJ = 1}
-															{/if}
-															title="Редактировать Данные Проекта"
-															{if $accesJ != 1}
-															{$accessPro}
+															{$accessJ = 1}
 															{/if}
 															{/foreach}
-															{$accesJ = 0}>
+															title="Редактировать Данные Проекта"
+															{if $accessJ != 1}
+															{$accessPro}
+															{/if}
+															{$accessJ = 0}>
 															<i class="glyphicon glyphicon-pencil"></i>
 														</a>
 														{/if}
@@ -212,15 +212,14 @@
 															data-projectid="{$foo.project_id}" 
 															data-projectname="{$foo.project_name}" 
 															data-target="#removeModalPro" 
-															{$accesJ = 1}
-															{/if}
-															title="Удалить Данные Проекта"
-															{if $fooo != $departmentId}
-															{if $accesJ != 1}
-															{$accessPro}
+															{$accessJ = 1}
 															{/if}
 															{/foreach}
-															{$accesJ = 0}>
+															title="Удалить Данные Проекта"
+															{if $accessJ != 1}
+															{$accessPro}
+															{/if}
+															{$accessJ = 0}>
 															<i class="glyphicon glyphicon-trash"></i>
 														</a>
 														{/if}
@@ -240,14 +239,14 @@
 											data-departmentid="{$departmentId}" 
 											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#projectModal" 
-											{$accesJ = 1}
-											{/if}
-											title="Добавить Проект"
-											{if $accesJ != 1}
-											{$accessPro}
+											{$accessJ = 1}
 											{/if}
 											{/foreach}
-											{$accesJ = 0}>
+											title="Добавить Проект"
+											{if $accessJ != 1}
+											{$accessPro}
+											{/if}
+											{$accessJ = 0}>
 											<i class="glyphicon glyphicon-plus"></i>
 										</a>
 										{/if}

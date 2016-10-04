@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-10-03 14:30:40
+/* Smarty version 3.1.28, created on 2016-10-04 11:55:25
   from "/var/www/hr-timetrack-dev/3pty/Smarty/demo/templates/authorization.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57f241608848e2_80165838',
+  'unifunc' => 'content_57f36e7de1b428_17323585',
   'file_dependency' => 
   array (
     '0b13ad6059975cb177fca8246c3ed4dcfeb433ab' => 
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57f241608848e2_80165838 ($_smarty_tpl) {
+function content_57f36e7de1b428_17323585 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
