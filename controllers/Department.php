@@ -113,7 +113,7 @@ Class Controller_Department Extends Controller_Base {
 		$date = $this->getDate();
 		$user=$this->checkLoginLdapForEmployee();
 		$this->postgreSQL->newEmployee($date, $user['Login'], $user['Name'],
-				$_GET['newDepartmwent']);
+				$_GET['newDepartment']);
 		$this->viewDepartment();
 	}
 	
