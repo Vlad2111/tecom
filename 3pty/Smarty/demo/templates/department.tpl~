@@ -125,26 +125,7 @@
 											{/foreach}
 											{/if}
 											</tbody>
-											<label style="font-weight:lighter;">
-												<input 
-													type="radio" 
-													value="all" 
-													checked 
-													id="checkedPercents1" 
-													name="checkedPercents" 
-													onclick="checkedPercentsFunction(this);"/>
-												Полный список
-											</label>
-											&emsp;&emsp;
-											<label style="font-weight:lighter;">
-												<input 
-													type="radio" 
-													value="notAll" 
-													id="checkedPercents2" 
-													name="checkedPercents" 
-													onclick="checkedPercentsFunction(this);"/>
-												Только сотрудники с не распределенным временем
-											</label>
+											<label style="font-weight:lighter;"><input type="radio" value="all" checked id="checkedPercents1" name="checkedPercents" onclick="checkedPercentsFunction(this);"/>Полный список</label>&emsp;&emsp;<label style="font-weight:lighter;"><input type="radio" value="notAll" id="checkedPercents2" name="checkedPercents" onclick="checkedPercentsFunction(this);"/>Только сотрудники с не распределенным временем</label>
 										</table>
 										{if $status == FALSE}
 										<a 

@@ -26,7 +26,7 @@
 	<body class="hold-transition login-page">
 		<div class="login-box">
 			<div class="login-logo">
-				<p style="font-size:30px; line-height: 1.5em;">Система Учета Времени</br><b style="font-size:40px;">"Текомыч"</b></p>
+				<p style="font-size:30px; line-height: 1.4em;">Система Учета Времени</br><b style="font-size:40px;">"Текомыч"</b></p>
 			</div>
 			<div class="login-box-body">
 				<form action="/index.php?route=CheckAuthorization" method="post">

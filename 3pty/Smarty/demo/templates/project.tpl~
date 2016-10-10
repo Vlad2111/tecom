@@ -59,19 +59,7 @@
 										</a>
 										{/if}
 									</h3>	
-									<p>(Отдел: 
-										<b>
-											<a 
-												href="/index.php
-													?route=Department/viewDepartment
-													&departmentId={$departmentId}
-													&departmentName={$departmentName}
-													&Month={$selectedMonthForGet}
-													&Year={$selectedYearForGet}">
-												{$departmentName}
-											</a>
-										</b>)
-									</p>
+									<p>(Отдел: <b>{$departmentName}</b>)</p>
 								</div>
 								<div class="box-body">
 									<table id="projectPro" class="table table-bordered table-striped">

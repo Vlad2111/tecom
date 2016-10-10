@@ -247,21 +247,6 @@ class PostgreSQLOperations
 					pg_last_error($this->dbConnect));
 		}
 		$employeeNames = pg_fetch_all($result);
-		if($employeeNames!=null){
-			foreach ($employeeNames as $key=>$arr){
-				$result = pg_query_params($this->dbConnect, 'SELECT time FROM "Time_distribution" WHERE '.
-					'date_part(\'epoch\', date_trunc(\'month\', date)) = $1 AND employee_id = $2',
-						array($date->format("U"), $arr['employee_id']));
-				$percentForEmployee = pg_fetch_all($result);
-				$summPercents=0;
-				if($percentForEmployee!=null){
-					foreach ($percentForEmployee as $keySumm=>$arrSumm){
-						$summPercents=$summPercents+$arrSumm['time'];
-					}
-				}
-				$employeeNames[$key]['summ']=$summPercents;
-			}
-		}
 		return $employeeNames;
 	}
 	

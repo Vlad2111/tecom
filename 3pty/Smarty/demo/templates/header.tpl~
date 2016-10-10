@@ -23,7 +23,7 @@
 			<script src="3pty/AdminLTE-2.3.5/plugins/select2/select2.full.min.js"></script>
 			<header class="main-header">
 				<a class="logo">
-					<span class="logo-mini"><img src="Imagine/ImagineLogo.jpg"  width="50" height="50"></span>
+					<span class="logo-mini"><img src="https://hh.ru/employer-logo/1845627.png"  width="50" height="50"></span>
 					<span class="logo-lg"><p style="font-size:17px; line-height: 1.45em;">Система Учета Времени</br><b style="font-size:20px;">"Текомыч"</b></p></span>
 				</a>
 				<nav class="navbar navbar-static-top">
