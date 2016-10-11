@@ -771,7 +771,7 @@
 						}
 					});
 					var column = table.column(3);
-					column.visible(false);
+					column.visible(true);
 				});
 				function checkedPercentsFunction(obj) {
 					if(obj.value=="all"){

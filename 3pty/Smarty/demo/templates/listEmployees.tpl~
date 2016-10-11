@@ -33,10 +33,10 @@
 											</tr>
 										</thead>
 										<tbody>
-										{if $arrayEmployeeNames!=null}
+										{if $arrayEmployeeNames!=null}{$numrow=0}
 										{foreach from=$arrayEmployeeNames item=foo}
 										
-											<tr>
+											<tr id="row{$numrow}">{$numrow=$numrow+1}
 												<td>{if $foo.summ<100}<i class="glyphicon glyphicon-info-sign text-blue"></i>{/if}{if $foo.summ==100}<i class="glyphicon glyphicon-ok-sign text-green"></i>{/if}{if $foo.summ>100}<i class="glyphicon glyphicon-exclamation-sign text-red" ></i>{/if}</td>
 												<td>
 													<a 
