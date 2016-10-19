@@ -35,7 +35,10 @@ Class Controller_Department Extends Controller_Base {
 		}
 		$this->template->vars('departmentId', $_GET['departmentId']);
 		$this->template->vars('departmentName', $_GET['departmentName']);
-				
+		
+		$arrayDepartmentNames = $this->postgreSQL->getDepartmentNames($date);
+		$this->template->vars('arrayDepartmentNames', $arrayDepartmentNames);
+		
 		$arrayEmployeeNamesForDepartment = $this->postgreSQL->getEmployeeNamesForDepartment($_GET['departmentId'], $date);
 		$this->template->vars('arrayEmployeeNamesForDepartment', $arrayEmployeeNamesForDepartment);
 		

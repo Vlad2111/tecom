@@ -96,6 +96,8 @@
 															data-editid="{$foo.employee_id}" 
 															data-lastname="{$foo.user_name}" 
 															data-lastlogin="{$foo.user_id}" 
+															data-departmentid="{$departmentId}" 
+															data-countselect="{$countArrayDepartmentNamesForSelect}" 
 															data-target="#employeeModal" 
 															{/if}
 															title="Редактировать Данные Сотрудника"
@@ -152,6 +154,8 @@
 											class="btn btn-md"
 											{if $accessDep == null}
 											data-toggle="modal" 
+											data-departmentid="{$departmentId}" 
+											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#employeeModal" 
 											{/if}
 											title="Добавить Сотрудника"
@@ -204,6 +208,8 @@
 															data-toggle="modal" 
 															data-editid="{$foo.project_id}" 
 															data-lastname="{$foo.project_name}" 
+															data-departmentid="{$departmentId}" 
+															data-countselect="{$countArrayDepartmentNamesForSelect}" 
 															data-target="#projectModal" 
 															{$accessJ = 1}
 															{/if}
@@ -252,6 +258,8 @@
 											{foreach from=$headId item=fooo}
 											{if $accessPro == null || $fooo == $departmentId}
 											data-toggle="modal" 
+											data-departmentid="{$departmentId}" 
+											data-countselect="{$countArrayDepartmentNamesForSelect}" 
 											data-target="#projectModal" 
 											{$accessJ = 1}
 											{/if}

@@ -29,7 +29,6 @@ session_start();
 	$smarty->assign('status3', 'deactivate');
 	$smarty->assign('status4', 'deactivate');
 	$smarty->assign('status5', 'deactivate');
-	$smarty->assign('changeData', 't');	
 }
 /** Дата для отбражения и передачи. */
 {

@@ -6,7 +6,7 @@
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/AdminLTE.min.css">
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/dist/css/skins/skin-blue.min.css">
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.css">
-			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/daterangepicker/daterangepicker.css">
+			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datepicker/MonthPicker.css">
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/datepicker/datepicker3.css">
 			<link rel="stylesheet" href="3pty/AdminLTE-2.3.5/plugins/select2/select2.min.css">
 			<!-- REQUIRED JS SCRIPTS -->
@@ -18,8 +18,7 @@
 			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/jquery.dataTables.min.js"></script>
 			<script src="3pty/AdminLTE-2.3.5/plugins/datatables/dataTables.bootstrap.min.js"></script>
 			<script src="3pty/AdminLTE-2.3.5/plugins/datepicker/bootstrap-datepicker.js"></script>
-			<script src="3pty/AdminLTE-2.3.5/plugins/daterangepicker/moment.min.js"></script>
-			<script src="3pty/AdminLTE-2.3.5/plugins/daterangepicker/daterangepicker.js"></script>
+			<script src="3pty/AdminLTE-2.3.5/plugins/datepicker/MonthPicker.js"></script>
 			<script src="3pty/AdminLTE-2.3.5/plugins/select2/select2.full.min.js"></script>
 			<header class="main-header">
 				<a class="logo">
@@ -338,8 +337,8 @@
 			</script>
 			<script>
 				$(function () {
-					$('#datepicker').datepicker({
-						autoclose: true
+					$('#datepicker').MonthPicker({
+						Button: false
 					});
 				});
 
