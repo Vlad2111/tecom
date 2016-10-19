@@ -402,7 +402,6 @@
 					});
 					var column = table.column(3);
 					column.visible(false);
-					table.column(1).order('asc');
 				});
 	
 				function checkedPercentsFunction(obj) {

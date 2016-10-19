@@ -35,9 +35,9 @@ Class Controller_SaveXLSX Extends Controller_Base {
 
 		$this->postgreSQL->beginTran();
 		$this->columnOfDepartment( $sheet , $date );
-		$this->columnOfProject( $sheet1 , $date );
-		$this->columnOfEmployee( $sheet , $date );
-		$this->columnsOfTimeDistr( $sheet , $date );
+		//$this->columnOfProject( $sheet1 , $date );
+		//$this->columnOfEmployee( $sheet , $date );
+		//$this->columnsOfTimeDistr( $sheet , $date );
 		if($this->errorsNum == 0){
 			$this->postgreSQL->commitTran();
 			$_GET['route']='List/viewListDepartment';
@@ -91,7 +91,7 @@ Class Controller_SaveXLSX Extends Controller_Base {
 			}else{
 				unset($date[$i]);
 			}
-		}
+		}print_r($date);
 		return $date;
 	}
 	

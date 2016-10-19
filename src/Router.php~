@@ -54,7 +54,7 @@ Class Router {
         if (empty($route)) {
 			$route = 'Index'; 
 		}
-
+	print_r($route);
         $route = trim($route, '/\\');
         $parts = explode('/', $route);
 

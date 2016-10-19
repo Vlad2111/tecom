@@ -1216,6 +1216,7 @@ class PostgreSQLOperations
 				}	
 			}
 		}
-		return $total;
+		print_r($total);
+		//return $total;
 	}
 }

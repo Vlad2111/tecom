@@ -44,6 +44,8 @@ Class Controller_Reports Extends Controller_Base {
 		
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 		$objWriter->save('php://output');
+		$_GET['route']='List/viewListDepartment';
+		include 'index.php';
 	}
 
 	/** Получение даты. */
